@@ -401,9 +401,9 @@ int LuaEngine::handleCommonEvent(void* data)
 {
     if (NULL == data)
         return 0;
-   
-    CommonScriptData* commonInfo = static_cast<CommonScriptData*>(data);
-    if (strlen(commonInfo->eventName) <= 0 || 0 == commonInfo->handler)
+
+    CommonScriptData* commonInfo = static_cast<CommonScriptData*>(data); 
+    if (0 == commonInfo->handler)
         return 0;
     
     _stack->pushString(commonInfo->eventName);
