@@ -3,7 +3,7 @@ cocos2dx-lite
 =========
 
 It bases on [cocos2d-x](https://github.com/cocos2d/cocos2d-x) v3 branch, but remove 3D and other features.
-It works on iOS, Android, OS X and ~~Windows~~.
+It works on iOS, Android, OS X and Windows.
 
 The major change:
 
