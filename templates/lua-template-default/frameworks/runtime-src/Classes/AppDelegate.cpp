@@ -1,12 +1,10 @@
 #include "AppDelegate.h"
-#include "audio/include/SimpleAudioEngine.h"
+#include "audio/include/AudioEngine.h"
 #include "cocos2d.h"
 
 // lua
 #include "scripting/lua-bindings/manual/CCLuaEngine.h"
 #include "scripting/lua-bindings/manual/lua_module_register.h"
-
-using namespace CocosDenshion;
 
 USING_NS_CC;
 using namespace std;
@@ -17,7 +15,8 @@ AppDelegate::AppDelegate()
 
 AppDelegate::~AppDelegate()
 {
-    SimpleAudioEngine::end();
+    //SimpleAudioEngine::end();
+    experimental::AudioEngine::end();
 }
 
 // if you want a different context, modify the value of glContextAttrs
@@ -71,7 +70,8 @@ void AppDelegate::applicationDidEnterBackground()
 {
     Director::getInstance()->stopAnimation();
 
-    SimpleAudioEngine::getInstance()->pauseBackgroundMusic();
+    //SimpleAudioEngine::getInstance()->pauseBackgroundMusic();
+    experimental::AudioEngine::pauseAll();
     NotificationCenter::getInstance()->postNotification("APP_ENTER_BACKGROUND_EVENT");
 }
 
@@ -80,7 +80,8 @@ void AppDelegate::applicationWillEnterForeground()
 {
     Director::getInstance()->startAnimation();
 
-    SimpleAudioEngine::getInstance()->resumeBackgroundMusic();
+    //SimpleAudioEngine::getInstance()->resumeBackgroundMusic();
+    experimental::AudioEngine::resumeAll();
     NotificationCenter::getInstance()->postNotification("APP_ENTER_FOREGROUND_EVENT");
 }
 

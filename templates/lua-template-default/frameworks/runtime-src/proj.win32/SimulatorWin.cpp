@@ -23,16 +23,8 @@
 #include "glfw3native.h"
 
 #include "scripting/lua-bindings/manual/CCLuaEngine.h"
-#include "AppEvent.h"
-#include "AppLang.h"
-#include "runtime/ConfigParser.h"
-#include "runtime/Runtime.h"
-
-#include "platform/win32/PlayerWin.h"
-#include "platform/win32/PlayerMenuServiceWin.h"
 
 // define 1 to open console ui and setup windows system menu, 0 to disable
-#include "ide-support/CodeIDESupport.h"
 #if (CC_CODE_IDE_DEBUG_SUPPORT > 0)
 #define SIMULATOR_WITH_CONSOLE_AND_MENU 1
 #else
@@ -242,13 +234,13 @@ int SimulatorWin::run()
         {
             // for Code IDE before RC2
             _project.setProjectDir(args.at(1));
-            _project.setDebuggerType(kCCRuntimeDebuggerCodeIDE);
+            //_project.setDebuggerType(kCCRuntimeDebuggerCodeIDE);
         }
     }
 
     // create the application instance
     _app = new AppDelegate();
-    RuntimeEngine::getInstance()->setProjectConfig(_project);
+    //RuntimeEngine::getInstance()->setProjectConfig(_project);
 
 #if (SIMULATOR_WITH_CONSOLE_AND_MENU > 0)
     // create console window
@@ -331,14 +323,15 @@ int SimulatorWin::run()
     }
 
     const Rect frameRect = Rect(0, 0, frameSize.width, frameSize.height);
-    ConfigParser::getInstance()->setInitViewSize(frameSize);
+    //ConfigParser::getInstance()->setInitViewSize(frameSize);
     const bool isResize = _project.isResizeWindow();
     std::stringstream title;
-    title << "Cocos Simulator - " << ConfigParser::getInstance()->getInitViewName();
+    title << "Cocos2d-x lite - ";;
+    //title << ConfigParser::getInstance()->getInitViewName();
     initGLContextAttrs();
     auto glview = GLViewImpl::createWithRect(title.str(), frameRect, frameScale);
     _hwnd = glview->getWin32Window();
-    player::PlayerWin::createWithHwnd(_hwnd);
+    //player::PlayerWin::createWithHwnd(_hwnd);
     DragAcceptFiles(_hwnd, TRUE);
     //SendMessage(_hwnd, WM_SETICON, ICON_BIG, (LPARAM)icon);
     //SendMessage(_hwnd, WM_SETICON, ICON_SMALL, (LPARAM)icon);
@@ -386,6 +379,7 @@ int SimulatorWin::run()
 
 void SimulatorWin::setupUI()
 {
+#if 0
     auto menuBar = player::PlayerProtocol::getInstance()->getMenuService();
 
     // FILE
@@ -572,6 +566,7 @@ void SimulatorWin::setupUI()
         }
     });
     dispatcher->addEventListenerWithFixedPriority(listener, 1);
+#endif
 }
 
 void SimulatorWin::setZoom(float frameScale)
@@ -618,25 +613,6 @@ void SimulatorWin::parseCocosProjectConfig(ProjectConfig &config)
 
     // set project directory as search root path
     FileUtils::getInstance()->setDefaultResourceRootPath(tmpConfig.getProjectDir().c_str());
-
-    // parse config.json
-    auto parser = ConfigParser::getInstance();
-    auto configPath = tmpConfig.getProjectDir().append(CONFIG_FILE);
-    parser->readConfig(configPath);
-
-    // set information
-    config.setConsolePort(parser->getConsolePort());
-    config.setFileUploadPort(parser->getUploadPort());
-    config.setFrameSize(parser->getInitViewSize());
-    if (parser->isLanscape())
-    {
-        config.changeFrameOrientationToLandscape();
-    }
-    else
-    {
-        config.changeFrameOrientationToPortait();
-    }
-    config.setScriptFile(parser->getEntryFile());
 }
 
 //
@@ -747,19 +723,19 @@ LRESULT CALLBACK SimulatorWin::windowProc(HWND hWnd, UINT uMsg, WPARAM wParam, L
         {
             // menu
             WORD menuId = LOWORD(wParam);
-            auto menuService = dynamic_cast<player::PlayerMenuServiceWin*> (player::PlayerProtocol::getInstance()->getMenuService());
-            auto menuItem = menuService->getItemByCommandId(menuId);
-            if (menuItem)
-            {
-                AppEvent event("APP.EVENT", APP_EVENT_MENU);
+            //auto menuService = dynamic_cast<player::PlayerMenuServiceWin*> (player::PlayerProtocol::getInstance()->getMenuService());
+            //auto menuItem = menuService->getItemByCommandId(menuId);
+            //if (menuItem)
+            //{
+            //    AppEvent event("APP.EVENT", APP_EVENT_MENU);
 
-                std::stringstream buf;
-                buf << "{\"data\":\"" << menuItem->getMenuId().c_str() << "\"";
-                buf << ",\"name\":" << "\"menuClicked\"" << "}";
-                event.setDataString(buf.str());
-                event.setUserData(menuItem);
-                Director::getInstance()->getEventDispatcher()->dispatchEvent(&event);
-            }
+            //    std::stringstream buf;
+            //    buf << "{\"data\":\"" << menuItem->getMenuId().c_str() << "\"";
+            //    buf << ",\"name\":" << "\"menuClicked\"" << "}";
+            //    event.setDataString(buf.str());
+            //    event.setUserData(menuItem);
+            //    Director::getInstance()->getEventDispatcher()->dispatchEvent(&event);
+            //}
 
             if (menuId == ID_HELP_ABOUT)
             {
@@ -798,29 +774,29 @@ LRESULT CALLBACK SimulatorWin::windowProc(HWND hWnd, UINT uMsg, WPARAM wParam, L
 
     case WM_DROPFILES:
     {
-        HDROP hDrop = (HDROP)wParam;
+        //HDROP hDrop = (HDROP)wParam;
 
-        const int count = DragQueryFileW(hDrop, 0xffffffff, NULL, 0);
+        //const int count = DragQueryFileW(hDrop, 0xffffffff, NULL, 0);
 
-        if (count > 0)
-        {
-            int fileIndex = 0;
+        //if (count > 0)
+        //{
+        //    int fileIndex = 0;
 
-            const UINT length = DragQueryFileW(hDrop, fileIndex, NULL, 0);
-            WCHAR* buffer = (WCHAR*)calloc(length + 1, sizeof(WCHAR));
+        //    const UINT length = DragQueryFileW(hDrop, fileIndex, NULL, 0);
+        //    WCHAR* buffer = (WCHAR*)calloc(length + 1, sizeof(WCHAR));
 
-            DragQueryFileW(hDrop, fileIndex, buffer, length + 1);
-            char *utf8 = SimulatorWin::convertTCharToUtf8(buffer);
-            std::string firstFile(utf8);
-            CC_SAFE_FREE(utf8);
-            DragFinish(hDrop);
+        //    DragQueryFileW(hDrop, fileIndex, buffer, length + 1);
+        //    char *utf8 = SimulatorWin::convertTCharToUtf8(buffer);
+        //    std::string firstFile(utf8);
+        //    CC_SAFE_FREE(utf8);
+        //    DragFinish(hDrop);
 
-            // broadcast drop event
-            AppEvent forwardEvent("APP.EVENT.DROP", APP_EVENT_DROP);
-            forwardEvent.setDataString(firstFile);
+        //    // broadcast drop event
+        //    AppEvent forwardEvent("APP.EVENT.DROP", APP_EVENT_DROP);
+        //    forwardEvent.setDataString(firstFile);
 
-            Director::getInstance()->getEventDispatcher()->dispatchEvent(&forwardEvent);
-        }
+        //    Director::getInstance()->getEventDispatcher()->dispatchEvent(&forwardEvent);
+        //}
     }   // WM_DROPFILES
 
     }
