@@ -1,8 +1,9 @@
 ﻿#include "AppDelegate.h"
 #include "scripting/lua-bindings/manual/CCLuaEngine.h"
+#include "scripting/lua-bindings/manual/lua_module_register.h"
 // #include "SimpleAudioEngine.h"
 #include "cocos2d.h"
- #include "lua_module_register.h"
+
 #include "ProjectConfig/SimulatorConfig.h"
 
 #include "MainScene.h"
@@ -63,7 +64,7 @@ bool AppDelegate::applicationDidFinishLaunching()
     // run
     director->runWithScene(MainScene::create());
     
-    return true;
+//    return true;
 
     // set default FPS
     Director::getInstance()->setAnimationInterval(1.0 / 60.0f);
