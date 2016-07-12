@@ -1014,6 +1014,8 @@ class Generator(object):
 
         extend_clang_args = []
 
+        self._check_headers()
+
         for clang_arg in self.clang_args:
             if not os.path.exists(clang_arg.replace("-I","")):
                 pos = clang_arg.find("lib/clang/3.3/include")
@@ -1252,6 +1254,16 @@ class Generator(object):
             print "%s. <severity = %s,\n    location = %r,\n    details = %r>" % (
                 idx+1, severities[d.severity], d.location, d.spelling)
         print("====\n")
+
+    def _check_headers(self):
+        headers = self.headers
+        self.headers = []
+        for header in headers:
+            if os.path.exists(header):
+                self.headers.append(header)
+            else:
+                print('*** header: {0} does not exist'.format(header))
+        print('*** available headers:', self.headers)
 
     def _parse_headers(self):
         for header in self.headers:
