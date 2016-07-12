@@ -76,15 +76,20 @@ def main():
         sys.exit(1)
 
     if platform == 'win32':
-        x86_llvm_path = os.path.abspath(os.path.join(ndk_root, 'toolchains/llvm-3.4/prebuilt', '%s' % cur_platform))
+        x86_llvm_path = os.path.abspath(os.path.join(ndk_root, 'toolchains/llvm-3.5/prebuilt', '%s' % cur_platform))
+        if not os.path.exists(x86_llvm_path):
+            x86_llvm_path = os.path.abspath(os.path.join(ndk_root, 'toolchains/llvm-3.4/prebuilt', '%s' % cur_platform))
         if not os.path.exists(x86_llvm_path):
             x86_llvm_path = os.path.abspath(os.path.join(ndk_root, 'toolchains/llvm-3.3/prebuilt', '%s' % cur_platform))
     else:
-        x86_llvm_path = os.path.abspath(os.path.join(ndk_root, 'toolchains/llvm-3.4/prebuilt', '%s-%s' % (cur_platform, 'x86')))
+        x86_llvm_path = os.path.abspath(os.path.join(ndk_root, 'toolchains/llvm-3.5/prebuilt', '%s-%s' % (cur_platform, 'x86')))
+        if not os.path.exists(x86_llvm_path):
+            x86_llvm_path = os.path.abspath(os.path.join(ndk_root, 'toolchains/llvm-3.4/prebuilt', '%s-%s' % (cur_platform, 'x86')))
         if not os.path.exists(x86_llvm_path):
             x86_llvm_path = os.path.abspath(os.path.join(ndk_root, 'toolchains/llvm-3.3/prebuilt', '%s-%s' % (cur_platform, 'x86')))
-
-    x64_llvm_path = os.path.abspath(os.path.join(ndk_root, 'toolchains/llvm-3.4/prebuilt', '%s-%s' % (cur_platform, 'x86_64')))
+    x64_llvm_path = os.path.abspath(os.path.join(ndk_root, 'toolchains/llvm-3.5/prebuilt', '%s-%s' % (cur_platform, 'x86_64')))
+    if not os.path.exists(x64_llvm_path):
+        x64_llvm_path = os.path.abspath(os.path.join(ndk_root, 'toolchains/llvm-3.4/prebuilt', '%s-%s' % (cur_platform, 'x86_64')))
     if not os.path.exists(x64_llvm_path):
         x64_llvm_path = os.path.abspath(os.path.join(ndk_root, 'toolchains/llvm-3.3/prebuilt', '%s-%s' % (cur_platform, 'x86_64')))
 
@@ -97,8 +102,9 @@ def main():
         print 'path: %s or path: %s are not valid! ' % (x86_llvm_path, x64_llvm_path)
         sys.exit(1)
 
-    project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
-    cocos_root = os.path.abspath(os.path.join(project_root, ''))
+    project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', '..'))
+    cocos_root = os.path.abspath(project_root)
+    jsb_root = os.path.abspath(os.path.join(project_root, 'cocos/scripting/js-bindings'))
     cxx_generator_root = os.path.abspath(os.path.join(project_root, 'tools/bindings-generator'))
 
     # save config to file
@@ -106,10 +112,13 @@ def main():
     config.set('DEFAULT', 'androidndkdir', ndk_root)
     config.set('DEFAULT', 'clangllvmdir', llvm_path)
     config.set('DEFAULT', 'cocosdir', cocos_root)
+    config.set('DEFAULT', 'jsbdir', jsb_root)
     config.set('DEFAULT', 'cxxgeneratordir', cxx_generator_root)
     config.set('DEFAULT', 'extra_flags', '')
-
-    if '3.4' in llvm_path:
+    
+    if '3.5' in llvm_path:
+        config.set('DEFAULT', 'clang_version', '3.5')
+    elif '3.4' in llvm_path:
         config.set('DEFAULT', 'clang_version', '3.4')
     else:
         config.set('DEFAULT', 'clang_version', '3.3')
@@ -128,6 +137,7 @@ def main():
     # set proper environment variables
     if 'linux' in platform or platform == 'darwin':
         os.putenv('LD_LIBRARY_PATH', '%s/libclang' % cxx_generator_root)
+        print '%s/libclang' % cxx_generator_root
     if platform == 'win32':
         path_env = os.environ['PATH']
         os.putenv('PATH', r'%s;%s\libclang;%s\tools\win32;' % (path_env, cxx_generator_root, cxx_generator_root))
@@ -135,33 +145,30 @@ def main():
 
     try:
 
-        tolua_root = '%s/tools/tolua' % project_root
-        output_dir = '%s/cocos/scripting/lua-bindings/auto' % project_root
+        tojs_root = '%s/tools/bindings-generator/test' % project_root
+        output_dir = '%s/tools/bindings-generator/test/simple_test_bindings' % project_root
 
         cmd_args = {
-                    'cocos2dx.ini' : ('cocos2d-x', 'lua_cocos2dx_auto'), \
-                    # 'cocos2dx_base.ini' : ('cocos2d-x', 'lua_cocos2dx_auto'), \
-                    'cocos2dx_spine.ini' : ('cocos2dx_spine', 'lua_cocos2dx_spine_auto'), \
-                    'cocos2dx_audioengine.ini': ('cocos2dx_audioengine', 'lua_cocos2dx_audioengine_auto'), \
-                    }
-        target = 'lua'
+            'test.ini': ('simple_test', 'autogentestbindings')
+        }
+        target = 'spidermonkey'
         generator_py = '%s/generator.py' % cxx_generator_root
         for key in cmd_args.keys():
             args = cmd_args[key]
-            cfg = '%s/%s' % (tolua_root, key)
+            cfg = '%s/%s' % (tojs_root, key)
             print 'Generating bindings for %s...' % (key[:-4])
             command = '%s %s %s -s %s -t %s -o %s -n %s' % (python_bin, generator_py, cfg, args[0], target, output_dir, args[1])
             _run_cmd(command)
 
-        print '---------------------------------'
-        print 'Generating lua bindings succeeds.'
-        print '---------------------------------'
+        print '----------------------------------------'
+        print 'Generating javascript bindings succeeds.'
+        print '----------------------------------------'
 
     except Exception as e:
         if e.__class__.__name__ == 'CmdError':
-            print '---------------------------------'
-            print 'Generating lua bindings fails.'
-            print '---------------------------------'
+            print '-------------------------------------'
+            print 'Generating javascript bindings fails.'
+            print '-------------------------------------'
             sys.exit(1)
         else:
             raise
