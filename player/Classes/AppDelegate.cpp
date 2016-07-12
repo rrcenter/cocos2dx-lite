@@ -54,7 +54,7 @@ bool AppDelegate::applicationDidFinishLaunching()
     director->getOpenGLView()->setDesignResolutionSize(640, 960, ResolutionPolicy::FIXED_WIDTH);
 
     // turn on display FPS
-    director->setDisplayStats(false);
+    director->setDisplayStats(true);
 
     // set FPS. the default value is 1.0/60 if you don't call this
     director->setAnimationInterval(1.0 / 60);
@@ -64,7 +64,7 @@ bool AppDelegate::applicationDidFinishLaunching()
     // run
     director->runWithScene(MainScene::create());
     
-//    return true;
+    return true;
 
     // set default FPS
     Director::getInstance()->setAnimationInterval(1.0 / 60.0f);
