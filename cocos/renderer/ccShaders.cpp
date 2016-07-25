@@ -81,4 +81,7 @@ NS_CC_BEGIN
 #include "ccShader_CameraClear.frag"
 
 
+// ETC1 ALPHA support
+#include "renderer/ccShader_ETC1AS_PositionTextureColor.frag"
+#include "renderer/ccShader_ETC1AS_PositionTextureGray.frag"
 NS_CC_END
