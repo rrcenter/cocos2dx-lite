@@ -29,6 +29,7 @@
 #ifndef __CCNODE_H__
 #define __CCNODE_H__
 
+#include <cstdint>
 #include "base/ccMacros.h"
 #include "base/CCVector.h"
 #include "base/CCProtocols.h"
@@ -106,6 +107,7 @@ class EventListener;
 
 class CC_DLL Node : public Ref
 {
+    friend bool nodeComparisonLess(Node* n1, Node* n2);
 public:
     /** Default tag used for all the nodes */
     static const int INVALID_TAG = -1;
@@ -166,6 +168,18 @@ public:
      */
     CC_DEPRECATED_ATTRIBUTE virtual void _setLocalZOrder(int z);
 
+    /** !!! ONLY FOR INTERNAL USE
+    * Sets the arrival order when this node has a same ZOrder with other children.
+    *
+    * A node which called addChild subsequently will take a larger arrival order,
+    * If two children have the same Z order, the child with larger arrival order will be drawn later.
+    *
+    * @warning This method is used internally for localZOrder sorting, don't change this manually
+    *
+    * @param orderOfArrival   The arrival order.
+    */
+    void updateOrderOfArrival();
+
     /**
      * Gets the local Z order of this node.
      *
@@ -173,7 +187,7 @@ public:
      *
      * @return The local (relative to its siblings) Z order.
      */
-    virtual int getLocalZOrder() const { return _localZOrder; }
+    virtual int getLocalZOrder() const { return _localZOrder.detail.z; }
     CC_DEPRECATED_ATTRIBUTE virtual int getZOrder() const { return getLocalZOrder(); }
 
     /**
@@ -1860,8 +1874,16 @@ protected:
     bool _useAdditionalTransform;   ///< The flag to check whether the additional transform is dirty
     bool _transformUpdated;         ///< Whether or not the Transform object was updated since the last frame
 
-    int _localZOrder;               ///< Local order (relative to its siblings) used to sort the node
+    union {
+        struct {
+            std::int32_t z; // The original localZOrder
+            std::uint32_t a; // Order Of Arrival, for avoid sort problem with unstable_sort algorithm.
+        } detail;
+        std::int64_t value; // The value to be used in sort
+    } _localZOrder;               ///< Local order (relative to its siblings) used to sort the node
     float _globalZOrder;            ///< Global order used to sort the node
+
+    static unsigned int s_globalOrderOfArrival;
 
     Vector<Node*> _children;        ///< array of children nodes
     Node *_parent;                  ///< weak reference to parent node
@@ -1907,8 +1929,6 @@ protected:
     Color3B     _realColor;
     bool		_cascadeColorEnabled;
     bool        _cascadeOpacityEnabled;
-
-    static int s_globalOrderOfArrival;
     
     // camera mask, it is visible only when _cameraMask & current camera' camera flag is true
     unsigned short _cameraMask;
