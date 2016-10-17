@@ -22,121 +22,172 @@ THE SOFTWARE.
 
 ]]
 
+--[[--
+
+与显示图像、场景有关的功能
+
+<br />
+
+display 模块封装了绝大部分与显示有关的功能，并负责根据 config.lua 中定义的分辨率设定计算屏幕的设计分辨率。
+
+<br />
+
+框架初始化后，display 模块提供下列属性：
+
+-   display.sizeInPixels.width,
+-   display.sizeInPixels.height 屏幕的像素分辨率
+-   display.widthInPixels,
+-   display.heightInPixels 屏幕的像素分辨率
+-   display.contentScaleFactor 内容缩放因子
+-   display.size.width,
+-   display.size.height 屏幕的设计分辨率
+-   display.width,
+-   display.height 屏幕的设计分辨率
+-   display.cx,
+-   display.cy 屏幕中央的 x 坐标和 y 坐标
+-   display.left,
+-   display.top,
+-   display.right,
+-   display.bottom 屏幕四边的坐标
+-   display.c_left,
+-   display.c_top,
+-   display.c_right,
+-   display.c_bottom 当父对象在屏幕中央时，屏幕四边的坐标
+
+<br />
+
+颜色：
+
+-   display.COLOR_WHITE 白色, ccc3(255, 255, 255)
+-   display.COLOR_BLACK 黑色, ccc3(0, 0, 0)
+
+]]
+
 local display = {}
 
 local director = cc.Director:getInstance()
-local view = director:getOpenGLView()
-
-if not view then
-    local width = 960
-    local height = 640
-    if CC_DESIGN_RESOLUTION then
-        if CC_DESIGN_RESOLUTION.width then
-            width = CC_DESIGN_RESOLUTION.width
-        end
-        if CC_DESIGN_RESOLUTION.height then
-            height = CC_DESIGN_RESOLUTION.height
-        end
-    end
-    view = cc.GLViewImpl:createWithRect("Cocos2d-Lua", cc.rect(0, 0, width, height))
-    director:setOpenGLView(view)
-end
-
-local framesize = view:getFrameSize()
 local textureCache = director:getTextureCache()
 local spriteFrameCache = cc.SpriteFrameCache:getInstance()
 local animationCache = cc.AnimationCache:getInstance()
 
--- auto scale
-local function checkResolution(r)
-    r.width = checknumber(r.width)
-    r.height = checknumber(r.height)
-    r.autoscale = string.upper(r.autoscale)
-    assert(r.width > 0 and r.height > 0,
-        string.format("display - invalid design resolution size %d, %d", r.width, r.height))
+-- check device screen size
+local glview = director:getOpenGLView()
+if nil == glview then
+    glview = cc.GLViewImpl:createWithRect("QuickCocos",
+        cc.rect(0, 0, CONFIG_SCREEN_WIDTH or 900, CONFIG_SCREEN_HEIGHT or 640))
+    director:setOpenGLView(glview)
 end
 
-local function setDesignResolution(r, framesize)
-    if r.autoscale == "FILL_ALL" then
-        view:setDesignResolutionSize(framesize.width, framesize.height, cc.ResolutionPolicy.FILL_ALL)
+local size = glview:getFrameSize()
+display.sizeInPixels = {width = size.width, height = size.height}
+
+local w = display.sizeInPixels.width
+local h = display.sizeInPixels.height
+
+if CONFIG_SCREEN_WIDTH == nil or CONFIG_SCREEN_HEIGHT == nil then
+    CONFIG_SCREEN_WIDTH = w
+    CONFIG_SCREEN_HEIGHT = h
+end
+
+if not CONFIG_SCREEN_AUTOSCALE then
+    if w > h then
+        CONFIG_SCREEN_AUTOSCALE = "FIXED_HEIGHT"
     else
-        local scaleX, scaleY = framesize.width / r.width, framesize.height / r.height
-        local width, height = framesize.width, framesize.height
-        if r.autoscale == "FIXED_WIDTH" then
-            width = framesize.width / scaleX
-            height = framesize.height / scaleX
-            view:setDesignResolutionSize(width, height, cc.ResolutionPolicy.NO_BORDER)
-        elseif r.autoscale == "FIXED_HEIGHT" then
-            width = framesize.width / scaleY
-            height = framesize.height / scaleY
-            view:setDesignResolutionSize(width, height, cc.ResolutionPolicy.NO_BORDER)
-        elseif r.autoscale == "EXACT_FIT" then
-            view:setDesignResolutionSize(r.width, r.height, cc.ResolutionPolicy.EXACT_FIT)
-        elseif r.autoscale == "NO_BORDER" then
-            view:setDesignResolutionSize(r.width, r.height, cc.ResolutionPolicy.NO_BORDER)
-        elseif r.autoscale == "SHOW_ALL" then
-            view:setDesignResolutionSize(r.width, r.height, cc.ResolutionPolicy.SHOW_ALL)
-        else
-            printError(string.format("display - invalid r.autoscale \"%s\"", r.autoscale))
-        end
+        CONFIG_SCREEN_AUTOSCALE = "FIXED_WIDTH"
     end
+else
+    CONFIG_SCREEN_AUTOSCALE = string.upper(CONFIG_SCREEN_AUTOSCALE)
 end
 
-local function setConstants()
-    local sizeInPixels = view:getFrameSize()
-    display.sizeInPixels = {width = sizeInPixels.width, height = sizeInPixels.height}
+local scale, scaleX, scaleY
 
-    local viewsize = director:getWinSize()
-    display.contentScaleFactor = director:getContentScaleFactor()
-    display.size               = {width = viewsize.width, height = viewsize.height}
-    display.width              = display.size.width
-    display.height             = display.size.height
-    display.cx                 = display.width / 2
-    display.cy                 = display.height / 2
-    display.c_left             = -display.width / 2
-    display.c_right            = display.width / 2
-    display.c_top              = display.height / 2
-    display.c_bottom           = -display.height / 2
-    display.left               = 0
-    display.right              = display.width
-    display.top                = display.height
-    display.bottom             = 0
-    display.center             = cc.p(display.cx, display.cy)
-    display.left_top           = cc.p(display.left, display.top)
-    display.left_bottom        = cc.p(display.left, display.bottom)
-    display.left_center        = cc.p(display.left, display.cy)
-    display.right_top          = cc.p(display.right, display.top)
-    display.right_bottom       = cc.p(display.right, display.bottom)
-    display.right_center       = cc.p(display.right, display.cy)
-    display.top_center         = cc.p(display.cx, display.top)
-    display.top_bottom         = cc.p(display.cx, display.bottom)
+if CONFIG_SCREEN_AUTOSCALE and CONFIG_SCREEN_AUTOSCALE ~="NONE" then
+    if type(CONFIG_SCREEN_AUTOSCALE_CALLBACK) == "function" then
+        scaleX, scaleY = CONFIG_SCREEN_AUTOSCALE_CALLBACK(w, h, device.model)
+    end
 
-    printInfo(string.format("# display.sizeInPixels         = {width = %0.2f, height = %0.2f}", display.sizeInPixels.width, display.sizeInPixels.height))
-    printInfo(string.format("# display.size                 = {width = %0.2f, height = %0.2f}", display.size.width, display.size.height))
-    printInfo(string.format("# display.contentScaleFactor   = %0.2f", display.contentScaleFactor))
-    printInfo(string.format("# display.width                = %0.2f", display.width))
-    printInfo(string.format("# display.height               = %0.2f", display.height))
-    printInfo(string.format("# display.cx                   = %0.2f", display.cx))
-    printInfo(string.format("# display.cy                   = %0.2f", display.cy))
-    printInfo(string.format("# display.left                 = %0.2f", display.left))
-    printInfo(string.format("# display.right                = %0.2f", display.right))
-    printInfo(string.format("# display.top                  = %0.2f", display.top))
-    printInfo(string.format("# display.bottom               = %0.2f", display.bottom))
-    printInfo(string.format("# display.c_left               = %0.2f", display.c_left))
-    printInfo(string.format("# display.c_right              = %0.2f", display.c_right))
-    printInfo(string.format("# display.c_top                = %0.2f", display.c_top))
-    printInfo(string.format("# display.c_bottom             = %0.2f", display.c_bottom))
-    printInfo(string.format("# display.center               = {x = %0.2f, y = %0.2f}", display.center.x, display.center.y))
-    printInfo(string.format("# display.left_top             = {x = %0.2f, y = %0.2f}", display.left_top.x, display.left_top.y))
-    printInfo(string.format("# display.left_bottom          = {x = %0.2f, y = %0.2f}", display.left_bottom.x, display.left_bottom.y))
-    printInfo(string.format("# display.left_center          = {x = %0.2f, y = %0.2f}", display.left_center.x, display.left_center.y))
-    printInfo(string.format("# display.right_top            = {x = %0.2f, y = %0.2f}", display.right_top.x, display.right_top.y))
-    printInfo(string.format("# display.right_bottom         = {x = %0.2f, y = %0.2f}", display.right_bottom.x, display.right_bottom.y))
-    printInfo(string.format("# display.right_center         = {x = %0.2f, y = %0.2f}", display.right_center.x, display.right_center.y))
-    printInfo(string.format("# display.top_center           = {x = %0.2f, y = %0.2f}", display.top_center.x, display.top_center.y))
-    printInfo(string.format("# display.top_bottom           = {x = %0.2f, y = %0.2f}", display.top_bottom.x, display.top_bottom.y))
-    printInfo("#")
+    if CONFIG_SCREEN_AUTOSCALE == "FILL_ALL" then
+        CONFIG_SCREEN_WIDTH = w
+        CONFIG_SCREEN_HEIGHT = h
+        scale = 1.0
+        if cc.bPlugin_ then
+            glview:setDesignResolutionSize(CONFIG_SCREEN_WIDTH, CONFIG_SCREEN_HEIGHT, cc.ResolutionPolicy.NO_BORDER)
+        else
+            glview:setDesignResolutionSize(CONFIG_SCREEN_WIDTH, CONFIG_SCREEN_HEIGHT, cc.ResolutionPolicy.FILL_ALL)
+        end
+    else
+        if not scaleX or not scaleY then
+            scaleX, scaleY = w / CONFIG_SCREEN_WIDTH, h / CONFIG_SCREEN_HEIGHT
+        end
+
+        if CONFIG_SCREEN_AUTOSCALE == "FIXED_WIDTH" then
+            scale = scaleX
+            CONFIG_SCREEN_HEIGHT = h / scale
+        elseif CONFIG_SCREEN_AUTOSCALE == "FIXED_HEIGHT" then
+            scale = scaleY
+            CONFIG_SCREEN_WIDTH = w / scale
+        else
+            scale = 1.0
+            printError(string.format("display - invalid CONFIG_SCREEN_AUTOSCALE \"%s\"", CONFIG_SCREEN_AUTOSCALE))
+        end
+        glview:setDesignResolutionSize(CONFIG_SCREEN_WIDTH, CONFIG_SCREEN_HEIGHT, cc.ResolutionPolicy.NO_BORDER)
+    end
+else
+    CONFIG_SCREEN_WIDTH = w
+    CONFIG_SCREEN_HEIGHT = h
+    scale = 1.0
 end
+
+local winSize = director:getWinSize()
+display.contentScaleFactor = director:getContentScaleFactor()
+display.size               = {width = winSize.width, height = winSize.height}
+display.width              = display.size.width
+display.height             = display.size.height
+display.cx                 = display.width / 2
+display.cy                 = display.height / 2
+display.c_left             = -display.width / 2
+display.c_right            = display.width / 2
+display.c_top              = display.height / 2
+display.c_bottom           = -display.height / 2
+display.left               = 0
+display.right              = display.width
+display.top                = display.height
+display.bottom             = 0
+display.center             = cc.p(display.cx, display.cy)
+display.left_top           = cc.p(display.left, display.top)
+display.left_bottom        = cc.p(display.left, display.bottom)
+display.left_center        = cc.p(display.left, display.cy)
+display.right_top          = cc.p(display.right, display.top)
+display.right_bottom       = cc.p(display.right, display.bottom)
+display.right_center       = cc.p(display.right, display.cy)
+display.top_center         = cc.p(display.cx, display.top)
+display.top_bottom         = cc.p(display.cx, display.bottom)
+
+printInfo(string.format("# display.sizeInPixels         = {width = %0.2f, height = %0.2f}", display.sizeInPixels.width, display.sizeInPixels.height))
+printInfo(string.format("# display.size                 = {width = %0.2f, height = %0.2f}", display.size.width, display.size.height))
+printInfo(string.format("# display.contentScaleFactor   = %0.2f", display.contentScaleFactor))
+printInfo(string.format("# display.width                = %0.2f", display.width))
+printInfo(string.format("# display.height               = %0.2f", display.height))
+printInfo(string.format("# display.cx                   = %0.2f", display.cx))
+printInfo(string.format("# display.cy                   = %0.2f", display.cy))
+printInfo(string.format("# display.left                 = %0.2f", display.left))
+printInfo(string.format("# display.right                = %0.2f", display.right))
+printInfo(string.format("# display.top                  = %0.2f", display.top))
+printInfo(string.format("# display.bottom               = %0.2f", display.bottom))
+printInfo(string.format("# display.c_left               = %0.2f", display.c_left))
+printInfo(string.format("# display.c_right              = %0.2f", display.c_right))
+printInfo(string.format("# display.c_top                = %0.2f", display.c_top))
+printInfo(string.format("# display.c_bottom             = %0.2f", display.c_bottom))
+printInfo(string.format("# display.center               = {x = %0.2f, y = %0.2f}", display.center.x, display.center.y))
+printInfo(string.format("# display.left_top             = {x = %0.2f, y = %0.2f}", display.left_top.x, display.left_top.y))
+printInfo(string.format("# display.left_bottom          = {x = %0.2f, y = %0.2f}", display.left_bottom.x, display.left_bottom.y))
+printInfo(string.format("# display.left_center          = {x = %0.2f, y = %0.2f}", display.left_center.x, display.left_center.y))
+printInfo(string.format("# display.right_top            = {x = %0.2f, y = %0.2f}", display.right_top.x, display.right_top.y))
+printInfo(string.format("# display.right_bottom         = {x = %0.2f, y = %0.2f}", display.right_bottom.x, display.right_bottom.y))
+printInfo(string.format("# display.right_center         = {x = %0.2f, y = %0.2f}", display.right_center.x, display.right_center.y))
+printInfo(string.format("# display.top_center           = {x = %0.2f, y = %0.2f}", display.top_center.x, display.top_center.y))
+printInfo(string.format("# display.top_bottom           = {x = %0.2f, y = %0.2f}", display.top_bottom.x, display.top_bottom.y))
+printInfo("#")
 
 function display.setAutoScale(configs)
     if type(configs) ~= "table" then return end
@@ -154,7 +205,6 @@ function display.setAutoScale(configs)
 
     printInfo(string.format("# design resolution size       = {width = %0.2f, height = %0.2f}", configs.width, configs.height))
     printInfo(string.format("# design resolution autoscale  = %s", configs.autoscale))
-    setConstants()
 end
 
 if type(CC_DESIGN_RESOLUTION) == "table" then
@@ -219,31 +269,106 @@ display.TEXTURES_PIXEL_FORMAT = {}
 display.DEFAULT_TTF_FONT        = "Arial"
 display.DEFAULT_TTF_FONT_SIZE   = 32
 
+-- start --
 
-local PARAMS_EMPTY = {}
-local RECT_ZERO = cc.rect(0, 0, 0, 0)
+--------------------------------
+-- 创建一个新场景，并返回 Scene 场景对象。
+-- @function [parent=#display] newScene
+-- @param string name 场景名称
+-- @return Scene#Scene ret (return value: cc.Scene)  场景对象
+-- @see Scene
 
-local sceneIndex = 0
-function display.newScene(name, params)
-    params = params or PARAMS_EMPTY
-    sceneIndex = sceneIndex + 1
-    local scene
-    if not params.physics then
-        scene = cc.Scene:create()
-    else
-        scene = cc.Scene:createWithPhysics()
-    end
-    scene.name_ = string.format("%s:%d", name or "<unknown-scene>", sceneIndex)
+-- end --
 
-    if params.transition then
-        scene = display.wrapSceneWithTransition(scene, params.transition, params.time, params.more)
-    end
-
+function display.newScene(name)
+    local scene = cc.Scene:create()
+    scene:setNodeEventEnabled(true)
+    scene:setAutoCleanupEnabled()
+    scene.name = name or "<unknown-scene>"
     return scene
 end
 
-function display.wrapScene(scene, transition, time, more)
-    local key = string.upper(tostring(transition))
+-- start --
+
+--------------------------------
+-- 创建一个新场景，并返回 Scene 场景对象。
+-- @function [parent=#display] newPhysicsScene
+-- @param string name 场景名称
+-- @return Scene#Scene ret (return value: cc.Scene)  场景对象
+-- @see Scene
+
+-- end --
+
+function display.newPhysicsScene(name)
+    local scene = cc.Scene:createWithPhysics()
+    scene:setNodeEventEnabled(true)
+    scene:setAutoCleanupEnabled()
+    scene.name = name or "<unknown-scene>"
+    return scene
+end
+
+--[[--
+
+用场景切换过渡效果包装场景对象，并返回场景过渡对象。
+
+~~~ lua
+
+-- 创建一个新场景
+local nextScene = display.newScene("NextScene")
+-- 包装过渡效果
+local transition = display.wrapSceneWithTransition(nextScene, "fade", 0.5)
+-- 切换到新场景
+display.replaceScene(nextScene)
+
+~~~
+
+可用的过渡效果有：
+
+-   crossFade 淡出当前场景的同时淡入下一个场景
+-   fade 淡出当前场景到指定颜色，默认颜色为 ccc3(0, 0, 0)，可用 wrapSceneWithTransition() 的最后一个参数指定颜色
+-   fadeBL 从左下角开始淡出场景
+-   fadeDown 从底部开始淡出场景
+-   fadeTR 从右上角开始淡出场景
+-   fadeUp 从顶部开始淡出场景
+-   flipAngular 当前场景倾斜后翻转成下一个场景，默认从左边开始翻转，可以指定为：
+    -   kCCTransitionOrientationLeftOver 从左边开始
+    -   kCCTransitionOrientationRightOver 从右边开始
+    -   kCCTransitionOrientationUpOver 从顶部开始
+    -   kCCTransitionOrientationDownOver 从底部开始
+-   flipX 水平翻转，默认从左往右翻转，可用的附加参数同上
+-   flipY 垂直翻转，默认从上往下翻转，可用的附加参数同上
+-   zoomFlipAngular 倾斜翻转的同时放大，可用的附加参数同上
+-   zoomFlipX 水平翻转的同时放大，可用的附加参数同上
+-   zoomFlipY 垂直翻转的同时放大，可用的附加参数同上
+-   jumpZoom 跳跃放大切换场景
+-   moveInB 新场景从底部进入，直接覆盖现有场景
+-   moveInL 新场景从左侧进入，直接覆盖现有场景
+-   moveInR 新场景从右侧进入，直接覆盖现有场景
+-   moveInT 新场景从顶部进入，直接覆盖现有场景
+-   pageTurn 翻页效果，如果指定附加参数为 true，则表示从左侧往右翻页
+-   rotoZoom 旋转放大切换场景
+-   shrinkGrow 收缩交叉切换场景
+-   slideInB 新场景从底部进入，现有场景同时从顶部退出
+-   slideInL 新场景从左侧进入，现有场景同时从右侧退出
+-   slideInR 新场景从右侧进入，现有场景同时从左侧退出
+-   slideInT 新场景从顶部进入，现有场景同时从底部退出
+-   splitCols 分成多列切换入新场景
+-   splitRows 分成多行切换入新场景，类似百叶窗
+-   turnOffTiles 当前场景分成多个块，逐渐替换为新场景
+
+@param CCScene scene 场景对象
+@param string transitionType 过渡效果名
+@param number time 过渡时间
+@param string more 过渡效果附加参数
+
+@return CCScene 场景对象
+
+]]
+function display.wrapSceneWithTransition(scene, transitionType, time, more)
+    local key = string.upper(tostring(transitionType))
+    if string.sub(key, 1, 12) == "CCTRANSITION" then
+        key = string.sub(key, 13)
+    end
 
     if key == "RANDOM" then
         local keys = table.keys(display.SCENE_TRANSITIONS)
@@ -251,25 +376,41 @@ function display.wrapScene(scene, transition, time, more)
     end
 
     if display.SCENE_TRANSITIONS[key] then
-        local t = display.SCENE_TRANSITIONS[key]
-        local cls = t[1]
+        local cls, count, default = unpack(display.SCENE_TRANSITIONS[key])
         time = time or 0.2
-        more = more or t[2]
-        if more ~= nil then
-            scene = cls:create(time, scene, more)
+
+        if count == 3 then
+            scene = cls:create(time, scene, more or default)
         else
             scene = cls:create(time, scene)
         end
     else
-        error(string.format("display.wrapScene() - invalid transition %s", tostring(transition)))
+        printError("display.wrapSceneWithTransition() - invalid transitionType %s", tostring(transitionType))
     end
     return scene
 end
 
-function display.runScene(newScene, transition, time, more)
+--[[--
+
+切换到新场景
+
+~~~ lua
+
+-- 使用红色做过渡色
+display.replaceScene(nextScene, "fade", 0.5, ccc3(255, 0, 0))
+
+~~~
+
+@param CCScene newScene 场景对象
+@param string transitionType 过渡效果名
+@param number time 过渡时间
+@param mixed more 过渡效果附加参数
+
+]]
+function display.replaceScene(newScene, transitionType, time, more)
     if director:getRunningScene() then
-        if transition then
-            newScene = display.wrapScene(newScene, transition, time, more)
+        if transitionType then
+            newScene = display.wrapSceneWithTransition(newScene, transitionType, time, more)
         end
         director:replaceScene(newScene)
     else
@@ -277,14 +418,81 @@ function display.runScene(newScene, transition, time, more)
     end
 end
 
+--[[--
+
+返回当前正在运行的场景对象
+
+@return CCScene 场景对象
+
+]]
 function display.getRunningScene()
     return director:getRunningScene()
 end
 
+--[[--
+
+暂停当前场景
+
+]]
+function display.pause()
+    director:pause()
+end
+
+--[[--
+
+恢复当前暂停的场景
+
+]]
+function display.resume()
+    director:resume()
+end
+
+--[[--
+
+创建并返回一个 cc.Node 对象
+
+cc.Node 对象并不能显示对象，但可以作为其他显示对象的容器（起到群组的作用）。具体请参考 cc.Node 。
+
+~~~ lua
+
+local group = display.newNode()     -- 创建一个容器
+group:addChild(sprite1)             -- 添加显示对象到容器中
+group:addChild(sprite2)             -- 添加显示对象到容器中
+
+-- 移动容器时，其中包含的子对象也会同时移动
+transition.moveBy(group, {time = 2.0, x = 100})
+
+~~~
+
+@return cc.Node cc.Node对象
+
+@see cc.Node
+
+]]
 function display.newNode()
     return cc.Node:create()
 end
 
+--[[--
+
+创建一个层
+
+~~~ lua
+
+-- 创建一个全屏的、黑颜色的层
+display.newLayer()
+
+-- 创建一个全屏、指定颜色的层
+display.newLayer({r = 100, g = 100, b = 100, a = 200})
+
+-- 创建一个指定宽高和颜色的层
+display.newLayer({r = 100, g = 100, b = 100, a = 200}, {w = 100, h = 100})
+
+
+~~~
+
+@param mixed 附加参数
+]]
 function display.newLayer(...)
     local params = {...}
     local c = #params
@@ -329,105 +537,320 @@ function display.newLayer(...)
     return layer
 end
 
-function display.newSprite(source, x, y, params)
-    local spriteClass = cc.Sprite
-    local scale9 = false
+-- start --
 
-    if type(x) == "table" and not x.x then
-        -- x is params
-        params = x
-        x = nil
-        y = nil
+--------------------------------
+-- 创建并返回一个 ClippingRectangleNode 对象。
+-- @function [parent=#display] newClippingRectangleNode
+-- @param table rect 指定的区域
+-- @return ClippingRectangleNode#ClippingRectangleNode ret (return value: cc.ClippingRectangleNode)  ClippingRectangleNode
+
+
+--[[--
+
+创建并返回一个 ClippingRectangleNode 对象。
+
+创建 ClippingRectangleNode 对象时需要指定一个屏幕区域，然后在显示时，所以加入 ClippingRectangleNode 对象的内容都会进行剪裁，超出指定区域的内容不会显示。
+
+~~~ lua
+
+-- 剪裁区域从屏幕左下角靠内 100 点，到屏幕右上角
+local rect = cc.rect(display.left + 100,
+                    display.bottom + 100,
+                    display.width - 200,
+                    display.height - 200)
+local clipnode = display.newClippingRegionNode(rect)
+
+clipnode:addChild(sprite1)
+clipnode:addChild(sprite2)
+
+scene:addChild(clipnode)
+
+~~~
+
+注意：ClippingRectangleNode 的父对象其坐标必须是 0, 0。
+
+]]
+-- end --
+
+if cc.ClippingRectangleNode then
+    cc.ClippingRegionNode = cc.ClippingRectangleNode
+else
+    cc.ClippingRectangleNode = cc.ClippingRegionNode
+end
+
+function display.newClippingRectangleNode(rect)
+    if rect then
+        return cc.ClippingRegionNode:create(rect)
+    else
+        return cc.ClippingRegionNode:create()
     end
+end
 
-    local params = params or PARAMS_EMPTY
-    if params.scale9 or params.capInsets then
-        spriteClass = ccui.Scale9Sprite
-        scale9 = true
-        params.capInsets = params.capInsets or RECT_ZERO
-        params.rect = params.rect or RECT_ZERO
+-- start --
+
+--------------------------------
+-- 创建并返回一个 Sprite 显示对象。
+-- @function [parent=#display] newSprite
+-- @param mixed 图像名或SpriteFrame对象
+-- @param number x
+-- @param number y
+-- @param table params
+-- @return Sprite#Sprite ret (return value: cc.Sprite)
+-- @see Sprite
+
+
+--[[--
+
+创建并返回一个 Sprite 显示对象。
+
+display.newSprite() 有三种方式创建显示对象：
+
+-   从图片文件创建
+-   从缓存的图像帧创建
+-   从 SpriteFrame 对象创建
+
+~~~ lua
+
+-- 从图片文件创建显示对象
+local sprite1 = display.newSprite("hello1.png")
+
+-- 从缓存的图像帧创建显示对象
+-- 图像帧的名字就是图片文件名，但为了和图片文件名区分，所以此处需要在文件名前添加 “#” 字符
+-- 添加 “#” 的规则适用于所有需要区分图像和图像帧的地方
+local sprite2 = display.newSprite("#frame0001.png")
+
+-- 从 SpriteFrame 对象创建
+local frame = display.newFrame("frame0002.png")
+local sprite3 = display.newSprite(frame)
+
+~~~
+
+如果指定了 x,y 参数，那么创建显示对象后会调用对象的 setPosition() 方法设置对象位置。
+
+]]
+-- end --
+function display.newSprite(filename, x, y, params)
+    local spriteClass = nil
+    local size = nil
+
+    if params then
+        spriteClass = params.class
+        size = params.size
     end
+    if not spriteClass then spriteClass = cc.Sprite end
 
+    local t = type(filename)
+    if t == "userdata" then t = tolua.type(filename) end
     local sprite
-    while true do
-        -- create sprite
-        if not source then
-            sprite = spriteClass:create()
-            break
-        end
 
-        local sourceType = type(source)
-        if sourceType == "string" then
-            if string.byte(source) == 35 then -- first char is #
-                -- create sprite from spriteFrame
-                if not scale9 then
-                    sprite = spriteClass:createWithSpriteFrameName(string.sub(source, 2))
+    if not filename or filename == '' then
+        sprite = spriteClass:create()
+    elseif t == "string" then
+        if string.byte(filename) == 35 then -- first char is #
+            local frame = display.newSpriteFrame(string.sub(filename, 2))
+            if frame then
+                if params and params.capInsets then
+                    sprite = spriteClass:createWithSpriteFrame(frame, params.capInsets)
                 else
-                    sprite = spriteClass:createWithSpriteFrameName(string.sub(source, 2), params.capInsets)
+                    sprite = spriteClass:createWithSpriteFrame(frame)
                 end
-                break
             end
-
-            -- create sprite from image file
-            if display.TEXTURES_PIXEL_FORMAT[source] then
-                cc.Texture2D:setDefaultAlphaPixelFormat(display.TEXTURES_PIXEL_FORMAT[source])
-            end
-            if not scale9 then
-                sprite = spriteClass:create(source)
-            else
-                sprite = spriteClass:create(source, params.rect, params.capInsets)
-            end
-            if display.TEXTURES_PIXEL_FORMAT[source] then
-                cc.Texture2D:setDefaultAlphaPixelFormat(cc.TEXTURE2_D_PIXEL_FORMAT_BGR_A8888)
-            end
-            break
-        elseif sourceType ~= "userdata" then
-            error(string.format("display.newSprite() - invalid source type \"%s\"", sourceType), 0)
         else
-            sourceType = tolua.type(source)
-            if sourceType == "cc.SpriteFrame" then
-                if not scale9 then
-                    sprite = spriteClass:createWithSpriteFrame(source)
-                else
-                    sprite = spriteClass:createWithSpriteFrame(source, params.capInsets)
-                end
-            elseif sourceType == "cc.Texture2D" then
-                sprite = spriteClass:createWithTexture(source)
+            if display.TEXTURES_PIXEL_FORMAT[filename] then
+                cc.Texture2D:setDefaultAlphaPixelFormat(display.TEXTURES_PIXEL_FORMAT[filename])
+                sprite = spriteClass:create(filename)
+                cc.Texture2D:setDefaultAlphaPixelFormat(cc.TEXTURE2D_PIXEL_FORMAT_RGBA8888)
             else
-                error(string.format("display.newSprite() - invalid source type \"%s\"", sourceType), 0)
+                if params and params.capInsets then
+                    sprite = spriteClass:create(params.capInsets, filename)
+                else
+                    sprite = spriteClass:create(filename)
+                end
             end
         end
-        break
+    elseif t == "cc.SpriteFrame" then
+        sprite = spriteClass:createWithSpriteFrame(filename)
+    elseif t == "cc.Texture2D" then
+        sprite = spriteClass:createWithTexture(filename)
+    else
+        printError("display.newSprite() - invalid filename value type")
+        sprite = spriteClass:create()
     end
 
     if sprite then
         if x and y then sprite:setPosition(x, y) end
-        if params.size then sprite:setContentSize(params.size) end
+        if size then sprite:setContentSize(size) end
     else
-        error(string.format("display.newSprite() - create sprite failure, source \"%s\"", tostring(source)), 0)
+        printError("display.newSprite() - create sprite failure, filename %s", tostring(filename))
+        sprite = spriteClass:create()
     end
 
     return sprite
 end
 
-function display.newSpriteFrame(source, ...)
-    local frame
-    if type(source) == "string" then
-        if string.byte(source) == 35 then -- first char is #
-            source = string.sub(source, 2)
+-- start --
+
+--------------------------------
+-- 创建并返回一个 Sprite9Scale 显示对象。
+-- @function [parent=#display] newScale9Sprite
+-- @param string filename 图像名
+-- @param integer x
+-- @param integer y
+-- @param table size
+-- @return Scale9Sprite#Scale9Sprite ret (return value: ccui.Scale9Sprite) Sprite9Scale显示对象
+
+
+--[[--
+
+创建并返回一个 Sprite9Scale 显示对象。
+
+格式：
+
+sprite = display.newScale9Sprite(图像名, [x, y], [size 对象])
+
+Sprite9Scale 就是通常所說的“九宫格”图像。一个矩形图像会被分为 9 部分，然后根据要求拉伸图像，同时保证拉伸后的图像四边不变形。
+
+~~~ lua
+
+-- 创建一个 Scale9 图像，并拉伸到 400, 300 点大小
+local sprite = display.newScale9Sprite("Box.png", 0, 0, cc.size(400, 300))
+
+~~~
+
+]]
+-- end --
+
+function display.newScale9Sprite(filename, x, y, size, capInsets)
+    local scale9sp = ccui.Scale9Sprite or cc.Scale9Sprite
+    return display.newSprite(filename, x, y, {class = scale9sp, size = size, capInsets = capInsets})
+end
+
+
+-- start --
+
+--------------------------------
+-- 将指定的 Sprite Sheets 材质文件及其数据文件载入图像帧缓存。
+-- @function [parent=#display] addSpriteFrames
+-- @param string plistFilename 数据文件名
+-- @param string image 材质文件名
+-- @see Sprite Sheets
+
+
+--[[--
+
+将指定的 Sprite Sheets 材质文件及其数据文件载入图像帧缓存。
+
+格式：
+
+display.addSpriteFrames(数据文件名, 材质文件名)
+
+~~~ lua
+
+-- 同步加载纹理
+display.addSpriteFrames("Sprites.plist", "Sprites.png")
+
+-- 异步加载纹理
+local cb = function(plist, image)
+    -- do something
+end
+display.addSpriteFrames("Sprites.plist", "Sprites.png", cb)
+
+~~~
+
+Sprite Sheets 通俗一点解释就是包含多张图片的集合。Sprite Sheets 材质文件由多张图片组成，而数据文件则记录了图片在材质文件中的位置等信息。
+
+]]
+-- end --
+
+function display.addSpriteFrames(plistFilename, image, handler)
+    local async = type(handler) == "function"
+    local asyncHandler = nil
+    if async then
+        asyncHandler = function()
+            local texture = textureCache:getTextureForKey(image)
+            assert(texture, string.format("The texture %s, %s is unavailable.", plistFilename, image))
+            spriteFrameCache:addSpriteFrames(plistFilename, texture)
+            handler(plistFilename, image)
         end
-        frame = spriteFrameCache:getSpriteFrame(source)
-        if not frame then
-            error(string.format("display.newSpriteFrame() - invalid frame name \"%s\"", tostring(source)), 0)
+    end
+
+    if display.TEXTURES_PIXEL_FORMAT[image] then
+        cc.Texture2D:setDefaultAlphaPixelFormat(display.TEXTURES_PIXEL_FORMAT[image])
+        if async then
+            textureCache:addImageAsync(image, asyncHandler)
+        else
+            spriteFrameCache:addSpriteFrames(plistFilename, image)
         end
-    elseif tolua.type(source) == "cc.Texture2D" then
-        frame = cc.SpriteFrame:createWithTexture(source, ...)
+        cc.Texture2D:setDefaultAlphaPixelFormat(cc.TEXTURE2_D_PIXEL_FORMAT_BGR_A8888)
     else
-        error("display.newSpriteFrame() - invalid parameters", 0)
+        if async then
+            textureCache:addImageAsync(image, asyncHandler)
+        else
+            if image then
+                spriteFrameCache:addSpriteFrames(plistFilename, image)
+            else
+                spriteFrameCache:addSpriteFrames(plistFilename)
+            end
+        end
+    end
+end
+
+--[[--
+
+创建并返回一个图像帧对象。
+
+~~~ lua
+
+display.addSpriteFramesWithFile("Sprites.plist", "Sprites.png")
+
+-- 创建一个 CCSprite
+local sprite = display.newSprite("#Yes.png")
+
+-- 创建一个图像帧
+local frameNo = display.newSpriteFrame("No.png")
+
+-- 在需要时，修改 CCSprite 的显示内容
+sprite:setDisplayFrame(frameNo)
+
+~~~
+
+@param string 图像帧名称
+
+@return CCSpriteFrameCache
+
+]]
+function display.newSpriteFrame(frameName)
+    local frame = spriteFrameCache:getSpriteFrame(frameName)
+    if not frame then
+        printError("display.newSpriteFrame() - invalid frameName %s", tostring(frameName))
     end
     return frame
 end
 
+
+--[[--
+
+以特定模式创建一个包含多个图像帧对象的数组。
+
+~~~ lua
+
+-- 创建一个数组，包含 Walk0001.png 到 Walk0008.png 的 8 个图像帧对象
+local frames = display.newFrames("Walk%04d.png", 1, 8)
+
+-- 创建一个数组，包含 Walk0008.png 到 Walk0001.png 的 8 个图像帧对象
+local frames = display.newFrames("Walk%04d.png", 1, 8, true)
+
+~~~
+
+@param string pattern 模式字符串
+@param integer begin 起始索引
+@param integer length 长度
+@param boolean isReversed 是否是递减索引
+
+@return table 图像帧数组
+
+]]
 function display.newFrames(pattern, begin, length, isReversed)
     local frames = {}
     local step = 1
@@ -448,31 +871,29 @@ function display.newFrames(pattern, begin, length, isReversed)
     return frames
 end
 
-local function newAnimation(frames, time)
-    local count = #frames
-    assert(count > 0, "display.newAnimation() - invalid frames")
-    time = time or 1.0 / count
-    return cc.Animation:createWithSpriteFrames(frames, time),
-           cc.Sprite:createWithSpriteFrame(frames[1])
-end
+--[[--
 
-function display.newAnimation(...)
-    local params = {...}
-    local c = #params
-    if c == 2 then
-        -- frames, time
-        return newAnimation(params[1], params[2])
-    elseif c == 4 then
-        -- pattern, begin, length, time
-        local frames = display.newFrames(params[1], params[2], params[3])
-        return newAnimation(frames, params[4])
-    elseif c == 5 then
-        -- pattern, begin, length, isReversed, time
-        local frames = display.newFrames(params[1], params[2], params[3], params[4])
-        return newAnimation(frames, params[5])
-    else
-        error("display.newAnimation() - invalid parameters")
-    end
+以包含图像帧的数组创建一个动画对象。
+
+~~~ lua
+
+local frames = display.newFrames("Walk%04d.png", 1, 8)
+local animation = display.newAnimation(frames, 0.5 / 8) -- 0.5 秒播放 8 桢
+sprite:playAnimationOnce(animation) -- 播放一次动画
+
+~~~
+
+@param table frames 图像帧的数组
+@param number time 每一桢动画之间的间隔时间
+
+
+@return CCAnimation CCAnimation对象
+
+]]
+function display.newAnimation(frames, time)
+    local count = #frames
+    time = time or 1.0 / count
+    return cc.Animation:createWithSpriteFrames(frames, time)
 end
 
 function display.loadImage(imageFilename, callback)
@@ -537,6 +958,52 @@ end
 function display.removeUnusedSpriteFrames()
     spriteFrameCache:removeUnusedSpriteFrames()
     textureCache:removeUnusedTextures()
+end
+
+--[[--
+
+将指定的显示对象按照特定锚点对齐。
+
+格式：
+
+display.align(显示对象, 锚点位置, [x, y])
+
+显示对象锚点位置：
+
+-   display.CENTER 图像中央
+-   display.LEFT_TOP,
+-   display.TOP_LEFT 图像左上角
+-   display.CENTER_TOP,
+-   display.TOP_CENTER 图像顶部的中间
+-   display.RIGHT_TOP,
+-   display.TOP_RIGHT 图像顶部的中间
+-   display.CENTER_LEFT,
+-   display.LEFT_CENTER 图像左边的中间
+-   display.CENTER_RIGHT,
+-   display.RIGHT_CENTER 图像右边的中间
+-   display.BOTTOM_LEFT,
+-   display.LEFT_BOTTOM 图像左边的底部
+-   display.BOTTOM_RIGHT,
+-   display.RIGHT_BOTTOM 图像右边的底部
+-   display.BOTTOM_CENTER,
+-   display.CENTER_BOTTOM 图像中间的底部
+
+~~~ lua
+
+-- 将图像按左上角对齐，并放置在屏幕左上角
+display.align(sprite, display.LEFT_TOP, 0, 0)
+
+~~~
+
+@param CCSprite target 显示对象
+@param integer anchorPoint 锚点位置
+@param integer x
+@param integer y
+
+]]
+function display.align(target, anchorPoint, x, y)
+    target:setAnchorPoint(display.ANCHOR_POINTS[anchorPoint])
+    if x and y then target:setPosition(x, y) end
 end
 
 return display

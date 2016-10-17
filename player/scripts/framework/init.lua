@@ -89,6 +89,7 @@ print("===========================================================")
 
 if type(DEBUG) ~= "number" then DEBUG = 0 end
 if type(DEBUG_FPS) ~= "boolean" then DEBUG_FPS = false end
+if type(LOAD_SHORTCODES_API) ~= "boolean" then LOAD_SHORTCODES_API = true end
 if type(DISABLE_DEPRECATED_WARNING) ~= "boolean" then DISABLE_DEPRECATED_WARNING = false end
 
 ---
@@ -104,7 +105,9 @@ require(cc.PACKAGE_NAME .. ".debug")
 require(cc.PACKAGE_NAME .. ".functions")
 require(cc.PACKAGE_NAME .. ".cocos2dx.init")
 
-
+if LOAD_SHORTCODES_API then
+    require(cc.PACKAGE_NAME .. ".shortcodes")
+end
 
 -- load framework
 printInfo("")
