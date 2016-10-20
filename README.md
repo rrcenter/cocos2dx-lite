@@ -58,3 +58,4 @@ There are lots of better cocos2d-x forks:
 
 - https://github.com/stubma/cocos2dx-classical
 - https://github.com/IppClub/Dorothy
+- https://github.com/Sheado/cocos2d-x
