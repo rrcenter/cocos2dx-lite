@@ -20,13 +20,17 @@ The major change:
 - Remove support for WebP,S3TC,ATITC
 - Remove FastTileMap, TileMap
 - Remove *Menu*
-- Remove `Focus` event
+
 - Improve module compile `cocos/base/ccConfigUser.h`
 - Improve curl library, only support `socket` and `http` protocol
+
 - Add [CC_MINI_2D / CC_USE_FREETYPE / CC_ONLY_PNG](https://github.com/c0i/cocos2dx-lite/blob/master/cocos/base/ccConfigUser.h)
 - Add CC_USE_SPINE
 - Add CC_USE_AUDIO_ENGINE
 - Add CC_USE_NETWORK
+
+- Restore ui module (NOT depend CocoStudio)
+- Restore `Focus` event (need by `ui`)
 
 ## How to start
 
