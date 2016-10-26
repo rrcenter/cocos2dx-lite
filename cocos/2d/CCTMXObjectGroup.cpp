@@ -1,4 +1,8 @@
 /****************************************************************************
+Copyright (c) 2010      Neophit
+Copyright (c) 2010      Ricardo Quesada
+Copyright (c) 2010-2012 cocos2d-x.org
+Copyright (c) 2011      Zynga Inc.
 Copyright (c) 2013-2016 Chukong Technologies Inc.
 
 http://www.cocos2d-x.org
@@ -21,52 +25,48 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 ****************************************************************************/
-
-#ifndef __TRIGGERFACTORY_H__
-#define __TRIGGERFACTORY_H__
-
-#include <string>
-#include <unordered_map>
-#include <functional>
-#include "base/CCRef.h"
-#include "platform/CCPlatformMacros.h"
+#include "2d/CCTMXObjectGroup.h"
+#include "base/ccMacros.h"
 
 NS_CC_BEGIN
 
-class CC_DLL ObjectFactory
+//implementation TMXObjectGroup
+
+TMXObjectGroup::TMXObjectGroup()
+    : _groupName("")
 {
-public:
-    typedef cocos2d::Ref* (*Instance)(void);
-    typedef std::function<cocos2d::Ref* (void)> InstanceFunc;
-    struct CC_DLL TInfo
+}
+
+TMXObjectGroup::~TMXObjectGroup()
+{
+    CCLOGINFO("deallocing TMXObjectGroup: %p", this);
+}
+
+ValueMap TMXObjectGroup::getObject(const std::string& objectName) const
+{
+    if (!_objects.empty())
     {
-        TInfo(void);
-        TInfo(const std::string& type, Instance ins = nullptr);
-        TInfo(const std::string& type, InstanceFunc ins = nullptr);
-        TInfo(const TInfo &t);
-        ~TInfo(void);
-        TInfo& operator= (const TInfo &t);
-        std::string _class;
-        Instance _fun;
-        InstanceFunc _func;
-    };
-    typedef std::unordered_map<std::string, TInfo>  FactoryMap;
+        for (const auto& v : _objects)
+        {
+            const ValueMap& dict = v.asValueMap();
+            if (dict.find("name") != dict.end())
+            {
+                if (dict.at("name").asString() == objectName)
+                    return dict;
+            }
+        }
+    }
+    
+    // object not found
+    return ValueMap();
+}
 
-    static ObjectFactory* getInstance();
-    static void destroyInstance();
-    cocos2d::Ref* createObject(const std::string &name);
+Value TMXObjectGroup::getProperty(const std::string& propertyName) const
+{
+    if (_properties.find(propertyName) != _properties.end())
+        return _properties.at(propertyName);
 
-    void registerType(const TInfo &t);
-    void removeAll();
-
-protected:
-    ObjectFactory(void);
-    virtual ~ObjectFactory(void);
-private:
-    static ObjectFactory *_sharedFactory;
-    FactoryMap _typeMap;
-};
+    return Value();
+}
 
 NS_CC_END
-
-#endif
