@@ -14,11 +14,11 @@ The major change:
 - Remove Camera
 - Remove Physics integration
 - Remove C++ implementations of Component
-- Remove C++ implementations of CocoStudio parser
+- ~~Remove C++ implementations of CocoStudio parser~~
 - Remove C++ implementations of CocosBuilder parser
 - Remove AssetsManager, AssetsManagerEX
 - Remove support for WebP,S3TC,ATITC
-- Remove FastTileMap, TileMap
+- ~~Remove FastTileMap, TileMap~~
 - Remove *Menu*
 
 - Improve module compile `cocos/base/ccConfigUser.h`
@@ -31,6 +31,7 @@ The major change:
 
 - Restore ui module (NOT depend CocoStudio)
 - Restore `Focus` event (need by `ui`)
+- Restore `CocoStudio` module
 
 ## How to start
 
