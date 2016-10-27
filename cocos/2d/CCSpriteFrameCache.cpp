@@ -173,10 +173,10 @@ void SpriteFrameCache::addSpriteFramesWithDictionary(ValueMap& dictionary, Textu
     auto textureFileName = Director::getInstance()->getTextureCache()->getTextureFilePath(texture);
     Image* image = nullptr;
     NinePatchImageParser parser;
-    for (auto iter = framesDict.begin(); iter != framesDict.end(); ++iter)
+    for (auto& iter : framesDict)
     {
-        ValueMap& frameDict = iter->second.asValueMap();
-        std::string spriteFrameName = iter->first;
+        ValueMap& frameDict = iter.second.asValueMap();
+        std::string spriteFrameName = iter.first;
         SpriteFrame* spriteFrame = _spriteFrames.at(spriteFrameName);
         if (spriteFrame)
         {
@@ -460,14 +460,14 @@ void SpriteFrameCache::removeUnusedSpriteFrames()
     bool removed = false;
     std::vector<std::string> toRemoveFrames;
     
-    for (auto iter = _spriteFrames.begin(); iter != _spriteFrames.end(); ++iter)
+    for (auto& iter : _spriteFrames)
     {
-        SpriteFrame* spriteFrame = iter->second;
+        SpriteFrame* spriteFrame = iter.second;
         if( spriteFrame->getReferenceCount() == 1 )
         {
-            toRemoveFrames.push_back(iter->first);
+            toRemoveFrames.push_back(iter.first);
             spriteFrame->getTexture()->removeSpriteFrameCapInset(spriteFrame);
-            CCLOG("cocos2d: SpriteFrameCache: removing unused frame: %s", iter->first.c_str());
+            CCLOG("cocos2d: SpriteFrameCache: removing unused frame: %s", iter.first.c_str());
             removed = true;
         }
     }
@@ -543,11 +543,11 @@ void SpriteFrameCache::removeSpriteFramesFromDictionary(ValueMap& dictionary)
     ValueMap framesDict = dictionary["frames"].asValueMap();
     std::vector<std::string> keysToRemove;
 
-    for (auto iter = framesDict.cbegin(); iter != framesDict.cend(); ++iter)
+    for (const auto& iter : framesDict)
     {
-        if (_spriteFrames.at(iter->first))
+        if (_spriteFrames.at(iter.first))
         {
-            keysToRemove.push_back(iter->first);
+            keysToRemove.push_back(iter.first);
         }
     }
 
@@ -558,9 +558,9 @@ void SpriteFrameCache::removeSpriteFramesFromTexture(Texture2D* texture)
 {
     std::vector<std::string> keysToRemove;
 
-    for (auto iter = _spriteFrames.cbegin(); iter != _spriteFrames.cend(); ++iter)
+    for (auto& iter : _spriteFrames)
     {
-        std::string key = iter->first;
+        std::string key = iter.first;
         SpriteFrame* frame = _spriteFrames.at(key);
         if (frame && (frame->getTexture() == texture))
         {
@@ -605,10 +605,10 @@ void SpriteFrameCache::reloadSpriteFramesWithDictionary(ValueMap& dictionary, Te
     // check the format
     CCASSERT(format >= 0 && format <= 3, "format is not supported for SpriteFrameCache addSpriteFramesWithDictionary:textureFilename:");
 
-    for (auto iter = framesDict.begin(); iter != framesDict.end(); ++iter)
+    for (auto& iter : framesDict)
     {
-        ValueMap& frameDict = iter->second.asValueMap();
-        std::string spriteFrameName = iter->first;
+        ValueMap& frameDict = iter.second.asValueMap();
+        std::string spriteFrameName = iter.first;
 
         auto it = _spriteFrames.find(spriteFrameName);
         if (it != _spriteFrames.end())

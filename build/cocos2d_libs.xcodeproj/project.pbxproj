@@ -1562,7 +1562,6 @@
 		B29A7DDE19EE1B7700872B35 /* BoneData.c in Sources */ = {isa = PBXBuildFile; fileRef = B29A7D9519EE1B7700872B35 /* BoneData.c */; };
 		B29A7DDF19EE1B7700872B35 /* IkConstraintData.c in Sources */ = {isa = PBXBuildFile; fileRef = B29A7D9619EE1B7700872B35 /* IkConstraintData.c */; };
 		B29A7DE019EE1B7700872B35 /* IkConstraintData.c in Sources */ = {isa = PBXBuildFile; fileRef = B29A7D9619EE1B7700872B35 /* IkConstraintData.c */; };
-		B29A7DE119EE1B7700872B35 /* MeshAttachment.c in Sources */ = {isa = PBXBuildFile; fileRef = B29A7D9719EE1B7700872B35 /* MeshAttachment.c */; };
 		B29A7DE219EE1B7700872B35 /* MeshAttachment.c in Sources */ = {isa = PBXBuildFile; fileRef = B29A7D9719EE1B7700872B35 /* MeshAttachment.c */; };
 		B29A7DE319EE1B7700872B35 /* SkeletonBounds.c in Sources */ = {isa = PBXBuildFile; fileRef = B29A7D9819EE1B7700872B35 /* SkeletonBounds.c */; };
 		B29A7DE419EE1B7700872B35 /* SkeletonBounds.c in Sources */ = {isa = PBXBuildFile; fileRef = B29A7D9819EE1B7700872B35 /* SkeletonBounds.c */; };
@@ -3356,7 +3355,6 @@
 				B29A7DAC19EE1B7700872B35 /* Atlas.c */,
 				B29A7DB219EE1B7700872B35 /* Atlas.h */,
 				9F296E321DDC169B006DF478 /* AtlasAttachmentLoader.c */,
-				B29A7DBC19EE1B7700872B35 /* AtlasAttachmentLoader.h */,
 				B29A7DB919EE1B7700872B35 /* Attachment.c */,
 				B29A7DA219EE1B7700872B35 /* Attachment.h */,
 				B29A7DA019EE1B7700872B35 /* AttachmentLoader.c */,
@@ -3382,7 +3380,6 @@
 				B29A7DA619EE1B7700872B35 /* Json.c */,
 				B29A7DA319EE1B7700872B35 /* Json.h */,
 				9F296E231DDC147F006DF478 /* kvec.h */,
-				9F296E2C1DDC161A006DF478 /* MeshAttachment.c */,
 				B29A7D9C19EE1B7700872B35 /* MeshAttachment.h */,
 				9F296E3E1DDC16D5006DF478 /* PathAttachment.c */,
 				9F296E3F1DDC16D5006DF478 /* PathAttachment.h */,
@@ -5686,7 +5683,6 @@
 				9F2DC7931DC106C00064BF46 /* LocalizationManager.cpp in Sources */,
 				1A5701EE180BCB8C0088DEC7 /* CCTransitionProgress.cpp in Sources */,
 				15FB20931AE7C57D00C31518 /* cdt.cc in Sources */,
-				B29A7DE119EE1B7700872B35 /* MeshAttachment.c in Sources */,
 				15AE186619AAD31D00C27E9E /* CDOpenALSupport.m in Sources */,
 				1A1645B2191B726C008C7C7F /* ConvertUTFWrapper.cpp in Sources */,
 				9F2DC6E71DC106C00064BF46 /* CCSkeletonNode.cpp in Sources */,

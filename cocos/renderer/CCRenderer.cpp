@@ -484,9 +484,9 @@ void Renderer::visitRenderQueue(RenderQueue& queue)
         glDisable(GL_CULL_FACE);
         RenderState::StateBlock::_defaultState->setCullFace(false);
         
-        for (auto it = zNegQueue.cbegin(); it != zNegQueue.cend(); ++it)
+        for (const auto& zNegNext : zNegQueue)
         {
-            processRenderCommand(*it);
+            processRenderCommand(zNegNext);
         }
         flush();
     }
@@ -507,10 +507,9 @@ void Renderer::visitRenderQueue(RenderQueue& queue)
         RenderState::StateBlock::_defaultState->setBlend(false);
         RenderState::StateBlock::_defaultState->setCullFace(true);
 
-
-        for (auto it = opaqueQueue.cbegin(); it != opaqueQueue.cend(); ++it)
+        for (const auto& opaqueNext : opaqueQueue)
         {
-            processRenderCommand(*it);
+            processRenderCommand(opaqueNext);
         }
         flush();
     }
@@ -532,9 +531,9 @@ void Renderer::visitRenderQueue(RenderQueue& queue)
         RenderState::StateBlock::_defaultState->setCullFace(true);
 
 
-        for (auto it = transQueue.cbegin(); it != transQueue.cend(); ++it)
+        for (const auto& transNext : transQueue)
         {
-            processRenderCommand(*it);
+            processRenderCommand(transNext);
         }
         flush();
     }
@@ -568,9 +567,9 @@ void Renderer::visitRenderQueue(RenderQueue& queue)
         glDisable(GL_CULL_FACE);
         RenderState::StateBlock::_defaultState->setCullFace(false);
         
-        for (auto it = zZeroQueue.cbegin(); it != zZeroQueue.cend(); ++it)
+        for (const auto& zZeroNext : zZeroQueue)
         {
-            processRenderCommand(*it);
+            processRenderCommand(zZeroNext);
         }
         flush();
     }
@@ -604,9 +603,9 @@ void Renderer::visitRenderQueue(RenderQueue& queue)
         glDisable(GL_CULL_FACE);
         RenderState::StateBlock::_defaultState->setCullFace(false);
         
-        for (auto it = zPosQueue.cbegin(); it != zPosQueue.cend(); ++it)
+        for (const auto& zPosNext : zPosQueue)
         {
-            processRenderCommand(*it);
+            processRenderCommand(zPosNext);
         }
         flush();
     }
@@ -639,7 +638,7 @@ void Renderer::render()
 void Renderer::clean()
 {
     // Clear render group
-    for (size_t j = 0 ; j < _renderGroups.size(); j++)
+    for (size_t j = 0, size = _renderGroups.size() ; j < size; j++)
     {
         //commands are owned by nodes
         // for (const auto &cmd : _renderGroups[j])
@@ -731,9 +730,8 @@ void Renderer::drawBatchedTriangles()
     int prevMaterialID = -1;
     bool firstCommand = true;
 
-    for(auto it = std::begin(_queuedTriangleCommands); it != std::end(_queuedTriangleCommands); ++it)
+    for(const auto& cmd : _queuedTriangleCommands)
     {
-        const auto& cmd = *it;
         auto currentMaterialID = cmd->getMaterialID();
         const bool batchable = !cmd->isSkipBatching();
 

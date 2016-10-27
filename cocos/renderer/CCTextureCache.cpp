@@ -72,8 +72,8 @@ TextureCache::~TextureCache()
 {
     CCLOGINFO("deallocing TextureCache: %p", this);
 
-    for (auto it = _textures.begin(); it != _textures.end(); ++it)
-        (it->second)->release();
+    for (auto& texture : _textures)
+        texture.second->release();
 
     CC_SAFE_DELETE(_loadingThread);
 }
@@ -191,11 +191,11 @@ void TextureCache::unbindImageAsync(const std::string& filename)
         return;
     }
     std::string fullpath = FileUtils::getInstance()->fullPathForFilename(filename);
-    for (auto it = _asyncStructQueue.begin(); it != _asyncStructQueue.end(); ++it)
+    for (auto& asyncStruct : _asyncStructQueue)
     {
-        if ((*it)->filename == fullpath)
+        if (asyncStruct->filename == fullpath)
         {
-            (*it)->callback = nullptr;
+            asyncStruct->callback = nullptr;
         }
     }
 }
@@ -207,9 +207,9 @@ void TextureCache::unbindAllImageAsync()
         return;
 
     }
-    for (auto it = _asyncStructQueue.begin(); it != _asyncStructQueue.end(); ++it)
+    for (auto& asyncStruct : _asyncStructQueue)
     {
-        (*it)->callback = nullptr;
+        asyncStruct->callback = nullptr;
     }
 }
 
@@ -509,8 +509,8 @@ bool TextureCache::reloadTexture(const std::string& fileName)
 
 void TextureCache::removeAllTextures()
 {
-    for (auto it = _textures.begin(); it != _textures.end(); ++it) {
-        (it->second)->release();
+    for (auto& texture : _textures) {
+        texture.second->release();
     }
     _textures.clear();
 }
@@ -618,19 +618,19 @@ std::string TextureCache::getCachedTextureInfo() const
     unsigned int count = 0;
     unsigned int totalBytes = 0;
 
-    for (auto it = _textures.begin(); it != _textures.end(); ++it) {
+    for (auto& texture : _textures) {
 
         memset(buftmp, 0, sizeof(buftmp));
 
 
-        Texture2D* tex = it->second;
+        Texture2D* tex = texture.second;
         unsigned int bpp = tex->getBitsPerPixelForFormat();
         // Each texture takes up width * height * bytesPerPixel bytes.
         auto bytes = tex->getPixelsWide() * tex->getPixelsHigh() * bpp / 8;
         totalBytes += bytes;
         count++;
         snprintf(buftmp, sizeof(buftmp) - 1, "\"%s\" rc=%lu id=%lu %lu x %lu @ %ld bpp => %lu KB\n",
-            it->first.c_str(),
+            texture.first.c_str(),
             (long)tex->getReferenceCount(),
             (long)tex->getName(),
             (long)tex->getPixelsWide(),
@@ -729,11 +729,16 @@ void VolatileTextureMgr::addImage(Texture2D *tt, Image *image)
 
 VolatileTexture* VolatileTextureMgr::findVolotileTexture(Texture2D *tt)
 {
+<<<<<<< HEAD
     VolatileTexture *vt = 0;
     auto i = _textures.begin();
     while (i != _textures.end())
+=======
+    VolatileTexture *vt = nullptr;
+    for (const auto& texture : _textures)
+>>>>>>> c0e1e91... Performance tweak: Use range-based for-loops and allocate std::vector size() and *end() on the stack where favorable. (#16716)
     {
-        VolatileTexture *v = *i++;
+        VolatileTexture *v = texture;
         if (v->_texture == tt)
         {
             vt = v;
@@ -802,10 +807,9 @@ void VolatileTextureMgr::setTexParameters(Texture2D *t, const Texture2D::TexPara
 
 void VolatileTextureMgr::removeTexture(Texture2D *t)
 {
-    auto i = _textures.begin();
-    while (i != _textures.end())
+    for (auto& item : _textures)
     {
-        VolatileTexture *vt = *i++;
+        VolatileTexture *vt = item;
         if (vt->_texture == t)
         {
             _textures.remove(vt);
@@ -820,17 +824,16 @@ void VolatileTextureMgr::reloadAllTextures()
     _isReloading = true;
 
     // we need to release all of the glTextures to avoid collisions of texture id's when reloading the textures onto the GPU
-    for (auto iter = _textures.begin(); iter != _textures.end(); ++iter)
+    for (auto& item : _textures)
     {
-        (*iter)->_texture->releaseGLTexture();
+        item->_texture->releaseGLTexture();
     }
 
     CCLOG("reload all texture");
-    auto iter = _textures.begin();
 
-    while (iter != _textures.end())
+    for (auto& texture : _textures)
     {
-        VolatileTexture *vt = *iter++;
+        VolatileTexture *vt = texture;
 
         switch (vt->_cashedImageType)
         {
