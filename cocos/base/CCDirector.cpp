@@ -1094,7 +1094,10 @@ void Director::restartDirector()
     // Real restart in script level
 #if CC_ENABLE_SCRIPT_BINDING
     ScriptEvent scriptEvent(kRestartGame, NULL);
-    ScriptEngineManager::getInstance()->getScriptEngine()->sendEvent(&scriptEvent);
+    ScriptEngineProtocol *scriptEngine = ScriptEngineManager::getInstance()->getScriptEngine();
+    if (scriptEngine) {
+        scriptEngine->sendEvent(&scriptEvent);
+    }
 #endif
 }
 
