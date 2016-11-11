@@ -203,6 +203,10 @@ Director::~Director(void)
     
     Configuration::destroyInstance();
 
+#if CC_ENABLE_SCRIPT_BINDING
+    ScriptEngineManager::destroyInstance();
+#endif
+
     s_SharedDirector = nullptr;
 }
 
@@ -687,9 +691,11 @@ void Director::setDepthTest(bool on)
 void Director::setClearColor(const Color4F& clearColor)
 {
     _renderer->setClearColor(clearColor);
-    auto defaultFBO = experimental::FrameBuffer::getOrCreateDefaultFBO(_openGLView);
-    
-    if(defaultFBO) defaultFBO->setClearColor(clearColor);
+
+    if (_defaultFBO)
+    {
+        _defaultFBO->setClearColor(clearColor);
+    }
 }
 
 static void GLToClipTransform(Mat4 *transformOut)

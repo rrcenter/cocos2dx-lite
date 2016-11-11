@@ -65,7 +65,11 @@ Ref::~Ref()
     // if the object is referenced by Lua engine, remove it
     if (_luaID)
     {
-        ScriptEngineManager::getInstance()->getScriptEngine()->removeScriptObjectByObject(this);
+        ScriptEngineProtocol* pEngine = ScriptEngineManager::getInstance()->getScriptEngine();
+        if (pEngine)
+        {
+            pEngine->removeScriptObjectByObject(this);
+        }
     }
 #if !CC_ENABLE_GC_FOR_NATIVE_OBJECTS
     else
