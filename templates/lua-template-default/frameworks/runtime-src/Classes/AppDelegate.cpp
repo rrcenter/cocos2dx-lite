@@ -56,8 +56,15 @@ bool AppDelegate::applicationDidFinishLaunching()
 
     LuaStack* stack = engine->getLuaStack();
     stack->setXXTEAKeyAndSign("2dxLua", strlen("2dxLua"), "XXTEA", strlen("XXTEA"));
+    
+#if CC_64BITS
+    FileUtils::getInstance()->addSearchPath("src/64bit");
+#else
+    FileUtils::getInstance()->addSearchPath("src");
+#endif
+    FileUtils::getInstance()->addSearchPath("res");
 
-    if (engine->executeScriptFile("src/main.lua"))
+    if (engine->executeScriptFile("main.lua"))
     {
         return false;
     }
