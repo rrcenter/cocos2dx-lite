@@ -729,14 +729,8 @@ void VolatileTextureMgr::addImage(Texture2D *tt, Image *image)
 
 VolatileTexture* VolatileTextureMgr::findVolotileTexture(Texture2D *tt)
 {
-<<<<<<< HEAD
-    VolatileTexture *vt = 0;
-    auto i = _textures.begin();
-    while (i != _textures.end())
-=======
     VolatileTexture *vt = nullptr;
     for (const auto& texture : _textures)
->>>>>>> c0e1e91... Performance tweak: Use range-based for-loops and allocate std::vector size() and *end() on the stack where favorable. (#16716)
     {
         VolatileTexture *v = texture;
         if (v->_texture == tt)
