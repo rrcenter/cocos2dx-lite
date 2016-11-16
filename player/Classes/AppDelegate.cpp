@@ -51,6 +51,7 @@ bool AppDelegate::applicationDidFinishLaunching()
         director->setOpenGLView(glview);
     }
 
+#if 0
     director->getOpenGLView()->setDesignResolutionSize(640, 960, ResolutionPolicy::FIXED_WIDTH);
 
     // turn on display FPS
@@ -65,6 +66,8 @@ bool AppDelegate::applicationDidFinishLaunching()
     director->runWithScene(MainScene::create());
     
     return true;
+
+#else
 
     // set default FPS
     Director::getInstance()->setAnimationInterval(1.0 / 60.0f);
@@ -125,6 +128,7 @@ bool AppDelegate::applicationDidFinishLaunching()
     CCLOG("------------------------------------------------");
     engine->executeScriptFile(path.c_str());
 
+#endif
     return true;
 }
 

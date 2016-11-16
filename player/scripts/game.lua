@@ -1,12 +1,14 @@
 
 require("config")
 require("framework.init")
+local scheduler = require('framework.scheduler')
 
 -- define global module
 game = {}
 
 function game.startup()
     cc.FileUtils:getInstance():addSearchPath("res/")
+    display.addSpriteFrames('AllSprites.plist')
     game.benchmark()
 end
 
@@ -35,6 +37,17 @@ function game.benchmark()
         end
     end)
 
-    local sharedScheduler = cc.Director:getInstance():getScheduler()
-    sharedScheduler:scheduleScriptFunc(function(dt) coil.update(dt) end, 0, false)
+    scheduler.scheduleUpdateGlobal(function(dt)
+        coil.update(dt)
+    end)
+
+
+    --
+    local frames = display.newFrames("CoinSpin%02d.png", 1, 8)
+    local animation = display.newAnimation(frames, 0.5 / 8) -- 0.5 秒播放 8 桢
+
+    display.newSprite('')
+        :center()
+        :addTo(scene)
+        :playForever(animation)
 end
