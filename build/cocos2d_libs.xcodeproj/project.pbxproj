@@ -814,7 +814,6 @@
 		9F296E341DDC169B006DF478 /* AtlasAttachmentLoader.c in Sources */ = {isa = PBXBuildFile; fileRef = 9F296E321DDC169B006DF478 /* AtlasAttachmentLoader.c */; };
 		9F296E351DDC169B006DF478 /* AtlasAttachmentLoader.c in Sources */ = {isa = PBXBuildFile; fileRef = 9F296E321DDC169B006DF478 /* AtlasAttachmentLoader.c */; };
 		9F296E361DDC169B006DF478 /* AtlasAttachmentLoader.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F296E331DDC169B006DF478 /* AtlasAttachmentLoader.h */; };
-		9F296E371DDC169B006DF478 /* AtlasAttachmentLoader.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F296E331DDC169B006DF478 /* AtlasAttachmentLoader.h */; };
 		9F296E3A1DDC16C2006DF478 /* Cocos2dAttachmentLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F296E381DDC16C2006DF478 /* Cocos2dAttachmentLoader.cpp */; };
 		9F296E3B1DDC16C2006DF478 /* Cocos2dAttachmentLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F296E381DDC16C2006DF478 /* Cocos2dAttachmentLoader.cpp */; };
 		9F296E3C1DDC16C2006DF478 /* Cocos2dAttachmentLoader.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F296E391DDC16C2006DF478 /* Cocos2dAttachmentLoader.h */; };
@@ -1562,7 +1561,6 @@
 		B29A7DDE19EE1B7700872B35 /* BoneData.c in Sources */ = {isa = PBXBuildFile; fileRef = B29A7D9519EE1B7700872B35 /* BoneData.c */; };
 		B29A7DDF19EE1B7700872B35 /* IkConstraintData.c in Sources */ = {isa = PBXBuildFile; fileRef = B29A7D9619EE1B7700872B35 /* IkConstraintData.c */; };
 		B29A7DE019EE1B7700872B35 /* IkConstraintData.c in Sources */ = {isa = PBXBuildFile; fileRef = B29A7D9619EE1B7700872B35 /* IkConstraintData.c */; };
-		B29A7DE219EE1B7700872B35 /* MeshAttachment.c in Sources */ = {isa = PBXBuildFile; fileRef = B29A7D9719EE1B7700872B35 /* MeshAttachment.c */; };
 		B29A7DE319EE1B7700872B35 /* SkeletonBounds.c in Sources */ = {isa = PBXBuildFile; fileRef = B29A7D9819EE1B7700872B35 /* SkeletonBounds.c */; };
 		B29A7DE419EE1B7700872B35 /* SkeletonBounds.c in Sources */ = {isa = PBXBuildFile; fileRef = B29A7D9819EE1B7700872B35 /* SkeletonBounds.c */; };
 		B29A7DE519EE1B7700872B35 /* SkeletonAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = B29A7D9919EE1B7700872B35 /* SkeletonAnimation.h */; };
@@ -2561,7 +2559,6 @@
 		B29A7D9419EE1B7700872B35 /* Event.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Event.c; sourceTree = "<group>"; };
 		B29A7D9519EE1B7700872B35 /* BoneData.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = BoneData.c; sourceTree = "<group>"; };
 		B29A7D9619EE1B7700872B35 /* IkConstraintData.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = IkConstraintData.c; sourceTree = "<group>"; };
-		B29A7D9719EE1B7700872B35 /* MeshAttachment.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = MeshAttachment.c; sourceTree = "<group>"; };
 		B29A7D9819EE1B7700872B35 /* SkeletonBounds.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = SkeletonBounds.c; sourceTree = "<group>"; };
 		B29A7D9919EE1B7700872B35 /* SkeletonAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SkeletonAnimation.h; sourceTree = "<group>"; };
 		B29A7D9A19EE1B7700872B35 /* spine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = spine.h; sourceTree = "<group>"; };
@@ -5323,7 +5320,6 @@
 				50ABBEC81925AB6F00A911A9 /* etc1.h in Headers */,
 				9F2DC7301DC106C00064BF46 /* CCComAudio.h in Headers */,
 				9F2DC8241DC106C10064BF46 /* TextFieldReader.h in Headers */,
-				9F296E371DDC169B006DF478 /* AtlasAttachmentLoader.h in Headers */,
 				50ABBDB01925AB4100A911A9 /* CCRenderer.h in Headers */,
 				9F91DBB11DBF9E8500EEF520 /* UIScrollView.h in Headers */,
 				3E6176771960F89B00DE83F5 /* CCEventListenerController.h in Headers */,
@@ -6053,7 +6049,6 @@
 				1A5701BA180BCB5A0088DEC7 /* CCLabel.cpp in Sources */,
 				1A5701BE180BCB5A0088DEC7 /* CCLabelAtlas.cpp in Sources */,
 				15FB20751AE7BF8600C31518 /* CCAutoPolygon.cpp in Sources */,
-				B29A7DE219EE1B7700872B35 /* MeshAttachment.c in Sources */,
 				B29A7DDE19EE1B7700872B35 /* BoneData.c in Sources */,
 				1A5701C8180BCB5A0088DEC7 /* CCLabelTextFormatter.cpp in Sources */,
 				291901461B05895600F8B4BA /* CCNinePatchImageParser.cpp in Sources */,
