@@ -94,7 +94,7 @@ namespace utils
      * @param str The string be to converted to double.
      * @return Returns converted value of a string.
      */
-    CC_DLL double  atof(const char* str);
+    CC_DLL double atof(const char* str);
 
     /** Get current exact time, accurate to nanoseconds.
      * @return Returns the time in seconds since the Epoch.

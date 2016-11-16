@@ -363,7 +363,7 @@ void ProjectConfig::parseCommandLine(const vector<string> &args)
         {
             ++it;
             if (it == args.end()) break;
-            float scale = atof((*it).c_str());
+            float scale = std::atof((*it).c_str());
             setFrameScale(scale);
         }
         else if (arg.compare("-write-debug-log") == 0)

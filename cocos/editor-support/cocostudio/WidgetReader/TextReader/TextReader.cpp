@@ -263,11 +263,11 @@ namespace cocostudio
             }
             else if (name == "ShadowOffsetX")
             {
-                shadowOffset.width = atof(value.c_str());
+                shadowOffset.width = std::atof(value.c_str());
             }
             else if (name == "ShadowOffsetY")
             {
-                shadowOffset.height = atof(value.c_str());
+                shadowOffset.height = std::atof(value.c_str());
             }
             else if (name == "ShadowBlurRadius")
             {

@@ -249,7 +249,7 @@ float UserDefault::getFloatForKey(const char* pKey, float defaultValue)
     {
         if (node->FirstChild())
         {
-            float ret = atof((const char*)node->FirstChild()->Value());
+            float ret = std::atof((const char*)node->FirstChild()->Value());
 
             // set value in NSUserDefaults
             setFloatForKey(pKey, ret);
@@ -293,7 +293,7 @@ double UserDefault::getDoubleForKey(const char* pKey, double defaultValue)
     {
         if (node->FirstChild())
         {
-            double ret = atof((const char*)node->FirstChild()->Value());
+            double ret = std::atof((const char*)node->FirstChild()->Value());
 
             // set value in NSUserDefaults
             setDoubleForKey(pKey, ret);

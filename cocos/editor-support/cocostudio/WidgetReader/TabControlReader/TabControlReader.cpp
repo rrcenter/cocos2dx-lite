@@ -104,7 +104,7 @@ flatbuffers::Offset<flatbuffers::Table> TabControlReader::createOptionsWithFlatB
         }
         else if (attriname == "SelectedTabZoom")
         {
-            selectedTabZoom = atof(value.c_str());
+            selectedTabZoom = std::atof(value.c_str());
         }
         else if (attriname == "SelectedTabIndex")
         {

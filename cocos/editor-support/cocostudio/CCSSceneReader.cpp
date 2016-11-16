@@ -547,7 +547,7 @@ void SceneReader::setPropertyFromJsonDict(CocoLoader *cocoLoader, stExpCocoNode 
         }
         else if(key == "scaley")
         {
-            fScaleY = atof(value.c_str());
+            fScaleY = std::atof(value.c_str());
             node->setScaleY(fScaleY);
         }
         else if(key == "rotation")

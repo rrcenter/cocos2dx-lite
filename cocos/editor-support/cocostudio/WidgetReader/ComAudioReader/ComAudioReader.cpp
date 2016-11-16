@@ -95,7 +95,7 @@ namespace cocostudio
             }
             else if (attriname == "Volume")
             {
-                volume = atof(value.c_str());
+                volume = std::atof(value.c_str());
             }
             else if (attriname == "Name")
             {

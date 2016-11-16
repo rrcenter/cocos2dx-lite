@@ -82,7 +82,7 @@ Offset<Table> BoneNodeReader::createOptionsWithFlatBuffers(const tinyxml2::XMLEl
 
         if (name == "Length")
         {
-            length = atof(value.c_str());
+            length = std::atof(value.c_str());
         }
         attribute = attribute->Next();
     }

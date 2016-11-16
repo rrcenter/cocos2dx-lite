@@ -146,19 +146,19 @@ namespace cocostudio
             }
             else if (name == "Scale9OriginX")
             {
-                capInsets.origin.x = atof(value.c_str());
+                capInsets.origin.x = std::atof(value.c_str());
             }
             else if (name == "Scale9OriginY")
             {
-                capInsets.origin.y = atof(value.c_str());
+                capInsets.origin.y = std::atof(value.c_str());
             }
             else if (name == "Scale9Width")
             {
-                capInsets.size.width = atof(value.c_str());
+                capInsets.size.width = std::atof(value.c_str());
             }
             else if (name == "Scale9Height")
             {
-                capInsets.size.height = atof(value.c_str());
+                capInsets.size.height = std::atof(value.c_str());
             }
             else if (name == "DirectionType")
             {
@@ -200,11 +200,11 @@ namespace cocostudio
                     
                     if (name == "Width")
                     {
-                        innerSize.width = atof(value.c_str());
+                        innerSize.width = std::atof(value.c_str());
                     }
                     else if (name == "Height")
                     {
-                        innerSize.height = atof(value.c_str());
+                        innerSize.height = std::atof(value.c_str());
                     }
                     
                     attributeInnerNodeSize = attributeInnerNodeSize->Next();
@@ -221,11 +221,11 @@ namespace cocostudio
                     
                     if (name == "X")
                     {
-                        scale9Size.width = atof(value.c_str());
+                        scale9Size.width = std::atof(value.c_str());
                     }
                     else if (name == "Y")
                     {
-                        scale9Size.height = atof(value.c_str());
+                        scale9Size.height = std::atof(value.c_str());
                     }
                     
                     attributeSize = attributeSize->Next();
@@ -316,11 +316,11 @@ namespace cocostudio
                     
                     if (name == "ScaleX")
                     {
-                        colorVector.x = atof(value.c_str());
+                        colorVector.x = std::atof(value.c_str());
                     }
                     else if (name == "ScaleY")
                     {
-                        colorVector.y = atof(value.c_str());
+                        colorVector.y = std::atof(value.c_str());
                     }
                     
                     attributeColorVector = attributeColorVector->Next();

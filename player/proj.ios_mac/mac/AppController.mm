@@ -407,7 +407,7 @@ USING_NS_CC;
 //    ProjectConfig& lambdaProject = _project;
     eventDispatcher->addCustomEventListener("APP.VIEW_SCALE", [&](EventCustom* event)
                                             {
-//                                                float scale = atof(event->getDataString().c_str());
+//                                                float scale = std::atof(event->getDataString().c_str());
 //                                                lambdaProject.setFrameScale(scale);
 //                                                cocos2d::Director::getInstance()->getOpenGLView()->setFrameZoomFactor(scale);
                                             });

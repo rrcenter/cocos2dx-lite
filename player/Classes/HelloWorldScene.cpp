@@ -6,7 +6,7 @@ USING_NS_CC;
 
 inline float randomf1()
 {
-    return (float)rand() / (float)RAND_MAX;
+    return (float)std::rand() / (float)RAND_MAX;
 }
 
 inline float randomf(float from, float to)
@@ -67,7 +67,7 @@ bool HelloWorld::init()
 
     timeval t;
     gettimeofday(&t, NULL);
-    srand(t.tv_sec * 10000 + t.tv_usec);
+    std::srand(t.tv_sec * 10000 + t.tv_usec);
 
     auto size = Director::getInstance()->getOpenGLView()->getDesignResolutionSize();
     maxX = size.width;
@@ -97,29 +97,29 @@ bool HelloWorld::init()
         addChild(bunny->sprite);
     }
 
-	{
-		auto clickTipsSprite = Sprite::create("res/click.png");
-		clickTipsSprite->setPosition(size.width / 2, size.height - clickTipsSprite->getContentSize().height);
-		addChild(clickTipsSprite, 1);
-	}
+    {
+        auto clickTipsSprite = Sprite::create("res/click.png");
+        clickTipsSprite->setPosition(size.width / 2, size.height - clickTipsSprite->getContentSize().height);
+        addChild(clickTipsSprite, 1);
+    }
 
-	{
-		auto label = Label::createWithSystemFont("BACK", "sans", 32);
-		label->setAnchorPoint(ccp(1, 1));
-		label->setPosition(size.width, size.height);
-		auto touch = EventListenerTouchOneByOne::create();
+    {
+        auto label = Label::createWithSystemFont("BACK", "sans", 32);
+        label->setAnchorPoint(ccp(1, 1));
+        label->setPosition(size.width, size.height);
+        auto touch = EventListenerTouchOneByOne::create();
         touch->setSwallowTouches(true);
-		touch->onTouchBegan = [=](Touch* touch, Event*) -> bool {
-			if (label->getBoundingBox().containsPoint(touch->getLocation())) {
-				Director::getInstance()->replaceScene(TransitionFade::create(0.5, MainScene::create()));
+        touch->onTouchBegan = [=](Touch* touch, Event*) -> bool {
+            if (label->getBoundingBox().containsPoint(touch->getLocation())) {
+                Director::getInstance()->replaceScene(TransitionFade::create(0.5, MainScene::create()));
                 return true;
             }
             return false;
-		};
+        };
 
-		getEventDispatcher()->addEventListenerWithSceneGraphPriority(touch, label);
-		addChild(label, 1);
-	}
+        getEventDispatcher()->addEventListenerWithSceneGraphPriority(touch, label);
+        addChild(label, 1);
+    }
 
     scheduleUpdate();
 

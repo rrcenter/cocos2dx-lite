@@ -456,11 +456,11 @@ namespace cocostudio
             }
             else if (attriname == "RotationSkewX")
             {
-                rotationSkew.x = atof(value.c_str());
+                rotationSkew.x = std::atof(value.c_str());
             }
             else if (attriname == "RotationSkewY")
             {
-                rotationSkew.y = atof(value.c_str());
+                rotationSkew.y = std::atof(value.c_str());
             }
             else if (attriname == "Rotation")
             {
@@ -548,19 +548,19 @@ namespace cocostudio
             }
             else if (attriname == P_Layout_LeftMargin)
             {
-                leftMargin = atof(value.c_str());
+                leftMargin = std::atof(value.c_str());
             }
             else if (attriname == P_Layout_RightMargin)
             {
-                rightMargin = atof(value.c_str());
+                rightMargin = std::atof(value.c_str());
             }
             else if (attriname == P_Layout_TopMargin)
             {
-                topMargin = atof(value.c_str());
+                topMargin = std::atof(value.c_str());
             }
             else if (attriname == P_Layout_BottomMargin)
             {
-                bottomMargin = atof(value.c_str());
+                bottomMargin = std::atof(value.c_str());
             }
 
             attribute = attribute->Next();
@@ -581,11 +581,11 @@ namespace cocostudio
                     
                     if (attriname == "X")
                     {
-                        position.x = atof(value.c_str());
+                        position.x = std::atof(value.c_str());
                     }
                     else if (attriname == "Y")
                     {
-                        position.y = atof(value.c_str());
+                        position.y = std::atof(value.c_str());
                     }
                     
                     attribute = attribute->Next();
@@ -602,11 +602,11 @@ namespace cocostudio
                     
                     if (attriname == "ScaleX")
                     {
-                        scale.x = atof(value.c_str());
+                        scale.x = std::atof(value.c_str());
                     }
                     else if (attriname == "ScaleY")
                     {
-                        scale.y = atof(value.c_str());
+                        scale.y = std::atof(value.c_str());
                     }
                     
                     attribute = attribute->Next();
@@ -623,11 +623,11 @@ namespace cocostudio
                     
                     if (attriname == "ScaleX")
                     {
-                        anchorPoint.x = atof(value.c_str());
+                        anchorPoint.x = std::atof(value.c_str());
                     }
                     else if (attriname == "ScaleY")
                     {
-                        anchorPoint.y = atof(value.c_str());
+                        anchorPoint.y = std::atof(value.c_str());
                     }
                     
                     attribute = attribute->Next();
@@ -673,11 +673,11 @@ namespace cocostudio
                     
                     if (attriname == "X")
                     {
-                        size.x = atof(value.c_str());
+                        size.x = std::atof(value.c_str());
                     }
                     else if (attriname == "Y")
                     {
-                        size.y = atof(value.c_str());
+                        size.y = std::atof(value.c_str());
                     }
                     
                     attribute = attribute->Next();
@@ -694,11 +694,11 @@ namespace cocostudio
 
                     if (attriname == "X")
                     {
-                        positionXPercent = atof(value.c_str());
+                        positionXPercent = std::atof(value.c_str());
                     }
                     else if (attriname == "Y")
                     {
-                        positionYPercent = atof(value.c_str());
+                        positionYPercent = std::atof(value.c_str());
                     }
 
                     attribute = attribute->Next();
@@ -715,11 +715,11 @@ namespace cocostudio
 
                     if (attriname == "X")
                     {
-                        sizeXPercent = atof(value.c_str());
+                        sizeXPercent = std::atof(value.c_str());
                     }
                     else if (attriname == "Y")
                     {
-                        sizeYPercent = atof(value.c_str());
+                        sizeYPercent = std::atof(value.c_str());
                     }
 
                     attribute = attribute->Next();

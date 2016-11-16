@@ -84,7 +84,7 @@ namespace cocostudio
             std::string value = objattri->Value();
             if (name == "InnerActionSpeed")
             {
-                    innerspeed = atof(objattri->Value());
+                    innerspeed = std::atof(objattri->Value());
                     break;
             }
             objattri = objattri->Next();

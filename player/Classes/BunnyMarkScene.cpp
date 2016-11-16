@@ -23,30 +23,30 @@ bool BunnyMarkScene::init()
     maxY = origin.y + visibleSize.height - bunnySprite->getContentSize().height;
     moreBunnies(100);
 
-	auto size = Director::getInstance()->getOpenGLView()->getDesignResolutionSize();
-	{
-		auto clickTipsSprite = Sprite::create("res/click.png");
-		clickTipsSprite->setPosition(size.width / 2, size.height - clickTipsSprite->getContentSize().height);
-		addChild(clickTipsSprite, 1);
-	}
+    auto size = Director::getInstance()->getOpenGLView()->getDesignResolutionSize();
+    {
+        auto clickTipsSprite = Sprite::create("res/click.png");
+        clickTipsSprite->setPosition(size.width / 2, size.height - clickTipsSprite->getContentSize().height);
+        addChild(clickTipsSprite, 1);
+    }
 
-	{
-		auto label = Label::createWithSystemFont("BACK", "sans", 32);
-		label->setAnchorPoint(Vec2(1, 1));
-		label->setPosition(size.width, size.height);
-		auto listener = EventListenerTouchOneByOne::create();
+    {
+        auto label = Label::createWithSystemFont("BACK", "sans", 32);
+        label->setAnchorPoint(Vec2(1, 1));
+        label->setPosition(size.width, size.height);
+        auto listener = EventListenerTouchOneByOne::create();
         listener->setSwallowTouches(true);
-		listener->onTouchBegan = [](Touch *touch, Event *event) -> bool {
-			if (event->getCurrentTarget()->getBoundingBox().containsPoint(touch->getLocation())) {
-				Director::getInstance()->replaceScene(TransitionFade::create(0.5, MainScene::create()));
+        listener->onTouchBegan = [](Touch *touch, Event *event) -> bool {
+            if (event->getCurrentTarget()->getBoundingBox().containsPoint(touch->getLocation())) {
+                Director::getInstance()->replaceScene(TransitionFade::create(0.5, MainScene::create()));
                 return true;
             }
             return false;
-		};
+        };
 
         Director::getInstance()->getEventDispatcher()->addEventListenerWithSceneGraphPriority(listener, label);
-		addChild(label, 1);
-	}
+        addChild(label, 1);
+    }
 
     return true;
 }
@@ -131,14 +131,14 @@ void BunnyMarkScene::update(float dt)
 
 int BunnyMarkScene::randomInt(int min, int max)
 {
-    return min + rand() % (max - min + 1);
+    return min + std::rand() % (max - min + 1);
 }
 
 void BunnyMarkScene::moreBunnies(int more)
 {
     printf("BunnyMarkScene %p\n", this);
 
-	Bunny2 bunny;
+    Bunny2 bunny;
 
     for (int i = 0; i < more; i++)
     {
