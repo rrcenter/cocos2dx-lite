@@ -42,7 +42,7 @@ function game.benchmark()
     end)
 
 
-    --
+    -- quick style
     local frames = display.newFrames("CoinSpin%02d.png", 1, 8)
     local animation = display.newAnimation(frames, 0.5 / 8) -- 0.5 秒播放 8 桢
 
@@ -50,4 +50,13 @@ function game.benchmark()
         :center()
         :addTo(scene)
         :playForever(animation)
+
+    ccui.RichText:createWithXML("This is just a simple text. no xml tags here. testing the basics. testing word-wrapping. testing, testing, testing", {})
+        :pos(display.cx, display.cy - 50)
+        :addTo(scene)
+
+    ccui.ImageView:create('click.png')
+        :pos(display.cx, display.cy - 100)
+        :addTo(scene)
+
 end

@@ -245,11 +245,11 @@ bool Sprite::initWithPolygon(const cocos2d::PolygonInfo &info)
 {
     bool ret = false;
     
-    Texture2D *texture = _director->getTextureCache()->addImage(info.filename);
+    Texture2D *texture = _director->getTextureCache()->addImage(info.getFilename());
     if(texture && initWithTexture(texture))
     {
         _polyInfo = info;
-        setContentSize(_polyInfo.rect.size / _director->getContentScaleFactor());
+        setContentSize(_polyInfo.getRect().size / _director->getContentScaleFactor());
         ret = true;
     }
     

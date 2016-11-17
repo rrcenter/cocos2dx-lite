@@ -23,9 +23,7 @@
  THE SOFTWARE.
  ****************************************************************************/
 
-#include "CCLuaEngine.h"
-
-//#include "scripting/lua-bindings/manual/CCLuaEngine.h"
+#include "scripting/lua-bindings/manual/CCLuaEngine.h"
 #include "scripting/lua-bindings/manual/tolua_fix.h"
 #include "scripting/lua-bindings/manual/cocos2d/LuaOpengl.h"
 #include "scripting/lua-bindings/manual/cocos2d/lua_cocos2dx_manual.hpp"

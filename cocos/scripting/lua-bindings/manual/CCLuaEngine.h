@@ -67,7 +67,7 @@ public:
     CC_DEPRECATED_ATTRIBUTE static LuaEngine* defaultEngine(void) { return LuaEngine::getInstance(); }
     
     /** 
-     * Destrutor of LuaEngine.
+     * Destructor of LuaEngine.
      */
     virtual ~LuaEngine(void);
     
@@ -127,14 +127,14 @@ public:
     /**
      * Remove Lua function reference by nHandler by setting toluafix_refid_function_mapping[nHandle] nil.
      *
-     * @param nHandler the function reference index to find the correspoinding Lua function pointer.
+     * @param nHandler the function reference index to find the corresponding Lua function pointer.
      */
     virtual void removeScriptHandler(int nHandler) override;
     
     /**
      * Reallocate Lua function reference index to the Lua function pointer to add reference.
      *
-     * @param nHandler the function reference index to find the correspoinding Lua function pointer.
+     * @param nHandler the function reference index to find the corresponding Lua function pointer.
      */
     virtual int reallocateScriptHandler(int nHandler) override;
     

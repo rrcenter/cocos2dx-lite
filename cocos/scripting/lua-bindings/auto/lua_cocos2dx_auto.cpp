@@ -24995,6 +24995,53 @@ int lua_register_cocos2dx_GLProgramState(lua_State* tolua_S)
     return 1;
 }
 
+int lua_cocos2dx_PolygonInfo_getFilename(lua_State* tolua_S)
+{
+    int argc = 0;
+    cocos2d::PolygonInfo* cobj = nullptr;
+    bool ok  = true;
+
+#if TOLUA_DEBUG >= 1
+    tolua_Error tolua_err;
+#endif
+
+
+#if TOLUA_DEBUG >= 1
+    if (!tolua_isusertype(tolua_S,1,"cc.PolygonInfo",0,&tolua_err)) goto tolua_lerror;
+#endif
+
+    cobj = (cocos2d::PolygonInfo*)tolua_tousertype(tolua_S,1,0);
+
+#if TOLUA_DEBUG >= 1
+    if (!cobj)
+    {
+        tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_PolygonInfo_getFilename'", nullptr);
+        return 0;
+    }
+#endif
+
+    argc = lua_gettop(tolua_S)-1;
+    if (argc == 0)
+    {
+        if(!ok)
+        {
+            tolua_error(tolua_S,"invalid arguments in function 'lua_cocos2dx_PolygonInfo_getFilename'", nullptr);
+            return 0;
+        }
+        const std::string& ret = cobj->getFilename();
+        tolua_pushcppstring(tolua_S,ret);
+        return 1;
+    }
+    luaL_error(tolua_S, "%s has wrong number of arguments: %d, was expecting %d \n", "cc.PolygonInfo:getFilename",argc, 0);
+    return 0;
+
+#if TOLUA_DEBUG >= 1
+    tolua_lerror:
+    tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_PolygonInfo_getFilename'.",&tolua_err);
+#endif
+
+    return 0;
+}
 int lua_cocos2dx_PolygonInfo_getArea(lua_State* tolua_S)
 {
     int argc = 0;
@@ -25038,6 +25085,157 @@ int lua_cocos2dx_PolygonInfo_getArea(lua_State* tolua_S)
 #if TOLUA_DEBUG >= 1
     tolua_lerror:
     tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_PolygonInfo_getArea'.",&tolua_err);
+#endif
+
+    return 0;
+}
+int lua_cocos2dx_PolygonInfo_getRect(lua_State* tolua_S)
+{
+    int argc = 0;
+    cocos2d::PolygonInfo* cobj = nullptr;
+    bool ok  = true;
+
+#if TOLUA_DEBUG >= 1
+    tolua_Error tolua_err;
+#endif
+
+
+#if TOLUA_DEBUG >= 1
+    if (!tolua_isusertype(tolua_S,1,"cc.PolygonInfo",0,&tolua_err)) goto tolua_lerror;
+#endif
+
+    cobj = (cocos2d::PolygonInfo*)tolua_tousertype(tolua_S,1,0);
+
+#if TOLUA_DEBUG >= 1
+    if (!cobj)
+    {
+        tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_PolygonInfo_getRect'", nullptr);
+        return 0;
+    }
+#endif
+
+    argc = lua_gettop(tolua_S)-1;
+    if (argc == 0)
+    {
+        if(!ok)
+        {
+            tolua_error(tolua_S,"invalid arguments in function 'lua_cocos2dx_PolygonInfo_getRect'", nullptr);
+            return 0;
+        }
+        const cocos2d::Rect& ret = cobj->getRect();
+        rect_to_luaval(tolua_S, ret);
+        return 1;
+    }
+    luaL_error(tolua_S, "%s has wrong number of arguments: %d, was expecting %d \n", "cc.PolygonInfo:getRect",argc, 0);
+    return 0;
+
+#if TOLUA_DEBUG >= 1
+    tolua_lerror:
+    tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_PolygonInfo_getRect'.",&tolua_err);
+#endif
+
+    return 0;
+}
+int lua_cocos2dx_PolygonInfo_setFilename(lua_State* tolua_S)
+{
+    int argc = 0;
+    cocos2d::PolygonInfo* cobj = nullptr;
+    bool ok  = true;
+
+#if TOLUA_DEBUG >= 1
+    tolua_Error tolua_err;
+#endif
+
+
+#if TOLUA_DEBUG >= 1
+    if (!tolua_isusertype(tolua_S,1,"cc.PolygonInfo",0,&tolua_err)) goto tolua_lerror;
+#endif
+
+    cobj = (cocos2d::PolygonInfo*)tolua_tousertype(tolua_S,1,0);
+
+#if TOLUA_DEBUG >= 1
+    if (!cobj)
+    {
+        tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_PolygonInfo_setFilename'", nullptr);
+        return 0;
+    }
+#endif
+
+    argc = lua_gettop(tolua_S)-1;
+    if (argc == 1)
+    {
+        std::string arg0;
+
+        ok &= luaval_to_std_string(tolua_S, 2,&arg0, "cc.PolygonInfo:setFilename");
+        if(!ok)
+        {
+            tolua_error(tolua_S,"invalid arguments in function 'lua_cocos2dx_PolygonInfo_setFilename'", nullptr);
+            return 0;
+        }
+        cobj->setFilename(arg0);
+        lua_settop(tolua_S, 1);
+        return 1;
+    }
+    luaL_error(tolua_S, "%s has wrong number of arguments: %d, was expecting %d \n", "cc.PolygonInfo:setFilename",argc, 1);
+    return 0;
+
+#if TOLUA_DEBUG >= 1
+    tolua_lerror:
+    tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_PolygonInfo_setFilename'.",&tolua_err);
+#endif
+
+    return 0;
+}
+int lua_cocos2dx_PolygonInfo_setQuads(lua_State* tolua_S)
+{
+    int argc = 0;
+    cocos2d::PolygonInfo* cobj = nullptr;
+    bool ok  = true;
+
+#if TOLUA_DEBUG >= 1
+    tolua_Error tolua_err;
+#endif
+
+
+#if TOLUA_DEBUG >= 1
+    if (!tolua_isusertype(tolua_S,1,"cc.PolygonInfo",0,&tolua_err)) goto tolua_lerror;
+#endif
+
+    cobj = (cocos2d::PolygonInfo*)tolua_tousertype(tolua_S,1,0);
+
+#if TOLUA_DEBUG >= 1
+    if (!cobj)
+    {
+        tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_PolygonInfo_setQuads'", nullptr);
+        return 0;
+    }
+#endif
+
+    argc = lua_gettop(tolua_S)-1;
+    if (argc == 2)
+    {
+        cocos2d::V3F_C4B_T2F_Quad* arg0;
+        int arg1;
+
+        #pragma warning NO CONVERSION TO NATIVE FOR V3F_C4B_T2F_Quad*
+		ok = false;
+
+        ok &= luaval_to_int32(tolua_S, 3,(int *)&arg1, "cc.PolygonInfo:setQuads");
+        if(!ok)
+        {
+            tolua_error(tolua_S,"invalid arguments in function 'lua_cocos2dx_PolygonInfo_setQuads'", nullptr);
+            return 0;
+        }
+        cobj->setQuads(arg0, arg1);
+        lua_settop(tolua_S, 1);
+        return 1;
+    }
+    luaL_error(tolua_S, "%s has wrong number of arguments: %d, was expecting %d \n", "cc.PolygonInfo:setQuads",argc, 2);
+    return 0;
+
+#if TOLUA_DEBUG >= 1
+    tolua_lerror:
+    tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_PolygonInfo_setQuads'.",&tolua_err);
 #endif
 
     return 0;
@@ -25238,6 +25436,56 @@ int lua_cocos2dx_PolygonInfo_setTriangles(lua_State* tolua_S)
 
     return 0;
 }
+int lua_cocos2dx_PolygonInfo_setRect(lua_State* tolua_S)
+{
+    int argc = 0;
+    cocos2d::PolygonInfo* cobj = nullptr;
+    bool ok  = true;
+
+#if TOLUA_DEBUG >= 1
+    tolua_Error tolua_err;
+#endif
+
+
+#if TOLUA_DEBUG >= 1
+    if (!tolua_isusertype(tolua_S,1,"cc.PolygonInfo",0,&tolua_err)) goto tolua_lerror;
+#endif
+
+    cobj = (cocos2d::PolygonInfo*)tolua_tousertype(tolua_S,1,0);
+
+#if TOLUA_DEBUG >= 1
+    if (!cobj)
+    {
+        tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_PolygonInfo_setRect'", nullptr);
+        return 0;
+    }
+#endif
+
+    argc = lua_gettop(tolua_S)-1;
+    if (argc == 1)
+    {
+        cocos2d::Rect arg0;
+
+        ok &= luaval_to_rect(tolua_S, 2, &arg0, "cc.PolygonInfo:setRect");
+        if(!ok)
+        {
+            tolua_error(tolua_S,"invalid arguments in function 'lua_cocos2dx_PolygonInfo_setRect'", nullptr);
+            return 0;
+        }
+        cobj->setRect(arg0);
+        lua_settop(tolua_S, 1);
+        return 1;
+    }
+    luaL_error(tolua_S, "%s has wrong number of arguments: %d, was expecting %d \n", "cc.PolygonInfo:setRect",argc, 1);
+    return 0;
+
+#if TOLUA_DEBUG >= 1
+    tolua_lerror:
+    tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_PolygonInfo_setRect'.",&tolua_err);
+#endif
+
+    return 0;
+}
 int lua_cocos2dx_PolygonInfo_constructor(lua_State* tolua_S)
 {
     int argc = 0;
@@ -25286,11 +25534,16 @@ int lua_register_cocos2dx_PolygonInfo(lua_State* tolua_S)
 
     tolua_beginmodule(tolua_S,"PolygonInfo");
         tolua_function(tolua_S,"new",lua_cocos2dx_PolygonInfo_constructor);
+        tolua_function(tolua_S,"getFilename",lua_cocos2dx_PolygonInfo_getFilename);
         tolua_function(tolua_S,"getArea",lua_cocos2dx_PolygonInfo_getArea);
+        tolua_function(tolua_S,"getRect",lua_cocos2dx_PolygonInfo_getRect);
+        tolua_function(tolua_S,"setFilename",lua_cocos2dx_PolygonInfo_setFilename);
+        tolua_function(tolua_S,"setQuads",lua_cocos2dx_PolygonInfo_setQuads);
         tolua_function(tolua_S,"getTriaglesCount",lua_cocos2dx_PolygonInfo_getTriaglesCount);
         tolua_function(tolua_S,"getVertCount",lua_cocos2dx_PolygonInfo_getVertCount);
         tolua_function(tolua_S,"setQuad",lua_cocos2dx_PolygonInfo_setQuad);
         tolua_function(tolua_S,"setTriangles",lua_cocos2dx_PolygonInfo_setTriangles);
+        tolua_function(tolua_S,"setRect",lua_cocos2dx_PolygonInfo_setRect);
     tolua_endmodule(tolua_S);
     std::string typeName = typeid(cocos2d::PolygonInfo).name();
     g_luaType[typeName] = "cc.PolygonInfo";
@@ -47488,9 +47741,9 @@ int lua_cocos2dx_DrawNode_setLineWidth(lua_State* tolua_S)
     argc = lua_gettop(tolua_S)-1;
     if (argc == 1)
     {
-        int arg0;
+        double arg0;
 
-        ok &= luaval_to_int32(tolua_S, 2,(int *)&arg0, "cc.DrawNode:setLineWidth");
+        ok &= luaval_to_number(tolua_S, 2,&arg0, "cc.DrawNode:setLineWidth");
         if(!ok)
         {
             tolua_error(tolua_S,"invalid arguments in function 'lua_cocos2dx_DrawNode_setLineWidth'", nullptr);
@@ -48404,8 +48657,8 @@ int lua_cocos2dx_DrawNode_create(lua_State* tolua_S)
     }
     if (argc == 1)
     {
-        int arg0;
-        ok &= luaval_to_int32(tolua_S, 2,(int *)&arg0, "cc.DrawNode:create");
+        double arg0;
+        ok &= luaval_to_number(tolua_S, 2,&arg0, "cc.DrawNode:create");
         if(!ok)
         {
             tolua_error(tolua_S,"invalid arguments in function 'lua_cocos2dx_DrawNode_create'", nullptr);
@@ -48452,9 +48705,9 @@ int lua_cocos2dx_DrawNode_constructor(lua_State* tolua_S)
     }
     if (argc == 1)
     {
-        int arg0;
+        double arg0;
 
-        ok &= luaval_to_int32(tolua_S, 2,(int *)&arg0, "cc.DrawNode:DrawNode");
+        ok &= luaval_to_number(tolua_S, 2,&arg0, "cc.DrawNode:DrawNode");
         if(!ok)
         {
             tolua_error(tolua_S,"invalid arguments in function 'lua_cocos2dx_DrawNode_constructor'", nullptr);

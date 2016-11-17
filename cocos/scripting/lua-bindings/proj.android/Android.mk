@@ -91,26 +91,27 @@ LOCAL_SRC_FILES += ../manual/network/lua_cocos2dx_network_manual.cpp \
 #                    ../manual/cocosbuilder/CCBProxy.cpp \
 #                    ../auto/lua_cocos2dx_cocosbuilder_auto.cpp
 
-# #cocostudio
-# LOCAL_SRC_FILES += ../manual/cocostudio/lua_cocos2dx_coco_studio_manual.cpp \
-#                    ../manual/cocostudio/CustomGUIReader.cpp \
-#                    ../manual/cocostudio/lua_cocos2dx_csloader_manual.cpp \
-#                    ../auto/lua_cocos2dx_csloader_auto.cpp \
-#                    ../auto/lua_cocos2dx_studio_auto.cpp \
-#                    ../manual/cocostudio/lua-cocos-studio-conversions.cpp
+#cocostudio
+LOCAL_SRC_FILES += ../manual/cocostudio/lua_cocos2dx_coco_studio_manual.cpp \
+                   ../manual/cocostudio/CustomGUIReader.cpp \
+                   ../manual/cocostudio/lua_cocos2dx_csloader_manual.cpp \
+                   ../auto/lua_cocos2dx_csloader_auto.cpp \
+                   ../auto/lua_cocos2dx_studio_auto.cpp \
+                   ../manual/cocostudio/lua-cocos-studio-conversions.cpp
 
 #spine
 LOCAL_SRC_FILES += ../manual/spine/lua_cocos2dx_spine_manual.cpp \
                    ../manual/spine/LuaSkeletonAnimation.cpp \
                    ../auto/lua_cocos2dx_spine_auto.cpp
 
-# #ui
-# LOCAL_SRC_FILES += ../manual/ui/lua_cocos2dx_experimental_webview_manual.cpp \
-#                    ../manual/ui/lua_cocos2dx_experimental_video_manual.cpp \
-#                    ../manual/ui/lua_cocos2dx_ui_manual.cpp \
-#                    ../auto/lua_cocos2dx_experimental_video_auto.cpp \
-#                    ../auto/lua_cocos2dx_ui_auto.cpp \
-#                    ../auto/lua_cocos2dx_experimental_webview_auto.cpp
+#ui
+LOCAL_SRC_FILES +=  ../manual/ui/lua_cocos2dx_ui_manual.cpp \
+                    ../auto/lua_cocos2dx_ui_auto.cpp
+
+                    #../manual/ui/lua_cocos2dx_experimental_webview_manual.cpp \
+                    #../manual/ui/lua_cocos2dx_experimental_video_manual.cpp \
+                    #../auto/lua_cocos2dx_experimental_video_auto.cpp \
+                    #../auto/lua_cocos2dx_experimental_webview_auto.cpp
 
 # #extension
 # LOCAL_SRC_FILES += ../manual/extension/lua_cocos2dx_extension_manual.cpp \

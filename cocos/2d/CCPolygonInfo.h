@@ -79,6 +79,14 @@ public:
     void setQuad(V3F_C4B_T2F_Quad *quad);
 
     /**
+     * set the data to be a pointer to a number of Quads
+     * the member verts will not be released when this PolygonInfo destructs
+     * as the verts memory are managed by other objects
+     * @param quad  a pointer to the V3F_C4B_T2F_Quad quads
+     */
+    void setQuads(V3F_C4B_T2F_Quad *quads, int numberOfQuads);
+    
+    /**
      * set the data to be a pointer to a triangles
      * the member verts will not be released when this PolygonInfo destructs
      * as the verts memory are managed by other objects
@@ -104,12 +112,17 @@ public:
      */
     const float getArea() const;
 
-    Rect rect;
-    std::string filename;
+    const Rect& getRect() const;
+    void setRect(const Rect& rect);
+    const std::string& getFilename() const;
+    void setFilename(const std::string& filename );
+
     TrianglesCommand::Triangles triangles;
 
 protected:
-    bool isVertsOwner;
+    bool _isVertsOwner;
+    Rect _rect;
+    std::string _filename;
 
 private:
     void releaseVertsAndIndices();

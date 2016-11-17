@@ -1,5 +1,5 @@
 /****************************************************************************
- Copyright (c) 2013-2014 Chukong Technologies Inc.
+ Copyright (c) 2013-2016 Chukong Technologies Inc.
 
  http://www.cocos2d-x.org
 
@@ -72,7 +72,7 @@ extern int lua_isusertype (lua_State* L, int lo, const char* type);
 
 bool luaval_is_usertype(lua_State* L,int lo,const char* type, int def)
 {
-    if (def && lua_gettop(L)<abs(lo))
+    if (def && lua_gettop(L)<std::abs(lo))
         return true;
 
     if (lua_isnil(L,lo) || lua_isusertype(L,lo,type))
@@ -128,7 +128,7 @@ bool luaval_to_int32(lua_State* L,int lo,int* outValue, const char* funcName)
          When we want to convert the number value from the Lua to int, we would call lua_tonumber to implement.It would
          experience two phase conversion: int -> double, double->int.But,for the 0x80000000 which the min value of int, the
          int cast may return an undefined result,like 0x7fffffff.So we must use the (int)(unsigned int)lua_tonumber() to get
-         predictable results for 0x80000000.In this place,we didn't use lua_tointeger, because it may produce differen results
+         predictable results for 0x80000000.In this place,we didn't use lua_tointeger, because it may produce different results
          depending on the compiler,e.g:for iPhone4s,it also get wrong value for 0x80000000.
          */
         unsigned int estimateValue = (unsigned int)lua_tonumber(L, lo);
@@ -827,7 +827,7 @@ bool luaval_to_fontdefinition(lua_State* L, int lo, FontDefinition* outValue , c
 
     if (ok)
     {
-        // defaul values
+        // default values
         const char *            defautlFontName         = "Arial";
         const int               defaultFontSize         = 32;
         TextHAlignment          defaultTextAlignment    = TextHAlignment::LEFT;
@@ -1894,6 +1894,52 @@ bool luaval_to_std_vector_int(lua_State* L, int lo, std::vector<int>* ret, const
     return ok;
 }
 
+#if 0
+bool luaval_to_mesh_vertex_attrib(lua_State* L, int lo, cocos2d::MeshVertexAttrib* ret, const char* funcName)
+{
+    if (nullptr == L || nullptr == ret || lua_gettop(L) < lo)
+        return false;
+
+    tolua_Error tolua_err;
+    bool ok = true;
+
+    if (!tolua_istable(L, lo, 0, &tolua_err))
+    {
+#if COCOS2D_DEBUG >=1
+        luaval_to_native_err(L,"#ferror:",&tolua_err,funcName);
+#endif
+        ok = false;
+    }
+
+
+    if (ok)
+    {
+        lua_pushstring(L, "size");                  /* L: paramStack key */
+        lua_gettable(L,lo);                         /* L: paramStack paramStack[lo][key] */
+        ret->size  = (GLint)lua_tonumber(L, -1);
+        lua_pop(L,1);
+
+        lua_pushstring(L, "type");                  /* L: paramStack key */
+        lua_gettable(L,lo);                         /* L: paramStack paramStack[lo][key] */
+        ret->type  = (GLenum)lua_tonumber(L, -1);
+        lua_pop(L,1);
+
+        lua_pushstring(L, "vertexAttrib");          /* L: paramStack key */
+        lua_gettable(L,lo);                         /* L: paramStack paramStack[lo][key] */
+        ret->type  = (GLenum)lua_tonumber(L, -1);
+        lua_pop(L,1);
+
+        lua_pushstring(L, "attribSizeBytes");       /* L: paramStack key */
+        lua_gettable(L,lo);                         /* L: paramStack paramStack[lo][key] */
+        ret->type  = (GLenum)lua_tonumber(L, -1);
+        lua_pop(L,1);
+    }
+
+    return ok;
+
+}
+#endif
+
 bool luaval_to_std_vector_float(lua_State* L, int lo, std::vector<float>* ret, const char* funcName)
 {
     if (nullptr == L || nullptr == ret || lua_gettop(L) < lo)
@@ -2683,7 +2729,7 @@ void array_to_luaval(lua_State* L,__Array* inValue)
         }
         else
         {
-            CCASSERT(false, "the type isn't suppored.");
+            CCASSERT(false, "the type isn't supported.");
         }
     }
 }
@@ -2767,7 +2813,7 @@ void dictionary_to_luaval(lua_State* L, __Dictionary* dict)
         }
         else
         {
-            CCASSERT(false, "the type isn't suppored.");
+            CCASSERT(false, "the type isn't supported.");
         }
     }
 }
@@ -3138,6 +3184,32 @@ void vertexattrib_to_luaval(lua_State* L, const cocos2d::VertexAttrib& verAttrib
     lua_rawset(L, -3);
 }
 
+#if 0
+void mesh_vertex_attrib_to_luaval(lua_State* L, const cocos2d::MeshVertexAttrib& inValue)
+{
+    if (nullptr == L)
+        return;
+
+    lua_newtable(L);
+
+    lua_pushstring(L, "size");
+    lua_pushnumber(L, (lua_Number)inValue.size);
+    lua_rawset(L, -3);
+
+    lua_pushstring(L, "type");
+    lua_pushnumber(L, (lua_Number)inValue.type);
+    lua_rawset(L, -3);
+
+    lua_pushstring(L, "vertexAttrib");
+    lua_pushnumber(L, (lua_Number)inValue.vertexAttrib);
+    lua_rawset(L, -3);
+
+    lua_pushstring(L, "attribSizeBytes");
+    lua_pushnumber(L, (lua_Number)inValue.attribSizeBytes);
+    lua_rawset(L, -3);
+}
+#endif
+
 void ccvector_std_string_to_luaval(lua_State* L, const std::vector<std::string>& inValue)
 {
     if (nullptr == L)
@@ -3319,4 +3391,14 @@ bool luaval_to_std_map_string_string(lua_State* L, int lo, std::map<std::string,
     }
 
     return ok;
+}
+
+bool luaval_to_node(lua_State* L, int lo, const char* type, cocos2d::Node** node)
+{
+    return luaval_to_object<cocos2d::Node>(L, lo, type, node);
+}
+
+void node_to_luaval(lua_State* L, const char* type, cocos2d::Node* node)
+{
+    object_to_luaval<cocos2d::Node>(L, type, node);
 }

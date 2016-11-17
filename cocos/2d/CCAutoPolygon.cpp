@@ -566,10 +566,11 @@ PolygonInfo AutoPolygon::generateTriangles(const Rect& rect, const float& epsilo
     calculateUV(realRect, tri.verts, tri.vertCount);
     PolygonInfo ret;
     ret.triangles = tri;
-    ret.filename = _filename;
-    ret.rect = realRect;
+    ret.setFilename(_filename);
+    ret.setRect(realRect);
     return ret;
 }
+
 PolygonInfo AutoPolygon::generatePolygon(const std::string& filename, const Rect& rect, const float epsilon, const float threshold)
 {
     AutoPolygon ap(filename);

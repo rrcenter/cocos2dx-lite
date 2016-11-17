@@ -38,7 +38,7 @@ class Label;
 class SpriteFrame;
 struct CC_DLL ResourceData;
 
-namespace ui{
+namespace ui {
 
     class Scale9Sprite;
 /**
@@ -275,21 +275,21 @@ public:
      * @since v3.3
      */
     float getZoomScale()const;
-    
+
     /**
      * @brief Return the nine-patch sprite of normal state
      * @return the nine-patch sprite of normal state
      * @since v3.9
      */
     Scale9Sprite* getRendererNormal() const { return _buttonNormalRenderer; }
-    
+
     /**
      * @brief Return the nine-patch sprite of clicked state
      * @return the nine-patch sprite of clicked state
      * @since v3.9
      */
     Scale9Sprite* getRendererClicked() const { return _buttonClickedRenderer; }
-    
+
     /**
      * @brief Return the nine-patch sprite of disabled state
      * @return the nine-patch sprite of disabled state
