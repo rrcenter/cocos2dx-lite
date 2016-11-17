@@ -1,7 +1,10 @@
 #ifndef COCOS_SCRIPTING_LUA_BINDINGS_LUA_COCOS2DX_CUSTOM_GUI_READER_H
 #define COCOS_SCRIPTING_LUA_BINDINGS_LUA_COCOS2DX_CUSTOM_GUI_READER_H
 
+#include "base/ccConfig.h"
 #include "editor-support/cocostudio/WidgetReader/WidgetReader.h"
+
+#if CC_USE_CCS > 0
 
 USING_NS_CC;
 
@@ -29,6 +32,6 @@ namespace cocostudio
     };
 }
 
-
+#endif // CC_USE_CCS
 
 #endif

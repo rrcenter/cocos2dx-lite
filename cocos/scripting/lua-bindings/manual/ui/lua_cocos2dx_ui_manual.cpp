@@ -38,6 +38,8 @@
 #include "scripting/lua-bindings/manual/CCLuaEngine.h"
 //#include "base/CCEventListenerFocus.h"
 
+#if CC_USE_UI > 0
+
 using namespace ui;
 
 static int handleUIEvent(int handler, cocos2d::Ref* sender, int eventType)
@@ -1195,3 +1197,5 @@ int register_ui_moudle(lua_State* L)
 
     return 1;
 }
+
+#endif // #if CC_USE_UI > 0

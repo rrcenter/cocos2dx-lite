@@ -3,6 +3,8 @@
 #include "json/writer.h"
 #include "json/stringbuffer.h"
 
+#if CC_USE_CCS > 0
+
 USING_NS_CC;
 
 namespace cocostudio
@@ -14,7 +16,7 @@ namespace cocostudio
         reader->init(className, createFunc, setPropsFunc);
         return reader;
     }
-   
+
     Ref* CustomGUIReader::createInstance()
     {
         Ref* result = nullptr;
@@ -67,8 +69,8 @@ namespace cocostudio
         (*callbackMap)[className] = parseselector(CustomGUIReader::setCustomProps);
     }
 
-	void CustomGUIReader::setCustomProps(const std::string &classType, cocos2d::Ref *widget, const rapidjson::Value &customOptions)
-	{
+    void CustomGUIReader::setCustomProps(const std::string &classType, cocos2d::Ref *widget, const rapidjson::Value &customOptions)
+    {
         if (_setPropsFunc != 0)
         {
             rapidjson::StringBuffer buffer;
@@ -81,5 +83,7 @@ namespace cocostudio
             stack->pushString(buffer.GetString(), static_cast<int>(buffer.GetSize()));
             stack->executeFunctionByHandler(_setPropsFunc, 3);
         }
-	}
+    }
 }
+
+#endif // CC_USE_CCS

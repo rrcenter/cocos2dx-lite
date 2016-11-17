@@ -10,7 +10,9 @@ extern "C" {
 }
 #endif
 
+#if CC_USE_UI > 0
 int register_all_cocos2dx_ui(lua_State* tolua_S);
+#endif
 
 
 

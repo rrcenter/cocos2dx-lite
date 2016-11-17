@@ -47,7 +47,7 @@ ProtectedNode::~ProtectedNode()
 
 ProtectedNode * ProtectedNode::create(void)
 {
-	ProtectedNode * ret = new (std::nothrow) ProtectedNode();
+    ProtectedNode * ret = new (std::nothrow) ProtectedNode();
     if (ret && ret->init())
     {
         ret->autorelease();
@@ -56,7 +56,7 @@ ProtectedNode * ProtectedNode::create(void)
     {
         CC_SAFE_DELETE(ret);
     }
-	return ret;
+    return ret;
 }
 
 void ProtectedNode::cleanup()
@@ -400,7 +400,7 @@ void ProtectedNode::onExit()
 
 void ProtectedNode::updateDisplayedOpacity(GLubyte parentOpacity)
 {
-	_displayedOpacity = _realOpacity * parentOpacity/255.0;
+    _displayedOpacity = _realOpacity * parentOpacity/255.0;
     updateColor();
 
     if (_cascadeOpacityEnabled)
@@ -417,9 +417,9 @@ void ProtectedNode::updateDisplayedOpacity(GLubyte parentOpacity)
 
 void ProtectedNode::updateDisplayedColor(const Color3B& parentColor)
 {
-	_displayedColor.r = _realColor.r * parentColor.r/255.0;
-	_displayedColor.g = _realColor.g * parentColor.g/255.0;
-	_displayedColor.b = _realColor.b * parentColor.b/255.0;
+    _displayedColor.r = _realColor.r * parentColor.r/255.0;
+    _displayedColor.g = _realColor.g * parentColor.g/255.0;
+    _displayedColor.b = _realColor.b * parentColor.b/255.0;
     updateColor();
 
     if (_cascadeColorEnabled)

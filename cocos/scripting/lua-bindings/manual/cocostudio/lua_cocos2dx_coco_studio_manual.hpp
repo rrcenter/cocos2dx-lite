@@ -1,18 +1,18 @@
 /****************************************************************************
  Copyright (c) 2013-2014 Chukong Technologies Inc.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -24,6 +24,9 @@
 #ifndef COCOS_SCRIPTING_LUA_BINDINGS_LUA_COCOS2DX_COCO_STUDIO_MANUAL_H
 #define COCOS_SCRIPTING_LUA_BINDINGS_LUA_COCOS2DX_COCO_STUDIO_MANUAL_H
 
+#include "base/ccConfig.h"
+
+#if CC_USE_CCS > 0
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -62,10 +65,10 @@ struct LuaArmatureWrapperEventData
         FRAME_EVENT,
         FILE_ASYNC,
     };
-    
+
     LuaArmatureWrapperEventType eventType;
     void* eventData;
-    
+
     LuaArmatureWrapperEventData(LuaArmatureWrapperEventType _eventType, void* _eventData):eventType(_eventType),eventData(_eventData)
     {
     }
@@ -76,7 +79,7 @@ struct LuaArmatureMovementEventData
     cocos2d::Ref* objTarget;
     int movementType;
     std::string movementID;
-    
+
     LuaArmatureMovementEventData(cocos2d::Ref* _objTarget, int _movementType,const std::string& _movementID):objTarget(_objTarget),movementType(_movementType),movementID(_movementID)
     {
     }
@@ -88,10 +91,12 @@ struct LuaArmatureFrameEventData
     std::string  frameEventName;
     int originFrameIndex;
     int currentFrameIndex;
-    
+
     LuaArmatureFrameEventData( cocos2d::Ref* _objTarget, const std::string& _frameEventName, int _originFrameIndex, int _currentFrameIndex):objTarget(_objTarget), frameEventName(_frameEventName),originFrameIndex(_originFrameIndex), currentFrameIndex(_currentFrameIndex)
     {
     }
 };
+
+#endif // CC_USE_CCS
 
 #endif // #ifndef COCOS_SCRIPTING_LUA_BINDINGS_LUA_COCOS2DX_COCO_STUDIO_MANUAL_H
