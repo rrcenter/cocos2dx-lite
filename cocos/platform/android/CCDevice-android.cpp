@@ -183,7 +183,11 @@ void Device::vibrate(float duration)
 
 void Device::forbidiCloud()
 {
+}
 
+void Device::openStore(const std::string& storeId)
+{
+    JniHelper::callStaticVoidMethod(helperClassName, "openStore", storeId);
 }
 
 NS_CC_END

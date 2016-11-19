@@ -374,6 +374,11 @@ void Device::forbidiCloud()
 
 }
 
+void Device::openStore(const std::string& storeId)
+{
+
+}
+
 NS_CC_END
 
 #endif // CC_TARGET_PLATFORM == CC_PLATFORM_MAC

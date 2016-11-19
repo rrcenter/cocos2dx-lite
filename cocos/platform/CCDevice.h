@@ -106,6 +106,13 @@ public:
      */
     static void forbidiCloud();
 
+    /**
+     * Open AppStore, GooglePlay, Amazon
+     *
+     * @since 3.13.1
+     */
+    static void openStore(const std::string& storeId);
+
 private:
     CC_DISALLOW_IMPLICIT_CONSTRUCTORS(Device);
 };

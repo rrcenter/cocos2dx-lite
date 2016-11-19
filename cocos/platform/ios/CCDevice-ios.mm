@@ -617,6 +617,12 @@ void Device::forbidiCloud()
     }
 }
 
+void Device::openStore(const std::string &storeId)
+{
+    NSString * url = [NSString stringWithFormat:@"itms-apps://itunes.apple.com/app/id%s", storeId.c_str()];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
+}
+
 NS_CC_END
 
 #endif // CC_PLATFORM_IOS
