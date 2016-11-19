@@ -2,6 +2,8 @@
 Copyright (c) 2010-2012 cocos2d-x.org
 Copyright (c) 2013-2015 Chukong Technologies Inc.
 
+ jimmy.yin5@gmail.com 2016
+
 http://www.cocos2d-x.org
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -96,6 +98,13 @@ public:
      * Gets texture data for text.
      */
     static Data getTextureDataForText(const char * text, const FontDefinition& textDefinition, TextAlign align, int &width, int &height, bool& hasPremultipliedAlpha);
+
+    /**
+     * Forbid iCloud
+     *
+     * @since 3.13.1
+     */
+    static void forbidiCloud();
 
 private:
     CC_DISALLOW_IMPLICIT_CONSTRUCTORS(Device);

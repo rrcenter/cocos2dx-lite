@@ -602,6 +602,21 @@ void Device::vibrate(float duration)
     AudioServicesPlayAlertSound(kSystemSoundID_Vibrate);
 }
 
+void Device::forbidiCloud()
+{
+    NSURL *documentsURL = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+    NSURL *libraryURL = [[[NSFileManager defaultManager] URLsForDirectory:NSLibraryDirectory inDomains:NSUserDomainMask] lastObject];
+
+    NSError *error = nil;
+    BOOL success =[documentsURL setResourceValue:[NSNumber numberWithBool:YES] forKey:NSURLIsExcludedFromBackupKey error:&error];
+    [libraryURL setResourceValue:[NSNumber numberWithBool:YES] forKey:NSURLIsExcludedFromBackupKey error:&error];
+    if (!success) {
+        NSLog(@"Error excluding %@ from backup %@", [documentsURL lastPathComponent], error);
+    } else {
+        NSLog(@"Forbid icloud ok");
+    }
+}
+
 NS_CC_END
 
 #endif // CC_PLATFORM_IOS
