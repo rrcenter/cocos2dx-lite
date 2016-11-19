@@ -105,6 +105,22 @@
     // e.g. self.myOutlet = nil;
 }
 
+-(void)motionBegan:(UIEventSubtype)motion withEvent:(UIEvent *)event
+{
+}
+
+-(void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event
+{
+    if (motion == UIEventSubtypeMotionShake)
+    {
+        cocos2d::EventCustom event = cocos2d::EventCustom("DEVICE_SHAKE_EVENT");
+        cocos2d::Director::getInstance()->getEventDispatcher()->dispatchEvent(&event);
+    }
+}
+-(void)motionCancelled:(UIEventSubtype)motion withEvent:(UIEvent *)event
+{
+}
+
 
 - (void)dealloc {
     [super dealloc];
