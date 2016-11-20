@@ -458,24 +458,28 @@ void RenderTexture::visit(Renderer *renderer, const Mat4 &parentTransform, uint3
     
     uint32_t flags = processParentFlags(parentTransform, parentFlags);
 
+#if CC_MIGRATION_TO_3_0 > 0
     Director* director = Director::getInstance();
     // IMPORTANT:
     // To ease the migration to v3.0, we still support the Mat4 stack,
     // but it is deprecated and your code should not rely on it
     director->pushMatrix(MATRIX_STACK_TYPE::MATRIX_STACK_MODELVIEW);
     director->loadMatrix(MATRIX_STACK_TYPE::MATRIX_STACK_MODELVIEW, _modelViewTransform);
+#endif // CC_MIGRATION_TO_3_0
 
     _sprite->visit(renderer, _modelViewTransform, flags);
     if (isVisitableByVisitingCamera())
     {
         draw(renderer, _modelViewTransform, flags);
     }
-    
+
+#if CC_MIGRATION_TO_3_0 > 0
     director->popMatrix(MATRIX_STACK_TYPE::MATRIX_STACK_MODELVIEW);
 
     // FIX ME: Why need to set _orderOfArrival to 0??
     // Please refer to https://github.com/cocos2d/cocos2d-x/pull/6920
     // setOrderOfArrival(0);
+#endif // CC_MIGRATION_TO_3_0
 }
 
 bool RenderTexture::saveToFile(const std::string& filename, bool isRGBA, std::function<void (RenderTexture*, const std::string&)> callback)

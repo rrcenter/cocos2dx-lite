@@ -47,4 +47,11 @@
 #define CC_USE_UI 1
 #define CC_USE_CCS 1
 
+
+// IMPORTANT:
+// To ease the migration to v3.0, we still support the Mat4 stack,
+// but it is deprecated and your code should not rely on it
+#define CC_MIGRATION_TO_3_0 0
+
+
 #endif // __C2D_CONFIG_H__

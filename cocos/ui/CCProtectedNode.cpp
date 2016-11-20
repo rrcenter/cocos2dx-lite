@@ -279,13 +279,16 @@ void ProtectedNode::visit(Renderer* renderer, const Mat4 &parentTransform, uint3
 
     uint32_t flags = processParentFlags(parentTransform, parentFlags);
 
+#if CC_MIGRATION_TO_3_0 > 0
     // IMPORTANT:
     // To ease the migration to v3.0, we still support the Mat4 stack,
     // but it is deprecated and your code should not rely on it
+
     Director* director = Director::getInstance();
     CCASSERT(nullptr != director, "Director is null when setting matrix stack");
     director->pushMatrix(MATRIX_STACK_TYPE::MATRIX_STACK_MODELVIEW);
     director->loadMatrix(MATRIX_STACK_TYPE::MATRIX_STACK_MODELVIEW, _modelViewTransform);
+#endif // CC_MIGRATION_TO_3_0
 
     int i = 0;      // used by _children
     int j = 0;      // used by _protectedChildren
@@ -331,11 +334,13 @@ void ProtectedNode::visit(Renderer* renderer, const Mat4 &parentTransform, uint3
     for(auto it=_children.cbegin()+i; it != _children.cend(); ++it)
         (*it)->visit(renderer, _modelViewTransform, flags);
 
+#if CC_MIGRATION_TO_3_0 > 0
     // FIX ME: Why need to set _orderOfArrival to 0??
     // Please refer to https://github.com/cocos2d/cocos2d-x/pull/6920
     // setOrderOfArrival(0);
 
     director->popMatrix(MATRIX_STACK_TYPE::MATRIX_STACK_MODELVIEW);
+#endif // CC_MIGRATION_TO_3_0
 }
 
 void ProtectedNode::onEnter()

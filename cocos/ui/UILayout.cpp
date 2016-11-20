@@ -239,6 +239,7 @@ void Layout::stencilClippingVisit(Renderer *renderer, const Mat4& parentTransfor
     
     uint32_t flags = processParentFlags(parentTransform, parentFlags);
 
+#if CC_MIGRATION_TO_3_0 > 0
     // IMPORTANT:
     // To ease the migration to v3.0, we still support the Mat4 stack,
     // but it is deprecated and your code should not rely on it
@@ -246,6 +247,8 @@ void Layout::stencilClippingVisit(Renderer *renderer, const Mat4& parentTransfor
     CCASSERT(nullptr != director, "Director is null when setting matrix stack");
     director->pushMatrix(MATRIX_STACK_TYPE::MATRIX_STACK_MODELVIEW);
     director->loadMatrix(MATRIX_STACK_TYPE::MATRIX_STACK_MODELVIEW, _modelViewTransform);
+#endif // CC_MIGRATION_TO_3_0
+
     //Add group command
 
     _groupCommand.init(_globalZOrder);
@@ -312,8 +315,10 @@ void Layout::stencilClippingVisit(Renderer *renderer, const Mat4& parentTransfor
     renderer->addCommand(&_afterVisitCmdStencil);
     
     renderer->popGroup();
-    
+
+#if CC_MIGRATION_TO_3_0 > 0
     director->popMatrix(MATRIX_STACK_TYPE::MATRIX_STACK_MODELVIEW);
+#endif // CC_MIGRATION_TO_3_0
 }
     
 void Layout::onBeforeVisitScissor()
