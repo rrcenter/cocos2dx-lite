@@ -1,4 +1,8 @@
-﻿/****************************************************************************
+
+#include "base/ccConfig.h"
+#if CC_USE_CCS > 0
+
+/****************************************************************************
  Copyright (c) 2014 cocos2d-x.org
  
  http://www.cocos2d-x.org
@@ -50,3 +54,5 @@ cocos2d::ObjectFactory::TInfo(#className, &className::createInstance) \
 #define FLATSTR_TO_BOOL(str) (str.compare("True") == 0) ? true : false
 
 #endif /* defined(__cocos2d_libs__NodeReaderDefine__) */
+
+#endif // CC_USE_CCS

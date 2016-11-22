@@ -1,4 +1,4 @@
-﻿/****************************************************************************
+/****************************************************************************
 Copyright (c) 2013 cocos2d-x.org
 
 http://www.cocos2d-x.org
@@ -22,6 +22,8 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 ****************************************************************************/
 
+#include "base/ccConfig.h"
+#if CC_USE_CCS > 0
 #ifndef __CCTIMELINE_ACTION_H__
 #define __CCTIMELINE_ACTION_H__
 
@@ -237,3 +239,7 @@ NS_TIMELINE_END
 
 
 #endif /*__CCTIMELINE_ACTION_H__*/
+
+
+#endif // CC_USE_CCS
+

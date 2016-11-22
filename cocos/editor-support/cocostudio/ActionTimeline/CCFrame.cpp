@@ -1,3 +1,8 @@
+
+
+#include "base/ccConfig.h"
+#if CC_USE_CCS > 0
+
 /****************************************************************************
 Copyright (c) 2013 cocos2d-x.org
 
@@ -951,3 +956,7 @@ Frame* PlayableFrame::clone()
     return frame;
 }
 NS_TIMELINE_END
+
+
+#endif // CC_USE_CCS
+

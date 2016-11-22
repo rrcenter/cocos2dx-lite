@@ -22,6 +22,9 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 ****************************************************************************/
 
+#include "base/ccConfig.h"
+#if CC_USE_CCS > 0
+
 #include "editor-support/cocostudio/CCActionNode.h"
 #include "editor-support/cocostudio/CCActionFrameEasing.h"
 #include "ui/UIWidget.h"
@@ -65,7 +68,7 @@ ActionNode::~ActionNode()
         CC_SAFE_RELEASE_NULL(_action);
         CC_SAFE_RELEASE_NULL(_actionSpawn);
     }
-    
+
     CC_SAFE_RELEASE(_object);
 
     for (auto object : _frameArray)
@@ -138,7 +141,7 @@ void ActionNode::initWithDictionary(const rapidjson::Value& dic, Ref* root)
             actionFrame->setScaleY(scaleY);
             auto cActionArray = _frameArray.at((int)kKeyframeScale);
             cActionArray->pushBack(actionFrame);
-            actionFrame->release();             
+            actionFrame->release();
         }
 
         bool existRotation = DICTOOL->checkObjectExist_json(actionFrameDic,"rotation");
@@ -187,7 +190,7 @@ void ActionNode::initWithDictionary(const rapidjson::Value& dic, Ref* root)
     }
     initActionNodeFromRoot(root);
 }
-    
+
     int ActionNode::valueToInt(const std::string& value)
     {
         return atoi(value.c_str());
@@ -205,14 +208,14 @@ void ActionNode::initWithDictionary(const rapidjson::Value& dic, Ref* root)
     {
         return utils::atof(value.c_str());
     }
-    
+
     void ActionNode::initWithBinary(CocoLoader *cocoLoader,
                                     stExpCocoNode *cocoNode,
                                     cocos2d::Ref *root)
     {
-        
+
         stExpCocoNode *stChildNode = cocoNode;
-        
+
         int actionNodeCount =  stChildNode->GetChildNum();
         stChildNode = stChildNode[0].GetChildArray(cocoLoader);
         stExpCocoNode *frameListNode = nullptr;
@@ -225,11 +228,11 @@ void ActionNode::initWithDictionary(const rapidjson::Value& dic, Ref* root)
                 frameListNode = &stChildNode[i];
             }
         }
-        
+
         int actionFrameCount = frameListNode->GetChildNum();
         stExpCocoNode *stFrameChildNode = frameListNode->GetChildArray(cocoLoader);
         for (int i=0; i<actionFrameCount; i++) {
-            
+
             int frameIndex;
             int frameTweenType;
             float positionX;
@@ -242,13 +245,13 @@ void ActionNode::initWithDictionary(const rapidjson::Value& dic, Ref* root)
             int colorG = -1;
             int colorB = -1;
             std::vector<float> frameTweenParameter;
-            
+
             int framesCount = stFrameChildNode[i].GetChildNum();
             stExpCocoNode *innerFrameNode = stFrameChildNode[i].GetChildArray(cocoLoader);
             for (int j = 0; j < framesCount; j++) {
                 std::string key = innerFrameNode[j].GetName(cocoLoader);
                 std::string value = innerFrameNode[j].GetValue(cocoLoader);
-                
+
                 if (key == "frameid") {
                     frameIndex = valueToInt(value);
                 }else if(key == "tweenType"){
@@ -313,7 +316,7 @@ void ActionNode::initWithDictionary(const rapidjson::Value& dic, Ref* root)
                     colorG = valueToInt(value);
                 }else if(key == "colorr"){
                     colorR = valueToInt(value);
-                    
+
                     ActionTintFrame* actionFrame = new (std::nothrow) ActionTintFrame();
                     actionFrame->autorelease();
                     actionFrame->setEasingType(frameTweenType);
@@ -323,10 +326,10 @@ void ActionNode::initWithDictionary(const rapidjson::Value& dic, Ref* root)
                     auto cActionArray = _frameArray.at((int)kKeyframeTint);
                     cActionArray->pushBack(actionFrame);
                 }
-                
-                
+
+
             }
-            
+
         }
         initActionNodeFromRoot(root);
     }
@@ -457,13 +460,13 @@ Spawn * ActionNode::refreshActionProperty()
         Vector<FiniteTimeAction*> cSequenceArray;
         auto frameCount = cArray->size();
 		if(frameCount > 1)
- 		{ 
+ 		{
  			for (int i = 0; i < frameCount; i++)
  			{
  				auto frame = cArray->at(i);
  				if (i == 0)
  				{
-// #11173 Fixed every node of UI animation(json) is starting at frame 0.                     
+// #11173 Fixed every node of UI animation(json) is starting at frame 0.
 //                  if (frame->getFrameIndex() > 0)
 //				    {
 //					    DelayTime* cDelayTime = DelayTime::create(frame->getFrameIndex() * getUnitTime());
@@ -602,7 +605,7 @@ int ActionNode::getLastFrameIndex()
     }
     return frameindex;
 }
-    
+
 bool ActionNode::updateActionToTimeLine(float fTime)
 {
     bool bFindFrame = false;
@@ -657,7 +660,7 @@ void ActionNode::easingToFrame(float duration,float delayTime,ActionFrame* srcFr
     if (cAction == nullptr || cNode == nullptr)
     {
         return;
-    }   
+    }
     cAction->startWithTarget(cNode);
     cAction->update(delayTime);
 }
@@ -673,3 +676,7 @@ bool ActionNode::isActionDoneOnce()
 }
 
 }
+
+
+#endif // CC_USE_CCS
+

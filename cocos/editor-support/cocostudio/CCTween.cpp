@@ -23,6 +23,11 @@ THE SOFTWARE.
 ****************************************************************************/
 
 
+
+#include "base/ccConfig.h"
+#if CC_USE_CCS > 0
+
+
 #include "editor-support/cocostudio/CCTween.h"
 #include "editor-support/cocostudio/CCArmatureAnimation.h"
 #include "editor-support/cocostudio/CCBone.h"
@@ -417,10 +422,10 @@ float Tween::updateFrameData(float currentPercent)
             setBetween(from, to);
             return _currentPercent;
         }
-        
+
         if(playedTime >= frames.at(length - 1)->frameID)
         {
-            // If _passLastFrame is true and playedTime >= frames[length - 1]->frameID, then do not need to go on. 
+            // If _passLastFrame is true and playedTime >= frames[length - 1]->frameID, then do not need to go on.
             if (_passLastFrame)
             {
                 from = to = frames.at(length - 1);
@@ -485,3 +490,7 @@ float Tween::updateFrameData(float currentPercent)
 }
 
 }
+
+
+#endif // CC_USE_CCS
+

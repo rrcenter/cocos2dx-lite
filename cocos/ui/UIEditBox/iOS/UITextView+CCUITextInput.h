@@ -1,3 +1,8 @@
+
+
+#include "base/ccConfig.h"
+#if CC_USE_UI > 0
+
 /****************************************************************************
  Copyright (c) 2015 Mazyad Alabduljaleel
  
@@ -34,3 +39,7 @@
  *  http://stackoverflow.com/questions/2567498/objective-c-categories-in-static-library
  */
 extern void LoadUITextViewCCUITextInputCategory();
+
+
+#endif // CC_USE_UI
+

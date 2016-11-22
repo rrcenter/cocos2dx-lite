@@ -23,6 +23,9 @@
  THE SOFTWARE.
  ****************************************************************************/
 
+#include "base/ccConfig.h"
+#if CC_USE_CCS > 0
+
 #import "ui/UIEditBox/Mac/CCUISingleLineTextField.h"
 #include "ui/UIEditBox/Mac/CCUITextFieldFormatter.h"
 
@@ -154,3 +157,5 @@
 }
 
 @end
+
+#endif 

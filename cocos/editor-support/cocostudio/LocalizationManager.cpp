@@ -1,3 +1,8 @@
+
+
+#include "base/ccConfig.h"
+#if CC_USE_CCS > 0
+
 #include "editor-support/cocostudio/LocalizationManager.h"
 #include "platform/CCPlatformMacros.h"
 #include "platform/CCFileUtils.h"
@@ -166,3 +171,6 @@ bool LocalizationHelper::isBinManager()
 {
     return isCurrentBinManager;
 }
+
+#endif // CC_USE_CCS
+

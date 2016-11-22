@@ -22,6 +22,11 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 ****************************************************************************/
 
+
+#include "base/ccConfig.h"
+#if CC_USE_CCS > 0
+
+
 #include "editor-support/cocostudio/CCProcessBase.h"
 #include "editor-support/cocostudio/CCUtilMath.h"
 
@@ -145,7 +150,7 @@ void ProcessBase::gotoFrame(int frameIndex)
     }
 
     _curFrameIndex = frameIndex;
-    
+
     _nextFrameIndex = _durationTween;
 }
 
@@ -156,3 +161,7 @@ int ProcessBase::getCurrentFrameIndex()
 }
 
 }
+
+
+#endif // CC_USE_CCS
+

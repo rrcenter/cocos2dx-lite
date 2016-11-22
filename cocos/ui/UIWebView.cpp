@@ -1,3 +1,8 @@
+
+
+#include "base/ccConfig.h"
+#if CC_USE_UI > 0
+
 /****************************************************************************
  Copyright (c) 2014 Chukong Technologies Inc.
  
@@ -29,3 +34,7 @@
 #include "ui/UIWebView-inl.h"
 
 #endif
+
+
+#endif // CC_USE_UI
+

@@ -1,3 +1,8 @@
+
+
+#include "base/ccConfig.h"
+#if CC_USE_UI > 0
+
 /****************************************************************************
  Copyright (c) 2013-2016 Chukong Technologies Inc.
  
@@ -86,3 +91,7 @@ CC_CONSTRUCTOR_ACCESS:
 NS_CC_END
 
 #endif /* defined(__UIRelativeBox__) */
+
+
+#endif // CC_USE_UI
+

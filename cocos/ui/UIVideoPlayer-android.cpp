@@ -1,3 +1,8 @@
+
+
+#include "base/ccConfig.h"
+#if CC_USE_UI > 0
+
 /****************************************************************************
  Copyright (c) 2014 Chukong Technologies Inc.
 
@@ -314,3 +319,7 @@ void executeVideoCallback(int index,int event)
 }
 
 #endif
+
+
+#endif // CC_USE_UI
+

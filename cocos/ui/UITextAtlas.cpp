@@ -1,3 +1,8 @@
+
+
+#include "base/ccConfig.h"
+#if CC_USE_UI > 0
+
 /****************************************************************************
 Copyright (c) 2013-2016 Chukong Technologies Inc.
 
@@ -201,3 +206,7 @@ ResourceData TextAtlas::getRenderFile()
 
 }
 NS_CC_END
+
+
+#endif // CC_USE_UI
+

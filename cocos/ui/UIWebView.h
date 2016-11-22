@@ -1,3 +1,8 @@
+
+
+#include "base/ccConfig.h"
+#if CC_USE_UI > 0
+
 /****************************************************************************
  Copyright (c) 2014-2016 Chukong Technologies Inc.
  
@@ -248,3 +253,7 @@ private:
 // end group
 /// @}
 #endif //__COCOS2D_UI_WEBVIEW_H
+
+
+#endif // CC_USE_UI
+

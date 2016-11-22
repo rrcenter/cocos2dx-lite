@@ -1,3 +1,8 @@
+
+
+#include "base/ccConfig.h"
+#if CC_USE_UI > 0
+
 /****************************************************************************
  Copyright (c) 2014 cocos2d-x.org
  
@@ -74,3 +79,7 @@
 ///@endcond
 
 #endif /* defined(__TestCpp__GUIDefine__) */
+
+
+#endif // CC_USE_UI
+

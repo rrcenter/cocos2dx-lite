@@ -1,3 +1,8 @@
+
+
+#include "base/ccConfig.h"
+#if CC_USE_UI > 0
+
 /****************************************************************************
 Copyright (c) 2013-2016 Chukong Technologies Inc.
 
@@ -1488,3 +1493,7 @@ Widget* ScrollView::findNextFocusedWidget(cocos2d::ui::Widget::FocusDirection di
 }
 
 NS_CC_END
+
+
+#endif // CC_USE_UI
+

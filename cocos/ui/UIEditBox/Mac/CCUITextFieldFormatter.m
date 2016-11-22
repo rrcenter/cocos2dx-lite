@@ -23,6 +23,9 @@
  THE SOFTWARE.
  ****************************************************************************/
 
+#include "base/ccConfig.h"
+#if CC_USE_CCS > 0
+
 #import "ui/UIEditBox/Mac/CCUITextFieldFormatter.h"
 
 @implementation CCUITextFieldFormatter
@@ -66,3 +69,5 @@
     return nil;
 }
 @end
+
+#endif

@@ -1,3 +1,8 @@
+
+
+#include "base/ccConfig.h"
+#if CC_USE_UI > 0
+
 /****************************************************************************
  Copyright (c) 2008-2010 Ricardo Quesada
  Copyright (c) 2009      Valentin Milea
@@ -207,3 +212,7 @@ private:
 NS_CC_END
 
 #endif // __CPROTECTEDCNODE_H__
+
+
+#endif // CC_USE_UI
+

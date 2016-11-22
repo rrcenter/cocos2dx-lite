@@ -1,3 +1,8 @@
+
+
+#include "base/ccConfig.h"
+#if CC_USE_UI > 0
+
 /****************************************************************************
  Copyright (c) 2015 Chukong Technologies Inc.
  
@@ -387,4 +392,8 @@ namespace ui {
 NS_CC_END
 
 #endif // __UITABVIEW_H__
+
+
+
+#endif // CC_USE_UI
 

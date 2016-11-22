@@ -22,6 +22,11 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 ****************************************************************************/
 
+
+#include "base/ccConfig.h"
+#if CC_USE_CCS > 0
+
+
 #include "editor-support/cocostudio/CCDecorativeDisplay.h"
 #include "2d/CCNode.h"
 
@@ -76,5 +81,9 @@ void DecorativeDisplay::setDisplay(cocos2d::Node *display)
         _display = display;
     }
 }
-    
+
 }
+
+
+#endif // CC_USE_CCS
+

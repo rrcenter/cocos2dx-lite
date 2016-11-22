@@ -1,4 +1,8 @@
-﻿/****************************************************************************
+
+#include "base/ccConfig.h"
+#if CC_USE_CCS > 0
+
+/****************************************************************************
 Copyright (c) 2014 cocos2d-x.org
 
 http://www.cocos2d-x.org
@@ -63,3 +67,5 @@ private:
 };
 
 #endif /* defined(__ARMATURENODEREADER_H_) */
+
+#endif // CC_USE_CCS

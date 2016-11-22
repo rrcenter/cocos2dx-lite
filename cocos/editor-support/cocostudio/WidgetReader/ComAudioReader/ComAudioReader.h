@@ -1,4 +1,8 @@
-﻿/****************************************************************************
+
+#include "base/ccConfig.h"
+#if CC_USE_CCS > 0
+
+/****************************************************************************
  Copyright (c) 2014 cocos2d-x.org
  
  http://www.cocos2d-x.org
@@ -55,3 +59,5 @@ namespace cocostudio
 }
 
 #endif /* defined(__cocos2d_libs__ComAudioReader__) */
+
+#endif // CC_USE_CCS

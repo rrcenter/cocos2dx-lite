@@ -22,6 +22,11 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 ****************************************************************************/
 
+
+#include "base/ccConfig.h"
+#if CC_USE_CCS > 0
+
+
 #include "editor-support/cocostudio/CCTransformHelp.h"
 #include "editor-support/cocostudio/CCUtilMath.h"
 
@@ -100,7 +105,7 @@ void TransformHelp::nodeToMatrix(const BaseData &node, AffineTransform &matrix)
     {
         double sine   = sin(node.skewX);
         double cosine = cos(node.skewX);
-        
+
         matrix.a = node.scaleX * cosine;
         matrix.b = node.scaleX * -sine;
         matrix.c = node.scaleY * sine;
@@ -139,7 +144,7 @@ void TransformHelp::nodeToMatrix(const BaseData &node, Mat4 &matrix)
         matrix.m[4] = node.scaleY * sin(node.skewX);
         matrix.m[5] = node.scaleY * cos(node.skewX);
     }
-    
+
     matrix.m[12] = node.x;
     matrix.m[13] = node.y;
 }
@@ -219,3 +224,7 @@ void TransformHelp::nodeSub(BaseData &target, BaseData &source)
 }
 
 }
+
+
+#endif // CC_USE_CCS
+

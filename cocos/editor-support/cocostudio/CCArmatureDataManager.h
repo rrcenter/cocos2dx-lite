@@ -25,6 +25,9 @@ THE SOFTWARE.
 #ifndef __CCARMATUREDATAMANAGER_H__
 #define __CCARMATUREDATAMANAGER_H__
 
+#include "base/ccConfig.h"
+#if CC_USE_CCS > 0
+
 #include "editor-support/cocostudio/CCArmatureDefine.h"
 #include "editor-support/cocostudio/CCDatas.h"
 #include "editor-support/cocostudio/CocosStudioExport.h"
@@ -50,10 +53,10 @@ public:
 
     /** @deprecated Use destroyInstance() instead */
     CC_DEPRECATED_ATTRIBUTE static void purge() { ArmatureDataManager::destroyInstance(); };
-    
+
     static ArmatureDataManager *getInstance();
     static void destroyInstance();
-    
+
 private:
     /**
      * @js ctor
@@ -206,3 +209,7 @@ private:
 }
 
 #endif/*__CCARMATUREDATAMANAGER_H__*/
+
+
+#endif // CC_USE_CCS
+

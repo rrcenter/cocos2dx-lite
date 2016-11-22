@@ -21,13 +21,20 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 ****************************************************************************/
+
+
+
+#include "base/ccConfig.h"
+#if CC_USE_CCS > 0
+
+
 #include "editor-support/cocostudio/TriggerObj.h"
 #include "base/CCEventListenerCustom.h"
 
 using namespace cocos2d;
 
 namespace cocostudio {
-    
+
 BaseTriggerCondition::BaseTriggerCondition(void)
 {
 }
@@ -49,10 +56,10 @@ bool BaseTriggerCondition::detect()
 void BaseTriggerCondition::serialize(const rapidjson::Value &val)
 {
 }
-    
+
 void BaseTriggerCondition::serialize(cocostudio::CocoLoader *cocoLoader, cocostudio::stExpCocoNode *cocoNode)
 {
-    
+
 }
 
 void BaseTriggerCondition::removeAll()
@@ -124,7 +131,7 @@ bool TriggerObj::detect()
     {
         return true;
     }
-    
+
     bool ret = false;
 
     for (const auto& con : _cons)
@@ -154,7 +161,7 @@ void TriggerObj::removeAll()
     {
         con->removeAll();
     }
-    
+
     for (const auto& act : _acts)
     {
         act->removeAll();
@@ -164,7 +171,7 @@ void TriggerObj::removeAll()
     {
         TriggerMng::getInstance()->removeEventListener(lis);
     }
-    
+
     _cons.clear();
     _acts.clear();
     _listeners.clear();
@@ -188,13 +195,13 @@ void TriggerObj::serialize(const rapidjson::Value &val)
             CCLOG("class %s can not be implemented!", classname);
             CCASSERT(con != nullptr, "con can't be nullptr!");
         }
-        
+
         CCASSERT(con != nullptr, "con can't be nullptr!");
         con->serialize(subDict);
         con->init();
         _cons.pushBack(con);
     }
-    
+
     count = DICTOOL->getArrayCount_json(val, "actions");
     for (int i = 0; i < count; ++i)
     {
@@ -237,10 +244,10 @@ void TriggerObj::serialize(const rapidjson::Value &val)
         });
         _listeners.pushBack(listener);
         TriggerMng::getInstance()->addEventListenerWithFixedPriority(listener, 1);
-    }  
+    }
 }
 
-    
+
 void TriggerObj::serialize(cocostudio::CocoLoader *pCocoLoader, cocostudio::stExpCocoNode *pCocoNode)
 {
     int length = pCocoNode->GetChildNum();
@@ -255,7 +262,7 @@ void TriggerObj::serialize(cocostudio::CocoLoader *pCocoLoader, cocostudio::stEx
         {
             if (str0 != nullptr)
             {
-                _id = atoi(str0); 
+                _id = atoi(str0);
             }
         }
         else if (key.compare("conditions") == 0)
@@ -319,7 +326,7 @@ void TriggerObj::serialize(cocostudio::CocoLoader *pCocoLoader, cocostudio::stEx
                 char buf[10];
                 sprintf(buf, "%d", event);
                 std::string custom_event_name(buf);
-                
+
                 EventListenerCustom* listener = EventListenerCustom::create(custom_event_name, [=](EventCustom* evt){
                     if (detect())
                     {
@@ -332,7 +339,7 @@ void TriggerObj::serialize(cocostudio::CocoLoader *pCocoLoader, cocostudio::stEx
         }
     }
 }
-    
+
 
 
 unsigned int TriggerObj::getId()
@@ -344,5 +351,9 @@ void TriggerObj::setEnabled(bool enabled)
 {
     _enabled = enabled;
 }
-  
+
 }
+
+
+#endif // CC_USE_CCS
+

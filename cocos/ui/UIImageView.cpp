@@ -1,3 +1,8 @@
+
+
+#include "base/ccConfig.h"
+#if CC_USE_UI > 0
+
 /****************************************************************************
 Copyright (c) 2013-2016 Chukong Technologies Inc.
 
@@ -318,3 +323,7 @@ void ImageView::setGLProgramState(cocos2d::GLProgramState* glProgramState)
 }
 
 NS_CC_END
+
+
+#endif // CC_USE_UI
+

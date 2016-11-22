@@ -1,3 +1,8 @@
+
+
+#include "base/ccConfig.h"
+#if CC_USE_CCS > 0
+
 #ifndef __LOCALLIZATION_MANAGER_H__
 #define __LOCALLIZATION_MANAGER_H__
 
@@ -104,3 +109,6 @@ namespace cocostudio {
 }
 
 #endif //__LOCALLIZATION_MANAGER_H__
+
+#endif // CC_USE_CCS
+

@@ -22,6 +22,11 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 ****************************************************************************/
 
+
+#include "base/ccConfig.h"
+#if CC_USE_CCS > 0
+
+
 #include "editor-support/cocostudio/TriggerMng.h"
 #include "json/filestream.h"
 #include "json/prettywriter.h"
@@ -34,7 +39,7 @@ THE SOFTWARE.
 using namespace cocos2d;
 
 namespace cocostudio {
-    
+
 TriggerMng* TriggerMng::_sharedTriggerMng = nullptr;
 
 TriggerMng::TriggerMng(void)
@@ -78,7 +83,7 @@ void TriggerMng::parse(const rapidjson::Value &root)
 {
     CCLOG("%s", triggerMngVersion());
     int count = DICTOOL->getArrayCount_json(root, "Triggers");
-    
+
 #if CC_ENABLE_SCRIPT_BINDING
     ScriptEngineProtocol* engine = ScriptEngineManager::getInstance()->getScriptEngine();
     bool useBindings = engine != nullptr;
@@ -91,7 +96,7 @@ void TriggerMng::parse(const rapidjson::Value &root)
             rapidjson::StringBuffer buffer;
             rapidjson::Writer<rapidjson::StringBuffer> writer(buffer);
             subDict.Accept(writer);
-            
+
             engine->parseConfig(ScriptEngineProtocol::ConfigType::COCOSTUDIO, buffer.GetString());
         }
     }
@@ -108,19 +113,19 @@ void TriggerMng::parse(const rapidjson::Value &root)
         }
     }
 }
-    
-    
+
+
 void TriggerMng::parse(cocostudio::CocoLoader *pCocoLoader, cocostudio::stExpCocoNode *pCocoNode)
 {
     CCLOG("%s", triggerMngVersion());
-    
+
     int count = pCocoNode[13].GetChildNum();
     stExpCocoNode *pTriggersArray = pCocoNode[13].GetChildArray(pCocoLoader);
 
 #if CC_ENABLE_SCRIPT_BINDING
     ScriptEngineProtocol* engine = ScriptEngineManager::getInstance()->getScriptEngine();
     bool useBindings = engine != nullptr;
-    
+
     if (useBindings)
     {
         if (count > 0 )
@@ -130,7 +135,7 @@ void TriggerMng::parse(cocostudio::CocoLoader *pCocoLoader, cocostudio::stExpCoc
             rapidjson::StringBuffer buffer;
             rapidjson::Writer<rapidjson::StringBuffer> writer(buffer);
             document.Accept(writer);
-            
+
             engine->parseConfig(ScriptEngineProtocol::ConfigType::COCOSTUDIO, buffer.GetString());
         }
     }
@@ -194,7 +199,7 @@ bool TriggerMng::isEmpty(void) const
     return _triggerObjs.empty();
 }
 
-    
+
 void TriggerMng::buildJson(rapidjson::Document &document, cocostudio::CocoLoader *pCocoLoader, cocostudio::stExpCocoNode *pCocoNode)
 {
     int count = pCocoNode[13].GetChildNum();
@@ -205,31 +210,31 @@ void TriggerMng::buildJson(rapidjson::Document &document, cocostudio::CocoLoader
     int border = 0;
     std::string key0;
     stExpCocoNode *pTriggersArray = pCocoNode[13].GetChildArray(pCocoLoader);
-    
+
     document.SetArray();
-    
+
     rapidjson::Document::AllocatorType& allocator = document.GetAllocator();
     for (int i0 = 0; i0 < count; ++i0)
     {
         rapidjson::Value vElemItem(rapidjson::kObjectType);
-        
+
         border = pTriggersArray[i0].GetChildNum();
         stExpCocoNode *pTriggerArray = pTriggersArray[i0].GetChildArray(pCocoLoader);
         for (int i1 = 0; i1 < border; ++i1)
         {
             std::string key1 = pTriggerArray[i1].GetName(pCocoLoader);
             const char *str1 = pTriggerArray[i1].GetValue(pCocoLoader);
-            
+
             if (key1.compare("actions") == 0)
             {
                 rapidjson::Value actionsItem(rapidjson::kArrayType);
-                
+
                 length = pTriggerArray[i1].GetChildNum();
                 stExpCocoNode *pActionsArray = pTriggerArray[i1].GetChildArray(pCocoLoader);
                 for (int i2 = 0; i2 < length; ++i2)
                 {
                     rapidjson::Value action(rapidjson::kObjectType);
-                    
+
                     num = pActionsArray[i2].GetChildNum();
                     stExpCocoNode *pActionArray = pActionsArray[i2].GetChildArray(pCocoLoader);
                     for (int i3 = 0; i3 < num; ++i3)
@@ -293,19 +298,19 @@ void TriggerMng::buildJson(rapidjson::Document &document, cocostudio::CocoLoader
                     }
                     actionsItem.PushBack(action, allocator);
                 }
-                
+
                 vElemItem.AddMember("actions", actionsItem, allocator);
             }
             else if (key1.compare("conditions") == 0)
             {
                 rapidjson::Value condsItem(rapidjson::kArrayType);
-                
+
                 length = pTriggerArray[i1].GetChildNum();
                 stExpCocoNode *pConditionsArray = pTriggerArray[i1].GetChildArray(pCocoLoader);
                 for (int i6 = 0; i6 < length; ++i6)
                 {
                     rapidjson::Value cond(rapidjson::kObjectType);
-                    
+
                     num = pConditionsArray[i6].GetChildNum();
                     stExpCocoNode *pConditionArray = pConditionsArray[i6].GetChildArray(pCocoLoader);
                     for (int i7 = 0; i7 < num; ++i7)
@@ -369,13 +374,13 @@ void TriggerMng::buildJson(rapidjson::Document &document, cocostudio::CocoLoader
                     }
                     condsItem.PushBack(cond, allocator);
                 }
-                
+
                 vElemItem.AddMember("conditions", condsItem, allocator);
             }
             else if (key1.compare("events") == 0)
             {
                 rapidjson::Value eventsItem(rapidjson::kArrayType);
-                
+
                 length = pTriggerArray[i1].GetChildNum();
                 stExpCocoNode *pEventsArray = pTriggerArray[i1].GetChildArray(pCocoLoader);
                 for (int i10 = 0; i10 < length; ++i10)
@@ -434,7 +439,7 @@ void TriggerMng::removeArmatureMovementCallBack(Armature *pAr, Ref *pTarget, SEL
 	{
 		return;
 	}
-    
+
     auto iter =_movementDispatches->find(pAr);
 	ArmatureMovementDispatcher *amd = nullptr;
 	if (iter == _movementDispatches->end())
@@ -521,6 +526,10 @@ ArmatureMovementDispatcher::~ArmatureMovementDispatcher(void)
   {
 	  _mapEventAnimation->erase(pTarget);
   }
-  
+
 }
+
+
+
+#endif // CC_USE_CCS
 

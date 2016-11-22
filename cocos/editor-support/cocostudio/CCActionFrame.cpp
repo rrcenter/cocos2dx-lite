@@ -22,6 +22,10 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 ****************************************************************************/
 
+
+#include "base/ccConfig.h"
+#if CC_USE_CCS > 0
+
 #include "editor-support/cocostudio/CCActionFrame.h"
 #include "2d/CCActionEase.h"
 
@@ -374,3 +378,7 @@ ActionInterval* ActionTintFrame::getAction(float fDuration)
 
 
 }
+
+
+#endif // CC_USE_CCS
+

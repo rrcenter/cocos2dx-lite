@@ -1,4 +1,4 @@
-﻿/****************************************************************************
+/****************************************************************************
 Copyright (c) 2013-2016 Chukong Technologies Inc.
 
 http://www.cocos2d-x.org
@@ -24,6 +24,9 @@ THE SOFTWARE.
 
 #ifndef __DICTIONARYHELPER_H__
 #define __DICTIONARYHELPER_H__
+
+#include "base/ccConfig.h"
+#if CC_USE_CCS > 0
 
 #include "json/document.h"
 #include "editor-support/cocostudio/CocosStudioExport.h"
@@ -66,3 +69,7 @@ public:
 }
 
 #endif /* defined(__CocoGUI__DictionaryHelper__) */
+
+
+#endif // CC_USE_CCS
+

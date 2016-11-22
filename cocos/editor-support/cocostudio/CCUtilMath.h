@@ -1,4 +1,4 @@
-﻿/****************************************************************************
+/****************************************************************************
 Copyright (c) 2013-2016 Chukong Technologies Inc.
 
 http://www.cocos2d-x.org
@@ -24,6 +24,9 @@ THE SOFTWARE.
 
 #ifndef __CCUTILMATH_H__
 #define __CCUTILMATH_H__
+
+#include "base/ccConfig.h"
+#if CC_USE_CCS > 0
 
 #include "2d/CCSprite.h"
 #include "editor-support/cocostudio/CCArmatureDefine.h"
@@ -55,3 +58,7 @@ cocos2d::Vec2 CC_STUDIO_DLL circleTo(float t, cocos2d::Vec2 &center, float radiu
 }
 
 #endif /*__CCUTILMATH_H__*/
+
+
+#endif // CC_USE_CCS
+

@@ -1,4 +1,9 @@
 
+
+#include "base/ccConfig.h"
+#if CC_USE_CCS > 0
+
+
 #ifndef __COCOSSTUDIOEXTENSION_H__
 #define __COCOSSTUDIOEXTENSION_H__
 
@@ -42,3 +47,6 @@ NS_CC_END
 
 
 #endif
+
+#endif // CC_USE_CCS
+

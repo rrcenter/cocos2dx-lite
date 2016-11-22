@@ -1,4 +1,4 @@
-﻿/****************************************************************************
+/****************************************************************************
 Copyright (c) 2013-2016 Chukong Technologies Inc.
 
 http://www.cocos2d-x.org
@@ -22,8 +22,13 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 ****************************************************************************/
 
+
+
 #ifndef __ActionFrameEasing_H__
 #define __ActionFrameEasing_H__
+
+#include "base/ccConfig.h"
+#if CC_USE_CCS > 0
 
 #include "base/CCRef.h"
 #include "editor-support/cocostudio/CocosStudioExport.h"
@@ -74,3 +79,7 @@ public:
 }
 
 #endif
+
+
+#endif // CC_USE_CCS
+

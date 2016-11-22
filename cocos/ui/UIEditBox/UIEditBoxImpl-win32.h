@@ -1,3 +1,8 @@
+
+
+#include "base/ccConfig.h"
+#if CC_USE_UI > 0
+
 /****************************************************************************
  Copyright (c) 2010-2012 cocos2d-x.org
  Copyright (c) 2013 Jozef Pridavok
@@ -122,4 +127,8 @@ NS_CC_END
 #endif /* (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) */
 
 #endif /* __UIEditBoxIMPLWIN_H__ */
+
+
+
+#endif // CC_USE_UI
 

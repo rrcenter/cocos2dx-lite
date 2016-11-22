@@ -26,6 +26,11 @@ THE SOFTWARE.
 #ifndef __CCBONENODE_H__
 #define __CCBONENODE_H__
 
+
+#include "base/ccConfig.h"
+#if CC_USE_CCS > 0
+
+
 #include "base/CCProtocols.h"
 #include "2d/CCNode.h"
 #include "renderer/CCCustomCommand.h"
@@ -228,3 +233,6 @@ private:
 
 NS_TIMELINE_END
 #endif //__CCBONENODE_H__
+
+#endif // CC_USE_CCS
+

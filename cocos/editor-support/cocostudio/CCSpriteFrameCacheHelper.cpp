@@ -22,6 +22,11 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 ****************************************************************************/
 
+
+#include "base/ccConfig.h"
+#if CC_USE_CCS > 0
+
+
 #include "editor-support/cocostudio/CCSpriteFrameCacheHelper.h"
 #include "platform/CCFileUtils.h"
 #include "2d/CCSpriteFrame.h"
@@ -114,3 +119,7 @@ SpriteFrameCacheHelper::~SpriteFrameCacheHelper()
 }
 
 }
+
+
+#endif // CC_USE_CCS
+

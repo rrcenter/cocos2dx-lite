@@ -1,3 +1,8 @@
+
+
+#include "base/ccConfig.h"
+#if CC_USE_UI > 0
+
 /****************************************************************************
  Copyright (c) 2014-2016 Chukong Technologies Inc.
  
@@ -103,3 +108,7 @@ namespace cocos2d {
 
 /// @endcond
 #endif /* __COCOS2D__UI__WEBVIEWIMPL_ANDROID_H_ */
+
+
+#endif // CC_USE_UI
+

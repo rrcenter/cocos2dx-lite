@@ -1,3 +1,8 @@
+
+
+#include "base/ccConfig.h"
+#if CC_USE_UI > 0
+
 /****************************************************************************
  Copyright (c) 2010-2012 cocos2d-x.org
  Copyright (c) 2012 James Chen
@@ -62,3 +67,7 @@
 - (void)closeKeyboard;
 
 @end
+
+
+#endif // CC_USE_UI
+

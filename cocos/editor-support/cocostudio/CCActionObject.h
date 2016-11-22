@@ -1,4 +1,4 @@
-﻿/****************************************************************************
+/****************************************************************************
 Copyright (c) 2013-2016 Chukong Technologies Inc.
 
 http://www.cocos2d-x.org
@@ -24,6 +24,9 @@ THE SOFTWARE.
 
 #ifndef __ActionObject_H__
 #define __ActionObject_H__
+
+#include "base/ccConfig.h"
+#if CC_USE_CCS > 0
 
 #include "editor-support/cocostudio/CCActionNode.h"
 #include "2d/CCActionInstant.h"
@@ -190,3 +193,7 @@ protected:
 }
 
 #endif
+
+
+#endif // CC_USE_CCS
+

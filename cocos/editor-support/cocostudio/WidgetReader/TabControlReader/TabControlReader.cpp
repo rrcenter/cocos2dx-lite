@@ -1,3 +1,7 @@
+
+#include "base/ccConfig.h"
+#if CC_USE_CCS > 0
+
 /****************************************************************************
  Copyright (c) 2015 Chukong Technologies Inc.
  
@@ -1004,3 +1008,5 @@ flatbuffers::Offset<flatbuffers::Table> TabItemReader::createOptionsWithFlatBuff
     // nothing
     return flatbuffers::Offset<flatbuffers::Table>();
 }
+
+#endif // CC_USE_CCS

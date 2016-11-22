@@ -1,3 +1,8 @@
+
+
+#include "base/ccConfig.h"
+#if CC_USE_UI > 0
+
 /****************************************************************************
 Copyright (c) 2015 Neo Kim (neo.kim@neofect.com)
 
@@ -372,3 +377,7 @@ void RadioButtonGroup::onChangedRadioButtonSelect(RadioButton* radioButton)
 }
 
 NS_CC_END
+
+
+#endif // CC_USE_UI
+

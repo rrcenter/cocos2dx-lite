@@ -1,4 +1,4 @@
-﻿/****************************************************************************
+/****************************************************************************
 Copyright (c) 2013-2016 Chukong Technologies Inc.
 
 http://www.cocos2d-x.org
@@ -25,6 +25,10 @@ THE SOFTWARE.
 #ifndef __CC_EXTENTIONS_CCCOMRENDER_H__
 #define __CC_EXTENTIONS_CCCOMRENDER_H__
 
+
+#include "base/ccConfig.h"
+#if CC_USE_CCS > 0
+
 #include "editor-support/cocostudio/CCComBase.h"
 #include "2d/CCComponent.h"
 #include "editor-support/cocostudio/CocosStudioExport.h"
@@ -34,7 +38,7 @@ namespace cocostudio {
 class CC_STUDIO_DLL ComRender : public cocos2d::Component
 {
     DECLARE_CLASS_COMPONENT_INFO
- 
+
 public:
     const static std::string COMPONENT_NAME;
 
@@ -85,3 +89,7 @@ private:
 
 }
 #endif  // __CC_EXTENTIONS_CCCOMRENDER_H__
+
+
+#endif // CC_USE_CCS
+

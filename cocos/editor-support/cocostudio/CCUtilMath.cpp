@@ -24,6 +24,11 @@ THE SOFTWARE.
 
 #include "editor-support/cocostudio/CCUtilMath.h"
 
+
+#include "base/ccConfig.h"
+#if CC_USE_CCS > 0
+
+
 using namespace cocos2d;
 
 
@@ -78,3 +83,7 @@ Vec2 circleTo(float t, Vec2 &center, float radius, float fromRadian, float radia
 }
 
 }
+
+
+#endif // CC_USE_CCS
+

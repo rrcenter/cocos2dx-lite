@@ -1,3 +1,7 @@
+
+#include "base/ccConfig.h"
+#if CC_USE_CCS > 0
+
 /****************************************************************************
  Copyright (c) 2016 cocos2d-x.org
  
@@ -101,3 +105,4 @@ private:
 };
 
 #endif //__TABCONTROLREADER_H_
+#endif // CC_USE_CCS

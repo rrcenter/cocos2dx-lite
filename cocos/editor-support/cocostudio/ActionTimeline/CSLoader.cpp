@@ -1,3 +1,8 @@
+
+
+#include "base/ccConfig.h"
+#if CC_USE_CCS > 0
+
 /****************************************************************************
  Copyright (c) 2013 cocos2d-x.org
  
@@ -1467,3 +1472,7 @@ Node* CSLoader::nodeWithFlatBuffersForSimulator(const flatbuffers::NodeTree *nod
 }
 
 NS_CC_END
+
+
+#endif // CC_USE_CCS
+

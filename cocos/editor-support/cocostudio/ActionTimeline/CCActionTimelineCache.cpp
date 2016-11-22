@@ -1,3 +1,8 @@
+
+
+#include "base/ccConfig.h"
+#if CC_USE_CCS > 0
+
 /****************************************************************************
 Copyright (c) 2013 cocos2d-x.org
 
@@ -1012,3 +1017,7 @@ ActionTimeline* ActionTimelineCache::createActionWithFlatBuffersForSimulator(con
 
 }
 }
+
+
+#endif // CC_USE_CCS
+

@@ -1,4 +1,4 @@
-﻿/****************************************************************************
+/****************************************************************************
 Copyright (c) 2013-2016 Chukong Technologies Inc.
 
 http://www.cocos2d-x.org
@@ -24,6 +24,9 @@ THE SOFTWARE.
 
 #ifndef __CC_EXTENTIONS_CCCOMBASE_H__
 #define __CC_EXTENTIONS_CCCOMBASE_H__
+
+#include "base/ccConfig.h"
+#if CC_USE_CCS > 0
 
 #include <string>
 #include "editor-support/cocostudio/DictionaryHelper.h"
@@ -62,3 +65,7 @@ struct CC_STUDIO_DLL SerData
 };
 
 #endif
+
+
+#endif // CC_USE_CCS
+

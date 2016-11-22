@@ -25,6 +25,11 @@ THE SOFTWARE.
 #ifndef __CCDATAREADERHELPER_H__
 #define __CCDATAREADERHELPER_H__
 
+
+#include "base/ccConfig.h"
+#if CC_USE_CCS > 0
+
+
 #include "editor-support/cocostudio/CCArmatureDefine.h"
 #include "editor-support/cocostudio/CCDatas.h"
 #include "editor-support/cocostudio/CCArmature.h"
@@ -175,7 +180,7 @@ public:
     static ContourData *decodeContour(const rapidjson::Value& json);
 
     static void decodeNode(BaseData *node, const rapidjson::Value& json, DataInfo *dataInfo);
-    
+
 // for binary decode
 public:
     static void addDataFromBinaryCache(const char *fileContent, DataInfo *dataInfo = nullptr);
@@ -184,15 +189,15 @@ public:
     static DisplayData *decodeBoneDisplay(CocoLoader *cocoLoader, stExpCocoNode *pCocoNode, DataInfo *dataInfo);
     static AnimationData *decodeAnimation(CocoLoader *cocoLoader, stExpCocoNode *pCocoNode, DataInfo *dataInfo);
     static MovementData *decodeMovement(CocoLoader *cocoLoader, stExpCocoNode *pCocoNode, DataInfo *dataInfo);
-    
+
     static MovementBoneData *decodeMovementBone(CocoLoader *cocoLoader, stExpCocoNode *pCocoNode, DataInfo *dataInfo);
     static FrameData *decodeFrame(CocoLoader *cocoLoader, stExpCocoNode *pCocoNode, DataInfo *dataInfo);
-    
+
     static TextureData *decodeTexture(CocoLoader *cocoLoader, stExpCocoNode *pCocoNode);
     static ContourData *decodeContour(CocoLoader *cocoLoader, stExpCocoNode *pCocoNode);
-    
+
     static void decodeNode(BaseData *node, CocoLoader *cocoLoader, stExpCocoNode *pCocoNode, DataInfo *dataInfo);
-    
+
 protected:
     void loadData();
 
@@ -212,7 +217,7 @@ protected:
 
     std::mutex      _getFileMutex;
 
-      
+
     unsigned long _asyncRefCount;
     unsigned long _asyncRefTotalCount;
 
@@ -229,3 +234,7 @@ protected:
 }
 
 #endif /*__CCDATAREADERHELPER_H__*/
+
+
+#endif // CC_USE_CCS
+

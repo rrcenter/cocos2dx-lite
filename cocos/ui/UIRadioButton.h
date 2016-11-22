@@ -1,3 +1,8 @@
+
+
+#include "base/ccConfig.h"
+#if CC_USE_UI > 0
+
 /****************************************************************************
 Copyright (c) 2015 Neo Kim (neo.kim@neofect.com)
 
@@ -292,3 +297,7 @@ NS_CC_END
 /// @}
 
 #endif /* defined(__UIRADIOBUTTON_H__) */
+
+
+#endif // CC_USE_UI
+

@@ -22,6 +22,9 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 ****************************************************************************/
 
+#include "base/ccConfig.h"
+#if CC_USE_CCS > 0
+
 #include "editor-support/cocostudio/CCActionObject.h"
 #include "editor-support/cocostudio/CocoLoader.h"
 
@@ -122,7 +125,7 @@ void ActionObject::initWithDictionary(const rapidjson::Value& dic, Ref* root)
         actionNode->initWithDictionary(actionNodeDic,root);
         actionNode->setUnitTime(getUnitTime());
         _actionNodeList.pushBack(actionNode);
-        
+
         int length = actionNode->getLastFrameIndex() - actionNode->getFirstFrameIndex();
         if(length > maxLength)
             maxLength = length;
@@ -150,7 +153,7 @@ void ActionObject::initWithBinary(CocoLoader *cocoLoader,
             actionNodeList = &stChildNode[i];
         }
     }
-    
+
     if(nullptr != actionNodeList)
     {
         int actionNodeCount = actionNodeList->GetChildNum();
@@ -159,19 +162,19 @@ void ActionObject::initWithBinary(CocoLoader *cocoLoader,
         for (int i=0; i<actionNodeCount; i++) {
             ActionNode* actionNode = new (std::nothrow) ActionNode();
             actionNode->autorelease();
-            
+
             actionNode->initWithBinary(cocoLoader, &actionNodeArray[i] , root);
-            
+
             actionNode->setUnitTime(getUnitTime());
-            
+
             _actionNodeList.pushBack(actionNode);
-            
+
             int length = actionNode->getLastFrameIndex() - actionNode->getFirstFrameIndex();
             if(length > maxLength)
                 maxLength = length;
         }
-        
-        
+
+
         _fTotalTime = maxLength* _fUnitTime;
     }
 }
@@ -265,7 +268,7 @@ void ActionObject::updateToFrameByTime(float fTime)
 void ActionObject::simulationActionUpdate(float dt)
 {
 	bool isEnd = true;
-    
+
     for(const auto &e : _actionNodeList)
 	{
 		if (!e->isActionDoneOnce())
@@ -274,7 +277,7 @@ void ActionObject::simulationActionUpdate(float dt)
 			break;
 		}
 	}
-    
+
 	if (isEnd)
 	{
 		if (_CallBack != nullptr)
@@ -293,3 +296,7 @@ void ActionObject::simulationActionUpdate(float dt)
 	}
 }
 }
+
+
+#endif // CC_USE_CCS
+

@@ -25,6 +25,11 @@ THE SOFTWARE.
 #ifndef __CCSKELETONNODE_H__
 #define  __CCSKELETONNODE_H__
 
+
+#include "base/ccConfig.h"
+#if CC_USE_CCS > 0
+
+
 #include "editor-support/cocostudio/ActionTimeline/CCTimelineMacro.h"
 #include "renderer/CCRenderer.h"
 #include "editor-support/cocostudio/CocosStudioExport.h"
@@ -116,3 +121,7 @@ private:
 NS_TIMELINE_END
 
 #endif //__CCSKELETONNODE_H__
+
+
+#endif // CC_USE_CCS
+

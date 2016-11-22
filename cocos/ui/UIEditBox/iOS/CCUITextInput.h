@@ -1,3 +1,8 @@
+
+
+#include "base/ccConfig.h"
+#if CC_USE_UI > 0
+
 /****************************************************************************
  Copyright (c) 2015 Mazyad Alabduljaleel
  
@@ -46,3 +51,7 @@ static const int CC_EDIT_BOX_PADDING = 5;
 @end
 
 #endif
+
+
+#endif // CC_USE_UI
+

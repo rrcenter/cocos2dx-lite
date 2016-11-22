@@ -23,6 +23,9 @@
  THE SOFTWARE.
  ****************************************************************************/
 
+#include "base/ccConfig.h"
+#if CC_USE_CCS > 0
+
 #import "ui/UIEditBox/Mac/CCUIPasswordTextField.h"
 #include "ui/UIEditBox/Mac/CCUITextFieldFormatter.h"
 
@@ -151,3 +154,5 @@
     return [self.formatter maximumLength];
 }
 @end
+
+#endif

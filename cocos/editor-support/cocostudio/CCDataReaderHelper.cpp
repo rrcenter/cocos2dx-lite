@@ -22,6 +22,11 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 ****************************************************************************/
 
+
+#include "base/ccConfig.h"
+#if CC_USE_CCS > 0
+
+
 #include "platform/CCFileUtils.h"
 #include "base/CCDirector.h"
 #include "base/CCScheduler.h"
@@ -2575,3 +2580,7 @@ void DataReaderHelper::decodeNode(BaseData *node, const rapidjson::Value& json, 
     }
 
 }
+
+
+#endif // CC_USE_CCS
+

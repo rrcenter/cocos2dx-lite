@@ -1,3 +1,8 @@
+
+
+#include "base/ccConfig.h"
+#if CC_USE_UI > 0
+
 /****************************************************************************
  Copyright (c) 2010-2012 cocos2d-x.org
  Copyright (c) 2012 James Chen
@@ -85,4 +90,8 @@ NS_CC_END
 #endif /* #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID) */
 
 #endif /* __UIEDITBOXIMPLANDROID_H__ */
+
+
+
+#endif // CC_USE_UI
 

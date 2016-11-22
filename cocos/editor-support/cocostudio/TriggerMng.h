@@ -1,4 +1,4 @@
-﻿/****************************************************************************
+/****************************************************************************
 Copyright (c) 2013-2016 Chukong Technologies Inc.
 
 http://www.cocos2d-x.org
@@ -24,6 +24,10 @@ THE SOFTWARE.
 #ifndef __TRIGGERMNG_H__
 #define __TRIGGERMNG_H__
 
+
+#include "base/ccConfig.h"
+#if CC_USE_CCS > 0
+
 #include "editor-support/cocostudio/CocoStudio.h"
 
 namespace cocos2d {
@@ -44,7 +48,7 @@ public:
 	void addAnimationEventCallBack(cocos2d::Ref*pTarget, SEL_MovementEventCallFunc mecf);
 	void removeAnnimationEventCallBack(cocos2d::Ref*pTarget, SEL_MovementEventCallFunc mecf);
 	void animationEvent(Armature *armature, MovementEventType movementType, const std::string& movementID);
-    
+
 private:
 	std::unordered_map<cocos2d::Ref*, SEL_MovementEventCallFunc> *_mapEventAnimation;
 
@@ -60,7 +64,7 @@ public:
     static TriggerMng* getInstance();
     static void destroyInstance();
     static const char* triggerMngVersion();
-    
+
 public:
     void parse(const rapidjson::Value &root);
     void parse(cocostudio::CocoLoader *pCocoLoader, cocostudio::stExpCocoNode *pCocoNode);
@@ -91,3 +95,7 @@ private:
 }
 
 #endif
+
+
+#endif // CC_USE_CCS
+

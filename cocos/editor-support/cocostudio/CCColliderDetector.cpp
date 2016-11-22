@@ -22,10 +22,12 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 ****************************************************************************/
 
+#include "base/ccConfig.h"
+#if CC_USE_CCS > 0
+
 #include "editor-support/cocostudio/CCColliderDetector.h"
 #include "editor-support/cocostudio/CCBone.h"
 #include "editor-support/cocostudio/CCTransformHelp.h"
-
 
 
 using namespace cocos2d;
@@ -47,7 +49,7 @@ void ColliderFilter::updateShape(b2Fixture *fixture)
         filter.categoryBits = _categoryBits;
         filter.groupIndex = _groupIndex;
         filter.maskBits = _maskBits;
-        
+
         fixture->SetFilterData(filter);
 }
 
@@ -191,7 +193,7 @@ void ColliderDetector::addContourData(ContourData *contourData)
 
 #if ENABLE_PHYSICS_SAVE_CALCULATED_VERTEX
     std::vector<Vec2> &calculatedVertexList = colliderBody->_calculatedVertexList;
-    
+
     unsigned long num = contourData->vertexList.size();
     for (unsigned long i = 0; i < num; i++)
     {
@@ -211,7 +213,7 @@ void ColliderDetector::addContourDataList(cocos2d::Vector<ContourData*> &contour
 void ColliderDetector::removeContourData(ContourData *contourData)
 {
     std::vector<ColliderBody*> eraseList;
-    
+
     for (const auto &body : _colliderBodyList)
     {
 		if (body && body->getContourData() == contourData)
@@ -219,7 +221,7 @@ void ColliderDetector::removeContourData(ContourData *contourData)
             eraseList.push_back(body);
 		}
     }
-    
+
     for (const auto &body : eraseList)
     {
         this->_colliderBodyList.eraseObject(body);
@@ -306,7 +308,7 @@ const cocos2d::Vector<ColliderBody*>& ColliderDetector::getColliderBodyList()
 void ColliderDetector::setColliderFilter(ColliderFilter *filter)
 {
     *_filter = *filter;
-    
+
     for(auto& object : _colliderBodyList)
     {
         ColliderBody *colliderBody = (ColliderBody *)object;
@@ -420,7 +422,7 @@ void ColliderDetector::setBody(b2Body *pBody)
         ColliderBody *colliderBody = (ColliderBody *)object;
 
         ContourData *contourData = colliderBody->getContourData();
-        
+
         b2Vec2 *b2bv = new (std::nothrow) b2Vec2[contourData->vertexList.size()];
 
         int i = 0;
@@ -503,3 +505,7 @@ cpBody *ColliderDetector::getBody() const
 
 
 }
+
+
+#endif // CC_USE_CCS
+

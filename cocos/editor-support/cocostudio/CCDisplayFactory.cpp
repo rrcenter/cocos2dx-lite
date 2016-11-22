@@ -22,6 +22,11 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 ****************************************************************************/
 
+
+#include "base/ccConfig.h"
+#if CC_USE_CCS > 0
+
+
 #include "editor-support/cocostudio/CCDisplayFactory.h"
 #include "editor-support/cocostudio/CCBone.h"
 #include "editor-support/cocostudio/CCArmature.h"
@@ -263,7 +268,7 @@ void DisplayFactory::createParticleDisplay(Bone *bone, DecorativeDisplay *decoDi
 
     system->removeFromParent();
     system->cleanup();
-    
+
     Armature *armature = bone->getArmature();
     if (armature)
     {
@@ -285,3 +290,7 @@ void DisplayFactory::updateParticleDisplay(Bone *bone, Node *display, float dt)
 
 
 }
+
+
+#endif // CC_USE_CCS
+

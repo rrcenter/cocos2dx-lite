@@ -1,4 +1,4 @@
-﻿/****************************************************************************
+/****************************************************************************
 Copyright (c) 2013-2016 Chukong Technologies Inc.
 
 http://www.cocos2d-x.org
@@ -24,6 +24,10 @@ THE SOFTWARE.
 
 #ifndef __TRIGGEROBJ_H__
 #define __TRIGGEROBJ_H__
+
+
+#include "base/ccConfig.h"
+#if CC_USE_CCS > 0
 
 #include "editor-support/cocostudio/CocoStudio.h"
 #include "base/CCVector.h"
@@ -66,7 +70,7 @@ public:
     virtual ~TriggerObj(void);
     virtual bool init();
     static TriggerObj* create(void);
-    
+
     virtual bool detect();
     virtual void done();
     virtual void removeAll();
@@ -74,7 +78,7 @@ public:
     virtual void serialize(cocostudio::CocoLoader *cocoLoader, cocostudio::stExpCocoNode *cocoNode);
     unsigned int getId();
     void setEnabled(bool enabled);
-  
+
 private:
     cocos2d::Vector<BaseTriggerCondition*> _cons;
     cocos2d::Vector<BaseTriggerAction*> _acts;
@@ -87,4 +91,8 @@ private:
 
 #endif
 
+
+
+
+#endif // CC_USE_CCS
 

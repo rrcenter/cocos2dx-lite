@@ -1,4 +1,4 @@
-﻿/****************************************************************************
+/****************************************************************************
 Copyright (c) 2013-2016 Chukong Technologies Inc.
 
 http://www.cocos2d-x.org
@@ -24,6 +24,9 @@ THE SOFTWARE.
 
 #ifndef __CCARMATURE_DATAS_H__
 #define __CCARMATURE_DATAS_H__
+
+#include "base/ccConfig.h"
+#if CC_USE_CCS > 0
 
 #include "base/CCRef.h"
 #include "base/ccTypes.h"
@@ -552,3 +555,7 @@ public:
 }
 
 #endif /*__CCARMATURE_DATAS_H__*/
+
+
+#endif // CC_USE_CCS
+

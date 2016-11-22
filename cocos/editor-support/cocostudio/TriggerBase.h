@@ -1,4 +1,4 @@
-﻿/****************************************************************************
+/****************************************************************************
 Copyright (c) 2013-2016 Chukong Technologies Inc.
 
 http://www.cocos2d-x.org
@@ -25,6 +25,10 @@ THE SOFTWARE.
 #ifndef __TRIGGEREVENT_H__
 #define __TRIGGEREVENT_H__
 
+
+#include "base/ccConfig.h"
+#if CC_USE_CCS > 0
+
 #include "editor-support/cocostudio/CocoStudio.h"
 #include "base/ObjectFactory.h"
 #include "editor-support/cocostudio/TriggerObj.h"
@@ -36,7 +40,7 @@ THE SOFTWARE.
     public: \
         static cocos2d::ObjectFactory::TInfo Type; \
         static cocos2d::Ref* createInstance(void); \
-        
+
 #define IMPLEMENT_CLASS_INFO(className) \
         cocos2d::Ref* className::createInstance(void) \
         { \
@@ -51,3 +55,7 @@ void CC_STUDIO_DLL sendEvent(unsigned int event);
 
 
 #endif
+
+
+#endif // CC_USE_CCS
+

@@ -23,6 +23,9 @@
  THE SOFTWARE.
  ****************************************************************************/
 
+#include "base/ccConfig.h"
+#if CC_USE_CCS > 0
+
 #include "platform/CCPlatformConfig.h"
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_MAC)
 
@@ -228,3 +231,4 @@ NS_CC_END
 #endif // #if (CC_TARGET_PLATFORM == CC_PLATFORM_MAC)
 
 
+#endif //

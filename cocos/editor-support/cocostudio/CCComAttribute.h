@@ -1,4 +1,4 @@
-﻿/****************************************************************************
+/****************************************************************************
 Copyright (c) 2013-2016 Chukong Technologies Inc.
 
 http://www.cocos2d-x.org
@@ -25,6 +25,12 @@ THE SOFTWARE.
 #ifndef __CC_EXTENTIONS_CCCOMATTRIBUTE_H__
 #define __CC_EXTENTIONS_CCCOMATTRIBUTE_H__
 
+
+
+#include "base/ccConfig.h"
+#if CC_USE_CCS > 0
+
+
 #include "editor-support/cocostudio/CCComBase.h"
 #include "2d/CCComponent.h"
 #include "base/CCValue.h"
@@ -45,14 +51,14 @@ public:
      * @lua NA
      */
     virtual ~ComAttribute(void);
-    
+
 public:
     const static std::string COMPONENT_NAME;
 
     static ComAttribute* create(void);
     virtual bool init() override;
     virtual bool serialize(void* r) override;
-    
+
     void setInt(const std::string& key, int value);
     void setFloat(const std::string& key, float value);
     void setBool(const std::string& key, bool value);
@@ -70,3 +76,7 @@ private:
 }
 
 #endif  // __CC_EXTENTIONS_CCCOMATTRIBUTE_H__
+
+
+#endif // CC_USE_CCS
+

@@ -22,6 +22,9 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 ****************************************************************************/
 
+#include "base/ccConfig.h"
+#if CC_USE_CCS > 0
+
 #include "editor-support/cocostudio/CCBone.h"
 #include "editor-support/cocostudio/CCArmature.h"
 #include "editor-support/cocostudio/CCUtilMath.h"
@@ -231,7 +234,7 @@ void Bone::update(float delta)
     _boneTransformDirty = false;
 }
 
-void Bone::applyParentTransform(Bone *parent) 
+void Bone::applyParentTransform(Bone *parent)
 {
     float x = _worldInfo->x;
     float y = _worldInfo->y;
@@ -316,7 +319,7 @@ void Bone::removeChildBone(Bone *bone, bool recursion)
         if(recursion)
         {
             auto ccbones = bone->_children;
-            
+
             for(auto& object : ccbones)
             {
                 Bone *ccBone = static_cast<Bone*>(object);
@@ -478,3 +481,7 @@ ColliderFilter *Bone::getColliderFilter()
 #endif
 
 }
+
+
+#endif // CC_USE_CCS
+

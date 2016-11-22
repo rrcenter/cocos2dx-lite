@@ -1,4 +1,4 @@
-﻿/****************************************************************************
+/****************************************************************************
 Copyright (c) 2013-2016 Chukong Technologies Inc.
 
 http://www.cocos2d-x.org
@@ -22,9 +22,11 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 ****************************************************************************/
 
-
 #ifndef __CCTWEEN_H__
 #define __CCTWEEN_H__
+
+#include "base/ccConfig.h"
+#if CC_USE_CCS > 0
 
 #include "editor-support/cocostudio/CCProcessBase.h"
 #include "2d/CCTweenFunction.h"
@@ -151,3 +153,7 @@ protected:
 }
 
 #endif /*__CCTWEEN_H__*/
+
+
+#endif // CC_USE_CCS
+

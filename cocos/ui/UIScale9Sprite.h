@@ -1,3 +1,8 @@
+
+
+#include "base/ccConfig.h"
+#if CC_USE_UI > 0
+
 /****************************************************************************
  Copyright (c) 2013-2016 Chukong Technologies Inc.
  
@@ -740,3 +745,7 @@ namespace ui {
 /// @}
 
 #endif /* defined(__cocos2d_libs__UIScale9Sprite__) */
+
+
+#endif // CC_USE_UI
+

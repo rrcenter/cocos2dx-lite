@@ -22,6 +22,10 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 ****************************************************************************/
 
+
+#include "base/ccConfig.h"
+#if CC_USE_CCS > 0
+
 #include "2d/CCSpriteFrameCache.h"
 
 #include "editor-support/cocostudio/CCArmatureDataManager.h"
@@ -264,3 +268,7 @@ RelativeData *ArmatureDataManager::getRelativeData(const std::string& configFile
 }
 
 }
+
+
+#endif // CC_USE_CCS
+

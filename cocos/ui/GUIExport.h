@@ -1,3 +1,8 @@
+
+
+#include "base/ccConfig.h"
+#if CC_USE_UI > 0
+
 #ifndef __CCLIBGUI_H__
 #define __CCLIBGUI_H__
 
@@ -31,3 +36,6 @@
 #endif
 
 #endif /* __CCEXTENSIONEXPORT_H__*/
+
+#endif // CC_USE_UI
+

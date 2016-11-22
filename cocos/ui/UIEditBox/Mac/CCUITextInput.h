@@ -1,3 +1,8 @@
+
+
+#include "base/ccConfig.h"
+#if CC_USE_UI > 0
+
 /****************************************************************************
  Copyright (c) 2010-2012 cocos2d-x.org
  Copyright (c) 2013-2016 zilongshanren
@@ -46,3 +51,7 @@
 @end
 
 #endif /* CCUITextInput_h */
+
+
+#endif // CC_USE_UI
+

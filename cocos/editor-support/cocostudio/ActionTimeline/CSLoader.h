@@ -1,4 +1,4 @@
-﻿/****************************************************************************
+/****************************************************************************
  Copyright (c) 2013 cocos2d-x.org
  
  http://www.cocos2d-x.org
@@ -24,6 +24,11 @@
 
 #ifndef __cocos2d_libs__CSLoader__
 #define __cocos2d_libs__CSLoader__
+
+
+#include "base/ccConfig.h"
+#if CC_USE_CCS > 0
+
 
 #include "editor-support/cocostudio/DictionaryHelper.h"
 #include "editor-support/cocostudio/CocosStudioExport.h"
@@ -180,3 +185,7 @@ protected:
 NS_CC_END
 
 #endif /* defined(__cocos2d_libs__CSLoader__) */
+
+
+#endif // CC_USE_CCS
+

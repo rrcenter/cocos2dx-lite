@@ -1,3 +1,8 @@
+
+
+#include "base/ccConfig.h"
+#if CC_USE_CCS > 0
+
 #include "editor-support/cocostudio/CocoLoader.h"
 #include "zlib.h"
 
@@ -215,3 +220,7 @@ char*	CocoLoader::GetMemoryAddr_String()
     
 }
 }
+
+
+#endif // CC_USE_CCS
+

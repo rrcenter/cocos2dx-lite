@@ -1,3 +1,7 @@
+
+#include "base/ccConfig.h"
+#if CC_USE_CCS > 0
+
 /****************************************************************************
 Copyright (c) 2015 Chukong Technologies Inc.
 
@@ -159,3 +163,5 @@ cocos2d::Node*  BoneNodeReader::createNodeWithFlatBuffers(const flatbuffers::Tab
 
     return bone;
 }
+
+#endif // CC_USE_CCS

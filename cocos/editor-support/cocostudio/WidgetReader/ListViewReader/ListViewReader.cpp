@@ -1,4 +1,8 @@
 
+#include "base/ccConfig.h"
+#if CC_USE_CCS > 0
+
+
 
 #include "editor-support/cocostudio/WidgetReader/ListViewReader/ListViewReader.h"
 
@@ -605,3 +609,5 @@ namespace cocostudio
     
 }
 
+
+#endif // CC_USE_CCS

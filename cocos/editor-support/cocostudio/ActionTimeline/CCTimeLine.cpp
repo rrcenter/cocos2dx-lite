@@ -1,3 +1,8 @@
+
+
+#include "base/ccConfig.h"
+#if CC_USE_CCS > 0
+
 /****************************************************************************
 Copyright (c) 2013 cocos2d-x.org
 
@@ -269,3 +274,7 @@ void Timeline::updateCurrentKeyFrame(unsigned int frameIndex)
 }
 
 NS_TIMELINE_END
+
+
+#endif // CC_USE_CCS
+

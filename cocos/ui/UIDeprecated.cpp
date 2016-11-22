@@ -1,3 +1,8 @@
+
+
+#include "base/ccConfig.h"
+#if CC_USE_UI > 0
+
 /****************************************************************************
  Copyright (c) 2013-2016 Chukong Technologies Inc.
  
@@ -31,3 +36,7 @@ namespace ui {
 const Margin MarginZero =  Margin::ZERO ;
     
 }}
+
+
+#endif // CC_USE_UI
+

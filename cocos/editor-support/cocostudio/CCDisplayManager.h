@@ -1,4 +1,4 @@
-﻿/****************************************************************************
+/****************************************************************************
 Copyright (c) 2013-2016 Chukong Technologies Inc.
 
 http://www.cocos2d-x.org
@@ -24,6 +24,9 @@ THE SOFTWARE.
 
 #ifndef __CCDISPLAYMANAGER_H__
 #define __CCDISPLAYMANAGER_H__
+
+#include "base/ccConfig.h"
+#if CC_USE_CCS > 0
 
 #include "editor-support/cocostudio/CCArmatureDefine.h"
 #include "editor-support/cocostudio/CCDecorativeDisplay.h"
@@ -157,3 +160,7 @@ protected:
 }
 
 #endif /*__CCDISPLAYMANAGER_H__*/
+
+
+#endif // CC_USE_CCS
+

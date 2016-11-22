@@ -1,3 +1,7 @@
+
+#include "base/ccConfig.h"
+#if CC_USE_CCS > 0
+
 /****************************************************************************
  Copyright (c) 2014 cocos2d-x.org
  
@@ -102,3 +106,5 @@ namespace cocostudio
         return node;
     }
 }
+
+#endif // CC_USE_CCS

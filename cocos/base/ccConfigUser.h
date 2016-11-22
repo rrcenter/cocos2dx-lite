@@ -44,8 +44,8 @@
 #undef CC_USE_PNG
 #endif // CC_USE_STB_IMAGE
 
-#define CC_USE_UI 1
-#define CC_USE_CCS 1
+#define CC_USE_UI   1
+#define CC_USE_CCS  1
 
 
 // IMPORTANT:

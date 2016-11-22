@@ -1,3 +1,7 @@
+
+#include "base/ccConfig.h"
+#if CC_USE_CCS > 0
+
 #include "editor-support/cocostudio/WidgetReader/ArmatureNodeReader/ArmatureNodeReader.h"
 
 #include "platform/CCFileUtils.h"
@@ -187,3 +191,4 @@ std::string ArmatureNodeReader::getArmatureName(const std::string& exporJsonPath
 		start = 0;
 	return  exporJsonPath.substr(start, end - start);
 }
+#endif // CC_USE_CCS

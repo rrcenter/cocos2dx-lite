@@ -1,4 +1,8 @@
 
+#include "base/ccConfig.h"
+#if CC_USE_CCS > 0
+
+
 
 #include "editor-support/cocostudio/WidgetReader/CheckBoxReader/CheckBoxReader.h"
 
@@ -769,3 +773,5 @@ namespace cocostudio
         return 1;
     }
 }
+
+#endif // CC_USE_CCS

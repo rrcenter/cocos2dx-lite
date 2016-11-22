@@ -1,4 +1,9 @@
 
+
+#include "base/ccConfig.h"
+#if CC_USE_CCS > 0
+
+
 #include "editor-support/cocostudio/CocoStudio.h"
 
 #include "editor-support/cocostudio/WidgetReader/NodeReader/NodeReader.h"
@@ -75,3 +80,7 @@ namespace cocostudio
         GUIReader::destroyInstance();
     }
 }
+
+
+#endif // CC_USE_CCS
+

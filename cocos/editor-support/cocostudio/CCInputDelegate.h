@@ -25,6 +25,9 @@ THE SOFTWARE.
 #ifndef __CC_EXTENTIONS_CCINPUTDELEGATE_H__
 #define __CC_EXTENTIONS_CCINPUTDELEGATE_H__
 
+#include "base/ccConfig.h"
+#if CC_USE_CCS > 0
+
 #include "platform/CCPlatformMacros.h"
 #include "base/CCTouch.h"
 #include "base/CCEvent.h"
@@ -163,3 +166,7 @@ private:
 }
 
 #endif  // __CC_EXTENTIONS_CCINPUTDELEGATE_H__
+
+
+#endif // CC_USE_CCS
+

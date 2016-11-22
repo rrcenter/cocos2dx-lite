@@ -22,6 +22,11 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 ****************************************************************************/
 
+
+#include "base/ccConfig.h"
+#if CC_USE_CCS > 0
+
+
 #include "2d/CCSpriteFrame.h"
 #include "2d/CCSpriteFrameCache.h"
 #include "base/CCDirector.h"
@@ -178,7 +183,7 @@ void Skin::updateTransform()
         {
             std::swap(y1, y2);
         }
-        
+
         float x = transform.m[12];
         float y = transform.m[13];
 
@@ -234,13 +239,13 @@ void Skin::draw(Renderer *renderer, const Mat4 &transform, uint32_t flags)
     auto mv = Director::getInstance()->getMatrix(MATRIX_STACK_TYPE::MATRIX_STACK_MODELVIEW);
 
     // TODO: implement z order
-    _quadCommand.init(_globalZOrder, 
-        _texture, 
-        getGLProgramState(), 
-        _blendFunc, 
-        &_quad, 
+    _quadCommand.init(_globalZOrder,
+        _texture,
+        getGLProgramState(),
+        _blendFunc,
+        &_quad,
         1,
-        mv, 
+        mv,
         flags);
 
     renderer->addCommand(&_quadCommand);
@@ -261,3 +266,7 @@ Bone *Skin::getBone() const
 }
 
 }
+
+
+#endif // CC_USE_CCS
+

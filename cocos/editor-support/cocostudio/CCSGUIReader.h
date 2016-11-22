@@ -25,6 +25,11 @@ THE SOFTWARE.
 #ifndef __CCSGUIREADER_H__
 #define __CCSGUIREADER_H__
 
+
+#include "base/ccConfig.h"
+#if CC_USE_CCS > 0
+
+
 #include "ui/UILayout.h"
 #include "editor-support/cocostudio/DictionaryHelper.h"
 #include "editor-support/cocostudio/WidgetReader/WidgetReaderProtocol.h"
@@ -237,3 +242,7 @@ public:
 
 
 #endif /* defined(__CCSGUIReader__) */
+
+
+#endif // CC_USE_CCS
+

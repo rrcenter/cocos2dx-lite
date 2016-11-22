@@ -1,3 +1,8 @@
+
+
+#include "base/ccConfig.h"
+#if CC_USE_UI > 0
+
 /****************************************************************************
  Copyright (c) 2013 cocos2d-x.org
  
@@ -576,3 +581,7 @@ protected:
 NS_CC_END
 
 #endif /* defined(__UIRichText__) */
+
+
+#endif // CC_USE_UI
+

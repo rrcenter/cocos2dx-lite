@@ -1,4 +1,4 @@
-﻿/****************************************************************************
+/****************************************************************************
 Copyright (c) 2013-2016 Chukong Technologies Inc.
 
 http://www.cocos2d-x.org
@@ -23,6 +23,10 @@ THE SOFTWARE.
 ****************************************************************************/
 #ifndef __CCSPRITEFRAMECACHEHELPER_H__
 #define __CCSPRITEFRAMECACHEHELPER_H__
+
+
+#include "base/ccConfig.h"
+#if CC_USE_CCS > 0
 
 #include "platform/CCPlatformMacros.h"
 #include "editor-support/cocostudio/CCArmatureDefine.h"
@@ -72,3 +76,7 @@ private:
 }
 
 #endif /*__CCSPRITEFRAMECACHEHELPER_H__*/
+
+
+#endif // CC_USE_CCS
+

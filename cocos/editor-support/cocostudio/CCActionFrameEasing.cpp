@@ -22,6 +22,9 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 ****************************************************************************/
 
+#include "base/ccConfig.h"
+#if CC_USE_CCS > 0
+
 #include <math.h>
 #include "editor-support/cocostudio/CCActionFrameEasing.h"
 #include "editor-support/cocostudio/DictionaryHelper.h"
@@ -189,3 +192,7 @@ float ActionFrameEasing::easeValue(float t)
 }
 
 }
+
+
+#endif // CC_USE_CCS
+

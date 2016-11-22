@@ -1,4 +1,9 @@
-﻿/****************************************************************************
+
+
+#include "base/ccConfig.h"
+#if CC_USE_CCS > 0
+
+/****************************************************************************
 Copyright (c) 2013 cocos2d-x.org
 
 http://www.cocos2d-x.org
@@ -139,3 +144,7 @@ protected:
 NS_TIMELINE_END
 
 #endif /*__CCTIMELINE_ACTION_CACHE_H__*/
+
+
+#endif // CC_USE_CCS
+

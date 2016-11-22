@@ -25,6 +25,11 @@ THE SOFTWARE.
 #ifndef __CCCOLLIDERDETECTOR_H__
 #define __CCCOLLIDERDETECTOR_H__
 
+
+#include "base/ccConfig.h"
+#if CC_USE_CCS > 0
+
+
 #include "editor-support/cocostudio/CCArmatureDefine.h"
 #include "editor-support/cocostudio/CCDatas.h"
 #include "editor-support/cocostudio/CocosStudioExport.h"
@@ -198,3 +203,7 @@ protected:
 }
 
 #endif /*__CCCOLLIDERDETECTOR_H__*/
+
+
+#endif // CC_USE_CCS
+
