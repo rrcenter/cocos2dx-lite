@@ -723,8 +723,8 @@ bool ProjectConfig::isAbsolutePath(const string &path) const
 
 void ProjectConfig::printHelp()
 {
-    const char *msg =
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_MAC)
+    const char *msg =
     "\n"
     "usage: player -workdir /path/to/project\n"
     "\n"
@@ -759,11 +759,7 @@ void ProjectConfig::printHelp()
     "\n"
     "    # load project without console ui\n"
     "    player -workdir /path/to/project -disable-console\n"
-    "\n"
-#else
-    ""
-#endif
-    ;
+    "\n";
     CCLOG("%s", msg);
-
+#endif
 }
