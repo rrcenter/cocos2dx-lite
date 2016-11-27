@@ -12,12 +12,12 @@
 #undef CC_USE_WEBP
 #undef CC_USE_TGA
 
-#define CC_USE_SPINE 1
+#define CC_USE_SPINE 0
 #define CC_USE_AUDIO_ENGINE 1
 #define CC_USE_NETWORK 1
 
 //
-#define CC_MINI_2D 1
+#define CC_MINI_2D 0
 #if (CC_MINI_2D > 0)
 
 #undef CC_USE_CULLING

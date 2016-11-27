@@ -801,6 +801,10 @@
 		8525E3A31B291E42008EE815 /* clipper.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 8525E3A11B291E42008EE815 /* clipper.hpp */; };
 		85B3743A1B204B9400C488D6 /* clipper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 85B374381B204B9400C488D6 /* clipper.cpp */; };
 		85B3743B1B204B9400C488D6 /* clipper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 85B374381B204B9400C488D6 /* clipper.cpp */; };
+		9F22892B1DEAB5E400E50645 /* CCEventListenerFocus.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F2289291DEAB5E400E50645 /* CCEventListenerFocus.cpp */; };
+		9F22892C1DEAB5E400E50645 /* CCEventListenerFocus.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F2289291DEAB5E400E50645 /* CCEventListenerFocus.cpp */; };
+		9F22892D1DEAB5E400E50645 /* CCEventListenerFocus.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F22892A1DEAB5E400E50645 /* CCEventListenerFocus.h */; };
+		9F22892E1DEAB5E400E50645 /* CCEventListenerFocus.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F22892A1DEAB5E400E50645 /* CCEventListenerFocus.h */; };
 		9F296E241DDC147F006DF478 /* kvec.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F296E231DDC147F006DF478 /* kvec.h */; };
 		9F296E251DDC147F006DF478 /* kvec.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F296E231DDC147F006DF478 /* kvec.h */; };
 		9F296E281DDC148D006DF478 /* SkeletonBinary.c in Sources */ = {isa = PBXBuildFile; fileRef = 9F296E261DDC148D006DF478 /* SkeletonBinary.c */; };
@@ -2145,6 +2149,8 @@
 		52B47A2D1A5349A3004E4C60 /* HttpCookie.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpCookie.h; sourceTree = "<group>"; };
 		8525E3A11B291E42008EE815 /* clipper.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = clipper.hpp; sourceTree = "<group>"; };
 		85B374381B204B9400C488D6 /* clipper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = clipper.cpp; sourceTree = "<group>"; };
+		9F2289291DEAB5E400E50645 /* CCEventListenerFocus.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CCEventListenerFocus.cpp; path = ../base/CCEventListenerFocus.cpp; sourceTree = "<group>"; };
+		9F22892A1DEAB5E400E50645 /* CCEventListenerFocus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCEventListenerFocus.h; path = ../base/CCEventListenerFocus.h; sourceTree = "<group>"; };
 		9F296E231DDC147F006DF478 /* kvec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kvec.h; sourceTree = "<group>"; };
 		9F296E261DDC148D006DF478 /* SkeletonBinary.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = SkeletonBinary.c; sourceTree = "<group>"; };
 		9F296E271DDC148D006DF478 /* SkeletonBinary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SkeletonBinary.h; sourceTree = "<group>"; };
@@ -2838,6 +2844,8 @@
 				50ABBDC91925AB6E00A911A9 /* ccConfig.h */,
 				50ABBDCA1925AB6E00A911A9 /* CCConfiguration.cpp */,
 				50ABBDCB1925AB6E00A911A9 /* CCConfiguration.h */,
+				9F2289291DEAB5E400E50645 /* CCEventListenerFocus.cpp */,
+				9F22892A1DEAB5E400E50645 /* CCEventListenerFocus.h */,
 				9FFAD4A41CC0955300986F50 /* ccConfigUser.h */,
 				50ABBDCC1925AB6E00A911A9 /* CCConsole.cpp */,
 				50ABBDCD1925AB6E00A911A9 /* CCConsole.h */,
@@ -4778,6 +4786,7 @@
 				50ABC01B1926664800A911A9 /* CCSAXParser.h in Headers */,
 				9F91DB981DBF9E8500EEF520 /* UIPageView.h in Headers */,
 				9F2DC7831DC106C00064BF46 /* CocoStudio.h in Headers */,
+				9F22892D1DEAB5E400E50645 /* CCEventListenerFocus.h in Headers */,
 				50ABBED51925AB6F00A911A9 /* utlist.h in Headers */,
 				50ABBDAF1925AB4100A911A9 /* CCRenderer.h in Headers */,
 				9F2DC8691DC107410064BF46 /* dtoa.h in Headers */,
@@ -5260,6 +5269,7 @@
 				9F2DC8601DC107410064BF46 /* filereadstream.h in Headers */,
 				50ABBE741925AB6F00A911A9 /* CCEventListenerMouse.h in Headers */,
 				D0FD03581A3B51AA00825BB5 /* CCAllocatorMutex.h in Headers */,
+				9F22892E1DEAB5E400E50645 /* CCEventListenerFocus.h in Headers */,
 				B29A7E1219EE1B7700872B35 /* EventData.h in Headers */,
 				1A5702CB180BCE370088DEC7 /* CCTextFieldTTF.h in Headers */,
 				15FB20771AE7BF8600C31518 /* CCAutoPolygon.h in Headers */,
@@ -5820,6 +5830,7 @@
 				9F91DB9E1DBF9E8500EEF520 /* UIRadioButton.cpp in Sources */,
 				9F2DC7AD1DC106C00064BF46 /* ButtonReader.cpp in Sources */,
 				15FB20871AE7C57D00C31518 /* shapes.cc in Sources */,
+				9F22892B1DEAB5E400E50645 /* CCEventListenerFocus.cpp in Sources */,
 				9F2DC7E11DC106C00064BF46 /* NodeReaderProtocol.cpp in Sources */,
 				9F91DB3E1DBF9E8500EEF520 /* CCUIPasswordTextField.m in Sources */,
 				B29A7DE319EE1B7700872B35 /* SkeletonBounds.c in Sources */,
@@ -6090,6 +6101,7 @@
 				B29A7DC819EE1B7700872B35 /* SkeletonRenderer.cpp in Sources */,
 				1A570226180BCC1A0088DEC7 /* CCParticleExamples.cpp in Sources */,
 				1A57022A180BCC1A0088DEC7 /* CCParticleSystem.cpp in Sources */,
+				9F22892C1DEAB5E400E50645 /* CCEventListenerFocus.cpp in Sources */,
 				3EACC9A119F5014D00EB3C5E /* CCCamera.cpp in Sources */,
 				B29A7DF219EE1B7700872B35 /* AtlasAttachmentLoader.c in Sources */,
 				1A57022E180BCC1A0088DEC7 /* CCParticleSystemQuad.cpp in Sources */,
