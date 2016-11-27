@@ -603,9 +603,9 @@ int register_cocostudio_module(lua_State* L)
     if (lua_istable(L,-1))//stack:...,_G,
     {
         register_all_cocos2dx_studio(L);
-        //register_all_cocos2dx_csloader(L);
+        register_all_cocos2dx_csloader(L);
         register_all_cocos2dx_coco_studio_manual(L);
-        //register_all_cocos2dx_csloader_manual(L);
+        register_all_cocos2dx_csloader_manual(L);
         lua_register_cocos2dx_coco_studio_CustomGUIReader(L);
     }
     lua_pop(L, 1);
