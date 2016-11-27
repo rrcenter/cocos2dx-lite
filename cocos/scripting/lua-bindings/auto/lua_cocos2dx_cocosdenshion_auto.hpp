@@ -1,4 +1,6 @@
 #include "base/ccConfig.h"
+#if CC_USE_SIMPLE_AUDIO > 0
+
 #ifndef __cocos2dx_cocosdenshion_h__
 #define __cocos2dx_cocosdenshion_h__
 
@@ -37,3 +39,5 @@ int register_all_cocos2dx_cocosdenshion(lua_State* tolua_S);
 
 
 #endif // __cocos2dx_cocosdenshion_h__
+
+#endif // CC_USE_SIMPLE_AUDIO

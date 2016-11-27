@@ -21,6 +21,10 @@
  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  THE SOFTWARE.
  ****************************************************************************/
+
+#include "base/ccConfig.h"
+#if CC_USE_SIMPLE_AUDIO > 0
+
 #include "lua_cocos2dx_cocosdenshion_manual.h"
 #include "lua_cocos2dx_cocosdenshion_auto.hpp"
 #include "CCLuaEngine.h"
@@ -35,3 +39,5 @@ int  register_cocosdenshion_module(lua_State* L)
     lua_pop(L, 1);
     return 1;
 }
+
+#endif // CC_USE_SIMPLE_AUDIO

@@ -1,3 +1,6 @@
+#include "base/ccConfig.h"
+#if CC_USE_SIMPLE_AUDIO > 0
+
 #include "lua_cocos2dx_cocosdenshion_auto.hpp"
 #include "SimpleAudioEngine.h"
 #include "tolua_fix.h"
@@ -1260,3 +1263,4 @@ TOLUA_API int register_all_cocos2dx_cocosdenshion(lua_State* tolua_S)
 	return 1;
 }
 
+#endif // CC_USE_SIMPLE_AUDIO
