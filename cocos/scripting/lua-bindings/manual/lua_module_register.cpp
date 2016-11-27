@@ -2,7 +2,7 @@
 
 #include "scripting/lua-bindings/manual/lua_module_register.h"
 
-// #include "scripting/lua-bindings/manual/cocosdenshion/lua_cocos2dx_cocosdenshion_manual.h"
+#include "scripting/lua-bindings/manual/cocosdenshion/lua_cocos2dx_cocosdenshion_manual.h"
 #include "scripting/lua-bindings/manual/network/lua_cocos2dx_network_manual.h"
 // #include "scripting/lua-bindings/manual/cocosbuilder/lua_cocos2dx_cocosbuilder_manual.h"
 
@@ -26,7 +26,7 @@
 int lua_module_register(lua_State* L)
 {
     //Dont' change the module register order unless you know what your are doing
-    // register_cocosdenshion_module(L);
+     register_cocosdenshion_module(L);
 #if CC_USE_NETWORK > 0
     register_network_module(L);
 #endif
