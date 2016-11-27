@@ -1013,6 +1013,10 @@ class Generator(object):
         self.cpp_headers = opts['cpp_headers']
         self.win32_clang_flags = opts['win32_clang_flags']
 
+        self.macro = '1'
+        if 'macro' in opts:
+            self.macro = opts['macro']
+
         extend_clang_args = []
 
         self._check_headers()
@@ -1585,6 +1589,9 @@ def main():
 
             if config.has_option(s, 'only'):
                 gen_opts['only'] = config.get(s, 'only')
+
+            if config.has_option(s, 'macro'):
+                gen_opts['macro'] = config.get(s, 'macro')
 
             generator = Generator(gen_opts)
             generator.generate_code()
