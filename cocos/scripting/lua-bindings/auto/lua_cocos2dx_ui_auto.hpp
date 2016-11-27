@@ -1,4 +1,7 @@
 #include "base/ccConfig.h"
+
+#if CC_USE_UI > 0
+
 #ifndef __cocos2dx_ui_h__
 #define __cocos2dx_ui_h__
 
@@ -10,9 +13,9 @@ extern "C" {
 }
 #endif
 
-#if CC_USE_UI > 0
 int register_all_cocos2dx_ui(lua_State* tolua_S);
-#endif
+
+#endif // CC_USE_UI
 
 
 

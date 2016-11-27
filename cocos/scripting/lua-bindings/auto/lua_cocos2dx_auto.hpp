@@ -1,4 +1,7 @@
 #include "base/ccConfig.h"
+
+#if 1 > 0
+
 #ifndef __cocos2dx_h__
 #define __cocos2dx_h__
 
@@ -11,6 +14,10 @@ extern "C" {
 #endif
 
 int register_all_cocos2dx(lua_State* tolua_S);
+
+#endif // 1
+
+
 
 
 

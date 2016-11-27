@@ -1,6 +1,3 @@
-#include "base/ccConfig.h"
-#if CC_USE_CCS > 0
-
 #include "lua_cocos2dx_csloader_auto.hpp"
 #include "CSLoader.h"
 #include "tolua_fix.h"
@@ -761,4 +758,3 @@ TOLUA_API int register_all_cocos2dx_csloader(lua_State* tolua_S)
 	return 1;
 }
 
-#endif // #if CC_USE_CCS > 0

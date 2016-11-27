@@ -1,5 +1,7 @@
 #include "base/ccConfig.h"
+
 #if CC_USE_CCS > 0
+
 #ifndef __cocos2dx_csloader_h__
 #define __cocos2dx_csloader_h__
 
@@ -12,6 +14,8 @@ extern "C" {
 #endif
 
 int register_all_cocos2dx_csloader(lua_State* tolua_S);
+
+#endif // CC_USE_CCS
 
 
 
@@ -30,4 +34,3 @@ int register_all_cocos2dx_csloader(lua_State* tolua_S);
 
 
 #endif // __cocos2dx_csloader_h__
-#endif // #if CC_USE_CCS > 0

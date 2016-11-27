@@ -22,6 +22,9 @@
  THE SOFTWARE.
  ****************************************************************************/
 
+#include "base/ccConfig.h"
+#if CC_USE_SPINE > 0
+
 #include "scripting/lua-bindings/manual/spine/lua_cocos2dx_spine_manual.hpp"
 #include "scripting/lua-bindings/auto/lua_cocos2dx_spine_auto.hpp"
 
@@ -510,3 +513,5 @@ int register_spine_module(lua_State* L)
 
     return 1;
 }
+
+#endif // CC_USE_SPINE > 0

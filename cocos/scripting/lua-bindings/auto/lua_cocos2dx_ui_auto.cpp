@@ -4,7 +4,6 @@
 #include "tolua_fix.h"
 #include "LuaBasicConversions.h"
 
-#if CC_USE_UI > 0
 
 int lua_cocos2dx_ui_ProtectedNode_addProtectedChild(lua_State* tolua_S)
 {
@@ -38376,7 +38375,7 @@ int lua_register_cocos2dx_ui_TabControl(lua_State* tolua_S)
 TOLUA_API int register_all_cocos2dx_ui(lua_State* tolua_S)
 {
 	tolua_open(tolua_S);
-
+	
 	tolua_module(tolua_S,"ccui",0);
 	tolua_beginmodule(tolua_S,"ccui");
 
@@ -38421,4 +38420,3 @@ TOLUA_API int register_all_cocos2dx_ui(lua_State* tolua_S)
 	return 1;
 }
 
-#endif // CC_USE_UI

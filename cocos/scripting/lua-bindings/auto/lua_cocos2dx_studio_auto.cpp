@@ -5,7 +5,6 @@
 #include "tolua_fix.h"
 #include "LuaBasicConversions.h"
 
-#if CC_USE_CCS > 0
 
 int lua_cocos2dx_studio_ActionFrame_getAction(lua_State* tolua_S)
 {
@@ -25105,7 +25104,7 @@ int lua_register_cocos2dx_studio_ComExtensionData(lua_State* tolua_S)
 TOLUA_API int register_all_cocos2dx_studio(lua_State* tolua_S)
 {
 	tolua_open(tolua_S);
-
+	
 	tolua_module(tolua_S,"ccs",0);
 	tolua_beginmodule(tolua_S,"ccs");
 
@@ -25173,4 +25172,3 @@ TOLUA_API int register_all_cocos2dx_studio(lua_State* tolua_S)
 	return 1;
 }
 
-#endif // #if CC_USE_CCS > 0

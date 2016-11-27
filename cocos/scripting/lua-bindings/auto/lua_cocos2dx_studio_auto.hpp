@@ -1,5 +1,7 @@
 #include "base/ccConfig.h"
 
+#if CC_USE_CCS > 0
+
 #ifndef __cocos2dx_studio_h__
 #define __cocos2dx_studio_h__
 
@@ -11,9 +13,10 @@ extern "C" {
 }
 #endif
 
-#if CC_USE_CCS > 0
 int register_all_cocos2dx_studio(lua_State* tolua_S);
-#endif // #if CC_USE_CCS > 0
+
+#endif // CC_USE_CCS
+
 
 
 

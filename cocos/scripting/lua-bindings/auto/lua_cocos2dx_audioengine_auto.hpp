@@ -1,4 +1,7 @@
 #include "base/ccConfig.h"
+
+#if CC_USE_AUDIO_ENGINE > 0
+
 #if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_IOS || CC_TARGET_PLATFORM == CC_PLATFORM_MAC || CC_TARGET_PLATFORM == CC_PLATFORM_WIN32
 #ifndef __cocos2dx_audioengine_h__
 #define __cocos2dx_audioengine_h__
@@ -12,6 +15,8 @@ extern "C" {
 #endif
 
 int register_all_cocos2dx_audioengine(lua_State* tolua_S);
+
+#endif // CC_USE_AUDIO_ENGINE
 
 
 

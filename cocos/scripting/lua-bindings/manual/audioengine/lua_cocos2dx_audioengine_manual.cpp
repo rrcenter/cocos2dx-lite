@@ -23,6 +23,9 @@
  ****************************************************************************/
 #include "platform/CCPlatformConfig.h"
 
+#include "base/ccConfig.h"
+#if CC_USE_AUDIO_ENGINE > 0
+
 #include "lua_cocos2dx_audioengine_manual.h"
 
 #if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_IOS || CC_TARGET_PLATFORM == CC_PLATFORM_MAC || CC_TARGET_PLATFORM == CC_PLATFORM_WIN32
@@ -328,3 +331,5 @@ int register_audioengine_module(lua_State* L)
 }
 
 #endif
+
+#endif // CC_USE_AUDIO_ENGINE > 0
