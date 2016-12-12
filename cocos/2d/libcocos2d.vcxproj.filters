@@ -76,6 +76,36 @@
     <Filter Include="external\clipper">
       <UniqueIdentifier>{ff65e340-b79d-4f87-9b4c-ed46bda5d20f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="tmx">
+      <UniqueIdentifier>{f24917de-9260-4495-9c66-ca45e2b467b7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="audio">
+      <UniqueIdentifier>{9131e27a-cfd9-4f9e-894f-3a71f0efab07}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ccs">
+      <UniqueIdentifier>{5159025a-7313-4e84-96e5-fd6c9993d42b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ui">
+      <UniqueIdentifier>{e6e95d16-47ab-4832-944a-a8a09c6be874}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ui\BaseClasses">
+      <UniqueIdentifier>{428a7617-4048-4222-83b5-47c0d4a5250e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ui\Layouts">
+      <UniqueIdentifier>{1392042e-6625-49c9-a035-bdd3124554f1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ui\System">
+      <UniqueIdentifier>{86eccb89-c59c-413c-bc56-3499a4922cd3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ui\UIWidgets">
+      <UniqueIdentifier>{eb1ddfdb-a301-4bd7-ac85-0c5ecf4caa8d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ui\UIWidgets\ScrollWidget">
+      <UniqueIdentifier>{d79fa9f8-3681-4520-b0d7-4f963c00b68a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ui\UIWidgets\UIEditBox">
+      <UniqueIdentifier>{e2616616-42f8-414d-af24-865583c2a234}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\external\xxhash\xxhash.c">
@@ -589,6 +619,381 @@
     </ClCompile>
     <ClCompile Include="..\base\CCStencilStateManager.cpp">
       <Filter>base</Filter>
+    </ClCompile>
+    <ClCompile Include="CCComponent.cpp">
+      <Filter>base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\base\CCEventFocus.cpp">
+      <Filter>base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\base\CCEventListenerFocus.cpp">
+      <Filter>base</Filter>
+    </ClCompile>
+    <ClCompile Include="CCComponentContainer.cpp">
+      <Filter>base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\audio\win32\MciPlayer.cpp">
+      <Filter>audio</Filter>
+    </ClCompile>
+    <ClCompile Include="..\audio\win32\SimpleAudioEngine.cpp">
+      <Filter>audio</Filter>
+    </ClCompile>
+    <ClCompile Include="CCFastTMXLayer.cpp">
+      <Filter>tmx</Filter>
+    </ClCompile>
+    <ClCompile Include="CCFastTMXTiledMap.cpp">
+      <Filter>tmx</Filter>
+    </ClCompile>
+    <ClCompile Include="CCTileMapAtlas.cpp">
+      <Filter>tmx</Filter>
+    </ClCompile>
+    <ClCompile Include="CCTMXLayer.cpp">
+      <Filter>tmx</Filter>
+    </ClCompile>
+    <ClCompile Include="CCTMXObjectGroup.cpp">
+      <Filter>tmx</Filter>
+    </ClCompile>
+    <ClCompile Include="CCTMXTiledMap.cpp">
+      <Filter>tmx</Filter>
+    </ClCompile>
+    <ClCompile Include="CCTMXXMLParser.cpp">
+      <Filter>tmx</Filter>
+    </ClCompile>
+    <ClCompile Include="..\base\ObjectFactory.cpp">
+      <Filter>base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\base\CCResourceData.cpp">
+      <Filter>base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\editor-support\cocostudio\CCActionFrame.cpp">
+      <Filter>ccs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\editor-support\cocostudio\CCActionFrameEasing.cpp">
+      <Filter>ccs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\editor-support\cocostudio\CCActionManagerEx.cpp">
+      <Filter>ccs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\editor-support\cocostudio\CCActionNode.cpp">
+      <Filter>ccs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\editor-support\cocostudio\CCActionObject.cpp">
+      <Filter>ccs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\editor-support\cocostudio\CCArmature.cpp">
+      <Filter>ccs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\editor-support\cocostudio\CCArmatureAnimation.cpp">
+      <Filter>ccs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\editor-support\cocostudio\CCArmatureDataManager.cpp">
+      <Filter>ccs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\editor-support\cocostudio\CCArmatureDefine.cpp">
+      <Filter>ccs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\editor-support\cocostudio\CCBatchNode.cpp">
+      <Filter>ccs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\editor-support\cocostudio\CCBone.cpp">
+      <Filter>ccs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\editor-support\cocostudio\CCColliderDetector.cpp">
+      <Filter>ccs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\editor-support\cocostudio\CCComAttribute.cpp">
+      <Filter>ccs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\editor-support\cocostudio\CCComAudio.cpp">
+      <Filter>ccs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\editor-support\cocostudio\CCComController.cpp">
+      <Filter>ccs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\editor-support\cocostudio\CCComExtensionData.cpp">
+      <Filter>ccs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\editor-support\cocostudio\CCComRender.cpp">
+      <Filter>ccs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\editor-support\cocostudio\CCDataReaderHelper.cpp">
+      <Filter>ccs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\editor-support\cocostudio\CCDatas.cpp">
+      <Filter>ccs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\editor-support\cocostudio\CCDecorativeDisplay.cpp">
+      <Filter>ccs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\editor-support\cocostudio\CCDisplayFactory.cpp">
+      <Filter>ccs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\editor-support\cocostudio\CCDisplayManager.cpp">
+      <Filter>ccs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\editor-support\cocostudio\CCInputDelegate.cpp">
+      <Filter>ccs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\editor-support\cocostudio\CCProcessBase.cpp">
+      <Filter>ccs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\editor-support\cocostudio\CCSGUIReader.cpp">
+      <Filter>ccs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\editor-support\cocostudio\CCSkin.cpp">
+      <Filter>ccs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\editor-support\cocostudio\CCSpriteFrameCacheHelper.cpp">
+      <Filter>ccs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\editor-support\cocostudio\CCSSceneReader.cpp">
+      <Filter>ccs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\editor-support\cocostudio\CCTransformHelp.cpp">
+      <Filter>ccs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\editor-support\cocostudio\CCTween.cpp">
+      <Filter>ccs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\editor-support\cocostudio\CCUtilMath.cpp">
+      <Filter>ccs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\editor-support\cocostudio\CocoLoader.cpp">
+      <Filter>ccs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\editor-support\cocostudio\CocosStudioExtension.cpp">
+      <Filter>ccs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\editor-support\cocostudio\CocoStudio.cpp">
+      <Filter>ccs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\editor-support\cocostudio\DictionaryHelper.cpp">
+      <Filter>ccs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\editor-support\cocostudio\FlatBuffersSerialize.cpp">
+      <Filter>ccs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\editor-support\cocostudio\LocalizationManager.cpp">
+      <Filter>ccs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\editor-support\cocostudio\TriggerBase.cpp">
+      <Filter>ccs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\editor-support\cocostudio\TriggerMng.cpp">
+      <Filter>ccs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\editor-support\cocostudio\TriggerObj.cpp">
+      <Filter>ccs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\editor-support\cocostudio\WidgetCallBackHandlerProtocol.cpp">
+      <Filter>ccs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ui\UIScale9Sprite.cpp">
+      <Filter>ui\BaseClasses</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ui\UIWidget.cpp">
+      <Filter>ui\BaseClasses</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ui\UIHBox.cpp">
+      <Filter>ui\Layouts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ui\UILayout.cpp">
+      <Filter>ui\Layouts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ui\UILayoutManager.cpp">
+      <Filter>ui\Layouts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ui\UILayoutParameter.cpp">
+      <Filter>ui\Layouts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ui\UIRelativeBox.cpp">
+      <Filter>ui\Layouts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ui\UIVBox.cpp">
+      <Filter>ui\Layouts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ui\UILayoutComponent.cpp">
+      <Filter>ui\Layouts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ui\CocosGUI.cpp">
+      <Filter>ui\System</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ui\UIDeprecated.cpp">
+      <Filter>ui\System</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ui\UIHelper.cpp">
+      <Filter>ui\System</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ui\UIButton.cpp">
+      <Filter>ui\UIWidgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ui\UIAbstractCheckButton.cpp">
+      <Filter>ui\UIWidgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ui\UICheckBox.cpp">
+      <Filter>ui\UIWidgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ui\UIRadioButton.cpp">
+      <Filter>ui\UIWidgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ui\UIImageView.cpp">
+      <Filter>ui\UIWidgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ui\UILoadingBar.cpp">
+      <Filter>ui\UIWidgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ui\UIRichText.cpp">
+      <Filter>ui\UIWidgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ui\UISlider.cpp">
+      <Filter>ui\UIWidgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ui\UIText.cpp">
+      <Filter>ui\UIWidgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ui\UITextAtlas.cpp">
+      <Filter>ui\UIWidgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ui\UITextBMFont.cpp">
+      <Filter>ui\UIWidgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ui\UITextField.cpp">
+      <Filter>ui\UIWidgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ui\UIWebView.cpp">
+      <Filter>ui\UIWidgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ui\UIListView.cpp">
+      <Filter>ui\UIWidgets\ScrollWidget</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ui\UIPageView.cpp">
+      <Filter>ui\UIWidgets\ScrollWidget</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ui\UIPageViewIndicator.cpp">
+      <Filter>ui\UIWidgets\ScrollWidget</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ui\UIScrollView.cpp">
+      <Filter>ui\UIWidgets\ScrollWidget</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ui\UIScrollViewBar.cpp">
+      <Filter>ui\UIWidgets\ScrollWidget</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ui\UIEditBox\UIEditBox.cpp">
+      <Filter>ui\UIWidgets\UIEditBox</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ui\UIEditBox\UIEditBoxImpl-win32.cpp">
+      <Filter>ui\UIWidgets\UIEditBox</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ui\CCProtectedNode.cpp">
+      <Filter>ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\editor-support\cocostudio\ActionTimeline\CCActionTimeline.cpp">
+      <Filter>ccs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\editor-support\cocostudio\ActionTimeline\CCActionTimelineCache.cpp">
+      <Filter>ccs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\editor-support\cocostudio\ActionTimeline\CCActionTimelineNode.cpp">
+      <Filter>ccs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\editor-support\cocostudio\ActionTimeline\CCBoneNode.cpp">
+      <Filter>ccs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\editor-support\cocostudio\ActionTimeline\CCFrame.cpp">
+      <Filter>ccs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\editor-support\cocostudio\ActionTimeline\CCSkeletonNode.cpp">
+      <Filter>ccs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\editor-support\cocostudio\ActionTimeline\CCTimeLine.cpp">
+      <Filter>ccs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\editor-support\cocostudio\ActionTimeline\CSLoader.cpp">
+      <Filter>ccs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\editor-support\cocostudio\WidgetReader\NodeReaderDefine.cpp">
+      <Filter>ccs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\editor-support\cocostudio\WidgetReader\NodeReaderProtocol.cpp">
+      <Filter>ccs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\editor-support\cocostudio\WidgetReader\WidgetReader.cpp">
+      <Filter>ccs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\editor-support\cocostudio\WidgetReader\NodeReader\NodeReader.cpp">
+      <Filter>ccs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\editor-support\cocostudio\WidgetReader\SingleNodeReader\SingleNodeReader.cpp">
+      <Filter>ccs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\editor-support\cocostudio\WidgetReader\ArmatureNodeReader\ArmatureNodeReader.cpp">
+      <Filter>ccs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\editor-support\cocostudio\WidgetReader\ButtonReader\ButtonReader.cpp">
+      <Filter>ccs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\editor-support\cocostudio\WidgetReader\CheckBoxReader\CheckBoxReader.cpp">
+      <Filter>ccs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\editor-support\cocostudio\WidgetReader\ComAudioReader\ComAudioReader.cpp">
+      <Filter>ccs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\editor-support\cocostudio\WidgetReader\GameMapReader\GameMapReader.cpp">
+      <Filter>ccs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\editor-support\cocostudio\WidgetReader\ImageViewReader\ImageViewReader.cpp">
+      <Filter>ccs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\editor-support\cocostudio\WidgetReader\LayoutReader\LayoutReader.cpp">
+      <Filter>ccs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\editor-support\cocostudio\WidgetReader\ListViewReader\ListViewReader.cpp">
+      <Filter>ccs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\editor-support\cocostudio\WidgetReader\LoadingBarReader\LoadingBarReader.cpp">
+      <Filter>ccs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\editor-support\cocostudio\WidgetReader\PageViewReader\PageViewReader.cpp">
+      <Filter>ccs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\editor-support\cocostudio\WidgetReader\ParticleReader\ParticleReader.cpp">
+      <Filter>ccs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\editor-support\cocostudio\WidgetReader\ProjectNodeReader\ProjectNodeReader.cpp">
+      <Filter>ccs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\editor-support\cocostudio\WidgetReader\ScrollViewReader\ScrollViewReader.cpp">
+      <Filter>ccs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\editor-support\cocostudio\WidgetReader\SkeletonReader\BoneNodeReader.cpp">
+      <Filter>ccs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\editor-support\cocostudio\WidgetReader\SkeletonReader\SkeletonNodeReader.cpp">
+      <Filter>ccs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\editor-support\cocostudio\WidgetReader\SliderReader\SliderReader.cpp">
+      <Filter>ccs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\editor-support\cocostudio\WidgetReader\SpriteReader\SpriteReader.cpp">
+      <Filter>ccs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\editor-support\cocostudio\WidgetReader\TextAtlasReader\TextAtlasReader.cpp">
+      <Filter>ccs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\editor-support\cocostudio\WidgetReader\TextBMFontReader\TextBMFontReader.cpp">
+      <Filter>ccs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\editor-support\cocostudio\WidgetReader\TextFieldReader\TextFieldReader.cpp">
+      <Filter>ccs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\editor-support\cocostudio\WidgetReader\TextReader\TextReader.cpp">
+      <Filter>ccs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\editor-support\cocostudio\WidgetReader\TabControlReader\TabControlReader.cpp">
+      <Filter>ccs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ui\UITabControl.cpp">
+      <Filter>ui\UIWidgets</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1199,6 +1604,396 @@
     </ClInclude>
     <ClInclude Include="..\base\CCStencilStateManager.hpp">
       <Filter>base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\base\CCEventFocus.h">
+      <Filter>base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\base\CCEventListenerFocus.h">
+      <Filter>base</Filter>
+    </ClInclude>
+    <ClInclude Include="CCComponentContainer.h">
+      <Filter>base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\audio\win32\MciPlayer.h">
+      <Filter>audio</Filter>
+    </ClInclude>
+    <ClInclude Include="CCFastTMXLayer.h">
+      <Filter>tmx</Filter>
+    </ClInclude>
+    <ClInclude Include="CCFastTMXTiledMap.h">
+      <Filter>tmx</Filter>
+    </ClInclude>
+    <ClInclude Include="CCTileMapAtlas.h">
+      <Filter>tmx</Filter>
+    </ClInclude>
+    <ClInclude Include="CCTMXLayer.h">
+      <Filter>tmx</Filter>
+    </ClInclude>
+    <ClInclude Include="CCTMXObjectGroup.h">
+      <Filter>tmx</Filter>
+    </ClInclude>
+    <ClInclude Include="CCTMXTiledMap.h">
+      <Filter>tmx</Filter>
+    </ClInclude>
+    <ClInclude Include="CCTMXXMLParser.h">
+      <Filter>tmx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\base\ObjectFactory.h">
+      <Filter>base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\base\CCResourceData.h">
+      <Filter>base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\editor-support\cocostudio\CCActionFrame.h">
+      <Filter>ccs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\editor-support\cocostudio\CCActionFrameEasing.h">
+      <Filter>ccs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\editor-support\cocostudio\CCActionManagerEx.h">
+      <Filter>ccs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\editor-support\cocostudio\CCActionNode.h">
+      <Filter>ccs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\editor-support\cocostudio\CCActionObject.h">
+      <Filter>ccs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\editor-support\cocostudio\CCArmature.h">
+      <Filter>ccs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\editor-support\cocostudio\CCArmatureAnimation.h">
+      <Filter>ccs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\editor-support\cocostudio\CCArmatureDataManager.h">
+      <Filter>ccs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\editor-support\cocostudio\CCArmatureDefine.h">
+      <Filter>ccs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\editor-support\cocostudio\CCBatchNode.h">
+      <Filter>ccs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\editor-support\cocostudio\CCBone.h">
+      <Filter>ccs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\editor-support\cocostudio\CCColliderDetector.h">
+      <Filter>ccs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\editor-support\cocostudio\CCComAttribute.h">
+      <Filter>ccs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\editor-support\cocostudio\CCComAudio.h">
+      <Filter>ccs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\editor-support\cocostudio\CCComBase.h">
+      <Filter>ccs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\editor-support\cocostudio\CCComController.h">
+      <Filter>ccs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\editor-support\cocostudio\CCComExtensionData.h">
+      <Filter>ccs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\editor-support\cocostudio\CCComRender.h">
+      <Filter>ccs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\editor-support\cocostudio\CCDataReaderHelper.h">
+      <Filter>ccs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\editor-support\cocostudio\CCDatas.h">
+      <Filter>ccs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\editor-support\cocostudio\CCDecorativeDisplay.h">
+      <Filter>ccs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\editor-support\cocostudio\CCDisplayFactory.h">
+      <Filter>ccs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\editor-support\cocostudio\CCDisplayManager.h">
+      <Filter>ccs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\editor-support\cocostudio\CCInputDelegate.h">
+      <Filter>ccs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\editor-support\cocostudio\CCProcessBase.h">
+      <Filter>ccs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\editor-support\cocostudio\CCSGUIReader.h">
+      <Filter>ccs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\editor-support\cocostudio\CCSkin.h">
+      <Filter>ccs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\editor-support\cocostudio\CCSpriteFrameCacheHelper.h">
+      <Filter>ccs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\editor-support\cocostudio\CCSSceneReader.h">
+      <Filter>ccs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\editor-support\cocostudio\CCTransformHelp.h">
+      <Filter>ccs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\editor-support\cocostudio\CCTween.h">
+      <Filter>ccs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\editor-support\cocostudio\CCUtilMath.h">
+      <Filter>ccs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\editor-support\cocostudio\CocoLoader.h">
+      <Filter>ccs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\editor-support\cocostudio\CocosStudioExport.h">
+      <Filter>ccs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\editor-support\cocostudio\CocosStudioExtension.h">
+      <Filter>ccs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\editor-support\cocostudio\CocoStudio.h">
+      <Filter>ccs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\editor-support\cocostudio\CSLanguageDataBinary_generated.h">
+      <Filter>ccs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\editor-support\cocostudio\DictionaryHelper.h">
+      <Filter>ccs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\editor-support\cocostudio\FlatBuffersSerialize.h">
+      <Filter>ccs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\editor-support\cocostudio\LocalizationManager.h">
+      <Filter>ccs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\editor-support\cocostudio\TriggerBase.h">
+      <Filter>ccs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\editor-support\cocostudio\TriggerMng.h">
+      <Filter>ccs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\editor-support\cocostudio\TriggerObj.h">
+      <Filter>ccs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\editor-support\cocostudio\WidgetCallBackHandlerProtocol.h">
+      <Filter>ccs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ui\UIScale9Sprite.h">
+      <Filter>ui\BaseClasses</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ui\UIWidget.h">
+      <Filter>ui\BaseClasses</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ui\UIHBox.h">
+      <Filter>ui\Layouts</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ui\UILayout.h">
+      <Filter>ui\Layouts</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ui\UILayoutManager.h">
+      <Filter>ui\Layouts</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ui\UILayoutParameter.h">
+      <Filter>ui\Layouts</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ui\UIRelativeBox.h">
+      <Filter>ui\Layouts</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ui\UIVBox.h">
+      <Filter>ui\Layouts</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ui\UILayoutComponent.h">
+      <Filter>ui\Layouts</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ui\CocosGUI.h">
+      <Filter>ui\System</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ui\GUIExport.h">
+      <Filter>ui\System</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ui\UIDeprecated.h">
+      <Filter>ui\System</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ui\UIHelper.h">
+      <Filter>ui\System</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ui\UIButton.h">
+      <Filter>ui\UIWidgets</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ui\UICheckBox.h">
+      <Filter>ui\UIWidgets</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ui\UIImageView.h">
+      <Filter>ui\UIWidgets</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ui\UILoadingBar.h">
+      <Filter>ui\UIWidgets</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ui\UIRichText.h">
+      <Filter>ui\UIWidgets</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ui\UISlider.h">
+      <Filter>ui\UIWidgets</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ui\UIText.h">
+      <Filter>ui\UIWidgets</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ui\UITextAtlas.h">
+      <Filter>ui\UIWidgets</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ui\UITextBMFont.h">
+      <Filter>ui\UIWidgets</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ui\UITextField.h">
+      <Filter>ui\UIWidgets</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ui\UIWebView-inl.h">
+      <Filter>ui\UIWidgets</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ui\UIWebView.h">
+      <Filter>ui\UIWidgets</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ui\UIListView.h">
+      <Filter>ui\UIWidgets\ScrollWidget</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ui\UIPageView.h">
+      <Filter>ui\UIWidgets\ScrollWidget</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ui\UIScrollView.h">
+      <Filter>ui\UIWidgets\ScrollWidget</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ui\UIEditBox\UIEditBox.h">
+      <Filter>ui\UIWidgets\UIEditBox</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ui\UIEditBox\UIEditBoxImpl.h">
+      <Filter>ui\UIWidgets\UIEditBox</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ui\UIEditBox\UIEditBoxImpl-win32.h">
+      <Filter>ui\UIWidgets\UIEditBox</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ui\CCProtectedNode.h">
+      <Filter>ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\editor-support\cocostudio\ActionTimeline\CCActionTimeline.h">
+      <Filter>ccs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\editor-support\cocostudio\ActionTimeline\CCActionTimelineCache.h">
+      <Filter>ccs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\editor-support\cocostudio\ActionTimeline\CCActionTimelineNode.h">
+      <Filter>ccs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\editor-support\cocostudio\ActionTimeline\CCBoneNode.h">
+      <Filter>ccs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\editor-support\cocostudio\ActionTimeline\CCFrame.h">
+      <Filter>ccs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\editor-support\cocostudio\ActionTimeline\CCSkeletonNode.h">
+      <Filter>ccs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\editor-support\cocostudio\ActionTimeline\CCTimeLine.h">
+      <Filter>ccs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\editor-support\cocostudio\ActionTimeline\CCTimelineMacro.h">
+      <Filter>ccs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\editor-support\cocostudio\ActionTimeline\CSLoader.h">
+      <Filter>ccs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\editor-support\cocostudio\WidgetReader\NodeReaderDefine.h">
+      <Filter>ccs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\editor-support\cocostudio\WidgetReader\NodeReaderProtocol.h">
+      <Filter>ccs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\editor-support\cocostudio\WidgetReader\WidgetReader.h">
+      <Filter>ccs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\editor-support\cocostudio\WidgetReader\WidgetReaderProtocol.h">
+      <Filter>ccs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\editor-support\cocostudio\WidgetReader\NodeReader\NodeReader.h">
+      <Filter>ccs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\editor-support\cocostudio\WidgetReader\SingleNodeReader\SingleNodeReader.h">
+      <Filter>ccs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\editor-support\cocostudio\WidgetReader\ArmatureNodeReader\ArmatureNodeReader.h">
+      <Filter>ccs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\editor-support\cocostudio\WidgetReader\ArmatureNodeReader\CSArmatureNode_generated.h">
+      <Filter>ccs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\editor-support\cocostudio\WidgetReader\ButtonReader\ButtonReader.h">
+      <Filter>ccs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\editor-support\cocostudio\WidgetReader\CheckBoxReader\CheckBoxReader.h">
+      <Filter>ccs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\editor-support\cocostudio\WidgetReader\ComAudioReader\ComAudioReader.h">
+      <Filter>ccs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\editor-support\cocostudio\WidgetReader\GameMapReader\GameMapReader.h">
+      <Filter>ccs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\editor-support\cocostudio\WidgetReader\ImageViewReader\ImageViewReader.h">
+      <Filter>ccs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\editor-support\cocostudio\WidgetReader\LayoutReader\LayoutReader.h">
+      <Filter>ccs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\editor-support\cocostudio\WidgetReader\ListViewReader\ListViewReader.h">
+      <Filter>ccs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\editor-support\cocostudio\WidgetReader\LoadingBarReader\LoadingBarReader.h">
+      <Filter>ccs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\editor-support\cocostudio\WidgetReader\PageViewReader\PageViewReader.h">
+      <Filter>ccs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\editor-support\cocostudio\WidgetReader\ParticleReader\ParticleReader.h">
+      <Filter>ccs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\editor-support\cocostudio\WidgetReader\ProjectNodeReader\ProjectNodeReader.h">
+      <Filter>ccs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\editor-support\cocostudio\WidgetReader\ScrollViewReader\ScrollViewReader.h">
+      <Filter>ccs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\editor-support\cocostudio\WidgetReader\SkeletonReader\BoneNodeReader.h">
+      <Filter>ccs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\editor-support\cocostudio\WidgetReader\SkeletonReader\CSBoneBinary_generated.h">
+      <Filter>ccs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\editor-support\cocostudio\WidgetReader\SkeletonReader\SkeletonNodeReader.h">
+      <Filter>ccs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\editor-support\cocostudio\WidgetReader\SliderReader\SliderReader.h">
+      <Filter>ccs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\editor-support\cocostudio\WidgetReader\SpriteReader\SpriteReader.h">
+      <Filter>ccs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\editor-support\cocostudio\WidgetReader\TabControlReader\CSTabControl_generated.h">
+      <Filter>ccs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\editor-support\cocostudio\WidgetReader\TextAtlasReader\TextAtlasReader.h">
+      <Filter>ccs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\editor-support\cocostudio\WidgetReader\TextBMFontReader\TextBMFontReader.h">
+      <Filter>ccs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\editor-support\cocostudio\WidgetReader\TextFieldReader\TextFieldReader.h">
+      <Filter>ccs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\editor-support\cocostudio\WidgetReader\TextReader\TextReader.h">
+      <Filter>ccs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\editor-support\cocostudio\WidgetReader\TabControlReader\TabControlReader.h">
+      <Filter>ccs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ui\UITabControl.h">
+      <Filter>ui\UIWidgets</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

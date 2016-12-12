@@ -501,6 +501,16 @@ void Device::vibrate(float duration)
     CC_UNUSED_PARAM(duration);
 }
 
+void Device::forbidiCloud()
+{
+
+}
+
+void Device::openStore(const std::string& storeId)
+{
+
+}
+
 NS_CC_END
 
 #endif // CC_TARGET_PLATFORM == CC_PLATFORM_WIN32

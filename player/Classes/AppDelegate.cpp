@@ -47,7 +47,7 @@ bool AppDelegate::applicationDidFinishLaunching()
     auto glview = director->getOpenGLView();
     if(!glview) {
 		auto title = StringUtils::format("quick-cocos2d-x (%s)", cocos2dVersion());
-        glview = GLViewImpl::createWithRect(title, Rect(0, 0, 640, 960));
+        glview = GLViewImpl::createWithRect(title, Rect(0, 0, _projectConfig.getFrameSize().width, _projectConfig.getFrameSize().height));
         director->setOpenGLView(glview);
     }
 

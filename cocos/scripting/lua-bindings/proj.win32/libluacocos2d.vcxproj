@@ -37,7 +37,11 @@
     <ClCompile Include="..\..\..\..\external\xxtea\xxtea.cpp" />
     <ClCompile Include="..\auto\lua_cocos2dx_audioengine_auto.cpp" />
     <ClCompile Include="..\auto\lua_cocos2dx_auto.cpp" />
+    <ClCompile Include="..\auto\lua_cocos2dx_cocosdenshion_auto.cpp" />
+    <ClCompile Include="..\auto\lua_cocos2dx_csloader_auto.cpp" />
     <ClCompile Include="..\auto\lua_cocos2dx_spine_auto.cpp" />
+    <ClCompile Include="..\auto\lua_cocos2dx_studio_auto.cpp" />
+    <ClCompile Include="..\auto\lua_cocos2dx_ui_auto.cpp" />
     <ClCompile Include="..\manual\audioengine\lua_cocos2dx_audioengine_manual.cpp" />
     <ClCompile Include="..\manual\CCLuaBridge.cpp" />
     <ClCompile Include="..\manual\CCLuaEngine.cpp" />
@@ -48,6 +52,11 @@
     <ClCompile Include="..\manual\cocos2d\LuaScriptHandlerMgr.cpp" />
     <ClCompile Include="..\manual\cocos2d\lua_cocos2dx_deprecated.cpp" />
     <ClCompile Include="..\manual\cocos2d\lua_cocos2dx_manual.cpp" />
+    <ClCompile Include="..\manual\cocosdenshion\lua_cocos2dx_cocosdenshion_manual.cpp" />
+    <ClCompile Include="..\manual\cocostudio\CustomGUIReader.cpp" />
+    <ClCompile Include="..\manual\cocostudio\lua-cocos-studio-conversions.cpp" />
+    <ClCompile Include="..\manual\cocostudio\lua_cocos2dx_coco_studio_manual.cpp" />
+    <ClCompile Include="..\manual\cocostudio\lua_cocos2dx_csloader_manual.cpp" />
     <ClCompile Include="..\manual\LuaBasicConversions.cpp" />
     <ClCompile Include="..\manual\lua_module_register.cpp" />
     <ClCompile Include="..\manual\network\lua_cocos2dx_network_manual.cpp" />
@@ -56,6 +65,7 @@
     <ClCompile Include="..\manual\spine\LuaSkeletonAnimation.cpp" />
     <ClCompile Include="..\manual\spine\lua_cocos2dx_spine_manual.cpp" />
     <ClCompile Include="..\manual\tolua_fix.cpp" />
+    <ClCompile Include="..\manual\ui\lua_cocos2dx_ui_manual.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\external\lua\cjson\fpconv.h" />
@@ -86,7 +96,11 @@
     <ClInclude Include="..\..\..\..\external\xxtea\xxtea.h" />
     <ClInclude Include="..\auto\lua_cocos2dx_audioengine_auto.hpp" />
     <ClInclude Include="..\auto\lua_cocos2dx_auto.hpp" />
+    <ClInclude Include="..\auto\lua_cocos2dx_cocosdenshion_auto.hpp" />
+    <ClInclude Include="..\auto\lua_cocos2dx_csloader_auto.hpp" />
     <ClInclude Include="..\auto\lua_cocos2dx_spine_auto.hpp" />
+    <ClInclude Include="..\auto\lua_cocos2dx_studio_auto.hpp" />
+    <ClInclude Include="..\auto\lua_cocos2dx_ui_auto.hpp" />
     <ClInclude Include="..\manual\audioengine\lua_cocos2dx_audioengine_manual.h" />
     <ClInclude Include="..\manual\CCLuaBridge.h" />
     <ClInclude Include="..\manual\CCLuaEngine.h" />
@@ -97,6 +111,11 @@
     <ClInclude Include="..\manual\cocos2d\LuaScriptHandlerMgr.h" />
     <ClInclude Include="..\manual\cocos2d\lua_cocos2dx_deprecated.h" />
     <ClInclude Include="..\manual\cocos2d\lua_cocos2dx_manual.hpp" />
+    <ClInclude Include="..\manual\cocosdenshion\lua_cocos2dx_cocosdenshion_manual.h" />
+    <ClInclude Include="..\manual\cocostudio\CustomGUIReader.h" />
+    <ClInclude Include="..\manual\cocostudio\lua-cocos-studio-conversions.h" />
+    <ClInclude Include="..\manual\cocostudio\lua_cocos2dx_coco_studio_manual.hpp" />
+    <ClInclude Include="..\manual\cocostudio\lua_cocos2dx_csloader_manual.hpp" />
     <ClInclude Include="..\manual\Lua-BindingsExport.h" />
     <ClInclude Include="..\manual\LuaBasicConversions.h" />
     <ClInclude Include="..\manual\lua_module_register.h" />
@@ -106,6 +125,7 @@
     <ClInclude Include="..\manual\spine\LuaSkeletonAnimation.h" />
     <ClInclude Include="..\manual\spine\lua_cocos2dx_spine_manual.hpp" />
     <ClInclude Include="..\manual\tolua_fix.h" />
+    <ClInclude Include="..\manual\ui\lua_cocos2dx_ui_manual.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\2d\libcocos2d.vcxproj">

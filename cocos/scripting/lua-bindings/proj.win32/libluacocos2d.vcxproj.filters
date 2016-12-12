@@ -167,6 +167,36 @@
       <Filter>cjson</Filter>
     </ClCompile>
     <ClCompile Include="..\manual\lua_module_register.cpp" />
+    <ClCompile Include="..\auto\lua_cocos2dx_cocosdenshion_auto.cpp">
+      <Filter>auto</Filter>
+    </ClCompile>
+    <ClCompile Include="..\auto\lua_cocos2dx_csloader_auto.cpp">
+      <Filter>auto</Filter>
+    </ClCompile>
+    <ClCompile Include="..\auto\lua_cocos2dx_studio_auto.cpp">
+      <Filter>auto</Filter>
+    </ClCompile>
+    <ClCompile Include="..\auto\lua_cocos2dx_ui_auto.cpp">
+      <Filter>auto</Filter>
+    </ClCompile>
+    <ClCompile Include="..\manual\cocosdenshion\lua_cocos2dx_cocosdenshion_manual.cpp">
+      <Filter>manual\cocos2d</Filter>
+    </ClCompile>
+    <ClCompile Include="..\manual\cocostudio\lua_cocos2dx_coco_studio_manual.cpp">
+      <Filter>manual\cocos2d</Filter>
+    </ClCompile>
+    <ClCompile Include="..\manual\cocostudio\lua_cocos2dx_csloader_manual.cpp">
+      <Filter>manual\cocos2d</Filter>
+    </ClCompile>
+    <ClCompile Include="..\manual\ui\lua_cocos2dx_ui_manual.cpp">
+      <Filter>manual\cocos2d</Filter>
+    </ClCompile>
+    <ClCompile Include="..\manual\cocostudio\CustomGUIReader.cpp">
+      <Filter>manual\cocos2d</Filter>
+    </ClCompile>
+    <ClCompile Include="..\manual\cocostudio\lua-cocos-studio-conversions.cpp">
+      <Filter>manual\cocos2d</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\auto\lua_cocos2dx_auto.hpp">
@@ -307,5 +337,35 @@
     </ClInclude>
     <ClInclude Include="..\manual\lua_module_register.h" />
     <ClInclude Include="..\manual\Lua-BindingsExport.h" />
+    <ClInclude Include="..\auto\lua_cocos2dx_cocosdenshion_auto.hpp">
+      <Filter>auto</Filter>
+    </ClInclude>
+    <ClInclude Include="..\auto\lua_cocos2dx_csloader_auto.hpp">
+      <Filter>auto</Filter>
+    </ClInclude>
+    <ClInclude Include="..\auto\lua_cocos2dx_studio_auto.hpp">
+      <Filter>auto</Filter>
+    </ClInclude>
+    <ClInclude Include="..\auto\lua_cocos2dx_ui_auto.hpp">
+      <Filter>auto</Filter>
+    </ClInclude>
+    <ClInclude Include="..\manual\cocosdenshion\lua_cocos2dx_cocosdenshion_manual.h">
+      <Filter>manual\cocos2d</Filter>
+    </ClInclude>
+    <ClInclude Include="..\manual\cocostudio\lua_cocos2dx_coco_studio_manual.hpp">
+      <Filter>manual\cocos2d</Filter>
+    </ClInclude>
+    <ClInclude Include="..\manual\cocostudio\lua_cocos2dx_csloader_manual.hpp">
+      <Filter>manual\cocos2d</Filter>
+    </ClInclude>
+    <ClInclude Include="..\manual\ui\lua_cocos2dx_ui_manual.hpp">
+      <Filter>manual\cocos2d</Filter>
+    </ClInclude>
+    <ClInclude Include="..\manual\cocostudio\CustomGUIReader.h">
+      <Filter>manual\cocos2d</Filter>
+    </ClInclude>
+    <ClInclude Include="..\manual\cocostudio\lua-cocos-studio-conversions.h">
+      <Filter>manual\cocos2d</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

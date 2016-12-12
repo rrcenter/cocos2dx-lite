@@ -35,7 +35,7 @@ HACCEL hAccelTable;
 
 void createSimulator(const std::string& viewName, int width, int height, float frameZoomFactor = 1.0f);
 
-int APIENTRY _tWinMain(HINSTANCE hInstance,
+int WINAPI _tWinMain(HINSTANCE hInstance,
                        HINSTANCE hPrevInstance,
                        LPTSTR    lpCmdLine,
                        int       nCmdShow)
