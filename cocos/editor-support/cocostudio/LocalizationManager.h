@@ -8,7 +8,7 @@
 
 #include <string>
 #include <unordered_map>
-#include "json/document.h"
+#include "json/document-wrapper.h"
 #include "editor-support/cocostudio/CocosStudioExport.h"
 
 namespace cocostudio {

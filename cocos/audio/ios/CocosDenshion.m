@@ -561,7 +561,7 @@ static BOOL _mixerRateSet = NO;
             
 #ifdef CD_USE_STATIC_BUFFERS
             alBufferDataStaticProc(_buffers[soundId].bufferId, format, soundData, size, freq);
-            _buffers[soundId].bufferData = data;//Save the pointer to the new data
+            _buffers[soundId].bufferData = soundData;//Save the pointer to the new data
 #else        
             alBufferData(_buffers[soundId].bufferId, format, soundData, size, freq);
 #endif
@@ -626,7 +626,7 @@ static BOOL _mixerRateSet = NO;
         CDLOGINFO(@"Denshion::CDSoundEngine - validateBufferId buffer outside range %i",soundId);
         return NO;
     } else if (_buffers[soundId].bufferState != CD_BS_LOADED) {
-        CDLOGINFO(@"Denshion::CDSoundEngine - validateBufferId invalide buffer state %i",soundId);
+        CDLOGINFO(@"Denshion::CDSoundEngine - validateBufferId invalid buffer state %i", soundId);
         return NO;
     } else {
         return YES;

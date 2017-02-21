@@ -78,7 +78,7 @@ AbstractCheckButton::~AbstractCheckButton()
 }
 
 bool AbstractCheckButton::init(const std::string& backGround,
-                    const std::string& backGroundSeleted,
+                    const std::string& backGroundSelected,
                     const std::string& cross,
                     const std::string& backGroundDisabled,
                     const std::string& frontCrossDisabled,
@@ -94,7 +94,7 @@ bool AbstractCheckButton::init(const std::string& backGround,
         }
         
         setSelected(false);
-        loadTextures(backGround, backGroundSeleted, cross, backGroundDisabled, frontCrossDisabled,texType);
+        loadTextures(backGround, backGroundSelected, cross, backGroundDisabled, frontCrossDisabled, texType);
     } while (0);
     return ret;
 }

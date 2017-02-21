@@ -1,5 +1,5 @@
 /****************************************************************************
-Copyright (c) 2013-2016 Chukong Technologies Inc.
+Copyright (c) 2013-2017 Chukong Technologies Inc.
 
 http://www.cocos2d-x.org
 
@@ -23,7 +23,7 @@ THE SOFTWARE.
 ****************************************************************************/
 
 #include <functional>
-#include "ObjectFactory.h"
+#include "base/ObjectFactory.h"
 
 
 NS_CC_BEGIN

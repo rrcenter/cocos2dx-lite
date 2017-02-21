@@ -2,7 +2,7 @@
 Copyright (c) 2008-2010 Ricardo Quesada
 Copyright (c) 2010-2012 cocos2d-x.org
 Copyright (c) 2011      Zynga Inc.
-Copyright (c) 2013-2014 Chukong Technologies Inc.
+Copyright (c) 2013-2017 Chukong Technologies Inc.
 
 http://www.cocos2d-x.org
 
@@ -161,7 +161,7 @@ std::string Scene::getDescription() const
     return StringUtils::format("<Scene | tag = %d>", _tag);
 }
 
-void Scene::onProjectionChanged(EventCustom* event)
+void Scene::onProjectionChanged(EventCustom* /*event*/)
 {
     if (_defaultCamera)
     {
@@ -194,7 +194,7 @@ void Scene::render(Renderer* renderer)
     {
         if (!camera->isVisible())
             continue;
-        
+
         Camera::_visitingCamera = camera;
         if (Camera::_visitingCamera->getCameraFlag() == CameraFlag::DEFAULT)
         {
@@ -239,9 +239,9 @@ void Scene::removeAllChildren()
 {
     if (_defaultCamera)
         _defaultCamera->retain();
-    
+
     Node::removeAllChildren();
-    
+
     if (_defaultCamera)
     {
         addChild(_defaultCamera);
@@ -290,21 +290,21 @@ bool Scene::initWithPhysics()
 #if CC_USE_PHYSICS
     _physicsWorld = PhysicsWorld::construct(this);
 #endif
-    
+
     bool ret = false;
     do
     {
         Director * director;
         CC_BREAK_IF( ! (director = Director::getInstance()) );
-        
+
         this->setContentSize(director->getWinSize());
-        
+
 #if CC_USE_3D_PHYSICS && CC_ENABLE_BULLET_INTEGRATION
         Physics3DWorldDes info;
         CC_BREAK_IF(! (_physics3DWorld = Physics3DWorld::create(&info)));
         _physics3DWorld->retain();
 #endif
-        
+
         // success
         ret = true;
     } while (0);
@@ -320,7 +320,7 @@ void Scene::stepPhysicsAndNavigation(float deltaTime)
     if (_physicsWorld && _physicsWorld->isAutoStep())
         _physicsWorld->update(deltaTime);
 #endif
-    
+
 #if CC_USE_3D_PHYSICS && CC_ENABLE_BULLET_INTEGRATION
     if (_physics3DWorld)
     {

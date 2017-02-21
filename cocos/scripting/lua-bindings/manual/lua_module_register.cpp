@@ -38,7 +38,7 @@ int lua_module_register(lua_State* L)
 #endif
 
 #if CC_USE_UI > 0
-    register_ui_moudle(L);
+	register_ui_module(L);
 #endif
 
     // register_extension_module(L);

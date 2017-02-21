@@ -1,7 +1,7 @@
 /****************************************************************************
 Copyright (c) 2010-2012 cocos2d-x.org
 Copyright (c) 2011      Zynga Inc.
-Copyright (c) 2013-2014 Chukong Technologies Inc.
+Copyright (c) 2013-2017 Chukong Technologies Inc.
 
 http://www.cocos2d-x.org
 
@@ -203,8 +203,8 @@ FileUtilsApple::FileUtilsApple() : pimpl_(new IMPL([NSBundle mainBundle])) {
 FileUtilsApple::~FileUtilsApple() = default;
 
 #if CC_FILEUTILS_APPLE_ENABLE_OBJC
-void FileUtilsApple::setBundle(void* bundle) {
-    pimpl_->setBundle((NSBundle*)bundle);
+void FileUtilsApple::setBundle(NSBundle* bundle) {
+    pimpl_->setBundle(bundle);
 }
 #endif
 
@@ -321,9 +321,9 @@ static int unlink_cb(const char *fpath, const struct stat *sb, int typeflag, str
 
 bool FileUtilsApple::removeDirectory(const std::string& path)
 {
-    if (path.size() > 0 && path[path.size() - 1] != '/')
+    if (path.empty())
     {
-        CCLOGERROR("Fail to remove directory, path must terminate with '/': %s", path.c_str());
+        CCLOGERROR("Fail to remove directory, path is empty!");
         return false;
     }
 

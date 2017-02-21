@@ -148,3 +148,5 @@ tests/cpp-tests/Resources/audio
 /*/*/*/*/prebuilt-mk/Android.mk
 *.xcscmblueprint
 .d
+player/proj.win32/player.VC.db
+*.opendb

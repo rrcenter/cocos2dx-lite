@@ -30,7 +30,7 @@ USING_NS_CC;
 
 static void static_end()
 {
-    [SimpleAudioEngine end];
+    [SimpleAudioEngine  end];
 }
 
 static void static_preloadBackgroundMusic(const char* pszFilePath)
@@ -169,7 +169,7 @@ void SimpleAudioEngine::end()
     if (s_pEngine)
     {
         delete s_pEngine;
-        s_pEngine = NULL;
+        s_pEngine = nullptr;
     }
     
     static_end();

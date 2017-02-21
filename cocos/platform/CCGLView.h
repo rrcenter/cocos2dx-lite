@@ -1,6 +1,6 @@
 /****************************************************************************
 Copyright (c) 2010-2012 cocos2d-x.org
-Copyright (c) 2013-2014 Chukong Technologies Inc.
+Copyright (c) 2013-2017 Chukong Technologies Inc.
 
 http://www.cocos2d-x.org
 
@@ -106,7 +106,10 @@ public:
      */
     virtual ~GLView();
 
-    /** Force destroying EGL view, subclass must implement this method. */
+    /** Force destroying EGL view, subclass must implement this method. 
+     *
+     * @lua endToLua
+     */
     virtual void end() = 0;
 
     /** Get whether opengl render system is ready, subclass must implement this method. */
@@ -173,7 +176,7 @@ public:
      * 
      * @param zoomFactor The zoom factor for frame.
      */
-    virtual void setFrameZoomFactor(float zoomFactor) {}
+    virtual void setFrameZoomFactor(float /*zoomFactor*/) {}
     
     /** Get zoom factor for frame. This methods are for
      * debugging big resolution (e.g.new ipad) app on desktop.
@@ -187,7 +190,7 @@ public:
      *
      * @param isVisible Hide or Show the mouse cursor if there is one.
      */
-    virtual void setCursorVisible(bool isVisible) {}
+    virtual void setCursorVisible(bool /*isVisible*/) {}
 
     /** Get retina factor.
      *
@@ -196,7 +199,7 @@ public:
     virtual int getRetinaFactor() const { return 1; }
 
     /** Only works on ios platform. Set Content Scale of the Factor. */
-    virtual bool setContentScaleFactor(float scaleFactor) { return false; }
+    virtual bool setContentScaleFactor(float /*scaleFactor*/) { return false; }
     
     /** Only works on ios platform. Get Content Scale of the Factor. */
     virtual float getContentScaleFactor() const { return 1.0; }

@@ -1,6 +1,6 @@
 /****************************************************************************
  Copyright (c) 2013      Zynga Inc.
- Copyright (c) 2013-2015 Chukong Technologies Inc.
+ Copyright (c) 2013-2017 Chukong Technologies Inc.
  
  http://www.cocos2d-x.org
 
@@ -100,7 +100,7 @@ public://@public
     //! atlas name
     std::string _atlasName;
     //! values for kerning
-    std::unordered_map<int /* key */, int /* amount */> _kerningDictionary;
+    std::unordered_map<uint64_t /* key */, int /* amount */> _kerningDictionary;
     
     // Character Set defines the letters that actually exist in the font
     std::set<unsigned int> *_characterSet;
@@ -128,8 +128,8 @@ public:
     /** initializes a BitmapFontConfiguration with a FNT file */
     bool initWithFNTfile(const std::string& FNTfile);
     
-    inline const std::string& getAtlasName(){ return _atlasName; }
-    inline void setAtlasName(const std::string& atlasName) { _atlasName = atlasName; }
+    const std::string& getAtlasName() { return _atlasName; }
+    void setAtlasName(const std::string& atlasName) { _atlasName = atlasName; }
     
     std::set<unsigned int>* getCharacterSet() const;
 private:
@@ -345,7 +345,7 @@ std::set<unsigned int>* BMFontConfiguration::parseBinaryConfigFile(unsigned char
         {
             /*
              fontSize       2   int      0
-             bitField       1   bits     2  bit 0: smooth, bit 1: unicode, bit 2: italic, bit 3: bold, bit 4: fixedHeigth, bits 5-7: reserved
+             bitField       1   bits     2  bit 0: smooth, bit 1: unicode, bit 2: italic, bit 3: bold, bit 4: fixedHeight, bits 5-7: reserved
              charSet        1   uint     3
              stretchH       2   uint     4
              aa             1   uint     6
@@ -465,7 +465,7 @@ std::set<unsigned int>* BMFontConfiguration::parseBinaryConfigFile(unsigned char
                 uint32_t second = 0; memcpy(&second, pData + (i * 10) + 4, 4);
                 int16_t amount = 0; memcpy(&amount, pData + (i * 10) + 8, 2);
 
-                int key = (first<<16) | (second&0xffff);
+                uint64_t key = ((uint64_t)first<<32) | ((uint64_t)second&0xffffffffll);
                 _kerningDictionary[key] = amount;
             }
         }
@@ -597,7 +597,7 @@ void BMFontConfiguration::parseKerningEntry(const char* line)
     tmp = strstr(tmp, "amount=") + 7;
     sscanf(tmp, "%d", &amount);
 
-    int key = (first<<16) | (second&0xffff);
+    uint64_t key = ((uint64_t)first<<32) | ((uint64_t)second&0xffffffffll);
     
     _kerningDictionary[key] = amount;
 }
@@ -646,16 +646,16 @@ void FontFNT::purgeCachedData()
     }
 }
 
-int * FontFNT::getHorizontalKerningForTextUTF16(const std::u16string& text, int &outNumLetters) const
+int * FontFNT::getHorizontalKerningForTextUTF32(const std::u32string& text, int &outNumLetters) const
 {
     outNumLetters = static_cast<int>(text.length());
     
     if (!outNumLetters)
-        return 0;
+        return nullptr;
     
     int *sizes = new (std::nothrow) int[outNumLetters];
     if (!sizes)
-        return 0;
+        return nullptr;
     
     for (int c = 0; c < outNumLetters; ++c)
     {
@@ -668,10 +668,10 @@ int * FontFNT::getHorizontalKerningForTextUTF16(const std::u16string& text, int 
     return sizes;
 }
 
-int  FontFNT::getHorizontalKerningForChars(unsigned short firstChar, unsigned short secondChar) const
+int  FontFNT::getHorizontalKerningForChars(char32_t firstChar, char32_t secondChar) const
 {
     int ret = 0;
-    int key = (firstChar << 16) | (secondChar & 0xffff);
+    uint64_t key = ((uint64_t)firstChar << 32) | ((uint64_t)secondChar & 0xffffffffll);
     
     auto iter = _configuration->_kerningDictionary.find(key);
     
@@ -714,7 +714,7 @@ FontAtlas * FontFNT::createFontAtlas()
     int originalFontSize = _configuration->_fontSize;
     float originalLineHeight = _configuration->_commonHeight;
     float factor = 0.0f;
-    if (fabs(_fontSize - originalFontSize) < FLT_EPSILON) {
+    if (std::abs(_fontSize - originalFontSize) < FLT_EPSILON) {
         factor = 1.0f;
     }else {
         factor = _fontSize / originalFontSize;

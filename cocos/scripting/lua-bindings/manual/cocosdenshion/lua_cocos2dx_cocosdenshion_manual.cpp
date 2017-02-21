@@ -1,5 +1,5 @@
 /****************************************************************************
- Copyright (c) 2013-2014 Chukong Technologies Inc.
+ Copyright (c) 2013-2017 Chukong Technologies Inc.
  
  http://www.cocos2d-x.org
  
@@ -25,9 +25,9 @@
 #include "base/ccConfig.h"
 #if CC_USE_SIMPLE_AUDIO > 0
 
-#include "lua_cocos2dx_cocosdenshion_manual.h"
-#include "lua_cocos2dx_cocosdenshion_auto.hpp"
-#include "CCLuaEngine.h"
+#include "scripting/lua-bindings/manual/cocosdenshion/lua_cocos2dx_cocosdenshion_manual.h"
+#include "scripting/lua-bindings/auto/lua_cocos2dx_cocosdenshion_auto.hpp"
+#include "scripting/lua-bindings/manual/CCLuaEngine.h"
 
 int  register_cocosdenshion_module(lua_State* L)
 {

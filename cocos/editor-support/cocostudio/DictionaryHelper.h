@@ -1,5 +1,5 @@
 /****************************************************************************
-Copyright (c) 2013-2016 Chukong Technologies Inc.
+Copyright (c) 2013-2017 Chukong Technologies Inc.
 
 http://www.cocos2d-x.org
 
@@ -28,7 +28,7 @@ THE SOFTWARE.
 #include "base/ccConfig.h"
 #if CC_USE_CCS > 0
 
-#include "json/document.h"
+#include "json/document-wrapper.h"
 #include "editor-support/cocostudio/CocosStudioExport.h"
 
 #define DICTOOL DictionaryHelper::getInstance()

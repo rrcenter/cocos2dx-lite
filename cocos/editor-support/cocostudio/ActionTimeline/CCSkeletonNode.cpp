@@ -4,7 +4,7 @@
 #if CC_USE_CCS > 0
 
 /****************************************************************************
-Copyright (c) 2015 Chukong Technologies Inc.
+Copyright (c) 2015-2017 Chukong Technologies Inc.
 
 http://www.cocos2d-x.org
 
@@ -273,7 +273,7 @@ void SkeletonNode::batchDrawAllSubBones(const cocos2d::Mat4 &transform)
 }
 
 
-void SkeletonNode::onDraw(const cocos2d::Mat4 &transform, uint32_t flags)
+void SkeletonNode::onDraw(const cocos2d::Mat4 &transform, uint32_t /*flags*/)
 {
     getGLProgram()->use();
     getGLProgram()->setUniformsForBuiltins(transform);

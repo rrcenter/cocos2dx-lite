@@ -1,6 +1,6 @@
 /****************************************************************************
 Copyright (c) 2010-2012 cocos2d-x.org
-Copyright (c) 2013-2014 Chukong Technologies Inc.
+Copyright (c) 2013-2017 Chukong Technologies Inc.
 
 http://www.cocos2d-x.org
 
@@ -27,6 +27,7 @@ THE SOFTWARE.
 #if CC_TARGET_PLATFORM == CC_PLATFORM_WIN32
 
 #include "platform/win32/CCFileUtils-win32.h"
+#include "platform/win32/CCUtils-win32.h"
 #include "platform/CCCommon.h"
 #include <Shlobj.h>
 #include <cstdlib>
@@ -256,6 +257,13 @@ FileUtils::Status FileUtilsWin32::getContents(const std::string& filename, Resiz
 		::CloseHandle(fileHandle);
 		return FileUtils::Status::TooLarge;
 	}
+    // don't read file content if it is empty
+    if (size == 0)
+    {
+        ::CloseHandle(fileHandle);
+        return FileUtils::Status::OK;
+    }
+
     buffer->resize(size);
     DWORD sizeRead = 0;
     BOOL successed = ::ReadFile(fileHandle, buffer->buffer(), size, &sizeRead, nullptr);

@@ -2,7 +2,7 @@
 Copyright (c) 2008-2010 Ricardo Quesada
 Copyright (c) 2010-2012 cocos2d-x.org
 Copyright (c) 2011      Zynga Inc.
-Copyright (c) 2013-2016 Chukong Technologies Inc.
+Copyright (c) 2013-2017 Chukong Technologies Inc.
  
 http://www.cocos2d-x.org
 
@@ -73,14 +73,12 @@ ExtraAction* ExtraAction::reverse() const
     return ExtraAction::create();
 }
 
-void ExtraAction::update(float time)
+void ExtraAction::update(float /*time*/)
 {
-    CC_UNUSED_PARAM(time);
 }
 
-void ExtraAction::step(float dt)
+void ExtraAction::step(float /*dt*/)
 {
-    CC_UNUSED_PARAM(dt);
 }
 
 //
@@ -119,7 +117,8 @@ bool ActionInterval::sendUpdateEventToScript(float dt, Action *actionObject)
 
 bool ActionInterval::isDone() const
 {
-    return _elapsed >= _duration;
+    // fix #14936 _duration is not 0, but _elapsed is 0.
+    return (_elapsed + FLT_EPSILON) >= _duration;
 }
 
 void ActionInterval::step(float dt)
@@ -144,9 +143,8 @@ void ActionInterval::step(float dt)
     this->update(updateDt);
 }
 
-void ActionInterval::setAmplitudeRate(float amp)
+void ActionInterval::setAmplitudeRate(float /*amp*/)
 {
-    CC_UNUSED_PARAM(amp);
     // Abstract class needs implementation
     CCASSERT(0, "Subclass should implement this method!");
 }
@@ -329,7 +327,8 @@ void Sequence::startWithTarget(Node *target)
         return;
     }
     if (_duration > FLT_EPSILON)
-        _split = _actions[0]->getDuration() / _duration;
+        // fix #14936 - FLT_EPSILON (instant action) / very fast duration (0.001) leads to worng split, that leads to call instant action few times
+        _split = _actions[0]->getDuration() > FLT_EPSILON ? _actions[0]->getDuration() / _duration : 0;
     
     ActionInterval::startWithTarget(target);
     _last = -1;
@@ -508,7 +507,7 @@ void Repeat::update(float dt)
         }
 
         // fix for issue #1288, incorrect end value of repeat
-        if(fabs(dt - 1.0f) < FLT_EPSILON && _total < _times)
+        if (std::abs(dt - 1.0f) < FLT_EPSILON && _total < _times)
         {
             if (!(sendUpdateEventToScript(1.0f, _innerAction)))
                 _innerAction->update(1.0f);
@@ -2081,7 +2080,7 @@ bool Blink::initWithDuration(float duration, int blinks)
 
 void Blink::stop()
 {
-    if(NULL != _target)
+    if (nullptr != _target)
         _target->setVisible(_originalState);
     ActionInterval::stop();
 }
@@ -2420,9 +2419,8 @@ DelayTime* DelayTime::clone() const
     return DelayTime::create(_duration);
 }
 
-void DelayTime::update(float time)
+void DelayTime::update(float /*time*/)
 {
-    CC_UNUSED_PARAM(time);
     return;
 }
 

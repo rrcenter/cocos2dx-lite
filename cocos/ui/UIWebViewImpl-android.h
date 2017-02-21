@@ -4,7 +4,7 @@
 #if CC_USE_UI > 0
 
 /****************************************************************************
- Copyright (c) 2014-2016 Chukong Technologies Inc.
+ Copyright (c) 2014-2017 Chukong Technologies Inc.
  
  http://www.cocos2d-x.org
  
@@ -65,6 +65,7 @@ namespace cocos2d {
                 void loadHTMLString(const std::string &string, const std::string &baseURL);
 
                 void loadURL(const std::string &url);
+                void loadURL(const std::string &url, bool cleanCachedData);
 
                 void loadFile(const std::string &fileName);
 

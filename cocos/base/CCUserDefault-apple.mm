@@ -1,6 +1,6 @@
 /****************************************************************************
  Copyright (c) 2010-2012 cocos2d-x.org
- Copyright (c) 2013-2014 Chukong Technologies Inc.
+ Copyright (c) 2013-2017 Chukong Technologies Inc.
 
  http://www.cocos2d-x.org
 
@@ -249,7 +249,7 @@ float UserDefault::getFloatForKey(const char* pKey, float defaultValue)
     {
         if (node->FirstChild())
         {
-            float ret = std::atof((const char*)node->FirstChild()->Value());
+            float ret = atof((const char*)node->FirstChild()->Value());
 
             // set value in NSUserDefaults
             setFloatForKey(pKey, ret);
@@ -293,7 +293,7 @@ double UserDefault::getDoubleForKey(const char* pKey, double defaultValue)
     {
         if (node->FirstChild())
         {
-            double ret = std::atof((const char*)node->FirstChild()->Value());
+            double ret = atof((const char*)node->FirstChild()->Value());
 
             // set value in NSUserDefaults
             setDoubleForKey(pKey, ret);

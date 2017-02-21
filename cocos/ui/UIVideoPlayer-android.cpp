@@ -4,7 +4,7 @@
 #if CC_USE_UI > 0
 
 /****************************************************************************
- Copyright (c) 2014 Chukong Technologies Inc.
+ Copyright (c) 2014-2017 Chukong Technologies Inc.
 
  http://www.cocos2d-x.org
 
@@ -76,11 +76,11 @@ using namespace cocos2d::experimental::ui;
 static std::unordered_map<int, VideoPlayer*> s_allVideoPlayers;
 
 VideoPlayer::VideoPlayer()
-: _videoPlayerIndex(-1)
-, _eventCallback(nullptr)
+: _fullScreenDirty(false)
 , _fullScreenEnabled(false)
-, _fullScreenDirty(false)
 , _keepAspectRatioEnabled(false)
+, _videoPlayerIndex(-1)
+, _eventCallback(nullptr)
 {
     _videoPlayerIndex = createVideoWidgetJNI();
     s_allVideoPlayers[_videoPlayerIndex] = this;

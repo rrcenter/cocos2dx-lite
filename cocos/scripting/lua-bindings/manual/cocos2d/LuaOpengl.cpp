@@ -1,5 +1,5 @@
 /****************************************************************************
- Copyright (c) 2013-2014 Chukong Technologies Inc.
+ Copyright (c) 2013-2017 Chukong Technologies Inc.
 
  http://www.cocos2d-x.org
 
@@ -21,7 +21,7 @@
  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  THE SOFTWARE.
  ****************************************************************************/
-#include "LuaOpengl.h"
+#include "scripting/lua-bindings/manual/cocos2d/LuaOpengl.h"
 #include <map>
 #include <string>
 
@@ -562,7 +562,7 @@ static int tolua_Cocos2d_glBufferData00(lua_State* tolua_S)
     {
         unsigned int target   = (unsigned int)tolua_tonumber(tolua_S,1,0);
         long length   = (long)tolua_tonumber(tolua_S,2,0);
-        float* floatArray     = new float[length];
+        float* floatArray     = new (std::nothrow) float[length];
         if (NULL == floatArray)
         {
             return  0;
@@ -605,7 +605,7 @@ static int tolua_Cocos2d_glBufferSubData00(lua_State* tolua_S)
         unsigned int target   = (unsigned int)tolua_tonumber(tolua_S,1,0);
         long offset = (long)tolua_tonumber(tolua_S,2,0);
         long length   = (long)tolua_tonumber(tolua_S,3,0);
-        float* floatArray     = new float[length];
+        float* floatArray     = new (std::nothrow) float[length];
         if (NULL == floatArray)
         {
             return  0;
@@ -855,7 +855,7 @@ static int tolua_Cocos2d_glCompressedTexImage2D00(lua_State* tolua_S)
         int imageSize   = (int)tolua_tonumber(tolua_S, 7, 0);
 
         long length   = (long)tolua_tonumber(tolua_S,8,0);
-        float* floatArray     = new float[length];
+        float* floatArray     = new (std::nothrow) float[length];
         if (NULL == floatArray)
         {
             return  0;
@@ -910,7 +910,7 @@ static int tolua_Cocos2d_glCompressedTexSubImage2D00(lua_State* tolua_S)
         int imageSize   = (int)tolua_tonumber(tolua_S, 8, 0);
 
         long length   = (long)tolua_tonumber(tolua_S,9,0);
-        float* floatArray     = new float[length];
+        float* floatArray     = new (std::nothrow) float[length];
         if (NULL == floatArray)
         {
             return  0;
@@ -1464,7 +1464,7 @@ static int tolua_Cocos2d_glDrawElements00(lua_State* tolua_S)
         {
             if (arg3 > 0)
             {
-                unsigned char* unit8Array     = new unsigned char[arg3];
+                unsigned char* unit8Array = new (std::nothrow) unsigned char[arg3];
                 if (NULL == unit8Array)
                 {
                     return 0;
@@ -1486,7 +1486,7 @@ static int tolua_Cocos2d_glDrawElements00(lua_State* tolua_S)
         {
             if (arg3 > 0)
             {
-                unsigned short* shortArray     = new unsigned short[arg3];
+                unsigned short* shortArray     = new (std::nothrow) unsigned short[arg3];
                 if (NULL == shortArray)
                 {
                     return 0;
@@ -1509,8 +1509,8 @@ static int tolua_Cocos2d_glDrawElements00(lua_State* tolua_S)
         {
             if (arg3 > 0)
             {
-                unsigned int* intArray     = new unsigned int[arg3];
-                if (NULL == intArray)
+                unsigned int* intArray = new (std::nothrow) unsigned int[arg3];
+                if (nullptr == intArray)
                 {
                     return 0;
                 }
@@ -2728,7 +2728,7 @@ static int tolua_Cocos2d_glReadPixels00(lua_State* tolua_S)
         unsigned int arg5  = (unsigned int)tolua_tonumber(tolua_S, 6, 0);
 
         long length   = (long)tolua_tonumber(tolua_S,7,0);
-        unsigned char* unit8Array     = new unsigned char[length];
+        unsigned char* unit8Array = new (std::nothrow) unsigned char[length];
         if (NULL == unit8Array)
         {
             return  0;
@@ -3319,7 +3319,7 @@ static int tolua_Cocos2d_glUniform1fv00(lua_State* tolua_S)
         int arg0 = (int)tolua_tonumber(tolua_S, 1, 0);
         int arg1 = (int)tolua_tonumber(tolua_S, 2, 0);
         int arg2 = (int)tolua_tonumber(tolua_S, 3, 0);
-        float* floatArray     = new float[arg2];
+        float* floatArray = new (std::nothrow) float[arg2];
         if (NULL == floatArray)
         {
             return  0;
@@ -3388,7 +3388,7 @@ static int tolua_Cocos2d_glUniform1iv00(lua_State* tolua_S)
         int arg0 = (int)tolua_tonumber(tolua_S, 1, 0);
         int arg1 = (int)tolua_tonumber(tolua_S, 2, 0);
         int arg2 = (int)tolua_tonumber(tolua_S, 3, 0);
-        int* intArray   = new int[arg2];
+        int* intArray = new (std::nothrow) int[arg2];
         if (NULL == intArray)
         {
             return  0;
@@ -3459,7 +3459,7 @@ static int tolua_Cocos2d_glUniform2fv00(lua_State* tolua_S)
         int arg0 = (int)tolua_tonumber(tolua_S, 1, 0);
         int arg1 = (int)tolua_tonumber(tolua_S, 2, 0);
         int arg2 = (int)tolua_tonumber(tolua_S, 3, 0);
-        float* floatArray     = new float[arg2];
+        float* floatArray = new (std::nothrow) float[arg2];
         if (NULL == floatArray)
         {
             return  0;
@@ -3530,7 +3530,7 @@ static int tolua_Cocos2d_glUniform2iv00(lua_State* tolua_S)
         int arg0 = (int)tolua_tonumber(tolua_S, 1, 0);
         int arg1 = (int)tolua_tonumber(tolua_S, 2, 0);
         int arg2 = (int)tolua_tonumber(tolua_S, 3, 0);
-        int* intArray   = new int[arg2];
+        int* intArray = new (std::nothrow) int[arg2];
         if (NULL == intArray)
         {
             return  0;
@@ -3603,7 +3603,7 @@ static int tolua_Cocos2d_glUniform3fv00(lua_State* tolua_S)
         int arg0 = (int)tolua_tonumber(tolua_S, 1, 0);
         int arg1 = (int)tolua_tonumber(tolua_S, 2, 0);
         int arg2 = (int)tolua_tonumber(tolua_S, 3, 0);
-        float* floatArray     = new float[arg2];
+        float* floatArray = new (std::nothrow) float[arg2];
         if (NULL == floatArray)
         {
             return  0;
@@ -3676,7 +3676,7 @@ static int tolua_Cocos2d_glUniform3iv00(lua_State* tolua_S)
         int arg0 = (int)tolua_tonumber(tolua_S, 1, 0);
         int arg1 = (int)tolua_tonumber(tolua_S, 2, 0);
         int arg2 = (int)tolua_tonumber(tolua_S, 3, 0);
-        int* intArray   = new int[arg2];
+        int* intArray = new (std::nothrow) int[arg2];
         if (NULL == intArray)
         {
             return  0;
@@ -3751,7 +3751,7 @@ static int tolua_Cocos2d_glUniform4fv00(lua_State* tolua_S)
         int arg0 = (int)tolua_tonumber(tolua_S, 1, 0);
         int arg1 = (int)tolua_tonumber(tolua_S, 2, 0);
         int arg2 = (int)tolua_tonumber(tolua_S, 3, 0);
-        float* floatArray     = new float[arg2];
+        float* floatArray = new (std::nothrow) float[arg2];
         if (NULL == floatArray)
         {
             return  0;
@@ -3826,7 +3826,7 @@ static int tolua_Cocos2d_glUniform4iv00(lua_State* tolua_S)
         int arg0 = (int)tolua_tonumber(tolua_S, 1, 0);
         int arg1 = (int)tolua_tonumber(tolua_S, 2, 0);
         int arg2 = (int)tolua_tonumber(tolua_S, 3, 0);
-        int* intArray   = new int[arg2];
+        int* intArray = new (std::nothrow) int[arg2];
         if (NULL == intArray)
         {
             return  0;
@@ -3867,7 +3867,7 @@ static int tolua_Cocos2d_glUniformMatrix2fv00(lua_State* tolua_S)
         int arg0 = (int)tolua_tonumber(tolua_S, 1, 0);
         unsigned short arg1 = (unsigned short)tolua_tonumber(tolua_S, 2, 0);
         int arg2 = (int)tolua_tonumber(tolua_S, 3, 0);
-        float* floatArray   = new float[arg2];
+        float* floatArray = new (std::nothrow) float[arg2];
         if (NULL == floatArray)
         {
             return  0;
@@ -3908,7 +3908,7 @@ static int tolua_Cocos2d_glUniformMatrix3fv00(lua_State* tolua_S)
         int arg0 = (int)tolua_tonumber(tolua_S, 1, 0);
         unsigned short arg1 = (unsigned short)tolua_tonumber(tolua_S, 2, 0);
         int arg2 = (int)tolua_tonumber(tolua_S, 3, 0);
-        float* floatArray   = new float[arg2];
+        float* floatArray = new (std::nothrow) float[arg2];
         if (NULL == floatArray)
         {
             return  0;
@@ -3951,7 +3951,7 @@ static int tolua_Cocos2d_glUniformMatrix4fv00(lua_State* tolua_S)
         int arg0 = (int)tolua_tonumber(tolua_S, 1, 0);
         bool arg1 = (bool)tolua_toboolean(tolua_S, 2, 0);
         int arg2 = (int)tolua_tonumber(tolua_S, 3, 0);
-        float* floatArray   = new float[arg2];
+        float* floatArray = new (std::nothrow) float[arg2];
         if (NULL == floatArray)
         {
             return  0;
@@ -4072,7 +4072,7 @@ static int tolua_Cocos2d_glVertexAttrib1fv00(lua_State* tolua_S)
     {
         int arg0 = (int)tolua_tonumber(tolua_S, 1, 0);
         int arg1 = (int)tolua_tonumber(tolua_S, 2, 0);
-        float* floatArray   = new float[arg1];
+        float* floatArray = new (std::nothrow) float[arg1];
         if (NULL == floatArray)
         {
             return  0;
@@ -4144,7 +4144,7 @@ static int tolua_Cocos2d_glVertexAttrib2fv00(lua_State* tolua_S)
     {
         int arg0 = (int)tolua_tonumber(tolua_S, 1, 0);
         int arg1 = (int)tolua_tonumber(tolua_S, 2, 0);
-        float* floatArray   = new float[arg1];
+        float* floatArray = new (std::nothrow) float[arg1];
         if (NULL == floatArray)
         {
             return  0;
@@ -4218,7 +4218,7 @@ static int tolua_Cocos2d_glVertexAttrib3fv00(lua_State* tolua_S)
     {
         int arg0 = (int)tolua_tonumber(tolua_S, 1, 0);
         int arg1 = (int)tolua_tonumber(tolua_S, 2, 0);
-        float* floatArray   = new float[arg1];
+        float* floatArray = new (std::nothrow) float[arg1];
         if (NULL == floatArray)
         {
             return  0;
@@ -4294,7 +4294,7 @@ static int tolua_Cocos2d_glVertexAttrib4fv00(lua_State* tolua_S)
     {
         int arg0 = (int)tolua_tonumber(tolua_S, 1, 0);
         int arg1 = (int)tolua_tonumber(tolua_S, 2, 0);
-        float* floatArray   = new float[arg1];
+        float* floatArray = new (std::nothrow) float[arg1];
         if (NULL == floatArray)
         {
             return  0;
@@ -4343,7 +4343,7 @@ static int tolua_Cocos2d_glVertexAttribPointer00(lua_State* tolua_S)
         bool arg3 = tolua_toboolean(tolua_S, 4, 0);
         int arg4 = (int)tolua_tonumber(tolua_S, 5, 0);
         //int arg5 = (int)tolua_tonumber(tolua_S, 7, 0);
-        glVertexAttribPointer((GLuint)arg0 , (GLint)arg1 , (GLenum)arg2 , (GLboolean)arg3 , (GLsizei)arg4 , (GLvoid*)NULL);
+        glVertexAttribPointer((GLuint)arg0, (GLint)arg1, (GLenum)arg2, (GLboolean)arg3, (GLsizei)arg4, nullptr);
     }
     return 0;
 #ifndef TOLUA_RELEASE
@@ -4462,7 +4462,7 @@ CC_DEPRECATED_ATTRIBUTE static int tolua_cocos2d_DrawPrimitives_drawPoints00(lua
 
         if (numberOfPoints > 0)
         {
-            cocos2d::Vec2* points = new cocos2d::Vec2[numberOfPoints];
+            cocos2d::Vec2* points = new (std::nothrow) cocos2d::Vec2[numberOfPoints];
             if (NULL == points)
                 return 0;
 
@@ -4624,7 +4624,7 @@ CC_DEPRECATED_ATTRIBUTE static int tolua_cocos2d_DrawPrimitives_drawPoly00(lua_S
 
         if (numOfVertices > 0)
         {
-            cocos2d::Vec2* points = new cocos2d::Vec2[numOfVertices];
+            cocos2d::Vec2* points = new (std::nothrow) cocos2d::Vec2[numOfVertices];
             if (NULL == points)
                 return 0;
 
@@ -4678,7 +4678,7 @@ CC_DEPRECATED_ATTRIBUTE static int tolua_cocos2d_DrawPrimitives_drawSolidPoly00(
         unsigned int numberOfPoints = ((unsigned int)  tolua_tonumber(tolua_S,2,0));
         if (numberOfPoints > 0)
         {
-            cocos2d::Vec2* points = new cocos2d::Vec2[numberOfPoints];
+            cocos2d::Vec2* points = new (std::nothrow) cocos2d::Vec2[numberOfPoints];
             if (NULL == points)
                 return 0;
 

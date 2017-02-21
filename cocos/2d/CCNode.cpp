@@ -3,7 +3,7 @@ Copyright (c) 2008-2010 Ricardo Quesada
 Copyright (c) 2009      Valentin Milea
 Copyright (c) 2010-2012 cocos2d-x.org
 Copyright (c) 2011      Zynga Inc.
-Copyright (c) 2013-2014 Chukong Technologies Inc.
+Copyright (c) 2013-2017 Chukong Technologies Inc.
 
 http://www.cocos2d-x.org
 
@@ -75,7 +75,8 @@ Node::Node()
 , _contentSizeDirty(true)
 , _transformDirty(true)
 , _inverseDirty(true)
-, _useAdditionalTransform(false)
+, _additionalTransform(nullptr)
+, _additionalTransformDirty(false)
 , _transformUpdated(true)
 // children (lazy allocs)
 // lazy alloc
@@ -91,7 +92,7 @@ Node::Node()
 , _userData(nullptr)
 , _userObject(nullptr)
 , _glProgramState(nullptr)
-, _orderOfArrival(0)
+//, _orderOfArrival(0)
 , _running(false)
 , _visible(true)
 , _ignoreAnchorPointForPosition(false)
@@ -125,7 +126,7 @@ Node::Node()
     ScriptEngineProtocol* engine = ScriptEngineManager::getInstance()->getScriptEngine();
     _scriptType = engine != nullptr ? engine->getScriptType() : kScriptTypeNone;
 #endif
-    _transform = _inverse = _additionalTransform = Mat4::IDENTITY;
+    _transform = _inverse = Mat4::IDENTITY;
 }
 
 Node * Node::create()
@@ -166,9 +167,9 @@ Node::~Node()
     }
 
     removeAllComponents();
-
+    
     CC_SAFE_DELETE(_componentContainer);
-
+    
     stopAllActions();
     unscheduleAllCallbacks();
     CC_SAFE_RELEASE_NULL(_actionManager);
@@ -182,6 +183,8 @@ Node::~Node()
 
     CCASSERT(!_running, "Node still marked as running on node destruction! Was base class onExit() called in derived class onExit() implementations?");
     CC_SAFE_RELEASE(_eventDispatcher);
+
+    delete[] _additionalTransform;
 }
 
 bool Node::init()
@@ -205,9 +208,9 @@ void Node::cleanup()
     
     // actions
     this->stopAllActions();
-    this->unscheduleAllCallbacks();
-
     // timers
+    this->unscheduleAllCallbacks();
+    
     for( const auto &child: _children)
         child->cleanup();
 }
@@ -554,13 +557,13 @@ void Node::setPositionZ(float positionZ)
 }
 
 /// position getter
-const Vec2& Node::getNormalizedPosition() const
+const Vec2& Node::getPositionNormalized() const
 {
     return _normalizedPosition;
 }
 
 /// position setter
-void Node::setNormalizedPosition(const Vec2& position)
+void Node::setPositionNormalized(const Vec2& position)
 {
     if (_normalizedPosition.equals(position))
         return;
@@ -688,17 +691,6 @@ void Node::setName(const std::string& name)
 void Node::setUserData(void *userData)
 {
     _userData = userData;
-}
-
-int Node::getOrderOfArrival() const
-{
-    return _orderOfArrival;
-}
-
-void Node::setOrderOfArrival(int orderOfArrival)
-{
-    CCASSERT(orderOfArrival >=0, "Invalid orderOfArrival");
-    _orderOfArrival = orderOfArrival;
 }
 
 void Node::setUserObject(Ref* userObject)
@@ -890,7 +882,7 @@ bool Node::doEnumerate(std::string name, std::function<bool (Node *)> callback) 
     }
     
     bool ret = false;
-    for (const auto& child : _children)
+    for (const auto& child : getChildren())
     {
         if (std::regex_match(child->_name, std::regex(searchName)))
         {
@@ -937,6 +929,21 @@ void Node::addChild(Node* child, int localZOrder, const std::string &name)
 
 void Node::addChildHelper(Node* child, int localZOrder, int tag, const std::string &name, bool setTag)
 {
+    auto assertNotSelfChild
+        ( [ this, child ]() -> bool
+          {
+              for ( Node* parent( getParent() ); parent != nullptr;
+                    parent = parent->getParent() )
+                  if ( parent == child )
+                      return false;
+              
+              return true;
+          } );
+    (void)assertNotSelfChild;
+    
+    CCASSERT( assertNotSelfChild(),
+              "A node cannot be the child of his own children" );
+    
     if (_children.empty())
     {
         this->childrenAlloc();
@@ -1126,6 +1133,7 @@ void Node::sortAllChildren()
     {
         sortNodes(_children);
         _reorderChildDirty = false;
+        _eventDispatcher->setDirtyForNode(this);
     }
 }
 
@@ -1137,7 +1145,7 @@ void Node::draw()
     draw(renderer, _modelViewTransform, true);
 }
 
-void Node::draw(Renderer* renderer, const Mat4 &transform, uint32_t flags)
+void Node::draw(Renderer* /*renderer*/, const Mat4 & /*transform*/, uint32_t /*flags*/)
 {
 }
 
@@ -1152,7 +1160,7 @@ uint32_t Node::processParentFlags(const Mat4& parentTransform, uint32_t parentFl
 {
     if(_usingNormalizedPosition)
     {
-        CCASSERT(_parent, "setNormalizedPosition() doesn't work with orphan nodes");
+        CCASSERT(_parent, "setPositionNormalized() doesn't work with orphan nodes");
         if ((parentFlags & FLAGS_CONTENT_SIZE_DIRTY) || _normalizedPositionDirty)
         {
             auto& s = _parent->getContentSize();
@@ -1163,14 +1171,11 @@ uint32_t Node::processParentFlags(const Mat4& parentTransform, uint32_t parentFl
         }
     }
 
-    //remove this two line given that isVisitableByVisitingCamera should not affect the calculation of transform given that we are visiting scene
-    //without involving view and projection matrix.
-    
     // Fixes Github issue #16100. Basically when having two cameras, one camera might set as dirty the
     // node that is not visited by it, and might affect certain calculations. Besides, it is faster to do this.
     if (!isVisitableByVisitingCamera())
         return parentFlags;
-    
+
     uint32_t flags = parentFlags;
     flags |= (_transformUpdated ? FLAGS_TRANSFORM_DIRTY : 0);
     flags |= (_contentSizeDirty ? FLAGS_CONTENT_SIZE_DIRTY : 0);
@@ -1445,6 +1450,12 @@ ssize_t Node::getNumberOfRunningActions() const
     return _actionManager->getNumberOfRunningActionsInTarget(this);
 }
 
+ssize_t Node::getNumberOfRunningActionsByTag(int tag) const
+{
+    return _actionManager->getNumberOfRunningActionsInTargetByTag(this, tag);
+}
+
+
 // MARK: Callbacks
 
 void Node::setScheduler(Scheduler* scheduler)
@@ -1717,16 +1728,27 @@ const Mat4& Node::getNodeToParentTransform() const
             // FIXME:: Although this is faster than multiplying a vec4 * mat4
             _transform.m[12] += _transform.m[0] * -_anchorPointInPoints.x + _transform.m[4] * -_anchorPointInPoints.y;
             _transform.m[13] += _transform.m[1] * -_anchorPointInPoints.x + _transform.m[5] * -_anchorPointInPoints.y;
+            _transform.m[14] += _transform.m[2] * -_anchorPointInPoints.x + _transform.m[6] * -_anchorPointInPoints.y;
         }
-        
-        if (_useAdditionalTransform)
-        {
-            _transform = _transform * _additionalTransform;
-        }
-        
-        _transformDirty = false;
     }
-    
+
+    if (_additionalTransform)
+    {
+        // This is needed to support both Node::setNodeToParentTransform() and Node::setAdditionalTransform()
+        // at the same time. The scenario is this:
+        // at some point setNodeToParentTransform() is called.
+        // and later setAdditionalTransform() is called every time. And since _transform
+        // is being overwritten everyframe, _additionalTransform[1] is used to have a copy
+        // of the last "_transform without _additionalTransform"
+        if (_transformDirty)
+            _additionalTransform[1] = _transform;
+
+        if (_transformUpdated)
+            _transform = _additionalTransform[1] * _additionalTransform[0];
+    }
+
+    _transformDirty = _additionalTransformDirty = false;
+
     return _transform;
 }
 
@@ -1735,6 +1757,10 @@ void Node::setNodeToParentTransform(const Mat4& transform)
     _transform = transform;
     _transformDirty = false;
     _transformUpdated = true;
+
+    if (_additionalTransform)
+        // _additionalTransform[1] has a copy of lastest transform
+        _additionalTransform[1] = transform;
 }
 
 void Node::setAdditionalTransform(const AffineTransform& additionalTransform)
@@ -1744,20 +1770,31 @@ void Node::setAdditionalTransform(const AffineTransform& additionalTransform)
     setAdditionalTransform(&tmp);
 }
 
-void Node::setAdditionalTransform(Mat4* additionalTransform)
+void Node::setAdditionalTransform(const Mat4* additionalTransform)
 {
     if (additionalTransform == nullptr)
     {
-        _useAdditionalTransform = false;
+        delete[] _additionalTransform;
+        _additionalTransform = nullptr;
     }
     else
     {
-        _additionalTransform = *additionalTransform;
-        _useAdditionalTransform = true;
+        if (!_additionalTransform) {
+            _additionalTransform = new Mat4[2];
+
+            // _additionalTransform[1] is used as a backup for _transform
+            _additionalTransform[1] = _transform;
+        }
+
+        _additionalTransform[0] = *additionalTransform;
     }
-    _transformUpdated = _transformDirty = _inverseDirty = true;
+    _transformUpdated = _additionalTransformDirty = _inverseDirty = true;
 }
 
+void Node::setAdditionalTransform(const Mat4& additionalTransform)
+{
+    setAdditionalTransform(&additionalTransform);
+}
 
 AffineTransform Node::getParentToNodeAffineTransform() const
 {
@@ -1978,6 +2015,14 @@ void Node::disableCascadeOpacity()
     {
         child->updateDisplayedOpacity(255);
     }
+}
+
+void Node::setOpacityModifyRGB(bool /*value*/)
+{}
+
+bool Node::isOpacityModifyRGB() const
+{
+    return false;
 }
 
 const Color3B& Node::getColor(void) const

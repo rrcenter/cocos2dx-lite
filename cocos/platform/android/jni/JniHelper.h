@@ -1,6 +1,6 @@
 /****************************************************************************
 Copyright (c) 2010-2012 cocos2d-x.org
-Copyright (c) 2013-2014 Chukong Technologies Inc.
+Copyright (c) 2013-2017 Chukong Technologies Inc.
 
 http://www.cocos2d-x.org
 
@@ -29,7 +29,9 @@ THE SOFTWARE.
 #include <string>
 #include <vector>
 #include <unordered_map>
+#include <functional>
 #include "platform/CCPlatformMacros.h"
+#include "math/Vec3.h"
 
 NS_CC_BEGIN
 
@@ -46,7 +48,7 @@ public:
     static void setJavaVM(JavaVM *javaVM);
     static JavaVM* getJavaVM();
     static JNIEnv* getEnv();
-    static jobject GetActivity();
+    static jobject getActivity();
 
     static bool setClassLoaderFrom(jobject activityInstance);
     static bool getStaticMethodInfo(JniMethodInfo &methodinfo,
@@ -62,10 +64,11 @@ public:
 
     static jmethodID loadclassMethod_methodID;
     static jobject classloader;
+    static std::function<void()> classloaderCallback;
 
     template <typename... Ts>
-    static void callStaticVoidMethod(const std::string& className,
-                                     const std::string& methodName,
+    static void callStaticVoidMethod(const std::string& className, 
+                                     const std::string& methodName, 
                                      Ts... xs) {
         cocos2d::JniMethodInfo t;
         std::string signature = "(" + std::string(getJNISignature(xs...)) + ")V";
@@ -79,8 +82,8 @@ public:
     }
 
     template <typename... Ts>
-    static bool callStaticBooleanMethod(const std::string& className,
-                                        const std::string& methodName,
+    static bool callStaticBooleanMethod(const std::string& className, 
+                                        const std::string& methodName, 
                                         Ts... xs) {
         jboolean jret = JNI_FALSE;
         cocos2d::JniMethodInfo t;
@@ -96,8 +99,8 @@ public:
     }
 
     template <typename... Ts>
-    static int callStaticIntMethod(const std::string& className,
-                                   const std::string& methodName,
+    static int callStaticIntMethod(const std::string& className, 
+                                   const std::string& methodName, 
                                    Ts... xs) {
         jint ret = 0;
         cocos2d::JniMethodInfo t;
@@ -113,8 +116,8 @@ public:
     }
 
     template <typename... Ts>
-    static float callStaticFloatMethod(const std::string& className,
-                                       const std::string& methodName,
+    static float callStaticFloatMethod(const std::string& className, 
+                                       const std::string& methodName, 
                                        Ts... xs) {
         jfloat ret = 0.0;
         cocos2d::JniMethodInfo t;
@@ -130,8 +133,59 @@ public:
     }
 
     template <typename... Ts>
-    static double callStaticDoubleMethod(const std::string& className,
-                                         const std::string& methodName,
+    static float* callStaticFloatArrayMethod(const std::string& className, 
+                                       const std::string& methodName, 
+                                       Ts... xs) {
+        static float ret[32];
+        cocos2d::JniMethodInfo t;
+        std::string signature = "(" + std::string(getJNISignature(xs...)) + ")[F";
+        if (cocos2d::JniHelper::getStaticMethodInfo(t, className.c_str(), methodName.c_str(), signature.c_str())) {
+            jfloatArray array = (jfloatArray) t.env->CallStaticObjectMethod(t.classID, t.methodID, convert(t, xs)...);
+            jsize len = t.env->GetArrayLength(array);
+            if (len <= 32) {
+                jfloat* elems = t.env->GetFloatArrayElements(array, 0);
+                if (elems) {
+                    memcpy(ret, elems, sizeof(float) * len);
+                    t.env->ReleaseFloatArrayElements(array, elems, 0);
+                };
+            }
+            t.env->DeleteLocalRef(t.classID);
+            deleteLocalRefs(t.env);
+            return &ret[0];
+        } else {
+            reportError(className, methodName, signature);
+        }
+        return nullptr;
+    }
+
+    template <typename... Ts>
+    static Vec3 callStaticVec3Method(const std::string& className, 
+                                       const std::string& methodName, 
+                                       Ts... xs) {
+        Vec3 ret;
+        cocos2d::JniMethodInfo t;
+        std::string signature = "(" + std::string(getJNISignature(xs...)) + ")[F";
+        if (cocos2d::JniHelper::getStaticMethodInfo(t, className.c_str(), methodName.c_str(), signature.c_str())) {
+            jfloatArray array = (jfloatArray) t.env->CallStaticObjectMethod(t.classID, t.methodID, convert(t, xs)...);
+            jsize len = t.env->GetArrayLength(array);
+            if (len == 3) {
+                jfloat* elems = t.env->GetFloatArrayElements(array, 0);
+                ret.x = elems[0];
+                ret.y = elems[1];
+                ret.z = elems[2];
+                t.env->ReleaseFloatArrayElements(array, elems, 0);
+            }
+            t.env->DeleteLocalRef(t.classID);
+            deleteLocalRefs(t.env);
+        } else {
+            reportError(className, methodName, signature);
+        }
+        return ret;
+    }
+
+    template <typename... Ts>
+    static double callStaticDoubleMethod(const std::string& className, 
+                                         const std::string& methodName, 
                                          Ts... xs) {
         jdouble ret = 0.0;
         cocos2d::JniMethodInfo t;
@@ -147,8 +201,8 @@ public:
     }
 
     template <typename... Ts>
-    static std::string callStaticStringMethod(const std::string& className,
-                                              const std::string& methodName,
+    static std::string callStaticStringMethod(const std::string& className, 
+                                              const std::string& methodName, 
                                               Ts... xs) {
         std::string ret;
 
@@ -175,7 +229,7 @@ private:
                                                  const char *paramCode);
 
     static JavaVM* _psJavaVM;
-
+    
     static jobject _activity;
 
     static jstring convert(cocos2d::JniMethodInfo& t, const char* x);

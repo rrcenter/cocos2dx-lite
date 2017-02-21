@@ -1,5 +1,5 @@
 /****************************************************************************
- Copyright (c) 2016 Chukong Technologies Inc.
+ Copyright (c) 2016-2017 Chukong Technologies Inc.
  
  http://www.cocos2d-x.org
  
@@ -81,7 +81,7 @@ public:
     static ThreadPool *newFixedThreadPool(int threadNum);
 
     /*
-     * Creates a thread pool with only one thread in the pool, it could be used to exeute multipy tasks serially in just one thread.
+     * Creates a thread pool with only one thread in the pool, it could be used to execute multiply tasks serially in just one thread.
      * @note The return value has to be delete while it doesn't needed
      */
     static ThreadPool *newSingleThreadPool();
@@ -122,7 +122,7 @@ public:
 
     /* 
      * Trys to shrink pool
-     * @note This method is only avaiable for cached thread pool
+     * @note This method is only available for cached thread pool
      */
     bool tryShrinkPool();
 

@@ -43,7 +43,7 @@ class Label;
 class SpriteFrame;
 struct CC_DLL ResourceData;
 
-namespace ui {
+namespace ui{
 
     class Scale9Sprite;
 /**
@@ -268,6 +268,13 @@ public:
      */
     void setTitleAlignment(TextHAlignment hAlignment, TextVAlignment vAlignment);
 
+    /** replaces the current Label node with a new one */
+    void setTitleLabel(Label* label);
+
+    /** returns the current Label being used */
+    Label* getTitleLabel() const;
+
+
     /** @brief When user pressed the button, the button will zoom to a scale.
      * The final scale of the button  equals (button original scale + _zoomScale)
      * @since v3.3
@@ -280,14 +287,14 @@ public:
      * @since v3.3
      */
     float getZoomScale()const;
-
+    
     /**
      * @brief Return the nine-patch sprite of normal state
      * @return the nine-patch sprite of normal state
      * @since v3.9
      */
     Scale9Sprite* getRendererNormal() const { return _buttonNormalRenderer; }
-
+    
     /**
      * @brief Return the nine-patch sprite of clicked state
      * @return the nine-patch sprite of clicked state

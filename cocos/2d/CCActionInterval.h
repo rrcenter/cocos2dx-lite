@@ -2,7 +2,7 @@
 Copyright (c) 2008-2010 Ricardo Quesada
 Copyright (c) 2011      Zynga Inc.
 Copyright (c) 2010-2012 cocos2d-x.org
-Copyright (c) 2013-2016 Chukong Technologies Inc.
+Copyright (c) 2013-2017 Chukong Technologies Inc.
 
 http://www.cocos2d-x.org
 
@@ -73,7 +73,7 @@ public:
      *
      * @return The seconds had elapsed since the actions started to run.
      */
-    inline float getElapsed(void) { return _elapsed; }
+    float getElapsed() { return _elapsed; }
 
     /** Sets the amplitude rate, extension in GridAction
      *
@@ -225,7 +225,7 @@ public:
      *
      * @param action The inner action.
      */
-    inline void setInnerAction(FiniteTimeAction *action)
+    void setInnerAction(FiniteTimeAction *action)
     {
         if (_innerAction != action)
         {
@@ -239,7 +239,7 @@ public:
      *
      * @return The inner action.
      */
-    inline FiniteTimeAction* getInnerAction()
+    FiniteTimeAction* getInnerAction()
     {
         return _innerAction;
     }
@@ -295,7 +295,7 @@ public:
      *
      * @param action The inner action.
      */
-    inline void setInnerAction(ActionInterval *action)
+    void setInnerAction(ActionInterval *action)
     {
         if (_innerAction != action)
         {
@@ -309,7 +309,7 @@ public:
      *
      * @return The inner action.
      */
-    inline ActionInterval* getInnerAction()
+    ActionInterval* getInnerAction()
     {
         return _innerAction;
     }

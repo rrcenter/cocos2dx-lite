@@ -1,6 +1,6 @@
 /****************************************************************************
  Copyright (c) 2010-2012 cocos2d-x.org
- Copyright (c) 2013-2014 Chukong Technologies Inc.
+ Copyright (c) 2013-2017 Chukong Technologies Inc.
 
  http://www.cocos2d-x.org
 
@@ -258,7 +258,7 @@ static CCAccelerometerDispatcher* s_pAccelerometerDispatcher;
         case UIInterfaceOrientationPortrait:
             break;
         default:
-            NSAssert(false, @"unknow orientation");
+            NSAssert(false, @"unknown orientation");
     }
 
     cocos2d::EventAcceleration event(*_acceleration);
@@ -413,7 +413,7 @@ static bool _initWithString(const char * text, cocos2d::Device::TextAlign align,
                                                    blue:info->tintColorB
                                                   alpha:info->tintColorA];
 
-        //adjust text rect acoording to overflow
+        // adjust text rect according to overflow
         NSMutableDictionary* tokenAttributesDict = [NSMutableDictionary dictionaryWithObjectsAndKeys:
                                              foregroundColor,NSForegroundColorAttributeName,
                                              font, NSFontAttributeName,
@@ -595,11 +595,18 @@ void Device::setKeepScreenOn(bool value)
  */
 void Device::vibrate(float duration)
 {
-    // See https://developer.apple.com/library/ios/documentation/AudioToolbox/Reference/SystemSoundServicesReference/index.html#//apple_ref/c/econst/kSystemSoundID_Vibrate
-    CC_UNUSED_PARAM(duration);
-
-    // automatically vibrates for approximately 0.4 seconds
-    AudioServicesPlayAlertSound(kSystemSoundID_Vibrate);
+    // See http://stackoverflow.com/questions/4724980/making-the-iphone-vibrate
+    // should vibrate no matter it is silient or not
+    if([[UIDevice currentDevice].model isEqualToString:@"iPhone"])
+    {
+        AudioServicesPlaySystemSound (1352); //works ALWAYS as of this post
+    }
+    else
+    {
+        // Not an iPhone, so doesn't have vibrate
+        // play the less annoying tick noise or one of your own
+        AudioServicesPlayAlertSound (kSystemSoundID_Vibrate);
+    }
 }
 
 void Device::forbidiCloud()

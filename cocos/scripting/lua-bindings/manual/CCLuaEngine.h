@@ -1,6 +1,6 @@
 /****************************************************************************
  Copyright (c) 2012      cocos2d-x.org
- Copyright (c) 2013-2014 Chukong Technologies Inc.
+ Copyright (c) 2013-2017 Chukong Technologies Inc.
  
  http://www.cocos2d-x.org
  
@@ -35,6 +35,7 @@ extern "C" {
 #include "scripting/lua-bindings/manual/CCLuaStack.h"
 #include "scripting/lua-bindings/manual/CCLuaValue.h"
 #include "scripting/lua-bindings/manual/cocos2d/LuaScriptHandlerMgr.h"
+#include "scripting/lua-bindings/manual/Lua-BindingsExport.h"
 #include "deprecated/CCNotificationCenter.h"
 
 /**
@@ -50,7 +51,7 @@ NS_CC_BEGIN
  * @lua NA
  * @js NA
  */
-class LuaEngine : public ScriptEngineProtocol
+class CC_LUA_DLL LuaEngine : public ScriptEngineProtocol
 {
 public:
     /**
@@ -106,7 +107,7 @@ public:
     
     /**
      * Reload script code corresponding to moduleFileName.
-     * If value of package["loaded"][moduleFileName] is existed, it would set the vaule nil.Then,it calls executeString function.
+     * If value of package["loaded"][moduleFileName] is existed, it would set the value nil.Then,it calls executeString function.
      *
      * @param moduleFileName String object holding the filename of the script file that is to be executed.
      * @return 0 if the string is executed correctly or other if the string is executed wrongly.
@@ -204,6 +205,16 @@ public:
      * @return default return 0 otherwise return values according different ScriptHandlerMgr::HandlerType.
      */
     virtual int handleEvent(ScriptHandlerMgr::HandlerType type,void* data);
+    /**
+     * Pass on the events related with TableCell and TableView to lua to handle.
+     *
+     * @param type Different ScriptHandlerMgr::HandlerType means different processing for the data.
+     * @param data The pointer point to the information which should be pass on to lua, it would be parsed in the function to convert to the specific data according to the ScriptHandlerMgr::HandlerType,then pass to lua as function parameters.
+     * @param numResults The number of the return values.
+     * @param func The callback would be called when numResults is > 0.
+     * @return default return 0 otherwise return values according different ScriptHandlerMgr::HandlerType.
+     */
+    //virtual int handleEvent(ScriptHandlerMgr::HandlerType type, void* data, int numResults, const std::function<void(lua_State*,int)>& func);
 private:
     LuaEngine(void)
     : _stack(nullptr)

@@ -1,6 +1,6 @@
 /****************************************************************************
  Copyright (c) 2011-2012 cocos2d-x.org
- Copyright (c) 2013-2014 Chukong Technologies Inc.
+ Copyright (c) 2013-2017 Chukong Technologies Inc.
 
  http://www.cocos2d-x.org
 
@@ -23,11 +23,10 @@
  THE SOFTWARE.
  ****************************************************************************/
 
-#include "CCLuaStack.h"
 #include "external/lua/lua_extensions.h"
+#include "scripting/lua-bindings/manual/CCLuaStack.h"
 #include "scripting/lua-bindings/manual/tolua_fix.h"
 #include <string.h>
-
 #include "external/xxtea/xxtea.h"
 extern "C" {
 #include "lua.h"
@@ -36,14 +35,14 @@ extern "C" {
 #include "lauxlib.h"
 }
 
-#include "Cocos2dxLuaLoader.h"
+#include "scripting/lua-bindings/manual/Cocos2dxLuaLoader.h"
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS || CC_TARGET_PLATFORM == CC_PLATFORM_MAC)
-#include "platform/ios/CCLuaObjcBridge.h"
+#include "scripting/lua-bindings/manual/platform/ios/CCLuaObjcBridge.h"
 #endif
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
-#include "platform/android/CCLuaJavaBridge.h"
+#include "scripting/lua-bindings/manual/platform/android/CCLuaJavaBridge.h"
 #endif
 
 #include "scripting/lua-bindings/manual/cocos2d/LuaOpengl.h"

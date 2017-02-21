@@ -2,7 +2,7 @@
 Copyright (c) 2008-2010 Ricardo Quesada
 Copyright (c) 2010-2012 cocos2d-x.org
 Copyright (c) 2011      Zynga Inc.
-Copyright (c) 2013-2014 Chukong Technologies Inc.
+Copyright (c) 2013-2017 Chukong Technologies Inc.
 
 http://www.cocos2d-x.org
 
@@ -211,7 +211,7 @@ bool TextureAtlas::initWithTexture(Texture2D *texture, ssize_t capacity)
     return true;
 }
 
-void TextureAtlas::listenRendererRecreated(EventCustom* event)
+void TextureAtlas::listenRendererRecreated(EventCustom* /*event*/)
 {  
     if (Configuration::getInstance()->supportsShareableVAO())
     {
@@ -390,7 +390,7 @@ void TextureAtlas::insertQuadFromIndex(ssize_t oldIndex, ssize_t newIndex)
         return;
     }
     // because it is ambiguous in iphone, so we implement abs ourselves
-    // unsigned int howMany = abs( oldIndex - newIndex);
+    // unsigned int howMany = std::abs( oldIndex - newIndex);
     auto howMany = (oldIndex - newIndex) > 0 ? (oldIndex - newIndex) :  (newIndex - oldIndex);
     auto dst = oldIndex;
     auto src = oldIndex + 1;

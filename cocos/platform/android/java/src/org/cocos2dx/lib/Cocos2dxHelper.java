@@ -1,6 +1,6 @@
 /****************************************************************************
 Copyright (c) 2010-2012 cocos2d-x.org
-Copyright (c) 2013-2016 Chukong Technologies Inc.
+Copyright (c) 2013-2017 Chukong Technologies Inc.
 
 http://www.cocos2d-x.org
 
@@ -97,7 +97,7 @@ public class Cocos2dxHelper {
 
     // The absolute path to the OBB if it exists, else the absolute path to the APK.
     private static String sAssetsPath = "";
-
+    
     // The OBB file
     private static ZipResourceFile sOBBFile = null;
 
@@ -136,9 +136,12 @@ public class Cocos2dxHelper {
                 parameters = new Object[]{Cocos2dxReflectionHelper.<String>getConstantValue(audioManagerClass, "PROPERTY_OUTPUT_FRAMES_PER_BUFFER")};
                 final String strBufferSizeInFrames = Cocos2dxReflectionHelper.<String>invokeInstanceMethod(am, "getProperty", new Class[]{String.class}, parameters);
 
-                sampleRate = Integer.parseInt(strSampleRate);
-                bufferSizeInFrames = Integer.parseInt(strBufferSizeInFrames);
-
+                try {
+                    sampleRate = Integer.parseInt(strSampleRate);
+                    bufferSizeInFrames = Integer.parseInt(strBufferSizeInFrames);
+                } catch (NumberFormatException e) {
+                    Log.e(TAG, "parseInt failed", e);
+                }
                 Log.d(TAG, "sampleRate: " + sampleRate + ", framesPerBuffer: " + bufferSizeInFrames);
             } else {
                 Log.d(TAG, "android version is lower than 17");
@@ -147,30 +150,30 @@ public class Cocos2dxHelper {
             nativeSetAudioDeviceInfo(isSupportLowLatency, sampleRate, bufferSizeInFrames);
 
             final ApplicationInfo applicationInfo = activity.getApplicationInfo();
-
+            
             Cocos2dxHelper.sPackageName = applicationInfo.packageName;
             Cocos2dxHelper.sFileDirectory = activity.getFilesDir().getAbsolutePath();
-
+            
             Cocos2dxHelper.nativeSetApkPath(Cocos2dxHelper.getAssetsPath());
-
+    
             Cocos2dxHelper.sCocos2dxAccelerometer = new Cocos2dxAccelerometer(activity);
             Cocos2dxHelper.sCocos2dMusic = new Cocos2dxMusic(activity);
             Cocos2dxHelper.sCocos2dSound = new Cocos2dxSound(activity);
             Cocos2dxHelper.sAssetManager = activity.getAssets();
             Cocos2dxHelper.nativeSetContext((Context)activity, Cocos2dxHelper.sAssetManager);
-
+    
             Cocos2dxBitmap.setContext(activity);
 
             Cocos2dxHelper.sVibrateService = (Vibrator)activity.getSystemService(Context.VIBRATOR_SERVICE);
 
             sInited = true;
-
+            
             //Enhance API modification begin
             Intent serviceIntent = new Intent(IGameTuningService.class.getName());
             serviceIntent.setPackage("com.enhance.gameservice");
             boolean suc = activity.getApplicationContext().bindService(serviceIntent, connection, Context.BIND_AUTO_CREATE);
             //Enhance API modification end
-
+            
             int versionCode = 1;
             try {
                 versionCode = Cocos2dxActivity.getContext().getPackageManager().getPackageInfo(Cocos2dxHelper.getCocos2dxPackageName(), 0).versionCode;
@@ -184,7 +187,7 @@ public class Cocos2dxHelper {
             }
         }
     }
-
+    
     // This function returns the absolute path to the OBB if it exists,
     // else it returns the absolute path to the APK.
     public static String getAssetsPath()
@@ -203,15 +206,15 @@ public class Cocos2dxHelper {
             else
                 Cocos2dxHelper.sAssetsPath = Cocos2dxHelper.sActivity.getApplicationInfo().sourceDir;
         }
-
+        
         return Cocos2dxHelper.sAssetsPath;
     }
-
+    
     public static ZipResourceFile getObbFile()
     {
         return Cocos2dxHelper.sOBBFile;
     }
-
+    
     //Enhance API modification begin
     private static ServiceConnection connection = new ServiceConnection() {
         public void onServiceConnected(ComponentName name, IBinder service) {
@@ -224,19 +227,19 @@ public class Cocos2dxHelper {
         }
     };
     //Enhance API modification end
-
+    
     public static Activity getActivity() {
         return sActivity;
     }
-
+    
     public static void addOnActivityResultListener(OnActivityResultListener listener) {
         onActivityResultListeners.add(listener);
     }
-
+    
     public static Set<OnActivityResultListener> getOnActivityResultListeners() {
         return onActivityResultListeners;
     }
-
+    
     public static boolean isActivityVisible(){
         return sActivityVisible;
     }
@@ -271,7 +274,7 @@ public class Cocos2dxHelper {
     public static String getCurrentLanguage() {
         return Locale.getDefault().getLanguage();
     }
-
+    
     public static String getDeviceModel(){
         return Build.MODEL;
     }
@@ -307,20 +310,16 @@ public class Cocos2dxHelper {
         sVibrateService.vibrate((long)(duration * 1000));
     }
 
-    public static void openStore(String storeId) {
-        // http://stackoverflow.com/a/28090925/5443510
-    }
+ 	public static String getVersion() {
+ 		try {
+ 			String version = Cocos2dxActivity.getContext().getPackageManager().getPackageInfo(Cocos2dxActivity.getContext().getPackageName(), 0).versionName;
+ 			return version;
+ 		} catch(Exception e) {
+ 			return "";
+ 		}
+ 	}
 
-    public static String getVersion() {
-        try {
-            String version = Cocos2dxActivity.getContext().getPackageManager().getPackageInfo(Cocos2dxActivity.getContext().getPackageName(), 0).versionName;
-            return version;
-        } catch(Exception e) {
-            return "";
-        }
-    }
-
-    public static boolean openURL(String url) {
+    public static boolean openURL(String url) { 
         boolean ret = false;
         try {
             Intent i = new Intent(Intent.ACTION_VIEW);
@@ -331,7 +330,7 @@ public class Cocos2dxHelper {
         }
         return ret;
     }
-
+    
     public static long[] getObbAssetFileDescriptor(final String path) {
         long[] array = new long[3];
         if (Cocos2dxHelper.sOBBFile != null) {
@@ -465,12 +464,12 @@ public class Cocos2dxHelper {
         sCocos2dSound.onEnterBackground();
         sCocos2dMusic.onEnterBackground();
     }
-
+    
     public static void onEnterForeground() {
         sCocos2dSound.onEnterForeground();
         sCocos2dMusic.onEnterForeground();
     }
-
+    
     public static void terminateProcess() {
         android.os.Process.killProcess(android.os.Process.myPid());
     }
@@ -513,11 +512,11 @@ public class Cocos2dxHelper {
         }
         return -1;
     }
-
+    
     // ===========================================================
     // Functions for CCUserDefault
     // ===========================================================
-
+    
     public static boolean getBoolForKey(String key, boolean defaultValue) {
         SharedPreferences settings = sActivity.getSharedPreferences(Cocos2dxHelper.PREFS_NAME, 0);
         try {
@@ -546,7 +545,7 @@ public class Cocos2dxHelper {
 
         return defaultValue;
     }
-
+    
     public static int getIntegerForKey(String key, int defaultValue) {
         SharedPreferences settings = sActivity.getSharedPreferences(Cocos2dxHelper.PREFS_NAME, 0);
         try {
@@ -574,7 +573,7 @@ public class Cocos2dxHelper {
 
         return defaultValue;
     }
-
+    
     public static float getFloatForKey(String key, float defaultValue) {
         SharedPreferences settings = sActivity.getSharedPreferences(Cocos2dxHelper.PREFS_NAME, 0);
         try {
@@ -602,12 +601,12 @@ public class Cocos2dxHelper {
 
         return defaultValue;
     }
-
+    
     public static double getDoubleForKey(String key, double defaultValue) {
         // SharedPreferences doesn't support saving double value
         return getFloatForKey(key, (float) defaultValue);
     }
-
+    
     public static String getStringForKey(String key, String defaultValue) {
         SharedPreferences settings = sActivity.getSharedPreferences(Cocos2dxHelper.PREFS_NAME, 0);
         try {
@@ -615,32 +614,32 @@ public class Cocos2dxHelper {
         }
         catch (Exception ex) {
             ex.printStackTrace();
-
+            
             return settings.getAll().get(key).toString();
         }
     }
-
+    
     public static void setBoolForKey(String key, boolean value) {
         SharedPreferences settings = sActivity.getSharedPreferences(Cocos2dxHelper.PREFS_NAME, 0);
         SharedPreferences.Editor editor = settings.edit();
         editor.putBoolean(key, value);
         editor.apply();
     }
-
+    
     public static void setIntegerForKey(String key, int value) {
         SharedPreferences settings = sActivity.getSharedPreferences(Cocos2dxHelper.PREFS_NAME, 0);
         SharedPreferences.Editor editor = settings.edit();
         editor.putInt(key, value);
         editor.apply();
     }
-
+    
     public static void setFloatForKey(String key, float value) {
         SharedPreferences settings = sActivity.getSharedPreferences(Cocos2dxHelper.PREFS_NAME, 0);
         SharedPreferences.Editor editor = settings.edit();
         editor.putFloat(key, value);
         editor.apply();
     }
-
+    
     public static void setDoubleForKey(String key, double value) {
         // SharedPreferences doesn't support recording double value
         SharedPreferences settings = sActivity.getSharedPreferences(Cocos2dxHelper.PREFS_NAME, 0);
@@ -648,14 +647,14 @@ public class Cocos2dxHelper {
         editor.putFloat(key, (float)value);
         editor.apply();
     }
-
+    
     public static void setStringForKey(String key, String value) {
         SharedPreferences settings = sActivity.getSharedPreferences(Cocos2dxHelper.PREFS_NAME, 0);
         SharedPreferences.Editor editor = settings.edit();
         editor.putString(key, value);
         editor.apply();
     }
-
+    
     public static void deleteValueForKey(String key) {
         SharedPreferences settings = sActivity.getSharedPreferences(Cocos2dxHelper.PREFS_NAME, 0);
         SharedPreferences.Editor editor = settings.edit();
@@ -674,7 +673,7 @@ public class Cocos2dxHelper {
 
         return null;
     }
-
+    
     // ===========================================================
     // Inner and Anonymous Classes
     // ===========================================================
@@ -746,7 +745,7 @@ public class Cocos2dxHelper {
         }
     }
 
-    //Enhance API modification end
+    //Enhance API modification end     
     public static float[] getAccelValue() {
         return Cocos2dxHelper.sCocos2dxAccelerometer.accelerometerValues;
     }

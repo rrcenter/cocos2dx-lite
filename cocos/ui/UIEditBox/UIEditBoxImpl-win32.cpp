@@ -641,6 +641,9 @@ EditBoxImplWin::EditBoxImplWin(EditBox* pEditText)
 , _editBoxInputMode(EditBox::InputMode::SINGLE_LINE)
 , _editBoxInputFlag(EditBox::InputFlag::INITIAL_CAPS_ALL_CHARACTERS)
 , _keyboardReturnType(EditBox::KeyboardReturnType::DEFAULT)
+, _alignment(TextHAlignment::LEFT)
+, _fontSize(-1)
+, _placeholderFontSize(-1)
 , _colText(Color3B::WHITE)
 , _colPlaceHolder(Color3B::GRAY)
 , _maxLength(-1)
@@ -685,6 +688,8 @@ bool EditBoxImplWin::initWithSize(const Size& size)
 
 void EditBoxImplWin::setFont(const char* pFontName, int fontSize)
 {
+    _fontName = pFontName;
+    _fontSize = fontSize;
     if (_label != nullptr)
     {
         if (pFontName[0] != '\0')  // To determine whether a string is empty quickly
@@ -718,6 +723,8 @@ void EditBoxImplWin::setFontColor(const Color4B& color)
 
 void EditBoxImplWin::setPlaceholderFont(const char* pFontName, int fontSize)
 {
+    _placeholderFontName = pFontName;
+    _placeholderFontSize = fontSize;
     if (_labelPlaceHolder != nullptr)
     {
         if (pFontName[0] != '\0')  // To determine whether a string is empty quickly
@@ -830,6 +837,11 @@ void EditBoxImplWin::setPlaceHolder(const char* pText)
 
         _labelPlaceHolder->setString(_placeHolder);
     }
+}
+
+const char* EditBoxImplWin::getPlaceHolder(void)
+{
+    return _placeHolder.c_str();
 }
 
 void EditBoxImplWin::setPosition(const Vec2& pos)

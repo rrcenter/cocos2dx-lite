@@ -2,7 +2,7 @@
 Copyright (c) 2008-2010 Ricardo Quesada
 Copyright (c) 2010-2013 cocos2d-x.org
 Copyright (c) 2011      Zynga Inc.
-Copyright (c) 2013-2015 Chukong Technologies Inc.
+Copyright (c) 2013-2017 Chukong Technologies Inc.
 
 http://www.cocos2d-x.org
 
@@ -242,8 +242,8 @@ void Director::setDefaultValues(void)
         Texture2D::setDefaultAlphaPixelFormat(Texture2D::PixelFormat::RGB5A1);
 
     // PVR v2 has alpha premultiplied ?
-    bool pvr_alpha_premultipled = conf->getValue("cocos2d.x.texture.pvrv2_has_alpha_premultiplied", Value(false)).asBool();
-    Image::setPVRImagesHavePremultipliedAlpha(pvr_alpha_premultipled);
+    bool pvr_alpha_premultiplied = conf->getValue("cocos2d.x.texture.pvrv2_has_alpha_premultiplied", Value(false)).asBool();
+    Image::setPVRImagesHavePremultipliedAlpha(pvr_alpha_premultiplied);
 }
 
 void Director::setGLDefaultValues()
@@ -445,25 +445,38 @@ void Director::initMatrixStack()
     {
         _modelViewMatrixStack.pop();
     }
-    
-    while (!_projectionMatrixStack.empty())
-    {
-        _projectionMatrixStack.pop();
-    }
-    
+
+    _projectionMatrixStackList.clear();
+
     while (!_textureMatrixStack.empty())
     {
         _textureMatrixStack.pop();
     }
-    
+
     _modelViewMatrixStack.push(Mat4::IDENTITY);
-    _projectionMatrixStack.push(Mat4::IDENTITY);
+    std::stack<Mat4> projectionMatrixStack;
+    projectionMatrixStack.push(Mat4::IDENTITY);
+    _projectionMatrixStackList.push_back(projectionMatrixStack);
     _textureMatrixStack.push(Mat4::IDENTITY);
 }
 
 void Director::resetMatrixStack()
 {
     initMatrixStack();
+}
+
+void Director::initProjectionMatrixStack(size_t stackCount)
+{
+    _projectionMatrixStackList.clear();
+    std::stack<Mat4> projectionMatrixStack;
+    projectionMatrixStack.push(Mat4::IDENTITY);
+    for (size_t i = 0; i < stackCount; ++i)
+        _projectionMatrixStackList.push_back(projectionMatrixStack);
+}
+
+size_t Director::getProjectionMatrixStackSize()
+{
+    return _projectionMatrixStackList.size();
 }
 
 void Director::popMatrix(MATRIX_STACK_TYPE type)
@@ -474,7 +487,7 @@ void Director::popMatrix(MATRIX_STACK_TYPE type)
     }
     else if(MATRIX_STACK_TYPE::MATRIX_STACK_PROJECTION == type)
     {
-        _projectionMatrixStack.pop();
+        _projectionMatrixStackList[0].pop();
     }
     else if(MATRIX_STACK_TYPE::MATRIX_STACK_TEXTURE == type)
     {
@@ -482,8 +495,13 @@ void Director::popMatrix(MATRIX_STACK_TYPE type)
     }
     else
     {
-        CCASSERT(false, "unknow matrix stack type");
+        CCASSERT(false, "unknown matrix stack type");
     }
+}
+
+void Director::popProjectionMatrix(size_t index)
+{
+    _projectionMatrixStackList[index].pop();
 }
 
 void Director::loadIdentityMatrix(MATRIX_STACK_TYPE type)
@@ -494,7 +512,7 @@ void Director::loadIdentityMatrix(MATRIX_STACK_TYPE type)
     }
     else if(MATRIX_STACK_TYPE::MATRIX_STACK_PROJECTION == type)
     {
-        _projectionMatrixStack.top() = Mat4::IDENTITY;
+        _projectionMatrixStackList[0].top() = Mat4::IDENTITY;
     }
     else if(MATRIX_STACK_TYPE::MATRIX_STACK_TEXTURE == type)
     {
@@ -502,8 +520,13 @@ void Director::loadIdentityMatrix(MATRIX_STACK_TYPE type)
     }
     else
     {
-        CCASSERT(false, "unknow matrix stack type");
+        CCASSERT(false, "unknown matrix stack type");
     }
+}
+
+void Director::loadProjectionIdentityMatrix(size_t index)
+{
+    _projectionMatrixStackList[index].top() = Mat4::IDENTITY;
 }
 
 void Director::loadMatrix(MATRIX_STACK_TYPE type, const Mat4& mat)
@@ -514,7 +537,7 @@ void Director::loadMatrix(MATRIX_STACK_TYPE type, const Mat4& mat)
     }
     else if(MATRIX_STACK_TYPE::MATRIX_STACK_PROJECTION == type)
     {
-        _projectionMatrixStack.top() = mat;
+        _projectionMatrixStackList[0].top() = mat;
     }
     else if(MATRIX_STACK_TYPE::MATRIX_STACK_TEXTURE == type)
     {
@@ -522,8 +545,13 @@ void Director::loadMatrix(MATRIX_STACK_TYPE type, const Mat4& mat)
     }
     else
     {
-        CCASSERT(false, "unknow matrix stack type");
+        CCASSERT(false, "unknown matrix stack type");
     }
+}
+
+void Director::loadProjectionMatrix(const Mat4& mat, size_t index)
+{
+    _projectionMatrixStackList[index].top() = mat;
 }
 
 void Director::multiplyMatrix(MATRIX_STACK_TYPE type, const Mat4& mat)
@@ -534,7 +562,7 @@ void Director::multiplyMatrix(MATRIX_STACK_TYPE type, const Mat4& mat)
     }
     else if(MATRIX_STACK_TYPE::MATRIX_STACK_PROJECTION == type)
     {
-        _projectionMatrixStack.top() *= mat;
+        _projectionMatrixStackList[0].top() *= mat;
     }
     else if(MATRIX_STACK_TYPE::MATRIX_STACK_TEXTURE == type)
     {
@@ -542,8 +570,13 @@ void Director::multiplyMatrix(MATRIX_STACK_TYPE type, const Mat4& mat)
     }
     else
     {
-        CCASSERT(false, "unknow matrix stack type");
+        CCASSERT(false, "unknown matrix stack type");
     }
+}
+
+void Director::multiplyProjectionMatrix(const Mat4& mat, size_t index)
+{
+    _projectionMatrixStackList[index].top() *= mat;
 }
 
 void Director::pushMatrix(MATRIX_STACK_TYPE type)
@@ -554,7 +587,7 @@ void Director::pushMatrix(MATRIX_STACK_TYPE type)
     }
     else if(type == MATRIX_STACK_TYPE::MATRIX_STACK_PROJECTION)
     {
-        _projectionMatrixStack.push(_projectionMatrixStack.top());
+        _projectionMatrixStackList[0].push(_projectionMatrixStackList[0].top());
     }
     else if(type == MATRIX_STACK_TYPE::MATRIX_STACK_TEXTURE)
     {
@@ -562,8 +595,13 @@ void Director::pushMatrix(MATRIX_STACK_TYPE type)
     }
     else
     {
-        CCASSERT(false, "unknow matrix stack type");
+        CCASSERT(false, "unknown matrix stack type");
     }
+}
+
+void Director::pushProjectionMatrix(size_t index)
+{
+    _projectionMatrixStackList[index].push(_projectionMatrixStackList[index].top());
 }
 
 const Mat4& Director::getMatrix(MATRIX_STACK_TYPE type) const
@@ -574,15 +612,20 @@ const Mat4& Director::getMatrix(MATRIX_STACK_TYPE type) const
     }
     else if(type == MATRIX_STACK_TYPE::MATRIX_STACK_PROJECTION)
     {
-        return _projectionMatrixStack.top();
+        return _projectionMatrixStackList[0].top();
     }
     else if(type == MATRIX_STACK_TYPE::MATRIX_STACK_TEXTURE)
     {
         return _textureMatrixStack.top();
     }
 
-    CCASSERT(false, "unknow matrix stack type, will return modelview matrix instead");
+    CCASSERT(false, "unknown matrix stack type, will return modelview matrix instead");
     return  _modelViewMatrixStack.top();
+}
+
+const Mat4& Director::getProjectionMatrix(size_t index) const
+{
+    return _projectionMatrixStackList[index].top();
 }
 
 void Director::setProjection(Projection projection)
@@ -601,11 +644,9 @@ void Director::setProjection(Projection projection)
     {
         case Projection::_2D:
         {
-            loadIdentityMatrix(MATRIX_STACK_TYPE::MATRIX_STACK_PROJECTION);
-
             Mat4 orthoMatrix;
             Mat4::createOrthographicOffCenter(0, size.width, 0, size.height, -1024, 1024, &orthoMatrix);
-            multiplyMatrix(MATRIX_STACK_TYPE::MATRIX_STACK_PROJECTION, orthoMatrix);
+            loadMatrix(MATRIX_STACK_TYPE::MATRIX_STACK_PROJECTION, orthoMatrix);
             loadIdentityMatrix(MATRIX_STACK_TYPE::MATRIX_STACK_MODELVIEW);
             break;
         }
@@ -616,17 +657,14 @@ void Director::setProjection(Projection projection)
 
             Mat4 matrixPerspective, matrixLookup;
 
-            loadIdentityMatrix(MATRIX_STACK_TYPE::MATRIX_STACK_PROJECTION);
-
             // issue #1334
             Mat4::createPerspective(60, (GLfloat)size.width/size.height, 10, zeye+size.height/2, &matrixPerspective);
 
-            multiplyMatrix(MATRIX_STACK_TYPE::MATRIX_STACK_PROJECTION, matrixPerspective);
-
             Vec3 eye(size.width/2, size.height/2, zeye), center(size.width/2, size.height/2, 0.0f), up(0.0f, 1.0f, 0.0f);
             Mat4::createLookAt(eye, center, up, &matrixLookup);
-            multiplyMatrix(MATRIX_STACK_TYPE::MATRIX_STACK_PROJECTION, matrixLookup);
-            
+            Mat4 proj3d = matrixPerspective * matrixLookup;
+
+            loadMatrix(MATRIX_STACK_TYPE::MATRIX_STACK_PROJECTION, proj3d);
             loadIdentityMatrix(MATRIX_STACK_TYPE::MATRIX_STACK_MODELVIEW);
             break;
         }
@@ -691,11 +729,9 @@ void Director::setDepthTest(bool on)
 void Director::setClearColor(const Color4F& clearColor)
 {
     _renderer->setClearColor(clearColor);
-
-    if (_defaultFBO)
-    {
-        _defaultFBO->setClearColor(clearColor);
-    }
+    auto defaultFBO = experimental::FrameBuffer::getOrCreateDefaultFBO(_openGLView);
+    
+    if(defaultFBO) defaultFBO->setClearColor(clearColor);
 }
 
 static void GLToClipTransform(Mat4 *transformOut)
@@ -726,7 +762,7 @@ Vec2 Director::convertToGL(const Vec2& uiPoint)
     Vec4 glCoord;
     //transformInv.transformPoint(clipCoord, &glCoord);
     transformInv.transformVector(clipCoord, &glCoord);
-    float factor = 1.0/glCoord.w;
+    float factor = 1.0f / glCoord.w;
     return Vec2(glCoord.x * factor, glCoord.y * factor);
 }
 
@@ -753,8 +789,8 @@ Vec2 Director::convertToUI(const Vec2& glPoint)
 	clipCoord.z = clipCoord.z / clipCoord.w;
 
     Size glSize = _openGLView->getDesignResolutionSize();
-    float factor = 1.0/glCoord.w;
-    return Vec2(glSize.width*(clipCoord.x*0.5 + 0.5) * factor, glSize.height*(-clipCoord.y*0.5 + 0.5) * factor);
+    float factor = 1.0f / glCoord.w;
+    return Vec2(glSize.width * (clipCoord.x * 0.5f + 0.5f) * factor, glSize.height * (-clipCoord.y * 0.5f + 0.5f) * factor);
 }
 
 const Size& Director::getWinSize(void) const
@@ -904,8 +940,8 @@ void Director::popToSceneStackLevel(int level)
     if (level >= c)
         return;
 
-    auto fisrtOnStackScene = _scenesStack.back();
-    if (fisrtOnStackScene == _runningScene)
+    auto firstOnStackScene = _scenesStack.back();
+    if (firstOnStackScene == _runningScene)
     {
 #if CC_ENABLE_GC_FOR_NATIVE_OBJECTS
         auto sEngine = ScriptEngineManager::getInstance()->getScriptEngine();
@@ -1099,7 +1135,7 @@ void Director::restartDirector()
     
     // Real restart in script level
 #if CC_ENABLE_SCRIPT_BINDING
-    ScriptEvent scriptEvent(kRestartGame, NULL);
+    ScriptEvent scriptEvent(kRestartGame, nullptr);
     ScriptEngineProtocol *scriptEngine = ScriptEngineManager::getInstance()->getScriptEngine();
     if (scriptEngine) {
         scriptEngine->sendEvent(&scriptEvent);

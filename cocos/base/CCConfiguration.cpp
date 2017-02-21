@@ -1,7 +1,7 @@
 /****************************************************************************
 Copyright (c) 2010      Ricardo Quesada
 Copyright (c) 2010-2012 cocos2d-x.org
-Copyright (c) 2013-2014 Chukong Technologies Inc.
+Copyright (c) 2013-2017 Chukong Technologies Inc.
 
 http://www.cocos2d-x.org
 
@@ -39,7 +39,7 @@ Configuration* Configuration::s_sharedConfiguration = nullptr;
 const char* Configuration::CONFIG_FILE_LOADED = "config_file_loaded";
 
 Configuration::Configuration()
-: _maxTextureSize(0)
+: _maxTextureSize(0) 
 , _maxModelviewStackDepth(0)
 , _supportsPVRTC(false)
 , _supportsETC1(false)
@@ -231,7 +231,11 @@ void Configuration::gatherGPUInfo()
     _supportsDiscardFramebuffer = checkForGLExtension("GL_EXT_discard_framebuffer");
 	_valueDict["gl.supports_discard_framebuffer"] = Value(_supportsDiscardFramebuffer);
 
+#ifdef CC_PLATFORM_PC
     _supportsShareableVAO = checkForGLExtension("vertex_array_object");
+#else
+    _supportsShareableVAO = checkForGLExtension("GL_OES_vertex_array_object");
+#endif
     _valueDict["gl.supports_vertex_array_object"] = Value(_supportsShareableVAO);
 
     _supportsOESMapBuffer = checkForGLExtension("GL_OES_mapbuffer");
@@ -412,7 +416,8 @@ const Value& Configuration::getValue(const std::string& key, const Value& defaul
     auto iter = _valueDict.find(key);
     if (iter != _valueDict.cend())
         return _valueDict.at(key);
-	return defaultValue;
+
+    return defaultValue;
 }
 
 void Configuration::setValue(const std::string& key, const Value& value)

@@ -1,6 +1,6 @@
 /****************************************************************************
- Copyright (c) 2013-2016 Chukong Technologies Inc.
-
+ Copyright (c) 2013-2017 Chukong Technologies Inc.
+ 
  http://www.cocos2d-x.org
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -1176,7 +1176,7 @@ int register_all_cocos2dx_ui_manual(lua_State* L)
 //     lua_pop(L, 1);
 // }
 
-int register_ui_moudle(lua_State* L)
+int register_ui_module(lua_State* L)
 {
     lua_getglobal(L, "_G");
     if (lua_istable(L,-1))//stack:...,_G,

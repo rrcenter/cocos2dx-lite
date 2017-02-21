@@ -3,7 +3,7 @@ Copyright (c) 2011      Максим Аксенов
 Copyright (c) 2009-2010 Ricardo Quesada
 Copyright (c) 2010-2012 cocos2d-x.org
 Copyright (c) 2011      Zynga Inc.
-Copyright (c) 2013-2016 Chukong Technologies Inc.
+Copyright (c) 2013-2017 Chukong Technologies Inc.
 
 http://www.cocos2d-x.org
 
@@ -215,9 +215,8 @@ bool TMXMapInfo::parseXMLFile(const std::string& xmlFilename)
 }
 
 // the XML parser calls here with all the elements
-void TMXMapInfo::startElement(void *ctx, const char *name, const char **atts)
+void TMXMapInfo::startElement(void* /*ctx*/, const char *name, const char **atts)
 {    
-    CC_UNUSED_PARAM(ctx);
     TMXMapInfo *tmxMapInfo = this;
     std::string elementName = name;
     ValueMap attributeDict;
@@ -665,9 +664,8 @@ void TMXMapInfo::startElement(void *ctx, const char *name, const char **atts)
     }
 }
 
-void TMXMapInfo::endElement(void *ctx, const char *name)
+void TMXMapInfo::endElement(void* /*ctx*/, const char *name)
 {
-    CC_UNUSED_PARAM(ctx);
     TMXMapInfo *tmxMapInfo = this;
     std::string elementName = name;
 
@@ -786,9 +784,8 @@ void TMXMapInfo::endElement(void *ctx, const char *name)
     }
 }
 
-void TMXMapInfo::textHandler(void *ctx, const char *ch, size_t len)
+void TMXMapInfo::textHandler(void* /*ctx*/, const char *ch, size_t len)
 {
-    CC_UNUSED_PARAM(ctx);
     TMXMapInfo *tmxMapInfo = this;
     std::string text(ch, 0, len);
 

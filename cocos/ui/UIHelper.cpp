@@ -127,7 +127,7 @@ std::string Helper::getSubStringOfUTF8String(const std::string& str, std::string
         return "";
     }
     if (utf32.size() < start) {
-        CCLOGERROR("'start' is out of range: %zu, %s", static_cast<size_t>(start), str.c_str());
+        CCLOGERROR("'start' is out of range: %ld, %s", static_cast<long>(start), str.c_str());
         return "";
     }
     std::string result;

@@ -334,11 +334,9 @@ Node* CSLoader::createNodeWithVisibleSize(const std::string &filename, const ccN
 
 std::string CSLoader::getExtentionName(const std::string& name)
 {
-    std::string result = "";
-
     std::string path = name;
     size_t pos = path.find_last_of('.');
-    result = path.substr(pos + 1, path.length());
+    std::string result = path.substr(pos + 1, path.length());
 
     return result;
 }
@@ -1017,6 +1015,7 @@ Node* CSLoader::nodeWithFlatBuffers(const flatbuffers::NodeTree *nodetree, const
         std::string classname = nodetree->classname()->c_str();
         
         auto options = nodetree->options();
+        auto tableOptions = const_cast<Table*>((Table*)(&options));
         
         if (classname == "ProjectNode")
         {
@@ -1035,7 +1034,7 @@ Node* CSLoader::nodeWithFlatBuffers(const flatbuffers::NodeTree *nodetree, const
             {
                 node = Node::create();
             }
-            reader->setPropsWithFlatBuffers(node, options->data());
+            reader->setPropsWithFlatBuffers(node, tableOptions);
             if (action)
             {
                 action->setTimeSpeed(projectNodeOptions->innerActionSpeed());
@@ -1047,12 +1046,12 @@ Node* CSLoader::nodeWithFlatBuffers(const flatbuffers::NodeTree *nodetree, const
         {
             node = Node::create();
             auto reader = ComAudioReader::getInstance();
-            Component* component = reader->createComAudioWithFlatBuffers(options->data());
+            Component* component = reader->createComAudioWithFlatBuffers(tableOptions);
             if (component)
             {
                 component->setName(PlayableFrame::PLAYABLE_EXTENTION);
                 node->addComponent(component);
-                reader->setPropsWithFlatBuffers(node, options->data());
+                reader->setPropsWithFlatBuffers(node, tableOptions);
             }
         }
         else
@@ -1068,7 +1067,7 @@ Node* CSLoader::nodeWithFlatBuffers(const flatbuffers::NodeTree *nodetree, const
             NodeReaderProtocol* reader = dynamic_cast<NodeReaderProtocol*>(ObjectFactory::getInstance()->createObject(readername));
             if (reader)
             {
-                node = reader->createNodeWithFlatBuffers(options->data());
+                node = reader->createNodeWithFlatBuffers(tableOptions);
             }
             
             Widget* widget = dynamic_cast<Widget*>(node);
@@ -1364,6 +1363,7 @@ Node* CSLoader::nodeWithFlatBuffersForSimulator(const flatbuffers::NodeTree *nod
     std::string classname = nodetree->classname()->c_str();
     
     auto options = nodetree->options();
+    auto tableOptions = const_cast<Table*>((Table*)(&options));
     
     if (classname == "ProjectNode")
     {
@@ -1381,7 +1381,7 @@ Node* CSLoader::nodeWithFlatBuffersForSimulator(const flatbuffers::NodeTree *nod
         {
             node = Node::create();
         }
-        reader->setPropsWithFlatBuffers(node, options->data());
+        reader->setPropsWithFlatBuffers(node, tableOptions);
         if (action)
         {
             action->setTimeSpeed(projectNodeOptions->innerActionSpeed());
@@ -1393,11 +1393,11 @@ Node* CSLoader::nodeWithFlatBuffersForSimulator(const flatbuffers::NodeTree *nod
     {
         node = Node::create();
         auto reader = ComAudioReader::getInstance();
-        Component* component = reader->createComAudioWithFlatBuffers(options->data());
+        Component* component = reader->createComAudioWithFlatBuffers(tableOptions);
         if (component)
         {
             node->addComponent(component);
-            reader->setPropsWithFlatBuffers(node, options->data());
+            reader->setPropsWithFlatBuffers(node, tableOptions);
         }
     }
     else
@@ -1408,7 +1408,7 @@ Node* CSLoader::nodeWithFlatBuffersForSimulator(const flatbuffers::NodeTree *nod
         NodeReaderProtocol* reader = dynamic_cast<NodeReaderProtocol*>(ObjectFactory::getInstance()->createObject(readername));
         if (reader)
         {
-            node = reader->createNodeWithFlatBuffers(options->data());
+            node = reader->createNodeWithFlatBuffers(tableOptions);
         }
         
         Widget* widget = dynamic_cast<Widget*>(node);

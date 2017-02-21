@@ -1,6 +1,6 @@
 /****************************************************************************
 Copyright (c) 2010      cocos2d-x.org
-Copyright (c) 2013-2014 Chukong Technologies Inc.
+Copyright (c) 2013-2017 Chukong Technologies Inc.
 
 http://www.cocos2d-x.org
 
@@ -69,7 +69,7 @@ namespace utils
     CC_DLL void  captureScreen(const std::function<void(bool, const std::string&)>& afterCaptured, const std::string& filename);
 
     /** Capture a specific Node.
-    * @param startNode: specify the snapshot Node. It chould be cocos2d::Scene
+    * @param startNode specify the snapshot Node. It should be cocos2d::Scene
     * @param scale
     * @returns: return a Image, then can call saveToFile to save the image as "xxx.png or xxx.jpg".
     * @since v3.11
@@ -94,7 +94,7 @@ namespace utils
      * @param str The string be to converted to double.
      * @return Returns converted value of a string.
      */
-    CC_DLL double atof(const char* str);
+    CC_DLL double  atof(const char* str);
 
     /** Get current exact time, accurate to nanoseconds.
      * @return Returns the time in seconds since the Epoch.
@@ -161,7 +161,7 @@ namespace utils
     /**
      * Find a child by name recursively
 
-     * @return  Returns found node or nullptr with specificed type 'T'
+     * @return  Returns found node or nullptr with specified type 'T'
      */
     template<typename T> inline
     T findChild(Node* levelRoot, const std::string& name)
@@ -172,7 +172,7 @@ namespace utils
     /**
      * Find a child by tag recursively
 
-     * @return  Returns found node or nullptr with specificed type 'T'
+     * @return  Returns found node or nullptr with specified type 'T'
      */
     template<typename T> inline
     T findChild(Node* levelRoot, int tag)

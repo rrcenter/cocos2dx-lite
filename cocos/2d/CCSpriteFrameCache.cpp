@@ -4,7 +4,7 @@ Copyright (c) 2009      Jason Booth
 Copyright (c) 2009      Robert J Payne
 Copyright (c) 2010-2012 cocos2d-x.org
 Copyright (c) 2011      Zynga Inc.
-Copyright (c) 2013-2014 Chukong Technologies Inc.
+Copyright (c) 2013-2017 Chukong Technologies Inc.
 
 http://www.cocos2d-x.org
 
@@ -199,8 +199,8 @@ void SpriteFrameCache::addSpriteFramesWithDictionary(ValueMap& dictionary, Textu
                 CCLOGWARN("cocos2d: WARNING: originalWidth/Height not found on the SpriteFrame. AnchorPoint won't work as expected. Regenerate the .plist");
             }
             // abs ow/oh
-            ow = abs(ow);
-            oh = abs(oh);
+            ow = std::abs(ow);
+            oh = std::abs(oh);
             // create frame
             spriteFrame = SpriteFrame::createWithTexture(texture,
                                                          Rect(x, y, w, h),
@@ -319,7 +319,7 @@ void SpriteFrameCache::addSpriteFramesWithDictionary(ValueMap& dict, const std::
         {"I8", Texture2D::PixelFormat::I8},
         {"AI88", Texture2D::PixelFormat::AI88},
         {"ALPHA_INTENSITY", Texture2D::PixelFormat::AI88},
-        //{"BGRA8888", Texture2D::PixelFormat::BGRA8888}, no Image convertion RGBA -> BGRA
+        //{"BGRA8888", Texture2D::PixelFormat::BGRA8888}, no Image conversion RGBA -> BGRA
         {"RGB888", Texture2D::PixelFormat::RGB888}
     };
 
@@ -383,10 +383,10 @@ void SpriteFrameCache::addSpriteFramesWithFile(const std::string& plist, const s
 
 void SpriteFrameCache::addSpriteFramesWithFile(const std::string& plist)
 {
-    CCASSERT(plist.size()>0, "plist filename should not be nullptr");
+    CCASSERT(!plist.empty(), "plist filename should not be nullptr");
     
     std::string fullPath = FileUtils::getInstance()->fullPathForFilename(plist);
-    if (fullPath.size() == 0)
+    if (fullPath.empty())
     {
         // return if plist file doesn't exist
         CCLOG("cocos2d: SpriteFrameCache: can not find %s", plist.c_str());
@@ -395,7 +395,6 @@ void SpriteFrameCache::addSpriteFramesWithFile(const std::string& plist)
 
     if (_loadedFileNames->find(plist) == _loadedFileNames->end())
     {
-        
         ValueMap dict = FileUtils::getInstance()->getValueMapFromFile(fullPath);
 
         string texturePath("");
@@ -445,6 +444,7 @@ bool SpriteFrameCache::isSpriteFramesWithFileLoaded(const std::string& plist) co
 
 void SpriteFrameCache::addSpriteFrame(SpriteFrame* frame, const std::string& frameName)
 {
+    CCASSERT(frame, "frame should not be nil");
     _spriteFrames.insert(frameName, frame);
 }
 
@@ -485,11 +485,12 @@ void SpriteFrameCache::removeUnusedSpriteFrames()
 void SpriteFrameCache::removeSpriteFrameByName(const std::string& name)
 {
     // explicit nil handling
-    if( !(name.size()>0) )
+    if (name.empty())
         return;
 
     // Is this an alias ?
-    std::string key = _spriteFramesAliases[name].asString();
+    bool foundAlias = _spriteFramesAliases.find(name) != _spriteFramesAliases.end();
+    std::string key = foundAlias ? _spriteFramesAliases[name].asString() : "";
 
     if (!key.empty())
     {
@@ -577,14 +578,21 @@ SpriteFrame* SpriteFrameCache::getSpriteFrameByName(const std::string& name)
     if (!frame)
     {
         // try alias dictionary
-        std::string key = _spriteFramesAliases[name].asString();
-        if (!key.empty())
+        if (_spriteFramesAliases.find(name) != _spriteFramesAliases.end())
         {
-            frame = _spriteFrames.at(key);
-            if (!frame)
+            std::string key = _spriteFramesAliases[name].asString();
+            if (!key.empty())
             {
-                CCLOG("cocos2d: SpriteFrameCache: Frame '%s' not found", name.c_str());
+                frame = _spriteFrames.at(key);
+                if (!frame)
+                {
+                    CCLOG("cocos2d: SpriteFrameCache: Frame aliases '%s' isn't found", key.c_str());
+                }
             }
+        }
+        else
+        {
+            CCLOG("cocos2d: SpriteFrameCache: Frame '%s' isn't found", name.c_str());
         }
     }
     return frame;
@@ -631,11 +639,11 @@ void SpriteFrameCache::reloadSpriteFramesWithDictionary(ValueMap& dictionary, Te
             // check ow/oh
             if (!ow || !oh)
             {
-                CCLOGWARN("cocos2d: WARNING: originalWidth/Height not found on the SpriteFrame. AnchorPoint won't work as expected. Regenrate the .plist");
+                CCLOGWARN("cocos2d: WARNING: originalWidth/Height not found on the SpriteFrame. AnchorPoint won't work as expected. Regenerate the .plist");
             }
             // abs ow/oh
-            ow = abs(ow);
-            oh = abs(oh);
+            ow = std::abs(ow);
+            oh = std::abs(oh);
             // create frame
             spriteFrame = SpriteFrame::createWithTexture(texture,
                 Rect(x, y, w, h),
