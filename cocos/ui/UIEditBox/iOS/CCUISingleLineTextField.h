@@ -1,8 +1,3 @@
-
-
-#include "base/ccConfig.h"
-#if CC_USE_UI > 0
-
 /****************************************************************************
  Copyright (c) 2010-2012 cocos2d-x.org
  Copyright (c) 2012 James Chen
@@ -29,6 +24,9 @@
  THE SOFTWARE.
  ****************************************************************************/
 
+#include "base/ccConfig.h"
+#if CC_USE_UI > 0
+
 #import <UIKit/UIKit.h>
 #import "ui/UIEditBox/iOS/UITextField+CCUITextInput.h"
 
@@ -40,3 +38,5 @@
 @property (nonatomic, retain) UIFont *placeholderFont;
 
 @end
+
+#endif // CC_USE_UI

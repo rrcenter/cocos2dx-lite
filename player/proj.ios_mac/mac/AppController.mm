@@ -700,8 +700,8 @@ USING_NS_CC;
     {
         SimulatorScreenSize size = SimulatorConfig::getInstance()->getScreenSize((int)i);
         _project.setFrameSize(_project.isLandscapeFrame() ?
-                              SizeMaker(size.height, size.width) :
-                              SizeMaker(size.width, size.height));
+                              cocos2d::Size(size.height, size.width) :
+                              cocos2d::Size(size.width, size.height));
         _project.setFrameScale(1.0f);
         [self relaunch];
     }
