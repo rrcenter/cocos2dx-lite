@@ -77,8 +77,8 @@ LOCAL_SRC_FILES += $(LOCAL_CJSON_SRC_FILES)
 #                    ../auto/lua_cocos2dx_3d_auto.cpp
 
 #cocosdenshion
-# LOCAL_SRC_FILES += ../manual/cocosdenshion/lua_cocos2dx_cocosdenshion_manual.cpp \
-#                    ../auto/lua_cocos2dx_cocosdenshion_auto.cpp
+LOCAL_SRC_FILES += ../manual/cocosdenshion/lua_cocos2dx_cocosdenshion_manual.cpp \
+                   ../auto/lua_cocos2dx_cocosdenshion_auto.cpp
 
 #network
 LOCAL_SRC_FILES += ../manual/network/lua_cocos2dx_network_manual.cpp \
@@ -126,7 +126,7 @@ LOCAL_SRC_FILES +=  ../manual/ui/lua_cocos2dx_ui_manual.cpp \
 #                    ../auto/lua_cocos2dx_navmesh_auto.cpp \
 
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/../../../../external/lua/tolua \
-                    $(LOCAL_PATH)/../../../../external/lua/luajit/include \
+                    $(LUA_INCLUDE_PATH) \
                     $(LOCAL_PATH)/../../../2d \
                     $(LOCAL_PATH)/../../../base \
                     $(LOCAL_PATH)/../../../3d \
@@ -157,7 +157,7 @@ LOCAL_C_INCLUDES := $(LOCAL_PATH)/../../../../external/lua/tolua \
                     $(LOCAL_PATH)/../../../../external/lua
 
 LOCAL_EXPORT_C_INCLUDES := $(LOCAL_PATH)/../../../../external/lua/tolua \
-                           $(LOCAL_PATH)/../../../../external/lua/luajit/include \
+						   $(LUA_INCLUDE_PATH) \
                            $(LOCAL_PATH)/../auto \
                            $(LOCAL_PATH)/../manual \
                            $(LOCAL_PATH)/../manual/cocos2d \
@@ -179,5 +179,5 @@ LOCAL_STATIC_LIBRARIES := cocos2dx_static
 
 include $(BUILD_STATIC_LIBRARY)
 
-$(call import-module,lua/luajit/prebuilt/android)
+$(call import-module,$(LUA_IMPORT_PATH))
 $(call import-module,.)

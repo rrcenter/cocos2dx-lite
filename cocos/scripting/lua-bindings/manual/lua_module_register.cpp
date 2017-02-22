@@ -26,7 +26,10 @@
 int lua_module_register(lua_State* L)
 {
     //Dont' change the module register order unless you know what your are doing
+#if CC_USE_SIMPLE_AUDIO > 0
      register_cocosdenshion_module(L);
+#endif
+
 #if CC_USE_NETWORK > 0
     register_network_module(L);
 #endif
