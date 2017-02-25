@@ -11,7 +11,10 @@
 
 __docformat__ = 'restructuredtext'
 
+import os
+import sys
 import cocos
+import subprocess
 from MultiLanguage import MultiLanguage
 
 class CCPluginPackage(cocos.CCPlugin):
@@ -24,40 +27,41 @@ class CCPluginPackage(cocos.CCPlugin):
         return MultiLanguage.get_string('PACKAGE_BRIEF')
 
     def parse_args(self, argv):
-        if len(argv) < 1:
-            self.print_help()
-            return None
-
         return {"command": argv[0]}
 
     def run(self, argv, dependencies):
-        args = self.parse_args(argv)
-        if args is None:
-            return
-
-        command = args["command"]
-
-        if command == "search":
-            from package_search import FrameworkAdd
-            CommandClass = FrameworkAdd
-        elif command == "info":
-            from package_info import PackageInfo
-            CommandClass = PackageInfo
-        elif command == "install":
-            from package_install import PackageInstall
-            CommandClass = PackageInstall
-        elif command == "list":
-            from package_list import PackageList
-            CommandClass = PackageList
-        elif command == "-h":
-            self.print_help()
-            return
+        if '--anysdk' in argv:
+            argv.remove('--anysdk')
+            cmd = self._get_cocospackage_path() + ' --runincocos ' + ' '.join(argv)
+            ret = self._run_cmd(cmd)
         else:
-            message = MultiLanguage.get_string('PACKAGE_ERROR_INVALID_CMD_FMT', command)
-            raise cocos.CCPluginError(message, cocos.CCPluginError.ERROR_CMD_NOT_FOUND)
+            if '--sdkbox' in argv:
+                argv.remove('--sdkbox')
+            cmd = self._get_sdkbox_path() + ' --runincocos ' + ' '.join(argv)
+            ret = self._run_cmd(cmd)
+        if 0 != ret:
+            message = MultiLanguage.get_string('COCOS_ERROR_RUNNING_CMD_RET_FMT', str(ret))
+            raise cocos.CCPluginError(message, cocos.CCPluginError.ERROR_RUNNING_CMD)
 
-        commandObject = CommandClass()
-        commandObject.run(argv[1:])
+    def _run_cmd(self, command, cwd=None):
+        # cocos.CMDRunner.run_cmd(command, False, cwd=cwd)
+        return subprocess.call(command, shell=True, cwd=cwd)
+
+    def _get_sdkbox_path(self):
+        path = ''
+        if getattr(sys, 'frozen', None):
+            path = os.path.realpath(os.path.dirname(sys.executable))
+        else:
+            path = os.path.realpath(os.path.dirname(__file__))
+        return os.path.join(path, 'sdkbox')
+
+    def _get_cocospackage_path(self):
+        path = ''
+        if getattr(sys, 'frozen', None):
+            path = os.path.realpath(os.path.dirname(sys.executable))
+        else:
+            path = os.path.realpath(os.path.dirname(__file__))
+        return os.path.join(path, 'cocospackage')
 
     def print_help(self):
             print(MultiLanguage.get_string('PACKAGE_HELP'))

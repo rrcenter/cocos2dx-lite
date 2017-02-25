@@ -1,0 +1,24 @@
+{
+    "ndk_module_path" :[
+        "../..",
+        "../../cocos",
+        "../../external",
+        "../../cocos/scripting"
+    ],
+    "copy_resources": [
+        {
+            "from": "../res",
+            "to": "",
+            "exclude": [
+                "*.gz"
+            ]
+        },
+        {
+            "from": "../scripts",
+            "to": "",
+            "exclude": [
+                "*.gz"
+            ]
+        }
+    ]
+}
