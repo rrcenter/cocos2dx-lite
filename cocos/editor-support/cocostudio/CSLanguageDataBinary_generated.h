@@ -16,18 +16,14 @@ namespace flatbuffers {
 struct LanguageItem;
 struct LanguageSet;
 
-struct LanguageItem FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
-  enum {
-    VT_KEY = 4,
-    VT_VALUE = 6
-  };
-  const flatbuffers::String *key() const { return GetPointer<const flatbuffers::String *>(VT_KEY); }
-  const flatbuffers::String *value() const { return GetPointer<const flatbuffers::String *>(VT_VALUE); }
+struct LanguageItem : private flatbuffers::Table {
+  const flatbuffers::String *key() const { return GetPointer<const flatbuffers::String *>(4); }
+  const flatbuffers::String *value() const { return GetPointer<const flatbuffers::String *>(6); }
   bool Verify(flatbuffers::Verifier &verifier) const {
     return VerifyTableStart(verifier) &&
-           VerifyField<flatbuffers::uoffset_t>(verifier, VT_KEY) &&
+           VerifyField<flatbuffers::uoffset_t>(verifier, 4 /* key */) &&
            verifier.Verify(key()) &&
-           VerifyField<flatbuffers::uoffset_t>(verifier, VT_VALUE) &&
+           VerifyField<flatbuffers::uoffset_t>(verifier, 6 /* value */) &&
            verifier.Verify(value()) &&
            verifier.EndTable();
   }
@@ -36,8 +32,8 @@ struct LanguageItem FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
 struct LanguageItemBuilder {
   flatbuffers::FlatBufferBuilder &fbb_;
   flatbuffers::uoffset_t start_;
-  void add_key(flatbuffers::Offset<flatbuffers::String> key) { fbb_.AddOffset(LanguageItem::VT_KEY, key); }
-  void add_value(flatbuffers::Offset<flatbuffers::String> value) { fbb_.AddOffset(LanguageItem::VT_VALUE, value); }
+  void add_key(flatbuffers::Offset<flatbuffers::String> key) { fbb_.AddOffset(4, key); }
+  void add_value(flatbuffers::Offset<flatbuffers::String> value) { fbb_.AddOffset(6, value); }
   LanguageItemBuilder(flatbuffers::FlatBufferBuilder &_fbb) : fbb_(_fbb) { start_ = fbb_.StartTable(); }
   LanguageItemBuilder &operator=(const LanguageItemBuilder &);
   flatbuffers::Offset<LanguageItem> Finish() {
@@ -55,20 +51,11 @@ inline flatbuffers::Offset<LanguageItem> CreateLanguageItem(flatbuffers::FlatBuf
   return builder_.Finish();
 }
 
-inline flatbuffers::Offset<LanguageItem> CreateLanguageItemDirect(flatbuffers::FlatBufferBuilder &_fbb,
-    const char *key = nullptr,
-    const char *value = nullptr) {
-  return CreateLanguageItem(_fbb, key ? _fbb.CreateString(key) : 0, value ? _fbb.CreateString(value) : 0);
-}
-
-struct LanguageSet FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
-  enum {
-    VT_LANGUAGEITEMS = 4
-  };
-  const flatbuffers::Vector<flatbuffers::Offset<LanguageItem>> *languageItems() const { return GetPointer<const flatbuffers::Vector<flatbuffers::Offset<LanguageItem>> *>(VT_LANGUAGEITEMS); }
+struct LanguageSet : private flatbuffers::Table {
+  const flatbuffers::Vector<flatbuffers::Offset<LanguageItem>> *languageItems() const { return GetPointer<const flatbuffers::Vector<flatbuffers::Offset<LanguageItem>> *>(4); }
   bool Verify(flatbuffers::Verifier &verifier) const {
     return VerifyTableStart(verifier) &&
-           VerifyField<flatbuffers::uoffset_t>(verifier, VT_LANGUAGEITEMS) &&
+           VerifyField<flatbuffers::uoffset_t>(verifier, 4 /* languageItems */) &&
            verifier.Verify(languageItems()) &&
            verifier.VerifyVectorOfTables(languageItems()) &&
            verifier.EndTable();
@@ -78,7 +65,7 @@ struct LanguageSet FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
 struct LanguageSetBuilder {
   flatbuffers::FlatBufferBuilder &fbb_;
   flatbuffers::uoffset_t start_;
-  void add_languageItems(flatbuffers::Offset<flatbuffers::Vector<flatbuffers::Offset<LanguageItem>>> languageItems) { fbb_.AddOffset(LanguageSet::VT_LANGUAGEITEMS, languageItems); }
+  void add_languageItems(flatbuffers::Offset<flatbuffers::Vector<flatbuffers::Offset<LanguageItem>>> languageItems) { fbb_.AddOffset(4, languageItems); }
   LanguageSetBuilder(flatbuffers::FlatBufferBuilder &_fbb) : fbb_(_fbb) { start_ = fbb_.StartTable(); }
   LanguageSetBuilder &operator=(const LanguageSetBuilder &);
   flatbuffers::Offset<LanguageSet> Finish() {
@@ -94,22 +81,11 @@ inline flatbuffers::Offset<LanguageSet> CreateLanguageSet(flatbuffers::FlatBuffe
   return builder_.Finish();
 }
 
-inline flatbuffers::Offset<LanguageSet> CreateLanguageSetDirect(flatbuffers::FlatBufferBuilder &_fbb,
-    const std::vector<flatbuffers::Offset<LanguageItem>> *languageItems = nullptr) {
-  return CreateLanguageSet(_fbb, languageItems ? _fbb.CreateVector<flatbuffers::Offset<LanguageItem>>(*languageItems) : 0);
-}
+inline const LanguageSet *GetLanguageSet(const void *buf) { return flatbuffers::GetRoot<LanguageSet>(buf); }
 
-inline const flatbuffers::LanguageSet *GetLanguageSet(const void *buf) {
-  return flatbuffers::GetRoot<flatbuffers::LanguageSet>(buf);
-}
+inline bool VerifyLanguageSetBuffer(flatbuffers::Verifier &verifier) { return verifier.VerifyBuffer<LanguageSet>(); }
 
-inline bool VerifyLanguageSetBuffer(flatbuffers::Verifier &verifier) {
-  return verifier.VerifyBuffer<flatbuffers::LanguageSet>(nullptr);
-}
-
-inline void FinishLanguageSetBuffer(flatbuffers::FlatBufferBuilder &fbb, flatbuffers::Offset<flatbuffers::LanguageSet> root) {
-  fbb.Finish(root);
-}
+inline void FinishLanguageSetBuffer(flatbuffers::FlatBufferBuilder &fbb, flatbuffers::Offset<LanguageSet> root) { fbb.Finish(root); }
 
 }  // namespace flatbuffers
 

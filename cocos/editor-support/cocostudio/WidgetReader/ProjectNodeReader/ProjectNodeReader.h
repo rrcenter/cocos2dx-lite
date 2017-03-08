@@ -51,7 +51,7 @@ namespace cocostudio
                                                                              flatbuffers::FlatBufferBuilder* builder);
 
         void setPropsWithFlatBuffers(cocos2d::Node* node, const flatbuffers::Table* projectNodeOptions);
-        cocos2d::Node* createNodeWithFlatBuffers(const flatbuffers::Table* nodeOptions);
+        cocos2d::Node* createNodeWithFlatBuffers(const flatbuffers::Table* nodeOptions) { return nullptr; };
     };
 }
 

@@ -198,10 +198,6 @@ namespace cocostudio
         return component;
     }
     
-    Node* ComAudioReader::createNodeWithFlatBuffers(const flatbuffers::Table* /*nodeOptions*/)
-    {
-        return nullptr;
-    }
 }
 
 #endif // CC_USE_CCS
