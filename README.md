@@ -29,6 +29,7 @@ The major change:
 - Restore ui module (NOT depend CocoStudio)
 - Restore `Focus` event (need by `ui`)
 - Restore `CocoStudio` module
+- Keep working with `CocosStudio` after 3.14.1 ([https://github.com/cocos2d/cocos2d-x/pull/17349#issuecomment-279629919](https://github.com/cocos2d/cocos2d-x/pull/17349#issuecomment-279629919))
 
 ## How to start
 
