@@ -32,6 +32,7 @@ extern "C" {
 }
 #endif
 
+
 #include "scripting/lua-bindings/manual/cocos2d/LuaScriptHandlerMgr.h"
 #include "base/CCEventListenerAcceleration.h"
 #include "base/CCEventListenerCustom.h"

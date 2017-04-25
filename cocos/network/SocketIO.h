@@ -158,6 +158,15 @@ public:
 
     /**
      *  Static client creation method, similar to socketio.connect(uri) in JS.
+     *  @param  uri      the URI of the socket.io server.
+     *  @param  delegate the delegate which want to receive events from the socket.io client.
+     *  @param caFilePath The ca file path for wss connection
+     *  @return SIOClient* an initialized SIOClient if connected successfully, otherwise nullptr.
+     */
+    static SIOClient* connect(const std::string& uri, SocketIO::SIODelegate& delegate, const std::string& caFilePath);
+
+    /**
+     *  Static client creation method, similar to socketio.connect(uri) in JS.
      *  @param  delegate the delegate which want to receive events from the socket.io client.
      *  @param  uri      the URI of the socket.io server.
      *  @return SIOClient* an initialized SIOClient if connected successfully, otherwise nullptr.
@@ -196,8 +205,9 @@ class CC_DLL SIOClient
     : public cocos2d::Ref
 {
 private:
-    int _port;
-    std::string _host, _path, _tag;
+    friend class SocketIO; // Only SocketIO class could contruct a SIOClient instance.
+
+    std::string _path, _tag;
     bool _connected;
     SIOClientImpl* _socket;
 
@@ -213,7 +223,6 @@ private:
 
     friend class SIOClientImpl;
 
-public:
     /**
      * Constructor of SIOClient class.
      *
@@ -223,12 +232,13 @@ public:
      * @param impl the SIOClientImpl object.
      * @param delegate the SIODelegate object.
      */
-    SIOClient(const std::string& host, int port, const std::string& path, SIOClientImpl* impl, SocketIO::SIODelegate& delegate);
+    SIOClient(const std::string& path, SIOClientImpl* impl, SocketIO::SIODelegate& delegate);
     /**
      * Destructor of SIOClient class.
      */
     virtual ~SIOClient();
 
+public:
     /**
      * Get the delegate for the client
      * @return the delegate object for the client

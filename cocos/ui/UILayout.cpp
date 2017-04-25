@@ -42,7 +42,7 @@ THE SOFTWARE.
 #include "2d/CCLayer.h"
 #include "2d/CCSprite.h"
 #include "base/CCEventFocus.h"
-#include "base/CCStencilStateManager.hpp"
+#include "base/CCStencilStateManager.h"
 #include "base/CCResourceData.h"
 
 

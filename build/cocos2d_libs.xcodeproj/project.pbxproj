@@ -1488,6 +1488,25 @@
 		9F9CE7E11D12F34500631192 /* CCDevice-apple.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F9CE7DF1D12F34500631192 /* CCDevice-apple.h */; };
 		9F9CE7E21D12F34500631192 /* CCDevice-apple.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9F9CE7E01D12F34500631192 /* CCDevice-apple.mm */; };
 		9F9CE7E71D12FAE500631192 /* CCDevice-apple.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9F9CE7E01D12F34500631192 /* CCDevice-apple.mm */; };
+		9FB6DA7C1EAF76BA00B5B482 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FB6DA7A1EAF76BA00B5B482 /* libcrypto.a */; };
+		9FB6DA7D1EAF76BA00B5B482 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FB6DA7B1EAF76BA00B5B482 /* libssl.a */; };
+		9FB6DA801EAF78E800B5B482 /* AudioDecoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 9FB6DA7E1EAF78E800B5B482 /* AudioDecoder.h */; };
+		9FB6DA811EAF78E800B5B482 /* AudioDecoder.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9FB6DA7F1EAF78E800B5B482 /* AudioDecoder.mm */; };
+		9FB6DA841EAF794C00B5B482 /* Uri.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FB6DA821EAF794C00B5B482 /* Uri.cpp */; };
+		9FB6DA851EAF794C00B5B482 /* Uri.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FB6DA821EAF794C00B5B482 /* Uri.cpp */; };
+		9FB6DA861EAF794C00B5B482 /* Uri.h in Headers */ = {isa = PBXBuildFile; fileRef = 9FB6DA831EAF794C00B5B482 /* Uri.h */; };
+		9FB6DA871EAF794C00B5B482 /* Uri.h in Headers */ = {isa = PBXBuildFile; fileRef = 9FB6DA831EAF794C00B5B482 /* Uri.h */; };
+		9FB6DA8A1EAF7A9800B5B482 /* SkeletonBatch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FB6DA881EAF7A9800B5B482 /* SkeletonBatch.cpp */; };
+		9FB6DA8B1EAF7A9800B5B482 /* SkeletonBatch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FB6DA881EAF7A9800B5B482 /* SkeletonBatch.cpp */; };
+		9FB6DA8C1EAF7A9800B5B482 /* SkeletonBatch.h in Headers */ = {isa = PBXBuildFile; fileRef = 9FB6DA891EAF7A9800B5B482 /* SkeletonBatch.h */; };
+		9FB6DA8D1EAF7A9800B5B482 /* SkeletonBatch.h in Headers */ = {isa = PBXBuildFile; fileRef = 9FB6DA891EAF7A9800B5B482 /* SkeletonBatch.h */; };
+		9FB6DA901EAF7AE700B5B482 /* AttachmentVertices.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FB6DA8E1EAF7AE700B5B482 /* AttachmentVertices.cpp */; };
+		9FB6DA911EAF7AE700B5B482 /* AttachmentVertices.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FB6DA8E1EAF7AE700B5B482 /* AttachmentVertices.cpp */; };
+		9FB6DA921EAF7AE700B5B482 /* AttachmentVertices.h in Headers */ = {isa = PBXBuildFile; fileRef = 9FB6DA8F1EAF7AE700B5B482 /* AttachmentVertices.h */; };
+		9FB6DA931EAF7AE700B5B482 /* AttachmentVertices.h in Headers */ = {isa = PBXBuildFile; fileRef = 9FB6DA8F1EAF7AE700B5B482 /* AttachmentVertices.h */; };
+		9FB6DA961EAF7E2400B5B482 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FB6DA941EAF7E2400B5B482 /* libcrypto.a */; };
+		9FB6DA971EAF7E2400B5B482 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FB6DA951EAF7E2400B5B482 /* libssl.a */; };
+		9FB6DA981EAF7EA100B5B482 /* AudioDecoder.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9FB6DA7F1EAF78E800B5B482 /* AudioDecoder.mm */; };
 		9FE981381CAD98D90038012F /* CCStencilStateManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FE981361CAD98D90038012F /* CCStencilStateManager.cpp */; };
 		9FE981391CAD98D90038012F /* CCStencilStateManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FE981361CAD98D90038012F /* CCStencilStateManager.cpp */; };
 		9FE9813A1CAD98D90038012F /* CCStencilStateManager.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9FE981371CAD98D90038012F /* CCStencilStateManager.hpp */; };
@@ -1621,12 +1640,8 @@
 		B29A7E1A19EE1B7700872B35 /* Event.h in Headers */ = {isa = PBXBuildFile; fileRef = B29A7DB319EE1B7700872B35 /* Event.h */; };
 		B29A7E1B19EE1B7700872B35 /* SkeletonJson.c in Sources */ = {isa = PBXBuildFile; fileRef = B29A7DB419EE1B7700872B35 /* SkeletonJson.c */; };
 		B29A7E1C19EE1B7700872B35 /* SkeletonJson.c in Sources */ = {isa = PBXBuildFile; fileRef = B29A7DB419EE1B7700872B35 /* SkeletonJson.c */; };
-		B29A7E1D19EE1B7700872B35 /* PolygonBatch.h in Headers */ = {isa = PBXBuildFile; fileRef = B29A7DB519EE1B7700872B35 /* PolygonBatch.h */; };
-		B29A7E1E19EE1B7700872B35 /* PolygonBatch.h in Headers */ = {isa = PBXBuildFile; fileRef = B29A7DB519EE1B7700872B35 /* PolygonBatch.h */; };
 		B29A7E1F19EE1B7700872B35 /* BoneData.h in Headers */ = {isa = PBXBuildFile; fileRef = B29A7DB619EE1B7700872B35 /* BoneData.h */; };
 		B29A7E2019EE1B7700872B35 /* BoneData.h in Headers */ = {isa = PBXBuildFile; fileRef = B29A7DB619EE1B7700872B35 /* BoneData.h */; };
-		B29A7E2119EE1B7700872B35 /* PolygonBatch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B29A7DB719EE1B7700872B35 /* PolygonBatch.cpp */; };
-		B29A7E2219EE1B7700872B35 /* PolygonBatch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B29A7DB719EE1B7700872B35 /* PolygonBatch.cpp */; };
 		B29A7E2319EE1B7700872B35 /* IkConstraint.h in Headers */ = {isa = PBXBuildFile; fileRef = B29A7DB819EE1B7700872B35 /* IkConstraint.h */; };
 		B29A7E2419EE1B7700872B35 /* IkConstraint.h in Headers */ = {isa = PBXBuildFile; fileRef = B29A7DB819EE1B7700872B35 /* IkConstraint.h */; };
 		B29A7E2519EE1B7700872B35 /* Attachment.c in Sources */ = {isa = PBXBuildFile; fileRef = B29A7DB919EE1B7700872B35 /* Attachment.c */; };
@@ -2513,6 +2528,18 @@
 		9F9CE7DF1D12F34500631192 /* CCDevice-apple.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CCDevice-apple.h"; sourceTree = "<group>"; };
 		9F9CE7E01D12F34500631192 /* CCDevice-apple.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "CCDevice-apple.mm"; sourceTree = "<group>"; };
 		9F9CE7E31D12F99D00631192 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/CoreText.framework; sourceTree = DEVELOPER_DIR; };
+		9FB6DA7A1EAF76BA00B5B482 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcrypto.a; path = ../external/openssl/prebuilt/mac/libcrypto.a; sourceTree = "<group>"; };
+		9FB6DA7B1EAF76BA00B5B482 /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libssl.a; path = ../external/openssl/prebuilt/mac/libssl.a; sourceTree = "<group>"; };
+		9FB6DA7E1EAF78E800B5B482 /* AudioDecoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioDecoder.h; sourceTree = "<group>"; };
+		9FB6DA7F1EAF78E800B5B482 /* AudioDecoder.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AudioDecoder.mm; sourceTree = "<group>"; };
+		9FB6DA821EAF794C00B5B482 /* Uri.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Uri.cpp; sourceTree = "<group>"; };
+		9FB6DA831EAF794C00B5B482 /* Uri.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Uri.h; sourceTree = "<group>"; };
+		9FB6DA881EAF7A9800B5B482 /* SkeletonBatch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SkeletonBatch.cpp; sourceTree = "<group>"; };
+		9FB6DA891EAF7A9800B5B482 /* SkeletonBatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SkeletonBatch.h; sourceTree = "<group>"; };
+		9FB6DA8E1EAF7AE700B5B482 /* AttachmentVertices.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AttachmentVertices.cpp; sourceTree = "<group>"; };
+		9FB6DA8F1EAF7AE700B5B482 /* AttachmentVertices.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttachmentVertices.h; sourceTree = "<group>"; };
+		9FB6DA941EAF7E2400B5B482 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcrypto.a; path = ../external/openssl/prebuilt/ios/libcrypto.a; sourceTree = "<group>"; };
+		9FB6DA951EAF7E2400B5B482 /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libssl.a; path = ../external/openssl/prebuilt/ios/libssl.a; sourceTree = "<group>"; };
 		9FD5AFED1CBA81EA0030DF72 /* libluajit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libluajit.a; path = ../external/lua/luajit/prebuilt/ios/libluajit.a; sourceTree = "<group>"; };
 		9FE981361CAD98D90038012F /* CCStencilStateManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CCStencilStateManager.cpp; path = ../base/CCStencilStateManager.cpp; sourceTree = "<group>"; };
 		9FE981371CAD98D90038012F /* CCStencilStateManager.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = CCStencilStateManager.hpp; path = ../base/CCStencilStateManager.hpp; sourceTree = "<group>"; };
@@ -2593,9 +2620,7 @@
 		B29A7DB219EE1B7700872B35 /* Atlas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Atlas.h; sourceTree = "<group>"; };
 		B29A7DB319EE1B7700872B35 /* Event.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Event.h; sourceTree = "<group>"; };
 		B29A7DB419EE1B7700872B35 /* SkeletonJson.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = SkeletonJson.c; sourceTree = "<group>"; };
-		B29A7DB519EE1B7700872B35 /* PolygonBatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PolygonBatch.h; sourceTree = "<group>"; };
 		B29A7DB619EE1B7700872B35 /* BoneData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoneData.h; sourceTree = "<group>"; };
-		B29A7DB719EE1B7700872B35 /* PolygonBatch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PolygonBatch.cpp; sourceTree = "<group>"; };
 		B29A7DB819EE1B7700872B35 /* IkConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IkConstraint.h; sourceTree = "<group>"; };
 		B29A7DB919EE1B7700872B35 /* Attachment.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Attachment.c; sourceTree = "<group>"; };
 		B29A7DBA19EE1B7700872B35 /* spine-cocos2dx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "spine-cocos2dx.h"; sourceTree = "<group>"; };
@@ -2637,6 +2662,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9FB6DA7C1EAF76BA00B5B482 /* libcrypto.a in Frameworks */,
+				9FB6DA7D1EAF76BA00B5B482 /* libssl.a in Frameworks */,
 				15AE1C1A19AAE3C800C27E9E /* libwebsockets.a in Frameworks */,
 				B21770471977ED34009EE11B /* QuartzCore.framework in Frameworks */,
 				B21770451977ED14009EE11B /* Cocoa.framework in Frameworks */,
@@ -2655,6 +2682,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9FB6DA961EAF7E2400B5B482 /* libcrypto.a in Frameworks */,
+				9FB6DA971EAF7E2400B5B482 /* libssl.a in Frameworks */,
 				15AE1C1919AAE30900C27E9E /* libwebsockets.a in Frameworks */,
 				A07A4CAF1783777C0073F6A7 /* Foundation.framework in Frameworks */,
 				1A570364180BD1120088DEC7 /* libpng.a in Frameworks */,
@@ -2702,6 +2731,10 @@
 		1551A341158F2AB200E66CFE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9FB6DA941EAF7E2400B5B482 /* libcrypto.a */,
+				9FB6DA951EAF7E2400B5B482 /* libssl.a */,
+				9FB6DA7A1EAF76BA00B5B482 /* libcrypto.a */,
+				9FB6DA7B1EAF76BA00B5B482 /* libssl.a */,
 				9F9CE7E31D12F99D00631192 /* CoreText.framework */,
 				9FD5AFED1CBA81EA0030DF72 /* libluajit.a */,
 				9FE9814E1CAED7EE0038012F /* libluajit.a */,
@@ -3264,6 +3297,8 @@
 		1AAF5360180E3374000584C8 /* network */ = {
 			isa = PBXGroup;
 			children = (
+				9FB6DA821EAF794C00B5B482 /* Uri.cpp */,
+				9FB6DA831EAF794C00B5B482 /* Uri.h */,
 				507003251B69820100E83DDD /* HttpClient */,
 				507003271B69821300E83DDD /* WebSocket */,
 				50693C621B6BF2BC005C5820 /* Downloader */,
@@ -3392,14 +3427,14 @@
 				9F296E411DDC16D6006DF478 /* PathConstraint.h */,
 				9F296E421DDC16D6006DF478 /* PathConstraintData.c */,
 				9F296E431DDC16D6006DF478 /* PathConstraintData.h */,
-				B29A7DB719EE1B7700872B35 /* PolygonBatch.cpp */,
-				B29A7DB519EE1B7700872B35 /* PolygonBatch.h */,
 				B29A7D9119EE1B7700872B35 /* RegionAttachment.c */,
 				B29A7D8E19EE1B7700872B35 /* RegionAttachment.h */,
 				B29A7D8C19EE1B7700872B35 /* Skeleton.c */,
 				B29A7DA119EE1B7700872B35 /* Skeleton.h */,
 				B29A7DBE19EE1B7700872B35 /* SkeletonAnimation.cpp */,
 				B29A7D9919EE1B7700872B35 /* SkeletonAnimation.h */,
+				9FB6DA881EAF7A9800B5B482 /* SkeletonBatch.cpp */,
+				9FB6DA891EAF7A9800B5B482 /* SkeletonBatch.h */,
 				9F296E261DDC148D006DF478 /* SkeletonBinary.c */,
 				9F296E271DDC148D006DF478 /* SkeletonBinary.h */,
 				B29A7D9819EE1B7700872B35 /* SkeletonBounds.c */,
@@ -3429,6 +3464,8 @@
 				B29A7DBC19EE1B7700872B35 /* AtlasAttachmentLoader.h */,
 				9F296E2C1DDC161A006DF478 /* MeshAttachment.c */,
 				9F296E2D1DDC161A006DF478 /* MeshAttachment.h */,
+				9FB6DA8E1EAF7AE700B5B482 /* AttachmentVertices.cpp */,
+				9FB6DA8F1EAF7AE700B5B482 /* AttachmentVertices.h */,
 			);
 			path = spine;
 			sourceTree = "<group>";
@@ -3791,6 +3828,8 @@
 				50CB247219D9C5A100687767 /* AudioEngine-inl.mm */,
 				50CB247319D9C5A100687767 /* AudioPlayer.h */,
 				50CB247419D9C5A100687767 /* AudioPlayer.mm */,
+				9FB6DA7E1EAF78E800B5B482 /* AudioDecoder.h */,
+				9FB6DA7F1EAF78E800B5B482 /* AudioDecoder.mm */,
 			);
 			path = apple;
 			sourceTree = "<group>";
@@ -4584,6 +4623,7 @@
 				9F91DC241DBFA94D00EEF520 /* rapidxml_sax3.hpp in Headers */,
 				1A570073180BC5A10088DEC7 /* CCActionGrid.h in Headers */,
 				5034CA3B191D591100CE6051 /* ccShader_PositionColor.vert in Headers */,
+				9FB6DA8C1EAF7A9800B5B482 /* SkeletonBatch.h in Headers */,
 				1A570077180BC5A10088DEC7 /* CCActionGrid3D.h in Headers */,
 				1A57007B180BC5A10088DEC7 /* CCActionInstant.h in Headers */,
 				B276EF5F1988D1D500CD400F /* CCVertexIndexData.h in Headers */,
@@ -4736,6 +4776,7 @@
 				15FB20951AE7C57D00C31518 /* cdt.h in Headers */,
 				9F91DB101DBF9E8500EEF520 /* UIAbstractCheckButton.h in Headers */,
 				50643BE219BFCF1800EF68ED /* CCPlatformConfig.h in Headers */,
+				9FB6DA921EAF7AE700B5B482 /* AttachmentVertices.h in Headers */,
 				B29A7DF519EE1B7700872B35 /* Skeleton.h in Headers */,
 				5034CA49191D591100CE6051 /* ccShader_Label_df.frag in Headers */,
 				B29A7DD919EE1B7700872B35 /* SkeletonRenderer.h in Headers */,
@@ -4776,7 +4817,6 @@
 				B29A7E1919EE1B7700872B35 /* Event.h in Headers */,
 				9F91DBF01DBF9E8500EEF520 /* UIWidget.h in Headers */,
 				50ABC0071926664800A911A9 /* CCApplicationProtocol.h in Headers */,
-				B29A7E1D19EE1B7700872B35 /* PolygonBatch.h in Headers */,
 				50ABBD4E1925AB0000A911A9 /* MathUtil.h in Headers */,
 				50ABBE431925AB6F00A911A9 /* CCDirector.h in Headers */,
 				9F2DC8791DC107410064BF46 /* memorybuffer.h in Headers */,
@@ -4848,6 +4888,7 @@
 				50ABBE6F1925AB6F00A911A9 /* CCEventListenerKeyboard.h in Headers */,
 				B257B461198A353E00D9A687 /* CCPrimitiveCommand.h in Headers */,
 				5034CA31191D591100CE6051 /* ccShader_PositionTexture_uColor.vert in Headers */,
+				9FB6DA861EAF794C00B5B482 /* Uri.h in Headers */,
 				9F2DC7171DC106C00064BF46 /* CCArmatureDataManager.h in Headers */,
 				9F91DB381DBF9E8500EEF520 /* CCUIMultilineTextField.h in Headers */,
 				50ABBE7B1925AB6F00A911A9 /* CCEventMouse.h in Headers */,
@@ -4937,6 +4978,7 @@
 				50ABBEB11925AB6F00A911A9 /* CCUserDefault.h in Headers */,
 				B29A7DEF19EE1B7700872B35 /* SkeletonBounds.h in Headers */,
 				9F2DC81F1DC106C10064BF46 /* TextBMFontReader.h in Headers */,
+				9FB6DA801EAF78E800B5B482 /* AudioDecoder.h in Headers */,
 				9F91DB901DBF9E8500EEF520 /* UIListView.h in Headers */,
 				D0FD034D1A3B51AA00825BB5 /* CCAllocatorDiagnostics.h in Headers */,
 				50ABBEC71925AB6F00A911A9 /* etc1.h in Headers */,
@@ -5034,7 +5076,6 @@
 				50ABBEBA1925AB6F00A911A9 /* ccUTF8.h in Headers */,
 				50643BD619BFAEDA00EF68ED /* CCPlatformDefine.h in Headers */,
 				1A570068180BC5A10088DEC7 /* CCActionCamera.h in Headers */,
-				B29A7E1E19EE1B7700872B35 /* PolygonBatch.h in Headers */,
 				9F2DC7241DC106C00064BF46 /* CCBone.h in Headers */,
 				1A57006C180BC5A10088DEC7 /* CCActionCatmullRom.h in Headers */,
 				5034CA3A191D591100CE6051 /* ccShader_PositionColorLengthTexture.frag in Headers */,
@@ -5270,6 +5311,7 @@
 				50ABBE741925AB6F00A911A9 /* CCEventListenerMouse.h in Headers */,
 				D0FD03581A3B51AA00825BB5 /* CCAllocatorMutex.h in Headers */,
 				9F22892E1DEAB5E400E50645 /* CCEventListenerFocus.h in Headers */,
+				9FB6DA931EAF7AE700B5B482 /* AttachmentVertices.h in Headers */,
 				B29A7E1219EE1B7700872B35 /* EventData.h in Headers */,
 				1A5702CB180BCE370088DEC7 /* CCTextFieldTTF.h in Headers */,
 				15FB20771AE7BF8600C31518 /* CCAutoPolygon.h in Headers */,
@@ -5313,6 +5355,7 @@
 				50ABC0181926664800A911A9 /* CCImage.h in Headers */,
 				9F91DBC91DBF9E8500EEF520 /* UITextBMFont.h in Headers */,
 				50ABBE8E1925AB6F00A911A9 /* CCNS.h in Headers */,
+				9FB6DA8D1EAF7A9800B5B482 /* SkeletonBatch.h in Headers */,
 				50ABBEA61925AB6F00A911A9 /* CCScriptSupport.h in Headers */,
 				46C02E0A18E91123004B7456 /* xxhash.h in Headers */,
 				5034CA4C191D591100CE6051 /* ccShader_Label_df_glow.frag in Headers */,
@@ -5391,6 +5434,7 @@
 				B29A7DDA19EE1B7700872B35 /* SkeletonRenderer.h in Headers */,
 				D0FD035A1A3B51AA00825BB5 /* CCAllocatorStrategyDefault.h in Headers */,
 				50ABBD471925AB0000A911A9 /* CCVertex.h in Headers */,
+				9FB6DA871EAF794C00B5B482 /* Uri.h in Headers */,
 				9F2DC74E1DC106C00064BF46 /* CCDisplayFactory.h in Headers */,
 				9F2DC8841DC107410064BF46 /* rapidjson.h in Headers */,
 				1A01C69F18F57BE800EFE3A6 /* CCString.h in Headers */,
@@ -5573,6 +5617,7 @@
 				9F2DC7151DC106C00064BF46 /* CCArmatureDataManager.cpp in Sources */,
 				9F91DC011DBFA33F00EEF520 /* CCResourceData.cpp in Sources */,
 				1A570065180BC5A10088DEC7 /* CCActionCamera.cpp in Sources */,
+				9FB6DA841EAF794C00B5B482 /* Uri.cpp in Sources */,
 				9F2DC7331DC106C00064BF46 /* CCComController.cpp in Sources */,
 				9F91DB601DBF9E8500EEF520 /* UIEditBoxImpl-mac.mm in Sources */,
 				50ABBEAB1925AB6F00A911A9 /* ccTypes.cpp in Sources */,
@@ -5707,6 +5752,7 @@
 				9F296E3A1DDC16C2006DF478 /* Cocos2dAttachmentLoader.cpp in Sources */,
 				3EACC9A019F5014D00EB3C5E /* CCCamera.cpp in Sources */,
 				1A570214180BCBF40088DEC7 /* CCRenderTexture.cpp in Sources */,
+				9FB6DA901EAF7AE700B5B482 /* AttachmentVertices.cpp in Sources */,
 				B276EF651988D1D500CD400F /* CCVertexIndexBuffer.cpp in Sources */,
 				50ABBE411925AB6F00A911A9 /* CCDirector.cpp in Sources */,
 				1A570221180BCC1A0088DEC7 /* CCParticleBatchNode.cpp in Sources */,
@@ -5727,6 +5773,7 @@
 				9F91DBA61DBF9E8500EEF520 /* UIRichText.cpp in Sources */,
 				1A57028A180BCC900088DEC7 /* CCSpriteFrameCache.cpp in Sources */,
 				B29A7DC919EE1B7700872B35 /* SlotData.c in Sources */,
+				9FB6DA8A1EAF7A9800B5B482 /* SkeletonBatch.cpp in Sources */,
 				9F2DC72D1DC106C00064BF46 /* CCComAudio.cpp in Sources */,
 				1A570292180BCCAB0088DEC7 /* CCAnimation.cpp in Sources */,
 				1A570296180BCCAB0088DEC7 /* CCAnimationCache.cpp in Sources */,
@@ -5774,6 +5821,7 @@
 				9F2DC7251DC106C00064BF46 /* CCColliderDetector.cpp in Sources */,
 				50ABBD931925AB4100A911A9 /* CCGLProgramState.cpp in Sources */,
 				9F91DBB61DBF9E8500EEF520 /* UISlider.cpp in Sources */,
+				9FB6DA811EAF78E800B5B482 /* AudioDecoder.mm in Sources */,
 				1A57034B180BD09B0088DEC7 /* tinyxml2.cpp in Sources */,
 				1A570354180BD0B00088DEC7 /* ioapi.cpp in Sources */,
 				1A570358180BD0B00088DEC7 /* unzip.cpp in Sources */,
@@ -5873,7 +5921,6 @@
 				50ABBD601925AB0000A911A9 /* Vec4.cpp in Sources */,
 				50ABC05F1926664800A911A9 /* CCApplication-mac.mm in Sources */,
 				9F2DC6E31DC106C00064BF46 /* CCFrame.cpp in Sources */,
-				B29A7E2119EE1B7700872B35 /* PolygonBatch.cpp in Sources */,
 				9F296E481DDC16D6006DF478 /* PathConstraint.c in Sources */,
 				9F2DC82D1DC106C10064BF46 /* WidgetReader.cpp in Sources */,
 				15AE1BB719AADFEF00C27E9E /* WebSocket.cpp in Sources */,
@@ -5965,6 +6012,7 @@
 				9F2DC8BE1DC1087B0064BF46 /* CCTileMapAtlas.cpp in Sources */,
 				B29A7E0619EE1B7700872B35 /* extension.c in Sources */,
 				3E6176681960F89B00DE83F5 /* CCController-iOS.mm in Sources */,
+				9FB6DA8B1EAF7A9800B5B482 /* SkeletonBatch.cpp in Sources */,
 				50ABBE7E1925AB6F00A911A9 /* CCEventTouch.cpp in Sources */,
 				B29A7DCA19EE1B7700872B35 /* SlotData.c in Sources */,
 				9F2DC8A11DC107C50064BF46 /* flatc.cpp in Sources */,
@@ -6090,6 +6138,7 @@
 				50ABBD491925AB0000A911A9 /* Mat4.cpp in Sources */,
 				1A570203180BCBD40088DEC7 /* CCClippingNode.cpp in Sources */,
 				1A570209180BCBDF0088DEC7 /* CCMotionStreak.cpp in Sources */,
+				9FB6DA911EAF7AE700B5B482 /* AttachmentVertices.cpp in Sources */,
 				9F91DB0F1DBF9E8500EEF520 /* UIAbstractCheckButton.cpp in Sources */,
 				1A570211180BCBF40088DEC7 /* CCProgressTimer.cpp in Sources */,
 				503DD8ED1926736A00CD74DD /* CCGLViewImpl-ios.mm in Sources */,
@@ -6110,6 +6159,7 @@
 				9F91DB7F1DBF9E8500EEF520 /* UILayout.cpp in Sources */,
 				50ABBD901925AB4100A911A9 /* CCGLProgramCache.cpp in Sources */,
 				B29A7DD819EE1B7700872B35 /* SkeletonData.c in Sources */,
+				9FB6DA981EAF7EA100B5B482 /* AudioDecoder.mm in Sources */,
 				1A57027F180BCC900088DEC7 /* CCSprite.cpp in Sources */,
 				B29A7DD619EE1B7700872B35 /* RegionAttachment.c in Sources */,
 				9F296E551DDC1719006DF478 /* TransformConstraint.c in Sources */,
@@ -6230,6 +6280,7 @@
 				50ABC0001926664800A911A9 /* CCFileUtils-apple.mm in Sources */,
 				9F2DC7161DC106C00064BF46 /* CCArmatureDataManager.cpp in Sources */,
 				50ABBEB81925AB6F00A911A9 /* ccUTF8.cpp in Sources */,
+				9FB6DA851EAF794C00B5B482 /* Uri.cpp in Sources */,
 				50ABBE841925AB6F00A911A9 /* ccFPSImages.c in Sources */,
 				50ABBE4A1925AB6F00A911A9 /* CCEventAcceleration.cpp in Sources */,
 				9F296E2F1DDC161A006DF478 /* MeshAttachment.c in Sources */,
@@ -6242,7 +6293,6 @@
 				50693C5F1B6BF2AE005C5820 /* CCDownloader.cpp in Sources */,
 				1A01C68518F57BE800EFE3A6 /* CCArray.cpp in Sources */,
 				9F2DC7581DC106C00064BF46 /* CCProcessBase.cpp in Sources */,
-				B29A7E2219EE1B7700872B35 /* PolygonBatch.cpp in Sources */,
 				503DD8E31926736A00CD74DD /* CCDevice-ios.mm in Sources */,
 				B29A7DDC19EE1B7700872B35 /* Event.c in Sources */,
 				9F2DC78C1DC106C00064BF46 /* DictionaryHelper.cpp in Sources */,
@@ -6395,6 +6445,7 @@
 					"\"$(SRCROOT)/../external/curl/prebuilt/mac\"",
 					"\"$(SRCROOT)/../external/zlib/prebuilt/mac\"",
 					"\"$(SRCROOT)/../external/lua/luajit/prebuilt/mac\"",
+					"\"$(SRCROOT)/../external/openssl/prebuilt/mac\"",
 				);
 				MACH_O_TYPE = staticlib;
 				OTHER_LDFLAGS = "";
@@ -6434,6 +6485,7 @@
 					"\"$(SRCROOT)/../external/curl/prebuilt/mac\"",
 					"\"$(SRCROOT)/../external/zlib/prebuilt/mac\"",
 					"\"$(SRCROOT)/../external/lua/luajit/prebuilt/mac\"",
+					"\"$(SRCROOT)/../external/openssl/prebuilt/mac\"",
 				);
 				MACH_O_TYPE = staticlib;
 				OTHER_LDFLAGS = "";
@@ -6465,6 +6517,7 @@
 					"\"$(SRCROOT)/../external/curl/prebuilt/ios\"",
 					"\"$(SRCROOT)/../external/websockets/prebuilt/ios\"",
 					"\"$(SRCROOT)/../external/chipmunk/prebuilt/ios\"",
+					"\"$(SRCROOT)/../external/openssl/prebuilt/ios\"",
 				);
 				OTHER_LDFLAGS = "";
 				SDKROOT = iphoneos;
@@ -6499,6 +6552,7 @@
 					"\"$(SRCROOT)/../external/curl/prebuilt/ios\"",
 					"\"$(SRCROOT)/../external/websockets/prebuilt/ios\"",
 					"\"$(SRCROOT)/../external/chipmunk/prebuilt/ios\"",
+					"\"$(SRCROOT)/../external/openssl/prebuilt/ios\"",
 				);
 				OTHER_LDFLAGS = "";
 				SDKROOT = iphoneos;

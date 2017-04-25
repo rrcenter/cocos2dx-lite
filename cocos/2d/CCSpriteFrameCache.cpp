@@ -33,6 +33,7 @@ THE SOFTWARE.
 
 
 #include "2d/CCSprite.h"
+#include "2d/CCAutoPolygon.h"
 #include "platform/CCFileUtils.h"
 #include "base/CCNS.h"
 #include "base/ccMacros.h"

@@ -315,6 +315,7 @@ FrameBuffer* FrameBuffer::getOrCreateDefaultFBO(GLView* view)
     return _defaultFBO;
 }
 
+    
 void FrameBuffer::applyDefaultFBO()
 {
     if(_defaultFBO)

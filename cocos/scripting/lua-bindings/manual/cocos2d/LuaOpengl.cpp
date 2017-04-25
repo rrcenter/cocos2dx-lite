@@ -24,7 +24,6 @@
 #include "scripting/lua-bindings/manual/cocos2d/LuaOpengl.h"
 #include <map>
 #include <string>
-
 #include "scripting/lua-bindings/manual/tolua_fix.h"
 
 #include "scripting/lua-bindings/manual/CCLuaStack.h"
@@ -3114,6 +3113,7 @@ static int tolua_Cocos2d_glTexImage2D00(lua_State* tolua_S)
         unsigned int arg6 = (unsigned int)tolua_tonumber(tolua_S, 7, 0);
         unsigned int arg7 = (unsigned int)tolua_tonumber(tolua_S, 8, 0);
         unsigned int arg8 = (unsigned int)tolua_tonumber(tolua_S, 9, 0);
+
         unsigned char* unit8Array = new (std::nothrow) unsigned char[arg8];
         if (NULL == unit8Array)
         {
@@ -3239,6 +3239,7 @@ static int tolua_Cocos2d_glTexSubImage2D00(lua_State* tolua_S)
         unsigned int arg6 = (unsigned int)tolua_tonumber(tolua_S, 7, 0);
         unsigned int arg7 = (unsigned int)tolua_tonumber(tolua_S, 8, 0);
         unsigned int arg8 = (unsigned int)tolua_tonumber(tolua_S, 9, 0);
+
         unsigned char* unit8Array = new (std::nothrow) unsigned char[arg8];
         if (NULL == unit8Array)
         {

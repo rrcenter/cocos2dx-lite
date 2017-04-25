@@ -113,7 +113,6 @@ CCFileUtils.purgeFileUtils = CCFileUtilsDeprecated.purgeFileUtils
 --functions of CCFileUtils will be deprecated end
 
 --functions of CCMenu will be deprecated begin
-if CCMenu then
 local CCMenuDeprecated = { }
 function CCMenuDeprecated.createWithItem(self,...)
     deprecatedTip("CCMenuDeprecated:createWithItem","cc.Menu:createWithItem")
@@ -125,7 +124,6 @@ function CCMenuDeprecated.setHandlerPriority(self)
     print("\n********** \n".."setHandlerPriority was deprecated in 3.0. \n**********")
 end
 CCMenu.setHandlerPriority = CCMenuDeprecated.setHandlerPriority
-end
 --functions of CCMenu will be deprecated end
 
 --functions of CCNode will be deprecated begin
@@ -293,7 +291,7 @@ CCLabelAtlas.create = CCLabelAtlasDeprecated.create
 
 
 ---------------------------
---global functions wil be deprecated, begin
+--global functions will be deprecated, begin
 local function CCRectMake(x,y,width,height)
     deprecatedTip("CCRectMake(x,y,width,height)","cc.rect(x,y,width,height) in lua")
     return cc.rect(x,y,width,height)
@@ -347,7 +345,7 @@ local function ccc4FEqual(a,b)
     return a:equals(b)
 end
 _G.ccc4FEqual = ccc4FEqual
---global functions wil be deprecated, end
+--global functions will be deprecated, end
 
 
 --functions of _G will be deprecated begin
@@ -790,7 +788,6 @@ CCTimer.numberOfRunningActionsInTarget = CCTimerDeprecated.numberOfRunningAction
 
 
 --functions of CCMenuItemFont will be deprecated begin
-if CCMenuItemFont then
 local CCMenuItemFontDeprecated = { }
 function CCMenuItemFontDeprecated.fontSize()
     deprecatedTip("CCMenuItemFont:fontSize","CCMenuItemFont:getFontSize")
@@ -815,23 +812,19 @@ function CCMenuItemFontDeprecated.fontNameObj(self)
     return self:getFontNameObj()
 end
 CCMenuItemFont.fontNameObj = CCMenuItemFontDeprecated.fontNameObj
-end
 --functions of CCMenuItemFont will be deprecated end
 
 
 --functions of CCMenuItemToggle will be deprecated begin
-if CCMenuItemToggle then
 local CCMenuItemToggleDeprecated = { }
 function CCMenuItemToggleDeprecated.selectedItem(self)
     deprecatedTip("CCMenuItemToggle:selectedItem","CCMenuItemToggle:getSelectedItem")
     return self:getSelectedItem()
 end
 CCMenuItemToggle.selectedItem = CCMenuItemToggleDeprecated.selectedItem
-end
 --functions of CCMenuItemToggle will be deprecated end
 
 
-if CCTileMapAtlas then
 --functions of CCTileMapAtlas will be deprecated begin
 local CCTileMapAtlasDeprecated = { }
 function CCTileMapAtlasDeprecated.tileAt(self,pos)
@@ -934,8 +927,6 @@ end
 CCTMXObjectGroup.objectNamed = CCTMXObjectGroupDeprecated.objectNamed
 --functions of CCTMXObject will be deprecated end
 
-end -- TMX module
-
 --functions of CCRenderTexture will be deprecated begin
 local CCRenderTextureDeprecated = { }
 function CCRenderTextureDeprecated.newCCImage(self)
@@ -999,6 +990,13 @@ function NodeDeprecated.getVertexZ(self)
     return self:getPositionZ()
 end
 cc.Node.getVertexZ = NodeDeprecated.getVertexZ
+
+function NodeDeprecated.ignoreAnchorPointForPosition(self,ignore)
+    deprecatedTip("cc.Node:ignoreAnchorPointForPosition", "cc.Node:setIgnoreAnchorPointForPosition")
+    return self:setIgnoreAnchorPointForPosition(ignore)
+end
+
+cc.Node.ignoreAnchorPointForPosition = NodeDeprecated.ignoreAnchorPointForPosition
 --functions of cc.Node will be deprecated end
 
 --functions of cc.GLProgram will be deprecated begin

@@ -77,9 +77,8 @@ NS_CC_BEGIN
 #include "renderer/ccShader_Label_outline.frag"
 
 //
-#include "ccShader_CameraClear.vert"
-#include "ccShader_CameraClear.frag"
-
+#include "renderer/ccShader_CameraClear.vert"
+#include "renderer/ccShader_CameraClear.frag"
 
 // ETC1 ALPHA support
 #include "renderer/ccShader_ETC1AS_PositionTextureColor.frag"
