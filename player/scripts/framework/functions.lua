@@ -1371,6 +1371,21 @@ function string.urldecode(input)
     return input
 end
 
+local function chsize(char)
+    if not char then
+        print("not char")
+        return 0
+    elseif char > 240 then
+        return 4
+    elseif char > 225 then
+        return 3
+    elseif char > 192 then
+        return 2
+    else
+        return 1
+    end
+end
+
 --[[--
 
 计算 UTF8 字符串的长度，每一个中文算一个字符
@@ -1390,22 +1405,52 @@ print(string.utf8len(input))
 ]]
 function string.utf8len(input)
     local len  = string.len(input)
-    local left = len
-    local cnt  = 0
-    local arr  = {0, 0xc0, 0xe0, 0xf0, 0xf8, 0xfc}
-    while left ~= 0 do
-        local tmp = string.byte(input, -left)
-        local i   = #arr
-        while arr[i] do
-            if tmp >= arr[i] then
-                left = left - i
-                break
-            end
-            i = i - 1
-        end
-        cnt = cnt + 1
+    local count = 0
+    local currentIndex = 1
+    while currentIndex <= len do
+        local char = string.byte(input, currentIndex)
+        currentIndex = currentIndex + chsize(char)
+        count = count +1
     end
-    return cnt
+    return count
+end
+
+--[[--
+
+获取一个 UTF8 字符
+
+~~~ lua
+
+local input = '你好World123'
+print(str:utf8sub(2,2))
+-- 输出 好W
+
+~~~
+
+@param string input     输入字符串
+@param number startChar 开始字符下标,从1开始
+@param number numChars  要截取的字符长度
+
+@return string 一个 UTF8 字符
+
+]]
+function string.utf8sub(input, startChar, numChars)
+    local len = string.len(input)
+    local startIndex = 1
+    while startChar > 1 do
+        local char = string.byte(input, startIndex)
+        startIndex = startIndex + chsize(char)
+        startChar = startChar - 1
+    end
+
+    local currentIndex = startIndex
+
+    while numChars > 0 and currentIndex <= len do
+        local char = string.byte(input, currentIndex)
+        currentIndex = currentIndex + chsize(char)
+        numChars = numChars -1
+    end
+    return input:sub(startIndex, currentIndex - 1)
 end
 
 --[[--
