@@ -48,11 +48,42 @@ function Node:align(anchorPoint, x, y)
     return self
 end
 
-function Node:schedule(callback, interval)
-    local seq = transition.sequence({
-        cc.DelayTime:create(interval),
-        cc.CallFunc:create(callback),
-    })
+--[[
+
+隔 interval 调用一次 callback
+
+
+```lua
+display.newNode():schedule(function() print 'say hi' end, 0.1)
+-- 输出：（等 0.1 秒），say hi，（等 0.1 秒），say hi ……
+
+display.newNode():schedule(function() print 'say hi' end, 0.1, true)
+-- 输出：say hi，（等 0.1 秒），say hi，（等 0.1 秒），……
+```
+
+@callback: function 回调函数
+@interval: number   间隔时间
+@nodelay:  bool     先调用函数还是间隔
+
+]]
+
+
+
+function Node:schedule(callback, interval, nodelay)
+    local seq = nil
+    if nodelay then
+        seq = transition.sequence({
+            cc.CallFunc:create(callback),
+            cc.DelayTime:create(interval),
+
+        })
+    else
+        seq = transition.sequence({
+            cc.DelayTime:create(interval),
+            cc.CallFunc:create(callback),
+        })
+    end
+
     local action = cc.RepeatForever:create(seq)
     self:runAction(action)
     return action
