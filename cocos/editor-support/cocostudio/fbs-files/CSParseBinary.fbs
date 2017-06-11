@@ -9,10 +9,10 @@ namespace flatbuffers;
 
 table CSParseBinary
 {
-    //Make sure the version is the 1st pair in this map!
-	//It will make sure Cocos2d-x can parse the version string correctly from csbs in various versions.
+    //Make sure the version is the 1st pair in this map! 
+	//It will make sure Cocos2d-x can parse the version string correctly from csbs in various versions. 
 	version:string;
-
+	
     textures:[string];
     texturePngs:[string];
 
@@ -26,7 +26,7 @@ root_type CSParseBinary;
 table NodeTree
 {
     classname:string;
-
+    
     children:[NodeTree];
 
     options:Options;
@@ -48,7 +48,7 @@ table WidgetOptions
     alpha:ubyte = 255;
     tag:int = 0;
     position:Position;
-    scale:Scale;
+    scale:Scale;   
     anchorPoint:AnchorPoint;
     color:Color;
     size:FlatSize;
@@ -57,7 +57,7 @@ table WidgetOptions
     ignoreSize:bool = false;
     touchEnabled:bool;
     frameEvent:string;
-    customProperty:string;
+    customProperty:string; 
     callBackType:string;
     callBackName:string;
 	layoutComponent:LayoutComponentTable;
@@ -107,7 +107,7 @@ table GameMapOptions
 {
     nodeOptions:WidgetOptions;
 
-    fileNameData:ResourceData;
+    fileNameData:ResourceData;    
 }
 
 table ButtonOptions
@@ -119,6 +119,7 @@ table ButtonOptions
     disabledData:ResourceData;
     fontResource:ResourceData;
     text:string;
+    isLocalized:bool = false;
     fontName:string;
     fontSize:int;
     textColor:Color;
@@ -135,7 +136,6 @@ table ButtonOptions
     shadowOffsetX:float = 2;
     shadowOffsetY:float = -2;
     shadowBlurRadius:int;
-    isLocalized:bool = false;
 }
 
 table CheckBoxOptions
@@ -158,7 +158,7 @@ table ImageViewOptions
     fileNameData:ResourceData;
     capInsets:CapInsets;
     scale9Size:FlatSize;
-    scale9Enabled:bool;
+    scale9Enabled:bool;   
 }
 
 table TextAtlasOptions
@@ -189,6 +189,7 @@ table TextOptions
     fontName:string;
     fontSize:int;
     text:string;
+    isLocalized:bool = false;
     areaWidth:int;
     areaHeight:int;
     hAlignment:int;
@@ -203,7 +204,6 @@ table TextOptions
     shadowOffsetX:float = 2;
     shadowOffsetY:float = -2;
     shadowBlurRadius:int;
-    isLocalized:bool = false;
 }
 
 table TextFieldOptions
@@ -214,6 +214,7 @@ table TextFieldOptions
     fontName:string;
     fontSize:int;
     text:string;
+    isLocalized:bool = false;
     placeHolder:string;
     passwordEnabled:bool = false;
     passwordStyleText:string;
@@ -222,7 +223,6 @@ table TextFieldOptions
     areaWidth:int;
     areaHeight:int;
     isCustomSize:bool = false;
-    isLocalized:bool = false;
 }
 
 table LoadingBarOptions
@@ -261,7 +261,7 @@ table PanelOptions
     colorVector:ColorVector;
     capInsets:CapInsets;
     scale9Size:FlatSize;
-    backGroundScale9Enabled:bool = false;
+    backGroundScale9Enabled:bool = false;    
 }
 
 table ScrollViewOptions
@@ -386,8 +386,8 @@ table Frame
     colorFrame:ColorFrame;
     textureFrame:TextureFrame;
     eventFrame:EventFrame;
-    intFrame:IntFrame;
-    boolFrame:BoolFrame;
+    intFrame:IntFrame; 
+    boolFrame:BoolFrame;   
     innerActionFrame:InnerActionFrame;
     blendFrame:BlendFrame;
 }
@@ -514,7 +514,7 @@ struct Color
 }
 
 struct ColorVector
-{
+{    
     vectorX:float;
     vectorY:float;
 }

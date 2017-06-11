@@ -43,7 +43,9 @@ class SerializationTraits<T, typename std::enable_if<std::is_base_of<
 
   // There is no de-serialization step in FlatBuffers, so we just receive
   // the data from GRPC.
-  static grpc::Status Deserialize(grpc_byte_buffer *buffer, T *msg) {
+  static grpc::Status Deserialize(grpc_byte_buffer *buffer,
+                                  T *msg,
+                                  int max_message_size) {
     // TODO(wvo): make this more efficient / zero copy when possible.
     auto len = grpc_byte_buffer_length(buffer);
     msg->buf = reinterpret_cast<uint8_t *>(malloc(len));

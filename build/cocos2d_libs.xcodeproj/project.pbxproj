@@ -1026,6 +1026,8 @@
 		9F2DC7841DC106C00064BF46 /* CocoStudio.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F2DC65D1DC106C00064BF46 /* CocoStudio.h */; };
 		9F2DC7851DC106C00064BF46 /* CSLanguageDataBinary_generated.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F2DC65E1DC106C00064BF46 /* CSLanguageDataBinary_generated.h */; };
 		9F2DC7861DC106C00064BF46 /* CSLanguageDataBinary_generated.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F2DC65E1DC106C00064BF46 /* CSLanguageDataBinary_generated.h */; };
+		9F2DC7871DC106C00064BF46 /* CSParse3DBinary_generated.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F2DC65F1DC106C00064BF46 /* CSParse3DBinary_generated.h */; };
+		9F2DC7881DC106C00064BF46 /* CSParse3DBinary_generated.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F2DC65F1DC106C00064BF46 /* CSParse3DBinary_generated.h */; };
 		9F2DC7891DC106C00064BF46 /* CSParseBinary_generated.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F2DC6601DC106C00064BF46 /* CSParseBinary_generated.h */; };
 		9F2DC78A1DC106C00064BF46 /* CSParseBinary_generated.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F2DC6601DC106C00064BF46 /* CSParseBinary_generated.h */; };
 		9F2DC78B1DC106C00064BF46 /* DictionaryHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F2DC6611DC106C00064BF46 /* DictionaryHelper.cpp */; };
@@ -2277,6 +2279,7 @@
 		9F2DC65C1DC106C00064BF46 /* CocoStudio.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CocoStudio.cpp; sourceTree = "<group>"; };
 		9F2DC65D1DC106C00064BF46 /* CocoStudio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CocoStudio.h; sourceTree = "<group>"; };
 		9F2DC65E1DC106C00064BF46 /* CSLanguageDataBinary_generated.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSLanguageDataBinary_generated.h; sourceTree = "<group>"; };
+		9F2DC65F1DC106C00064BF46 /* CSParse3DBinary_generated.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSParse3DBinary_generated.h; sourceTree = "<group>"; };
 		9F2DC6601DC106C00064BF46 /* CSParseBinary_generated.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSParseBinary_generated.h; sourceTree = "<group>"; };
 		9F2DC6611DC106C00064BF46 /* DictionaryHelper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DictionaryHelper.cpp; sourceTree = "<group>"; };
 		9F2DC6621DC106C00064BF46 /* DictionaryHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DictionaryHelper.h; sourceTree = "<group>"; };
@@ -3918,6 +3921,7 @@
 				9F2DC65C1DC106C00064BF46 /* CocoStudio.cpp */,
 				9F2DC65D1DC106C00064BF46 /* CocoStudio.h */,
 				9F2DC65E1DC106C00064BF46 /* CSLanguageDataBinary_generated.h */,
+				9F2DC65F1DC106C00064BF46 /* CSParse3DBinary_generated.h */,
 				9F2DC6601DC106C00064BF46 /* CSParseBinary_generated.h */,
 				9F2DC6611DC106C00064BF46 /* DictionaryHelper.cpp */,
 				9F2DC6621DC106C00064BF46 /* DictionaryHelper.h */,
@@ -4806,6 +4810,7 @@
 				9F91DB141DBF9E8500EEF520 /* UIButton.h in Headers */,
 				9F2DC86D1DC107410064BF46 /* itoa.h in Headers */,
 				9F91DBC81DBF9E8500EEF520 /* UITextBMFont.h in Headers */,
+				9F2DC7871DC106C00064BF46 /* CSParse3DBinary_generated.h in Headers */,
 				50ABC05D1926664800A911A9 /* CCApplication-mac.h in Headers */,
 				9F296E4E1DDC16D6006DF478 /* PathConstraintData.h in Headers */,
 				B240C5EB1B09DFB000137F50 /* CCFrameBuffer.h in Headers */,
@@ -5372,6 +5377,7 @@
 				9F91DBB11DBF9E8500EEF520 /* UIScrollView.h in Headers */,
 				3E6176771960F89B00DE83F5 /* CCEventListenerController.h in Headers */,
 				9F2DC7521DC106C00064BF46 /* CCDisplayManager.h in Headers */,
+				9F2DC7881DC106C00064BF46 /* CSParse3DBinary_generated.h in Headers */,
 				50ABBD861925AB4100A911A9 /* CCBatchCommand.h in Headers */,
 				50ABBE481925AB6F00A911A9 /* CCEvent.h in Headers */,
 				9F2DC8301DC106C10064BF46 /* WidgetReader.h in Headers */,
