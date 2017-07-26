@@ -611,6 +611,13 @@ void SimulatorWin::parseCocosProjectConfig(ProjectConfig &config)
         tmpConfig.parseCommandLine(args);
     }
 
+#if (COCOS2D_DEBUG > 0)
+    if (tmpConfig.getProjectDir().empty()) {
+        tmpConfig.setProjectDir(getApplicationPath() + "/../../");
+        tmpConfig.setScriptFile("src/main.lua");
+    }
+#endif
+
     // set project directory as search root path
     FileUtils::getInstance()->setDefaultResourceRootPath(tmpConfig.getProjectDir().c_str());
 }
