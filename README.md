@@ -2,6 +2,10 @@
 cocos2dx-lite
 =========
 
+[中文](https://github.com/c0i/cocos2dx-lite/blob/master/README_zh.md)
+
+*NOTE* : From [tag v5](https://github.com/c0i/cocos2dx-lite/tree/v5), this repo remove all *templates*, just provide a runable lua app and a tool for rename the app.
+
 It bases on [cocos2d-x](https://github.com/cocos2d/cocos2d-x) v3 branch, but remove 3D and other features.
 It works on iOS, Android, OS X and Windows.
 
