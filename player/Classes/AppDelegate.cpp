@@ -1,4 +1,4 @@
-﻿#include "AppDelegate.h"
+#include "AppDelegate.h"
 #include "scripting/lua-bindings/manual/CCLuaEngine.h"
 #include "scripting/lua-bindings/manual/lua_module_register.h"
 // #include "SimpleAudioEngine.h"
@@ -51,7 +51,7 @@ bool AppDelegate::applicationDidFinishLaunching()
         director->setOpenGLView(glview);
     }
 
-#if 0
+#if 1
     director->getOpenGLView()->setDesignResolutionSize(640, 960, ResolutionPolicy::FIXED_WIDTH);
 
     // turn on display FPS

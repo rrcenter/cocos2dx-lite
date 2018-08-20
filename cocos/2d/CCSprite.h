@@ -125,7 +125,7 @@ public:
      * @return  An autoreleased sprite object.
      */
     static Sprite* create(const std::string& filename);
-    
+
     /**
      * Creates a polygon sprite with a polygon info.
      *
@@ -357,7 +357,7 @@ public:
      * @js  NA
      * @lua NA
      */
-    V3F_C4B_T2F_Quad getQuad() const { return _quad; }
+    V2F_C4B_T2F_Quad getQuad() const { return _quad; }
 
     /**
      * Returns whether or not the texture rectangle is rotated.
@@ -532,9 +532,9 @@ public:
     virtual void setPositionZ(float positionZ) override;
     virtual void setAnchorPoint(const Vec2& anchor) override;
     virtual void setContentSize(const Size& size) override;
-    
+
     virtual void setIgnoreAnchorPointForPosition(bool value) override;
-    
+
     virtual void setVisible(bool bVisible) override;
     virtual void draw(Renderer *renderer, const Mat4 &transform, uint32_t flags) override;
     virtual void setOpacityModifyRGB(bool modify) override;
@@ -564,8 +564,8 @@ CC_CONSTRUCTOR_ACCESS :
      * @return  True if the sprite is initialized properly, false otherwise.
      */
     virtual bool initWithTexture(Texture2D *texture);
-    
-    
+
+
     /**
      * Initializes a sprite with a PolygonInfo.
      *
@@ -646,14 +646,14 @@ CC_CONSTRUCTOR_ACCESS :
      * @lua     init
      */
     virtual bool initWithFile(const std::string& filename, const Rect& rect);
-    
+
 protected:
 
     virtual void updateColor() override;
     virtual void setTextureCoords(const Rect& rect);
-    virtual void setTextureCoords(const Rect& rect, V3F_C4B_T2F_Quad* outQuad);
-    virtual void setVertexCoords(const Rect& rect, V3F_C4B_T2F_Quad* outQuad);
-    void populateTriangle(int quadIndex, const V3F_C4B_T2F_Quad& quad);
+    virtual void setTextureCoords(const Rect& rect, V2F_C4B_T2F_Quad* outQuad);
+    virtual void setVertexCoords(const Rect& rect, V2F_C4B_T2F_Quad* outQuad);
+    void populateTriangle(int quadIndex, const V2F_C4B_T2F_Quad& quad);
     virtual void updateBlendFunc();
     virtual void setReorderChildDirtyRecursively();
     virtual void setDirtyRecursively(bool value);
@@ -702,8 +702,8 @@ protected:
     Vec2 _unflippedOffsetPositionFromCenter;
 
     // vertex coords, texture coords and color info
-    V3F_C4B_T2F_Quad _quad;
-    V3F_C4B_T2F* _trianglesVertex;
+    V2F_C4B_T2F_Quad _quad;
+    V2F_C4B_T2F* _trianglesVertex;
     unsigned short* _trianglesIndex;
     PolygonInfo  _polyInfo;
 

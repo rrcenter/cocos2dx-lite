@@ -26404,10 +26404,10 @@ int lua_cocos2dx_PolygonInfo_setQuads(lua_State* tolua_S)
     argc = lua_gettop(tolua_S)-1;
     if (argc == 2)
     {
-        cocos2d::V3F_C4B_T2F_Quad* arg0;
+        cocos2d::V2F_C4B_T2F_Quad* arg0;
         int arg1;
 
-        #pragma warning NO CONVERSION TO NATIVE FOR V3F_C4B_T2F_Quad*
+        #pragma warning NO CONVERSION TO NATIVE FOR V2F_C4B_T2F_Quad*
 		ok = false;
 
         ok &= luaval_to_int32(tolua_S, 3,(int *)&arg1, "cc.PolygonInfo:setQuads");
@@ -26552,9 +26552,9 @@ int lua_cocos2dx_PolygonInfo_setQuad(lua_State* tolua_S)
     argc = lua_gettop(tolua_S)-1;
     if (argc == 1)
     {
-        cocos2d::V3F_C4B_T2F_Quad* arg0;
+        cocos2d::V2F_C4B_T2F_Quad* arg0;
 
-        #pragma warning NO CONVERSION TO NATIVE FOR V3F_C4B_T2F_Quad*
+        #pragma warning NO CONVERSION TO NATIVE FOR V2F_C4B_T2F_Quad*
 		ok = false;
         if(!ok)
         {
@@ -84985,7 +84985,7 @@ int lua_register_cocos2dx_SpriteFrameCache(lua_State* tolua_S)
 TOLUA_API int register_all_cocos2dx(lua_State* tolua_S)
 {
 	tolua_open(tolua_S);
-	
+
 	tolua_module(tolua_S,"cc",0);
 	tolua_beginmodule(tolua_S,"cc");
 

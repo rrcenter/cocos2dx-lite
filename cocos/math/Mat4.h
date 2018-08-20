@@ -24,6 +24,7 @@
 
 #include "base/ccMacros.h"
 
+#include "math/Vec2.h"
 #include "math/Vec3.h"
 #include "math/Vec4.h"
 
@@ -81,7 +82,7 @@ public:
     //     kmMat4Fill(&result, m);
     //     return result;
     // }
-    
+
     // Mat4(const kmMat4& mat)
     // {
     //     set(mat.mat);
@@ -98,7 +99,7 @@ public:
     float m[16];
 #endif
 
-    /** 
+    /**
      * Default constructor.
      * Constructs a matrix initialized to the identity matrix:
      *
@@ -426,7 +427,7 @@ public:
      * Gets the rotational component of this matrix in the specified quaternion.
      *
      * @param rotation A quaternion to receive the rotation.
-     * 
+     *
      * @return true if the rotation is successfully extracted, false otherwise.
      */
     bool getRotation(Quaternion* rotation) const;
@@ -763,6 +764,8 @@ public:
      */
     inline void transformPoint(Vec3* point) const { GP_ASSERT(point); transformVector(point->x, point->y, point->z, 1.0f, point); }
 
+    inline void transformPoint(Vec2* point) const { GP_ASSERT(point); transformVector(point); }
+
     /**
      * Transforms the specified point by this matrix, and stores
      * the result in dst.
@@ -771,6 +774,7 @@ public:
      * @param dst A vector to store the transformed point in.
      */
     inline void transformPoint(const Vec3& point, Vec3* dst) const { GP_ASSERT(dst); transformVector(point.x, point.y, point.z, 1.0f, dst); }
+
 
     /**
      * Transforms the specified vector by this matrix by
@@ -781,6 +785,8 @@ public:
      * @param vector The vector to transform and also a vector to hold the result in.
      */
     void transformVector(Vec3* vector) const;
+
+    void transformVector(Vec2* vector) const;
 
     /**
      * Transforms the specified vector by this matrix by
@@ -870,17 +876,17 @@ public:
 
     /**
      * Calculates the sum of this matrix with the given matrix.
-     * 
+     *
      * Note: this does not modify this matrix.
-     * 
+     *
      * @param mat The matrix to add.
      * @return The matrix sum.
      */
     inline Mat4 operator+(const Mat4& mat) const;
-    
+
     /**
      * Adds the given matrix to this matrix.
-     * 
+     *
      * @param mat The matrix to add.
      * @return This matrix, after the addition occurs.
      */
@@ -888,9 +894,9 @@ public:
 
     /**
      * Calculates the difference of this matrix with the given matrix.
-     * 
+     *
      * Note: this does not modify this matrix.
-     * 
+     *
      * @param mat The matrix to subtract.
      * @return The matrix difference.
      */
@@ -898,7 +904,7 @@ public:
 
     /**
      * Subtracts the given matrix from this matrix.
-     * 
+     *
      * @param mat The matrix to subtract.
      * @return This matrix, after the subtraction occurs.
      */
@@ -906,18 +912,18 @@ public:
 
     /**
      * Calculates the negation of this matrix.
-     * 
+     *
      * Note: this does not modify this matrix.
-     * 
+     *
      * @return The negation of this matrix.
      */
     inline Mat4 operator-() const;
 
     /**
      * Calculates the matrix product of this matrix with the given matrix.
-     * 
+     *
      * Note: this does not modify this matrix.
-     * 
+     *
      * @param mat The matrix to multiply by.
      * @return The matrix product.
      */
@@ -925,7 +931,7 @@ public:
 
     /**
      * Right-multiplies this matrix by the given matrix.
-     * 
+     *
      * @param mat The matrix to multiply by.
      * @return This matrix, after the multiplication occurs.
      */
@@ -945,9 +951,9 @@ private:
 
 /**
  * Transforms the given vector by the given matrix.
- * 
+ *
  * Note: this treats the given vector as a vector and not as a point.
- * 
+ *
  * @param v The vector to transform.
  * @param m The matrix to transform by.
  * @return This vector, after the transformation occurs.
@@ -956,9 +962,9 @@ inline Vec3& operator*=(Vec3& v, const Mat4& m);
 
 /**
  * Transforms the given vector by the given matrix.
- * 
+ *
  * Note: this treats the given vector as a vector and not as a point.
- * 
+ *
  * @param m The matrix to transform by.
  * @param v The vector to transform.
  * @return The resulting transformed vector.
@@ -967,9 +973,9 @@ inline Vec3 operator*(const Mat4& m, const Vec3& v);
 
 /**
  * Transforms the given vector by the given matrix.
- * 
+ *
  * Note: this treats the given vector as a vector and not as a point.
- * 
+ *
  * @param v The vector to transform.
  * @param m The matrix to transform by.
  * @return This vector, after the transformation occurs.
@@ -978,9 +984,9 @@ inline Vec4& operator*=(Vec4& v, const Mat4& m);
 
 /**
  * Transforms the given vector by the given matrix.
- * 
+ *
  * Note: this treats the given vector as a vector and not as a point.
- * 
+ *
  * @param m The matrix to transform by.
  * @param v The vector to transform.
  * @return The resulting transformed vector.

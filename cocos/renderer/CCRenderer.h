@@ -111,11 +111,11 @@ public:
     void saveRenderState();
     /**Restore the saved DepthState, CullState, DepthWriteState render state.*/
     void restoreRenderState();
-    
+
 protected:
     /**The commands in the render queue.*/
     std::vector<RenderCommand*> _commands[QUEUE_COUNT];
-    
+
     /**Cull state.*/
     bool _isCullEnabled;
     /**Depth test enable state.*/
@@ -199,7 +199,7 @@ public:
      * For 2D object depth test is disabled by default
      */
     void setDepthTest(bool enable);
-    
+
     //This will not be used outside.
     inline GroupCommandManager* getGroupCommandManager() const { return _groupCommandManager; };
 
@@ -217,9 +217,9 @@ protected:
 
     //Draw the previews queued triangles and flush previous context
     void flush();
-    
+
     void flush2D();
-    
+
 //    void flush3D();
 
     void flushTriangles();
@@ -234,14 +234,14 @@ protected:
     Color4F _clearColor;
 
     std::stack<int> _commandGroupStack;
-    
+
     std::vector<RenderQueue> _renderGroups;
 
 //    MeshCommand* _lastBatchedMeshCommand;
     std::vector<TrianglesCommand*> _queuedTriangleCommands;
 
     //for TrianglesCommand
-    V3F_C4B_T2F _verts[VBO_SIZE];
+    V2F_C4B_T2F _verts[VBO_SIZE];
     GLushort _indices[INDEX_VBO_SIZE];
     GLuint _buffersVAO;
     GLuint _buffersVBO[2]; //0: vertex  1: indices
@@ -267,11 +267,11 @@ protected:
     ssize_t _drawnVertices;
     //the flag for checking whether renderer is rendering
     bool _isRendering;
-    
+
     bool _isDepthTestFor2D;
-    
+
     GroupCommandManager* _groupCommandManager;
-    
+
 #if CC_ENABLE_CACHE_TEXTURE_DATA
     EventListenerCustom* _cacheTextureListener;
 #endif

@@ -648,7 +648,7 @@ void Sprite::updatePoly()
         };
 
         // needed in order to get color from "_quad"
-        V3F_C4B_T2F_Quad tmpQuad = _quad;
+        V2F_C4B_T2F_Quad tmpQuad = _quad;
 
         for (int i=0; i<9; ++i) {
             setTextureCoords(texRects[i], &tmpQuad);
@@ -695,7 +695,7 @@ void Sprite::setCenterRectNormalized(const cocos2d::Rect &rectTopLeft)
             if (_renderMode != RenderMode::SLICE9) {
                 _renderMode = RenderMode::SLICE9;
                 // 9 quads + 7 exterior points = 16
-                _trianglesVertex = (V3F_C4B_T2F*) malloc(sizeof(*_trianglesVertex) * (9 + 3 + 4));
+                _trianglesVertex = (V2F_C4B_T2F*) malloc(sizeof(*_trianglesVertex) * (9 + 3 + 4));
                 // 9 quads, each needs 6 vertices = 54
                 _trianglesIndex = (unsigned short*) malloc(sizeof(*_trianglesIndex) * 6 * 9);
 
@@ -767,7 +767,7 @@ void Sprite::setTextureCoords(const Rect& rectInPoints)
     setTextureCoords(rectInPoints, &_quad);
 }
 
-void Sprite::setTextureCoords(const Rect& rectInPoints, V3F_C4B_T2F_Quad* outQuad)
+void Sprite::setTextureCoords(const Rect& rectInPoints, V2F_C4B_T2F_Quad* outQuad)
 {
     Texture2D *tex = (_renderMode == RenderMode::QUAD_BATCHNODE) ? _textureAtlas->getTexture() : _texture;
     if (tex == nullptr)
@@ -843,7 +843,7 @@ void Sprite::setTextureCoords(const Rect& rectInPoints, V3F_C4B_T2F_Quad* outQua
     }
 }
 
-void Sprite::setVertexCoords(const Rect& rect, V3F_C4B_T2F_Quad* outQuad)
+void Sprite::setVertexCoords(const Rect& rect, V2F_C4B_T2F_Quad* outQuad)
 {
     float relativeOffsetX = _unflippedOffsetPositionFromCenter.x;
     float relativeOffsetY = _unflippedOffsetPositionFromCenter.y;
@@ -885,14 +885,14 @@ void Sprite::setVertexCoords(const Rect& rect, V3F_C4B_T2F_Quad* outQuad)
         const float y2 = y1 + rect.size.height;
 
         // Don't update Z.
-        outQuad->bl.vertices.set(x1, y1, 0.0f);
-        outQuad->br.vertices.set(x2, y1, 0.0f);
-        outQuad->tl.vertices.set(x1, y2, 0.0f);
-        outQuad->tr.vertices.set(x2, y2, 0.0f);
+        outQuad->bl.vertices.set(x1, y1);
+        outQuad->br.vertices.set(x2, y1);
+        outQuad->tl.vertices.set(x1, y2);
+        outQuad->tr.vertices.set(x2, y2);
     }
 }
 
-void Sprite::populateTriangle(int quadIndex, const V3F_C4B_T2F_Quad& quad)
+void Sprite::populateTriangle(int quadIndex, const V2F_C4B_T2F_Quad& quad)
 {
     CCASSERT(quadIndex < 9, "Invalid quadIndex");
     // convert Quad intro Triangle since it takes less memory
@@ -938,7 +938,7 @@ void Sprite::populateTriangle(int quadIndex, const V3F_C4B_T2F_Quad& quad)
         const int index_br = index_bl + 1;
         const int index_tl = index_bl + 4;
         const int index_tr = index_bl + 5;
-        
+
 
         _trianglesVertex[index_tr] = quad.tr;
         _trianglesVertex[index_br] = quad.br;
@@ -1013,10 +1013,10 @@ void Sprite::updateTransform(void)
             float dx = x1 * cr - y2 * sr2 + x;
             float dy = x1 * sr + y2 * cr2 + y;
 
-            _quad.bl.vertices.set(SPRITE_RENDER_IN_SUBPIXEL(ax), SPRITE_RENDER_IN_SUBPIXEL(ay), _positionZ);
-            _quad.br.vertices.set(SPRITE_RENDER_IN_SUBPIXEL(bx), SPRITE_RENDER_IN_SUBPIXEL(by), _positionZ);
-            _quad.tl.vertices.set(SPRITE_RENDER_IN_SUBPIXEL(dx), SPRITE_RENDER_IN_SUBPIXEL(dy), _positionZ);
-            _quad.tr.vertices.set(SPRITE_RENDER_IN_SUBPIXEL(cx), SPRITE_RENDER_IN_SUBPIXEL(cy), _positionZ);
+            _quad.bl.vertices.set(SPRITE_RENDER_IN_SUBPIXEL(ax), SPRITE_RENDER_IN_SUBPIXEL(ay));
+            _quad.br.vertices.set(SPRITE_RENDER_IN_SUBPIXEL(bx), SPRITE_RENDER_IN_SUBPIXEL(by));
+            _quad.tl.vertices.set(SPRITE_RENDER_IN_SUBPIXEL(dx), SPRITE_RENDER_IN_SUBPIXEL(dy));
+            _quad.tr.vertices.set(SPRITE_RENDER_IN_SUBPIXEL(cx), SPRITE_RENDER_IN_SUBPIXEL(cy));
             setTextureCoords(_rect);
         }
 
@@ -1659,10 +1659,10 @@ void Sprite::setBatchNode(SpriteBatchNode *spriteBatchNode)
         float y1 = _offsetPosition.y;
         float x2 = x1 + _rect.size.width;
         float y2 = y1 + _rect.size.height;
-        _quad.bl.vertices.set( x1, y1, 0 );
-        _quad.br.vertices.set(x2, y1, 0);
-        _quad.tl.vertices.set(x1, y2, 0);
-        _quad.tr.vertices.set(x2, y2, 0);
+        _quad.bl.vertices.set( x1, y1);
+        _quad.br.vertices.set(x2, y1);
+        _quad.tl.vertices.set(x1, y2);
+        _quad.tr.vertices.set(x2, y2);
 
     } else {
         // using batch

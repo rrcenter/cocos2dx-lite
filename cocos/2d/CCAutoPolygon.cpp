@@ -3,7 +3,7 @@ Copyright (c) 2008-2010 Ricardo Quesada
 Copyright (c) 2010-2012 cocos2d-x.org
 Copyright (c) 2011      Zynga Inc.
 Copyright (c) 2013-2017 Chukong Technologies Inc.
- 
+
 http://www.cocos2d-x.org
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -107,7 +107,7 @@ unsigned int AutoPolygon::getSquareValue(unsigned int x, unsigned int y, const R
     unsigned int sv = 0;
     //NOTE: due to the way we pick points from texture, rect needs to be smaller, otherwise it goes outside 1 pixel
     auto fixedRect = Rect(rect.origin, rect.size-Size(2,2));
-    
+
     Vec2 tl = Vec2(x-1, y-1);
     sv += (fixedRect.containsPoint(tl) && getAlphaByPos(tl) > threshold)? 1 : 0;
     Vec2 tr = Vec2(x, y-1);
@@ -145,17 +145,17 @@ std::vector<cocos2d::Vec2> AutoPolygon::marchSquare(const Rect& rect, const Vec2
             case 13:
                 /* going UP with these cases:
                  1          5           13
-                 +---+---+  +---+---+  +---+---+ 
-                 | 1 |   |  | 1 |   |  | 1 |   | 
-                 +---+---+  +---+---+  +---+---+ 
-                 |   |   |  | 4 |   |  | 4 | 8 | 
+                 +---+---+  +---+---+  +---+---+
+                 | 1 |   |  | 1 |   |  | 1 |   |
+                 +---+---+  +---+---+  +---+---+
+                 |   |   |  | 4 |   |  | 4 | 8 |
                  +---+---+  +---+---+  +---+---+
                  */
                 stepx = 0;
                 stepy = -1;
                 break;
 
-                
+
             case 8:
             case 10:
             case 11:
@@ -171,7 +171,7 @@ std::vector<cocos2d::Vec2> AutoPolygon::marchSquare(const Rect& rect, const Vec2
                 stepy = 1;
                 break;
 
-                
+
             case 4:
             case 12:
             case 14:
@@ -186,13 +186,13 @@ std::vector<cocos2d::Vec2> AutoPolygon::marchSquare(const Rect& rect, const Vec2
                 stepx = -1;
                 stepy = 0;
                 break;
-                
-                
+
+
             case 2 :
             case 3 :
             case 7 :
                 /* going RIGHT with these cases:
-                 2          3           7        
+                 2          3           7
                  +---+---+  +---+---+   +---+---+
                  |   | 2 |  | 1 | 2 |   | 1 | 2 |
                  +---+---+  +---+---+   +---+---+
@@ -290,7 +290,7 @@ float AutoPolygon::perpendicularDistance(const cocos2d::Vec2& i, const cocos2d::
     float res;
     float slope;
     float intercept;
-    
+
     if(start.x == end.x)
     {
         res = fabsf(i.x- end.x);
@@ -310,7 +310,7 @@ std::vector<cocos2d::Vec2> AutoPolygon::rdp(const std::vector<cocos2d::Vec2>& v,
 {
     if(v.size() < 3)
         return v;
-    
+
     int index = -1;
     float dist = 0;
     //not looping first and last point
@@ -329,10 +329,10 @@ std::vector<cocos2d::Vec2> AutoPolygon::rdp(const std::vector<cocos2d::Vec2>& v,
         std::vector<Vec2>::const_iterator end   = v.end();
         std::vector<Vec2> l1(begin, begin+index+1);
         std::vector<Vec2> l2(begin+index, end);
-        
+
         std::vector<Vec2> r1 = rdp(l1, optimization);
         std::vector<Vec2> r2 = rdp(l2, optimization);
-        
+
         r1.insert(r1.end(), r2.begin()+1, r2.end());
         return r1;
     }
@@ -361,7 +361,7 @@ std::vector<Vec2> AutoPolygon::reduce(const std::vector<Vec2>& points, const Rec
     float maxEp = MIN(rect.size.width, rect.size.height);
     float ep = clampf(epsilon, 0.0, maxEp/_scaleFactor/2);
     std::vector<Vec2> result = rdp(points, ep);
-    
+
     auto last = result.back();
     if (last.y > result.front().y && last.getDistance(result.front()) < ep * 0.5f)
     {
@@ -390,7 +390,7 @@ std::vector<Vec2> AutoPolygon::expand(const std::vector<Vec2>& points, const coc
     ClipperLib::ClipperOffset co;
     co.AddPath(subj, ClipperLib::jtMiter, ClipperLib::etClosedPolygon);
     co.Execute(solution, epsilon * PRECISION);
-    
+
     ClipperLib::PolyNode* p = solution.GetFirst();
     if(!p)
     {
@@ -402,7 +402,7 @@ std::vector<Vec2> AutoPolygon::expand(const std::vector<Vec2>& points, const coc
     }
 
     //turn the result into simply polygon (AKA, fix overlap)
-    
+
     //clamp into the specified rect
     ClipperLib::Clipper cl;
     cl.StrictlySimple(true);
@@ -415,7 +415,7 @@ std::vector<Vec2> AutoPolygon::expand(const std::vector<Vec2>& points, const coc
     clamp.push_back(ClipperLib::IntPoint(0, rect.size.height/_scaleFactor * PRECISION));
     cl.AddPath(clamp, ClipperLib::ptClip, true);
     cl.Execute(ClipperLib::ctIntersection, out);
-    
+
     std::vector<Vec2> outPoints;
     ClipperLib::PolyNode* p2 = out.GetFirst();
     while(p2->IsHole()){
@@ -445,9 +445,9 @@ TrianglesCommand::Triangles AutoPolygon::triangulate(const std::vector<Vec2>& po
     p2t::CDT cdt(p2points);
     cdt.Triangulate();
     std::vector<p2t::Triangle*> tris = cdt.GetTriangles();
-    
+
     // we won't know the size of verts and indices until we process all of the triangles!
-    std::vector<V3F_C4B_T2F> verts;
+    std::vector<V2F_C4B_T2F> verts;
     std::vector<unsigned short> indices;
 
     unsigned short idx = 0;
@@ -458,7 +458,7 @@ TrianglesCommand::Triangles AutoPolygon::triangulate(const std::vector<Vec2>& po
         for(int i = 0; i < 3; ++i)
         {
             auto p = ite->GetPoint(i);
-            auto v3 = Vec3(p->x, p->y, 0);
+            auto v3 = Vec2(p->x, p->y);
             bool found = false;
             size_t j;
             size_t length = vdx;
@@ -481,7 +481,7 @@ TrianglesCommand::Triangles AutoPolygon::triangulate(const std::vector<Vec2>& po
                 //vert does not exist yet, so we need to create a new one,
                 auto c4b = Color4B::WHITE;
                 auto t2f = Tex2F(0,0); // don't worry about tex coords now, we calculate that later
-                V3F_C4B_T2F vert = {v3,c4b,t2f};
+                V2F_C4B_T2F vert = {v3,c4b,t2f};
                 verts.push_back(vert);
                 indices.push_back(vdx);
                 idx++;
@@ -495,19 +495,19 @@ TrianglesCommand::Triangles AutoPolygon::triangulate(const std::vector<Vec2>& po
     };
 
     // now that we know the size of verts and indices we can create the buffers
-    V3F_C4B_T2F* vertsBuf = new (std::nothrow) V3F_C4B_T2F[verts.size()];
-    memcpy(vertsBuf, verts.data(), verts.size() * sizeof(V3F_C4B_T2F));
+    V2F_C4B_T2F* vertsBuf = new (std::nothrow) V2F_C4B_T2F[verts.size()];
+    memcpy(vertsBuf, verts.data(), verts.size() * sizeof(V2F_C4B_T2F));
 
     unsigned short* indicesBuf = new (std::nothrow) unsigned short[indices.size()];
     memcpy(indicesBuf, indices.data(), indices.size() * sizeof(short));
 
-    // Triangles should really use std::vector and not arrays for verts and indices. 
+    // Triangles should really use std::vector and not arrays for verts and indices.
     // Then the above memcpy would not be necessary
     TrianglesCommand::Triangles triangles = { vertsBuf, indicesBuf, static_cast<int>(verts.size()), static_cast<int>(indices.size()) };
     return triangles;
 }
 
-void AutoPolygon::calculateUV(const Rect& rect, V3F_C4B_T2F* verts, ssize_t count)
+void AutoPolygon::calculateUV(const Rect& rect, V2F_C4B_T2F* verts, ssize_t count)
 {
     /*
      whole texture UV coordination
@@ -525,7 +525,7 @@ void AutoPolygon::calculateUV(const Rect& rect, V3F_C4B_T2F* verts, ssize_t coun
      +---------------------+
      0,1                  1,1
      */
-    
+
     CCASSERT(_width && _height, "please specify width and height for this AutoPolygon instance");
     float texWidth  = _width;
     float texHeight = _height;

@@ -93,7 +93,7 @@ struct CC_DLL Color4B
     Color4B(GLubyte _r, GLubyte _g, GLubyte _b, GLubyte _a);
     explicit Color4B(const Color3B& color, GLubyte _a = 255);
     explicit Color4B(const Color4F& color);
-    
+
     inline void set(GLubyte _r, GLubyte _g, GLubyte _b, GLubyte _a)
     {
         r = _r;
@@ -322,13 +322,13 @@ struct CC_DLL V2F_C4B_T2F_Triangle
 struct CC_DLL V2F_C4B_T2F_Quad
 {
     /// bottom left
-    V2F_C4B_T2F    bl;
-    /// bottom right
-    V2F_C4B_T2F    br;
-    /// top left
     V2F_C4B_T2F    tl;
-    /// top right
+    /// bottom right
+    V2F_C4B_T2F    bl;
+    /// top left
     V2F_C4B_T2F    tr;
+    /// top right
+    V2F_C4B_T2F    br;
 };
 
 /** @struct V3F_C4B_T2F_Quad
@@ -352,13 +352,13 @@ struct CC_DLL V3F_C4B_T2F_Quad
 struct CC_DLL V2F_C4F_T2F_Quad
 {
     /// bottom left
-    V2F_C4F_T2F    bl;
-    /// bottom right
-    V2F_C4F_T2F    br;
-    /// top left
     V2F_C4F_T2F    tl;
-    /// top right
+    /// bottom right
+    V2F_C4F_T2F    bl;
+    /// top left
     V2F_C4F_T2F    tr;
+    /// top right
+    V2F_C4F_T2F    br;
 };
 
 /** @struct V3F_T2F_Quad

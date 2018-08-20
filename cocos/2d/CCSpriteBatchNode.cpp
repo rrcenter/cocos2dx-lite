@@ -49,7 +49,7 @@ SpriteBatchNode* SpriteBatchNode::createWithTexture(Texture2D* tex, ssize_t capa
         batchNode->autorelease();
         return batchNode;
     }
-    
+
     delete batchNode;
     return nullptr;
 }
@@ -66,7 +66,7 @@ SpriteBatchNode* SpriteBatchNode::create(const std::string& fileImage, ssize_t c
         batchNode->autorelease();
         return batchNode;
     }
-    
+
     delete batchNode;
     return nullptr;
 }
@@ -80,9 +80,9 @@ bool SpriteBatchNode::initWithTexture(Texture2D *tex, ssize_t capacity/* = DEFAU
     {
         return false;
     }
-    
+
     CCASSERT(capacity>=0, "Capacity must be >= 0");
-    
+
     _blendFunc = BlendFunc::ALPHA_PREMULTIPLIED;
     if(!tex->hasPremultipliedAlpha())
     {
@@ -94,7 +94,7 @@ bool SpriteBatchNode::initWithTexture(Texture2D *tex, ssize_t capacity/* = DEFAU
     {
         capacity = DEFAULT_CAPACITY;
     }
-    
+
     _textureAtlas->initWithTexture(tex, capacity);
 
     updateBlendFunc();
@@ -102,7 +102,7 @@ bool SpriteBatchNode::initWithTexture(Texture2D *tex, ssize_t capacity/* = DEFAU
     _children.reserve(capacity);
 
     _descendants.reserve(capacity);
-    
+
     setGLProgramState(GLProgramState::getOrCreateWithGLProgramName(GLProgram::SHADER_NAME_POSITION_TEXTURE_COLOR, tex));
     return true;
 }
@@ -173,7 +173,7 @@ void SpriteBatchNode::visit(Renderer *renderer, const Mat4 &parentTransform, uin
         // Please refer to https://github.com/cocos2d/cocos2d-x/pull/6920
         //    setOrderOfArrival(0);
 #endif // CC_MIGRATION_TO_3_0
-        
+
         CC_PROFILER_STOP_CATEGORY(kProfilerCategoryBatchSprite, "CCSpriteBatchNode - visit");
     }
 }
@@ -198,9 +198,9 @@ void SpriteBatchNode::addChild(Node * child, int zOrder, const std::string &name
     Sprite *sprite = static_cast<Sprite*>(child);
     // check Sprite is using the same texture id
     CCASSERT(sprite->getTexture()->getName() == _textureAtlas->getTexture()->getName(), "CCSprite is not using the same texture id");
-    
+
     Node::addChild(child, zOrder, name);
-    
+
     appendChild(sprite);
 }
 
@@ -291,7 +291,7 @@ void SpriteBatchNode::updateAtlasIndex(Sprite* sprite, ssize_t* curIndex)
 {
     auto& array = sprite->getChildren();
     auto count = array.size();
-    
+
     ssize_t oldIndex = 0;
 
     if( count == 0 )
@@ -333,7 +333,7 @@ void SpriteBatchNode::updateAtlasIndex(Sprite* sprite, ssize_t* curIndex)
                 (*curIndex)++;
                 needNewIndex = false;
             }
-            
+
             updateAtlasIndex(sp, curIndex);
         }
 
@@ -353,7 +353,7 @@ void SpriteBatchNode::swap(ssize_t oldIndex, ssize_t newIndex)
 {
     CCASSERT(oldIndex>=0 && oldIndex < (int)_descendants.size() && newIndex >=0 && newIndex < (int)_descendants.size(), "Invalid index");
 
-    V3F_C4B_T2F_Quad* quads = _textureAtlas->getQuads();
+    V2F_C4B_T2F_Quad* quads = _textureAtlas->getQuads();
     std::swap( quads[oldIndex], quads[newIndex] );
 
     //update the index of other swapped item
@@ -555,7 +555,7 @@ void SpriteBatchNode::appendChild(Sprite* sprite)
 
     sprite->setAtlasIndex(index);
 
-    V3F_C4B_T2F_Quad quad = sprite->getQuad();
+    V2F_C4B_T2F_Quad quad = sprite->getQuad();
     _textureAtlas->insertQuad(&quad, index);
 
     // add children recursively
@@ -666,7 +666,7 @@ void SpriteBatchNode::insertQuadFromSprite(Sprite *sprite, ssize_t index)
     sprite->setBatchNode(this);
     sprite->setAtlasIndex(index);
 
-    V3F_C4B_T2F_Quad quad = sprite->getQuad();
+    V2F_C4B_T2F_Quad quad = sprite->getQuad();
     _textureAtlas->insertQuad(&quad, index);
 
     // FIXME:: updateTransform will update the textureAtlas too, using updateQuad.
@@ -679,21 +679,21 @@ void SpriteBatchNode::updateQuadFromSprite(Sprite *sprite, ssize_t index)
 {
     CCASSERT(sprite != nullptr, "Argument must be non-nil");
     CCASSERT(dynamic_cast<Sprite*>(sprite) != nullptr, "CCSpriteBatchNode only supports Sprites as children");
-    
+
     // make needed room
     while (index >= _textureAtlas->getCapacity() || _textureAtlas->getCapacity() == _textureAtlas->getTotalQuads())
     {
         this->increaseAtlasCapacity();
     }
-    
+
     //
     // update the quad directly. Don't add the sprite to the scene graph
     //
     sprite->setBatchNode(this);
     sprite->setAtlasIndex(index);
-    
+
     sprite->setDirty(true);
-    
+
     // UpdateTransform updates the textureAtlas quad
     sprite->updateTransform();
 }

@@ -137,36 +137,36 @@ void SkeletonRenderer::initWithJsonFile (const std::string& skeletonDataFile, co
 
 	initialize();
 }
-    
+
 void SkeletonRenderer::initWithBinaryFile (const std::string& skeletonDataFile, spAtlas* atlas, float scale) {
     _atlas = atlas;
     _attachmentLoader = SUPER(Cocos2dAttachmentLoader_create(_atlas));
-    
+
     spSkeletonBinary* binary = spSkeletonBinary_createWithLoader(_attachmentLoader);
     binary->scale = scale;
     spSkeletonData* skeletonData = spSkeletonBinary_readSkeletonDataFile(binary, skeletonDataFile.c_str());
     CCASSERT(skeletonData, binary->error ? binary->error : "Error reading skeleton data file.");
     spSkeletonBinary_dispose(binary);
-    
+
     setSkeletonData(skeletonData, true);
-    
+
     initialize();
 }
 
 void SkeletonRenderer::initWithBinaryFile (const std::string& skeletonDataFile, const std::string& atlasFile, float scale) {
     _atlas = spAtlas_createFromFile(atlasFile.c_str(), 0);
     CCASSERT(_atlas, "Error reading atlas file.");
-    
+
     _attachmentLoader = SUPER(Cocos2dAttachmentLoader_create(_atlas));
-    
+
     spSkeletonBinary* binary = spSkeletonBinary_createWithLoader(_attachmentLoader);
     binary->scale = scale;
     spSkeletonData* skeletonData = spSkeletonBinary_readSkeletonDataFile(binary, skeletonDataFile.c_str());
     CCASSERT(skeletonData, binary->error ? binary->error : "Error reading skeleton data file.");
     spSkeletonBinary_dispose(binary);
-    
+
     setSkeletonData(skeletonData, true);
-    
+
     initialize();
 }
 
@@ -183,7 +183,7 @@ void SkeletonRenderer::draw (Renderer* renderer, const Mat4& transform, uint32_t
 	_skeleton->g = nodeColor.g / (float)255;
 	_skeleton->b = nodeColor.b / (float)255;
 	_skeleton->a = getDisplayedOpacity() / (float)255;
-    
+
     Color4F color;
 	AttachmentVertices* attachmentVertices = nullptr;
 	for (int i = 0, n = _skeleton->slotsCount; i < n; ++i) {
@@ -220,11 +220,11 @@ void SkeletonRenderer::draw (Renderer* renderer, const Mat4& transform, uint32_t
 		color.r *= _skeleton->r * slot->r * multiplier;
 		color.g *= _skeleton->g * slot->g * multiplier;
 		color.b *= _skeleton->b * slot->b * multiplier;
-        
-        
-        
+
+
+
 		for (int v = 0, w = 0, vn = attachmentVertices->_triangles->vertCount; v < vn; ++v, w += 2) {
-			V3F_C4B_T2F* vertex = attachmentVertices->_triangles->verts + v;
+			V2F_C4B_T2F* vertex = attachmentVertices->_triangles->verts + v;
 			vertex->vertices.x = _worldVertices[w];
 			vertex->vertices.y = _worldVertices[w + 1];
             vertex->colors.r = (GLubyte)color.r;
@@ -266,15 +266,15 @@ void SkeletonRenderer::drawDebug (Renderer* renderer, const Mat4 &transform, uin
     Director* director = Director::getInstance();
     director->pushMatrix(MATRIX_STACK_TYPE::MATRIX_STACK_MODELVIEW);
     director->loadMatrix(MATRIX_STACK_TYPE::MATRIX_STACK_MODELVIEW, transform);
-    
+
     DrawNode* drawNode = DrawNode::create();
-    
+
     if (_debugSlots) {
         // Slots.
         // DrawPrimitives::setDrawColor4B(0, 0, 255, 255);
         glLineWidth(1);
         Vec2 points[4];
-        V3F_C4B_T2F_Quad quad;
+        V2F_C4B_T2F_Quad quad;
         for (int i = 0, n = _skeleton->slotsCount; i < n; i++) {
             spSlot* slot = _skeleton->drawOrder[i];
             if (!slot->attachment || slot->attachment->type != SP_ATTACHMENT_REGION) continue;
@@ -304,7 +304,7 @@ void SkeletonRenderer::drawDebug (Renderer* renderer, const Mat4 &transform, uin
             if (i == 0) color = Color4F::GREEN;
         }
     }
-    
+
     drawNode->draw(renderer, transform, transformFlags);
     director->popMatrix(MATRIX_STACK_TYPE::MATRIX_STACK_MODELVIEW);
 }
@@ -343,7 +343,7 @@ Rect SkeletonRenderer::getBoundingBox () const {
 		}
 	}
 	Vec2 position = getPosition();
-    if (minX == FLT_MAX) minX = minY = maxX = maxY = 0;    
+    if (minX == FLT_MAX) minX = minY = maxX = maxY = 0;
 	return Rect(position.x + minX, position.y + minY, maxX - minX, maxY - minY);
 }
 

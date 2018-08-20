@@ -74,18 +74,18 @@ public:
      * set the data to be a pointer to a quad
      * the member verts will not be released when this PolygonInfo destructs
      * as the verts memory are managed by other objects
-     * @param quad  a pointer to the V3F_C4B_T2F_Quad object
+     * @param quad  a pointer to the V2F_C4B_T2F_Quad object
      */
-    void setQuad(V3F_C4B_T2F_Quad *quad);
+    void setQuad(V2F_C4B_T2F_Quad *quad);
 
     /**
      * set the data to be a pointer to a number of Quads
      * the member verts will not be released when this PolygonInfo destructs
      * as the verts memory are managed by other objects
-     * @param quad  a pointer to the V3F_C4B_T2F_Quad quads
+     * @param quad  a pointer to the V2F_C4B_T2F_Quad quads
      */
-    void setQuads(V3F_C4B_T2F_Quad *quads, int numberOfQuads);
-    
+    void setQuads(V2F_C4B_T2F_Quad *quads, int numberOfQuads);
+
     /**
      * set the data to be a pointer to a triangles
      * the member verts will not be released when this PolygonInfo destructs
@@ -93,7 +93,7 @@ public:
      * @param triangles  a pointer to the TrianglesCommand::Triangles object
      */
     void setTriangles(const TrianglesCommand::Triangles& triangles);
-    
+
     /**
      * get vertex count
      * @return number of vertices

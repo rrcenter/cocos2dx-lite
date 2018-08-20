@@ -74,7 +74,7 @@ TextureAtlas::~TextureAtlas()
         GL::bindVAO(0);
     }
     CC_SAFE_RELEASE(_texture);
-    
+
 #if CC_ENABLE_CACHE_TEXTURE_DATA
     Director::getInstance()->getEventDispatcher()->removeEventListener(_rendererRecreatedListener);
 #endif
@@ -102,14 +102,14 @@ void TextureAtlas::setTexture(Texture2D * var)
     _texture = var;
 }
 
-V3F_C4B_T2F_Quad* TextureAtlas::getQuads()
+V2F_C4B_T2F_Quad* TextureAtlas::getQuads()
 {
     //if someone accesses the quads directly, presume that changes will be made
     _dirty = true;
     return _quads;
 }
 
-void TextureAtlas::setQuads(V3F_C4B_T2F_Quad* quads)
+void TextureAtlas::setQuads(V2F_C4B_T2F_Quad* quads)
 {
     _quads = quads;
 }
@@ -146,7 +146,7 @@ bool TextureAtlas::initWithFile(const std::string& file, ssize_t capacity)
     Texture2D *texture = Director::getInstance()->getTextureCache()->addImage(file);
 
     if (texture)
-    {   
+    {
         return initWithTexture(texture, capacity);
     }
     else
@@ -159,7 +159,7 @@ bool TextureAtlas::initWithFile(const std::string& file, ssize_t capacity)
 bool TextureAtlas::initWithTexture(Texture2D *texture, ssize_t capacity)
 {
     CCASSERT(capacity>=0, "Capacity must be >= 0");
-    
+
 //    CCASSERT(texture != nullptr, "texture should not be null");
     _capacity = capacity;
     _totalQuads = 0;
@@ -171,10 +171,10 @@ bool TextureAtlas::initWithTexture(Texture2D *texture, ssize_t capacity)
     // Re-initialization is not allowed
     CCASSERT(_quads == nullptr && _indices == nullptr, "_quads and _indices should be nullptr.");
 
-    _quads = (V3F_C4B_T2F_Quad*)malloc( _capacity * sizeof(V3F_C4B_T2F_Quad) );
+    _quads = (V2F_C4B_T2F_Quad*)malloc( _capacity * sizeof(V2F_C4B_T2F_Quad) );
     _indices = (GLushort *)malloc( _capacity * 6 * sizeof(GLushort) );
-    
-    if( ! ( _quads && _indices) && _capacity > 0) 
+
+    if( ! ( _quads && _indices) && _capacity > 0)
     {
         //CCLOG("cocos2d: TextureAtlas: not enough memory");
         CC_SAFE_FREE(_quads);
@@ -186,15 +186,15 @@ bool TextureAtlas::initWithTexture(Texture2D *texture, ssize_t capacity)
         return false;
     }
 
-    memset( _quads, 0, _capacity * sizeof(V3F_C4B_T2F_Quad) );
+    memset( _quads, 0, _capacity * sizeof(V2F_C4B_T2F_Quad) );
     memset( _indices, 0, _capacity * 6 * sizeof(GLushort) );
-    
+
 #if CC_ENABLE_CACHE_TEXTURE_DATA
     /** listen the event that renderer was recreated on Android/WP8 */
     _rendererRecreatedListener = EventListenerCustom::create(EVENT_RENDERER_RECREATED, CC_CALLBACK_1(TextureAtlas::listenRendererRecreated, this));
     Director::getInstance()->getEventDispatcher()->addEventListenerWithFixedPriority(_rendererRecreatedListener, -1);
 #endif
-    
+
     this->setupIndices();
 
     if (Configuration::getInstance()->supportsShareableVAO())
@@ -212,7 +212,7 @@ bool TextureAtlas::initWithTexture(Texture2D *texture, ssize_t capacity)
 }
 
 void TextureAtlas::listenRendererRecreated(EventCustom* /*event*/)
-{  
+{
     if (Configuration::getInstance()->supportsShareableVAO())
     {
         setupVBOandVAO();
@@ -221,7 +221,7 @@ void TextureAtlas::listenRendererRecreated(EventCustom* /*event*/)
     {
         setupVBO();
     }
-    
+
     // set _dirty to true to force it rebinding buffer
     _dirty = true;
 }
@@ -246,7 +246,7 @@ void TextureAtlas::setupIndices()
         // inverted index. issue #179
         _indices[i*6+3] = i*4+3;
         _indices[i*6+4] = i*4+2;
-        _indices[i*6+5] = i*4+1;        
+        _indices[i*6+5] = i*4+1;
     }
 }
 
@@ -266,15 +266,15 @@ void TextureAtlas::setupVBOandVAO()
 
     // vertices
     glEnableVertexAttribArray(GLProgram::VERTEX_ATTRIB_POSITION);
-    glVertexAttribPointer(GLProgram::VERTEX_ATTRIB_POSITION, 3, GL_FLOAT, GL_FALSE, kQuadSize, (GLvoid*) offsetof( V3F_C4B_T2F, vertices));
+    glVertexAttribPointer(GLProgram::VERTEX_ATTRIB_POSITION, 2, GL_FLOAT, GL_FALSE, kQuadSize, (GLvoid*) offsetof( V2F_C4B_T2F, vertices));
 
     // colors
     glEnableVertexAttribArray(GLProgram::VERTEX_ATTRIB_COLOR);
-    glVertexAttribPointer(GLProgram::VERTEX_ATTRIB_COLOR, 4, GL_UNSIGNED_BYTE, GL_TRUE, kQuadSize, (GLvoid*) offsetof( V3F_C4B_T2F, colors));
+    glVertexAttribPointer(GLProgram::VERTEX_ATTRIB_COLOR, 4, GL_UNSIGNED_BYTE, GL_TRUE, kQuadSize, (GLvoid*) offsetof( V2F_C4B_T2F, colors));
 
     // tex coords
     glEnableVertexAttribArray(GLProgram::VERTEX_ATTRIB_TEX_COORD);
-    glVertexAttribPointer(GLProgram::VERTEX_ATTRIB_TEX_COORD, 2, GL_FLOAT, GL_FALSE, kQuadSize, (GLvoid*) offsetof( V3F_C4B_T2F, texCoords));
+    glVertexAttribPointer(GLProgram::VERTEX_ATTRIB_TEX_COORD, 2, GL_FLOAT, GL_FALSE, kQuadSize, (GLvoid*) offsetof( V2F_C4B_T2F, texCoords));
 
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, _buffersVBO[1]);
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(_indices[0]) * _capacity * 6, _indices, GL_STATIC_DRAW);
@@ -298,7 +298,7 @@ void TextureAtlas::mapBuffers()
 {
     // Avoid changing the element buffer for whatever VAO might be bound.
 	GL::bindVAO(0);
-    
+
     glBindBuffer(GL_ARRAY_BUFFER, _buffersVBO[0]);
     glBufferData(GL_ARRAY_BUFFER, sizeof(_quads[0]) * _capacity, _quads, GL_DYNAMIC_DRAW);
     glBindBuffer(GL_ARRAY_BUFFER, 0);
@@ -312,20 +312,20 @@ void TextureAtlas::mapBuffers()
 
 // TextureAtlas - Update, Insert, Move & Remove
 
-void TextureAtlas::updateQuad(V3F_C4B_T2F_Quad *quad, ssize_t index)
+void TextureAtlas::updateQuad(V2F_C4B_T2F_Quad *quad, ssize_t index)
 {
     CCASSERT( index >= 0 && index < _capacity, "updateQuadWithTexture: Invalid index");
 
     _totalQuads = MAX( index+1, _totalQuads);
 
-    _quads[index] = *quad;    
+    _quads[index] = *quad;
 
 
     _dirty = true;
 
 }
 
-void TextureAtlas::insertQuad(V3F_C4B_T2F_Quad *quad, ssize_t index)
+void TextureAtlas::insertQuad(V2F_C4B_T2F_Quad *quad, ssize_t index)
 {
     CCASSERT( index>=0 && index<_capacity, "insertQuadWithTexture: Invalid index");
 
@@ -336,10 +336,10 @@ void TextureAtlas::insertQuad(V3F_C4B_T2F_Quad *quad, ssize_t index)
     auto remaining = (_totalQuads-1) - index;
 
     // last object doesn't need to be moved
-    if( remaining > 0) 
+    if( remaining > 0)
     {
         // texture coordinates
-        memmove( &_quads[index+1],&_quads[index], sizeof(_quads[0]) * remaining );        
+        memmove( &_quads[index+1],&_quads[index], sizeof(_quads[0]) * remaining );
     }
 
     _quads[index] = *quad;
@@ -349,7 +349,7 @@ void TextureAtlas::insertQuad(V3F_C4B_T2F_Quad *quad, ssize_t index)
 
 }
 
-void TextureAtlas::insertQuads(V3F_C4B_T2F_Quad* quads, ssize_t index, ssize_t amount)
+void TextureAtlas::insertQuads(V2F_C4B_T2F_Quad* quads, ssize_t index, ssize_t amount)
 {
     CCASSERT(index>=0 && amount>=0 && index+amount<=_capacity, "insertQuadWithTexture: Invalid index + amount");
 
@@ -401,7 +401,7 @@ void TextureAtlas::insertQuadFromIndex(ssize_t oldIndex, ssize_t newIndex)
     }
 
     // texture coordinates
-    V3F_C4B_T2F_Quad quadsBackup = _quads[oldIndex];
+    V2F_C4B_T2F_Quad quadsBackup = _quads[oldIndex];
     memmove( &_quads[dst],&_quads[src], sizeof(_quads[0]) * howMany );
     _quads[newIndex] = quadsBackup;
 
@@ -416,7 +416,7 @@ void TextureAtlas::removeQuadAtIndex(ssize_t index)
     auto remaining = (_totalQuads-1) - index;
 
     // last object doesn't need to be moved
-    if( remaining ) 
+    if( remaining )
     {
         // texture coordinates
         memmove( &_quads[index],&_quads[index+1], sizeof(_quads[0]) * remaining );
@@ -463,7 +463,7 @@ bool TextureAtlas::resizeCapacity(ssize_t newCapacity)
     _totalQuads = MIN(_totalQuads, newCapacity);
     _capacity = newCapacity;
 
-    V3F_C4B_T2F_Quad* tmpQuads = nullptr;
+    V2F_C4B_T2F_Quad* tmpQuads = nullptr;
     GLushort* tmpIndices = nullptr;
 
     // when calling initWithTexture(fileName, 0) on bada device, calloc(0, 1) will fail and return nullptr,
@@ -473,7 +473,7 @@ bool TextureAtlas::resizeCapacity(ssize_t newCapacity)
     ssize_t new_quads_size = _capacity * _quads_size;
     if (_quads == nullptr)
     {
-        tmpQuads = (V3F_C4B_T2F_Quad*)malloc(new_quads_size);
+        tmpQuads = (V2F_C4B_T2F_Quad*)malloc(new_quads_size);
         if (tmpQuads != nullptr)
         {
             memset(tmpQuads, 0, new_quads_size);
@@ -481,7 +481,7 @@ bool TextureAtlas::resizeCapacity(ssize_t newCapacity)
     }
     else
     {
-        tmpQuads = (V3F_C4B_T2F_Quad*)realloc(_quads, new_quads_size);
+        tmpQuads = (V2F_C4B_T2F_Quad*)realloc(_quads, new_quads_size);
         if (tmpQuads != nullptr && _capacity > oldCapacity)
         {
             memset(tmpQuads + oldCapacity, 0, (_capacity - oldCapacity)*_quads_size);
@@ -550,8 +550,8 @@ void TextureAtlas::moveQuadsFromIndex(ssize_t oldIndex, ssize_t amount, ssize_t 
         return;
     }
     //create buffer
-    size_t quadSize = sizeof(V3F_C4B_T2F_Quad);
-    V3F_C4B_T2F_Quad* tempQuads = (V3F_C4B_T2F_Quad*)malloc( quadSize * amount);
+    size_t quadSize = sizeof(V2F_C4B_T2F_Quad);
+    V2F_C4B_T2F_Quad* tempQuads = (V2F_C4B_T2F_Quad*)malloc( quadSize * amount);
     memcpy( tempQuads, &_quads[oldIndex], quadSize * amount );
 
     if (newIndex < oldIndex)
@@ -582,7 +582,7 @@ void TextureAtlas::moveQuadsFromIndex(ssize_t index, ssize_t newIndex)
 void TextureAtlas::fillWithEmptyQuadsFromIndex(ssize_t index, ssize_t amount)
 {
     CCASSERT(index>=0 && amount>=0, "values must be >= 0");
-    V3F_C4B_T2F_Quad quad;
+    V2F_C4B_T2F_Quad quad;
     memset(&quad, 0, sizeof(quad));
 
     auto to = index + amount;
@@ -611,7 +611,7 @@ void TextureAtlas::drawNumberOfQuads(ssize_t numberOfQuads, ssize_t start)
 
     if(!numberOfQuads)
         return;
-    
+
     GL::bindTexture2D(_texture);
 
     auto conf = Configuration::getInstance();
@@ -622,7 +622,7 @@ void TextureAtlas::drawNumberOfQuads(ssize_t numberOfQuads, ssize_t start)
         //
 
         // FIXME:: update is done in draw... perhaps it should be done in a timer
-        if (_dirty) 
+        if (_dirty)
         {
             glBindBuffer(GL_ARRAY_BUFFER, _buffersVBO[0]);
             // option 1: subdata
@@ -636,7 +636,7 @@ void TextureAtlas::drawNumberOfQuads(ssize_t numberOfQuads, ssize_t start)
             void *buf = glMapBuffer(GL_ARRAY_BUFFER, GL_WRITE_ONLY);
             memcpy(buf, _quads, sizeof(_quads[0])* _totalQuads);
             glUnmapBuffer(GL_ARRAY_BUFFER);
-            
+
             glBindBuffer(GL_ARRAY_BUFFER, 0);
 
             _dirty = false;
@@ -649,9 +649,9 @@ void TextureAtlas::drawNumberOfQuads(ssize_t numberOfQuads, ssize_t start)
 #endif
 
         glDrawElements(GL_TRIANGLES, (GLsizei) numberOfQuads*6, GL_UNSIGNED_SHORT, (GLvoid*) (start*6*sizeof(_indices[0])) );
-        
+
         GL::bindVAO(0);
-        
+
 #if CC_REBIND_INDICES_BUFFER
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 #endif
@@ -668,7 +668,7 @@ void TextureAtlas::drawNumberOfQuads(ssize_t numberOfQuads, ssize_t start)
         glBindBuffer(GL_ARRAY_BUFFER, _buffersVBO[0]);
 
         // FIXME:: update is done in draw... perhaps it should be done in a timer
-        if (_dirty) 
+        if (_dirty)
         {
             glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(_quads[0]) * _totalQuads , &_quads[0] );
             _dirty = false;
@@ -677,13 +677,13 @@ void TextureAtlas::drawNumberOfQuads(ssize_t numberOfQuads, ssize_t start)
         GL::enableVertexAttribs(GL::VERTEX_ATTRIB_FLAG_POS_COLOR_TEX);
 
         // vertices
-        glVertexAttribPointer(GLProgram::VERTEX_ATTRIB_POSITION, 3, GL_FLOAT, GL_FALSE, kQuadSize, (GLvoid*) offsetof(V3F_C4B_T2F, vertices));
+        glVertexAttribPointer(GLProgram::VERTEX_ATTRIB_POSITION, 2, GL_FLOAT, GL_FALSE, kQuadSize, (GLvoid*) offsetof(V2F_C4B_T2F, vertices));
 
         // colors
-        glVertexAttribPointer(GLProgram::VERTEX_ATTRIB_COLOR, 4, GL_UNSIGNED_BYTE, GL_TRUE, kQuadSize, (GLvoid*) offsetof(V3F_C4B_T2F, colors));
+        glVertexAttribPointer(GLProgram::VERTEX_ATTRIB_COLOR, 4, GL_UNSIGNED_BYTE, GL_TRUE, kQuadSize, (GLvoid*) offsetof(V2F_C4B_T2F, colors));
 
         // tex coords
-        glVertexAttribPointer(GLProgram::VERTEX_ATTRIB_TEX_COORD, 2, GL_FLOAT, GL_FALSE, kQuadSize, (GLvoid*) offsetof(V3F_C4B_T2F, texCoords));
+        glVertexAttribPointer(GLProgram::VERTEX_ATTRIB_TEX_COORD, 2, GL_FLOAT, GL_FALSE, kQuadSize, (GLvoid*) offsetof(V2F_C4B_T2F, texCoords));
 
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, _buffersVBO[1]);
 
@@ -694,7 +694,7 @@ void TextureAtlas::drawNumberOfQuads(ssize_t numberOfQuads, ssize_t start)
     }
 
     CC_INCREMENT_GL_DRAWN_BATCHES_AND_VERTICES(1,numberOfQuads*6);
-    
+
     CHECK_GL_ERROR_DEBUG();
 }
 

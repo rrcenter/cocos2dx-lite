@@ -64,7 +64,7 @@ PolygonInfo::PolygonInfo(const PolygonInfo& other)
     _filename = other._filename;
     _isVertsOwner = true;
     _rect = other._rect;
-    triangles.verts = new (std::nothrow) V3F_C4B_T2F[other.triangles.vertCount];
+    triangles.verts = new (std::nothrow) V2F_C4B_T2F[other.triangles.vertCount];
     triangles.indices = new (std::nothrow) unsigned short[other.triangles.indexCount];
     CCASSERT(triangles.verts && triangles.indices, "not enough memory");
     triangles.vertCount = other.triangles.vertCount;
@@ -81,7 +81,7 @@ PolygonInfo& PolygonInfo::operator= (const PolygonInfo& other)
         _filename = other._filename;
         _isVertsOwner = true;
         _rect = other._rect;
-        triangles.verts = new (std::nothrow) V3F_C4B_T2F[other.triangles.vertCount];
+        triangles.verts = new (std::nothrow) V2F_C4B_T2F[other.triangles.vertCount];
         triangles.indices = new (std::nothrow) unsigned short[other.triangles.indexCount];
         CCASSERT(triangles.verts && triangles.indices, "not enough memory");
         triangles.vertCount = other.triangles.vertCount;
@@ -97,17 +97,17 @@ PolygonInfo::~PolygonInfo()
     releaseVertsAndIndices();
 }
 
-void PolygonInfo::setQuad(V3F_C4B_T2F_Quad *quad)
+void PolygonInfo::setQuad(V2F_C4B_T2F_Quad *quad)
 {
     releaseVertsAndIndices();
     _isVertsOwner = false;
     triangles.indices = quadIndices9;
     triangles.vertCount = 4;
     triangles.indexCount = 6;
-    triangles.verts = (V3F_C4B_T2F*)quad;
+    triangles.verts = (V2F_C4B_T2F*)quad;
 }
 
-void PolygonInfo::setQuads(V3F_C4B_T2F_Quad *quad, int numberOfQuads)
+void PolygonInfo::setQuads(V2F_C4B_T2F_Quad *quad, int numberOfQuads)
 {
     CCASSERT(numberOfQuads >= 1 && numberOfQuads <= 9, "Invalid number of Quads");
 
@@ -116,7 +116,7 @@ void PolygonInfo::setQuads(V3F_C4B_T2F_Quad *quad, int numberOfQuads)
     triangles.indices = quadIndices9;
     triangles.vertCount = 4 * numberOfQuads;
     triangles.indexCount = 6 * numberOfQuads;
-    triangles.verts = (V3F_C4B_T2F*)quad;
+    triangles.verts = (V2F_C4B_T2F*)quad;
 }
 
 void PolygonInfo::setTriangles(const TrianglesCommand::Triangles& other)
@@ -159,7 +159,7 @@ const unsigned int PolygonInfo::getTriaglesCount() const
 const float PolygonInfo::getArea() const
 {
     float area = 0;
-    V3F_C4B_T2F *verts = triangles.verts;
+    V2F_C4B_T2F *verts = triangles.verts;
     unsigned short *indices = triangles.indices;
     for(int i = 0; i < triangles.indexCount; i+=3)
     {

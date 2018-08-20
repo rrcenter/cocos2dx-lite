@@ -84,10 +84,10 @@ void SpriteFrameCache::parseIntegerList(const std::string &string, std::vector<i
 
     size_t n = std::count(string.begin(), string.end(), ' ');
     res.resize(n+1);
-    
+
     size_t start  = 0U;
     size_t end = string.find(delim);
-    
+
     int i=0;
     while (end != std::string::npos)
     {
@@ -95,7 +95,7 @@ void SpriteFrameCache::parseIntegerList(const std::string &string, std::vector<i
         start = end + delim.length();
         end = string.find(delim, start);
     }
-    
+
     res[i] = atoi(string.substr(start, end).c_str());
 }
 
@@ -108,16 +108,15 @@ void SpriteFrameCache::initializePolygonInfo(const Size &textureSize,
 {
     size_t vertexCount = vertices.size();
     size_t indexCount = triangleIndices.size();
-    
+
     float scaleFactor = CC_CONTENT_SCALE_FACTOR();
 
-    V3F_C4B_T2F *vertexData = new (std::nothrow) V3F_C4B_T2F[vertexCount];
+    V2F_C4B_T2F *vertexData = new (std::nothrow) V2F_C4B_T2F[vertexCount];
     for (size_t i = 0; i < vertexCount/2; i++)
     {
         vertexData[i].colors = Color4B::WHITE;
-        vertexData[i].vertices = Vec3(vertices[i*2] / scaleFactor,
-                                      (spriteSize.height - vertices[i*2+1]) / scaleFactor,
-                                      0);
+        vertexData[i].vertices = Vec2(vertices[i*2] / scaleFactor,
+                                      (spriteSize.height - vertices[i*2+1]) / scaleFactor);
         vertexData[i].texCoords = Tex2F(verticesUV[i*2] / textureSize.width,
                                         verticesUV[i*2+1] / textureSize.height);
     }
@@ -183,8 +182,8 @@ void SpriteFrameCache::addSpriteFramesWithDictionary(ValueMap& dictionary, Textu
         {
             continue;
         }
-        
-        if(format == 0) 
+
+        if(format == 0)
         {
             float x = frameDict["x"].asFloat();
             float y = frameDict["y"].asFloat();
@@ -209,8 +208,8 @@ void SpriteFrameCache::addSpriteFramesWithDictionary(ValueMap& dictionary, Textu
                                                          Vec2(ox, oy),
                                                          Size((float)ow, (float)oh)
                                                          );
-        } 
-        else if(format == 1 || format == 2) 
+        }
+        else if(format == 1 || format == 2)
         {
             Rect frame = RectFromString(frameDict["frame"].asString());
             bool rotated = false;
@@ -231,7 +230,7 @@ void SpriteFrameCache::addSpriteFramesWithDictionary(ValueMap& dictionary, Textu
                                                          offset,
                                                          sourceSize
                                                          );
-        } 
+        }
         else if (format == 3)
         {
             // get values
@@ -307,7 +306,7 @@ void SpriteFrameCache::addSpriteFramesWithDictionary(ValueMap& dict, const std::
             pixelFormatName = metadataDict.at("pixelFormat").asString();
         }
     }
-    
+
     Texture2D *texture = nullptr;
     static std::unordered_map<std::string, Texture2D::PixelFormat> pixelFormats = {
         {"RGBA8888", Texture2D::PixelFormat::RGBA8888},
@@ -337,7 +336,7 @@ void SpriteFrameCache::addSpriteFramesWithDictionary(ValueMap& dict, const std::
     {
         texture = Director::getInstance()->getTextureCache()->addImage(texturePath);
     }
-    
+
     if (texture)
     {
         addSpriteFramesWithDictionary(dict, texture);
@@ -354,7 +353,7 @@ void SpriteFrameCache::addSpriteFramesWithFile(const std::string& plist, Texture
     {
         return; // We already added it
     }
-    
+
     std::string fullPath = FileUtils::getInstance()->fullPathForFilename(plist);
     ValueMap dict = FileUtils::getInstance()->getValueMapFromFile(fullPath);
 
@@ -375,7 +374,7 @@ void SpriteFrameCache::addSpriteFramesWithFile(const std::string& plist, const s
     {
         return; // We already added it
     }
-    
+
     const std::string fullPath = FileUtils::getInstance()->fullPathForFilename(plist);
     ValueMap dict = FileUtils::getInstance()->getValueMapFromFile(fullPath);
     addSpriteFramesWithDictionary(dict, textureFileName);
@@ -385,7 +384,7 @@ void SpriteFrameCache::addSpriteFramesWithFile(const std::string& plist, const s
 void SpriteFrameCache::addSpriteFramesWithFile(const std::string& plist)
 {
     CCASSERT(!plist.empty(), "plist filename should not be nullptr");
-    
+
     std::string fullPath = FileUtils::getInstance()->fullPathForFilename(plist);
     if (fullPath.empty())
     {
@@ -418,7 +417,7 @@ void SpriteFrameCache::addSpriteFramesWithFile(const std::string& plist)
             texturePath = plist;
 
             // remove .xxx
-            size_t startPos = texturePath.find_last_of("."); 
+            size_t startPos = texturePath.find_last_of(".");
             texturePath = texturePath.erase(startPos);
 
             // append .png
@@ -460,7 +459,7 @@ void SpriteFrameCache::removeUnusedSpriteFrames()
 {
     bool removed = false;
     std::vector<std::string> toRemoveFrames;
-    
+
     for (auto& iter : _spriteFrames)
     {
         SpriteFrame* spriteFrame = iter.second;
