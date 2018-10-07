@@ -51,7 +51,10 @@ bool AppDelegate::applicationDidFinishLaunching()
         director->setOpenGLView(glview);
     }
 
-#if 1
+    auto fs = FileUtils::getInstance();
+    fs->setPopupNotify(false);
+    
+#if 0
     director->getOpenGLView()->setDesignResolutionSize(640, 960, ResolutionPolicy::FIXED_WIDTH);
 
     // turn on display FPS
@@ -60,7 +63,7 @@ bool AppDelegate::applicationDidFinishLaunching()
     // set FPS. the default value is 1.0/60 if you don't call this
     director->setAnimationInterval(1.0 / 60);
 
-    FileUtils::getInstance()->addSearchPath("res");
+    fs->addSearchPath("res");
 
     // run
     director->runWithScene(MainScene::create());
@@ -83,22 +86,8 @@ bool AppDelegate::applicationDidFinishLaunching()
     LuaStack* stack = engine->getLuaStack();
     stack->setXXTEAKeyAndSign("2dxLua", strlen("2dxLua"), "XXTEA", strlen("XXTEA"));
 
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS || CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
-    // load framework
-    stack->loadChunksFromZIP("res/framework_precompiled.zip");
-#else
-    // load framework
-    if (_projectConfig.isLoadPrecompiledFramework())
-    {
-        const string precompiledFrameworkPath = SimulatorConfig::getInstance()->getPrecompiledFrameworkPath();
-        stack->loadChunksFromZIP(precompiledFrameworkPath.c_str());
-    }
-#endif
-
-    FileUtils::getInstance()->setPopupNotify(false);
-
     // set script path
-    string path = FileUtils::getInstance()->fullPathForFilename("scripts/main.lua");
+    string path = fs->fullPathForFilename("scripts/main.lua");
 
     size_t pos;
     while ((pos = path.find_first_of("\\")) != std::string::npos)

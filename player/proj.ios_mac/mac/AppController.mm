@@ -350,6 +350,12 @@ USING_NS_CC;
 
 - (void) createWindowAndGLView
 {
+    if (_project.isShowConsole())
+    {
+        [self openConsoleWindow];
+        CCLOG("%s\n",Configuration::getInstance()->getInfo().c_str());
+    }
+    
     GLContextAttrs glContextAttrs = {8, 8, 8, 8, 24, 8};
     GLView::setGLContextAttrs(glContextAttrs);
 
@@ -431,7 +437,6 @@ USING_NS_CC;
 {
     FileUtils::getInstance()->setPopupNotify(false);
 
-    std::string path = SimulatorConfig::getInstance()->getQuickCocos2dxRootPath();
     const string projectDir = _project.getProjectDir();
     if (projectDir.length())
     {
@@ -442,26 +447,16 @@ USING_NS_CC;
         }
     }
 
-    // set framework path
-    if (!_project.isLoadPrecompiledFramework())
-    {
-        FileUtils::getInstance()->addSearchPath(SimulatorConfig::getInstance()->getQuickCocos2dxRootPath() + "quick/");
-    }
-
     const string writablePath = _project.getWritableRealPath();
     if (writablePath.length())
     {
         FileUtils::getInstance()->setWritablePath(writablePath.c_str());
     }
 
-    if (_project.isShowConsole())
-    {
-        [self openConsoleWindow];
-        CCLOG("%s\n",Configuration::getInstance()->getInfo().c_str());
-    }
-
     // add .app/Contents/Resources to search path
-    FileUtils::getInstance()->addSearchPath([[NSBundle mainBundle] resourcePath].UTF8String);
+    std::string searchPath([[NSBundle mainBundle] resourcePath].UTF8String);
+    searchPath = searchPath + "/../../../../../../";
+    FileUtils::getInstance()->setDefaultResourceRootPath(searchPath);
 
     [self loadLuaConfig];
     [self adjustEditMenuIndex];

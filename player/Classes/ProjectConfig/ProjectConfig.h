@@ -42,7 +42,6 @@ public:
 
     bool isWelcome() const;
     void resetToWelcome();
-    void resetToCreator();
 
     string getProjectDir() const;
     void setProjectDir(const string &projectDir);

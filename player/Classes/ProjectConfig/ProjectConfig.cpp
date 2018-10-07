@@ -54,32 +54,11 @@ void ProjectConfig::resetToWelcome()
     setFrameScale(1.0f);
     setLoadPrecompiledFramework(false);
     setPackagePath("");
-    setShowConsole(false);
+//    setShowConsole(false);
     setWindowOffset(cocos2d::Vec2::ZERO);
     setWriteDebugLogToFile(false);
     _isAppMenu = false;
     _isResizeWindow = false;
-    _isRetinaDisplay = true;
-}
-
-void ProjectConfig::resetToCreator()
-{
-    _isWelcome = true;
-    auto path = SimulatorConfig::getInstance()->getQuickCocos2dxRootPath();
-    path.append("quick/creator");
-    SimulatorConfig::makeNormalizePath(&path);
-    setProjectDir(path);
-    setWritablePath(path);
-    setScriptFile("$(PROJDIR)/scripts/main.lua");
-    setFrameSize(cocos2d::Size(960, 640));
-    setFrameScale(1.0f);
-    setLoadPrecompiledFramework(false);
-    setPackagePath("");
-    setShowConsole(false);
-    setWindowOffset(cocos2d::Vec2::ZERO);
-    setWriteDebugLogToFile(false);
-    _isAppMenu = true;
-    _isResizeWindow = true;
     _isRetinaDisplay = true;
 }
 

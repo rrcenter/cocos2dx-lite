@@ -71,9 +71,7 @@
 		9FD5AFEC1CBA81800030DF72 /* SimulatorConfig.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1905C7151BD27C0300E0855E /* SimulatorConfig.cpp */; };
 		9FD5AFF11CBA83860030DF72 /* libluajit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FD5AFEF1CBA83060030DF72 /* libluajit.a */; settings = {ATTRIBUTES = (Weak, ); }; };
 		9FE1676B1CF9FB9200E1C861 /* res in Resources */ = {isa = PBXBuildFile; fileRef = 9FE167691CF9FB9200E1C861 /* res */; };
-		9FE1676C1CF9FB9200E1C861 /* res in Resources */ = {isa = PBXBuildFile; fileRef = 9FE167691CF9FB9200E1C861 /* res */; };
 		9FE1676D1CF9FB9200E1C861 /* scripts in Resources */ = {isa = PBXBuildFile; fileRef = 9FE1676A1CF9FB9200E1C861 /* scripts */; };
-		9FE1676E1CF9FB9200E1C861 /* scripts in Resources */ = {isa = PBXBuildFile; fileRef = 9FE1676A1CF9FB9200E1C861 /* scripts */; };
 		9FE981741CAF8B420038012F /* libcurl.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FE981731CAF8B420038012F /* libcurl.tbd */; };
 		9FFAD48E1CC085A900986F50 /* libcocos2d iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FFAD48B1CC0858E00986F50 /* libcocos2d iOS.a */; };
 		9FFAD4911CC085B300986F50 /* libcocos2d Mac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FFAD4891CC0858E00986F50 /* libcocos2d Mac.a */; };
@@ -624,10 +622,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				1905C72D1BD283EC00E0855E /* CreateNewProjectDialog.xib in Resources */,
-				9FE1676E1CF9FB9200E1C861 /* scripts in Resources */,
 				503AE0F817EB97AB00D1A890 /* Icon.icns in Resources */,
 				1905C72B1BD283EC00E0855E /* ConsoleWindow.xib in Resources */,
-				9FE1676C1CF9FB9200E1C861 /* res in Resources */,
 				1905C7311BD283EC00E0855E /* ProjectConfigDialog.xib in Resources */,
 				1905C72F1BD283EC00E0855E /* MainMenu.xib in Resources */,
 			);
@@ -799,6 +795,7 @@
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				CLANG_CXX_LIBRARY = "libc++";
+				CONFIGURATION_BUILD_DIR = ../bin/debug/mac;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -830,6 +827,7 @@
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				CLANG_CXX_LIBRARY = "libc++";
+				CONFIGURATION_BUILD_DIR = ../bin/release/mac;
 				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = mac/Prefix.pch;
