@@ -877,6 +877,7 @@
 					"$(SRCROOT)/../../external/lua/tolua",
 					"$(SRCROOT)/../../cocos/scripting/lua-bindings/auto",
 					"$(SRCROOT)/../../cocos/scripting/lua-bindings/manual/",
+					"$(SRCROOT)/../../cocos/editor-support/",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				ONLY_ACTIVE_ARCH = YES;
@@ -915,6 +916,7 @@
 					"$(SRCROOT)/../../external/lua/tolua",
 					"$(SRCROOT)/../../cocos/scripting/lua-bindings/auto",
 					"$(SRCROOT)/../../cocos/scripting/lua-bindings/manual/",
+					"$(SRCROOT)/../../cocos/editor-support/",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
