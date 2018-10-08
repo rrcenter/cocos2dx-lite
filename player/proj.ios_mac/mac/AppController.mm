@@ -42,23 +42,6 @@ USING_NS_CC;
     _buildTask = nil;
     _isBuildingFinished = YES;
 
-    // load C2D_ROOT from ~/.C2D_ROOT
-    NSMutableString *path = [NSMutableString stringWithString:NSHomeDirectory()];
-    [path appendString:@"/.C2D_ROOT"];
-    NSError *error = [[[NSError alloc] init] autorelease];
-    NSString *env = [NSString stringWithContentsOfFile:path
-                                              encoding:NSUTF8StringEncoding
-                                                 error:&error];
-    if ([error code] || env.length == 0)
-    {
-        [self showAlertWithoutSheet:@"Please run \"setup_mac.sh\", set quick-cocos2d-x root path."
-                          withTitle:@"quick player error"];
-        [[NSApplication sharedApplication] terminate:self];
-    }
-
-    env = [env stringByTrimmingCharactersInSet:[NSCharacterSet newlineCharacterSet]];
-    SimulatorConfig::getInstance()->setQuickCocos2dxRootPath([env cStringUsingEncoding:NSUTF8StringEncoding]);
-
     [self updateProjectFromCommandLineArgs:&_project];
     [self createWindowAndGLView];
     [self registerEventsHandler];
@@ -355,7 +338,7 @@ USING_NS_CC;
         [self openConsoleWindow];
         CCLOG("%s\n",Configuration::getInstance()->getInfo().c_str());
     }
-    
+
     GLContextAttrs glContextAttrs = {8, 8, 8, 8, 24, 8};
     GLView::setGLContextAttrs(glContextAttrs);
 
