@@ -36,6 +36,8 @@ public:
     */
     virtual void applicationWillEnterForeground();
 
+    void applicationScreenSizeChanged(int newWidth, int newHeight) override;
+    
     void setProjectConfig(const ProjectConfig& config);
     
 private:

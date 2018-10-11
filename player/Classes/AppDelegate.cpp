@@ -4,6 +4,8 @@
 // #include "SimpleAudioEngine.h"
 #include "cocos2d.h"
 
+//#include "TAnalytics.h"
+
 #include "ProjectConfig/SimulatorConfig.h"
 
 #include "MainScene.h"
@@ -51,6 +53,12 @@ bool AppDelegate::applicationDidFinishLaunching()
         director->setOpenGLView(glview);
     }
 
+//    TAnalytics_Init("UA-76498815-1", "123");
+//    director->getScheduler()->schedule([](float dt) {
+//        TAnalytics_Update();
+//    }, this, 10, false, "x");
+//    TAnalytics_Event("GameStart", "linux");
+    
     auto fs = FileUtils::getInstance();
     fs->setPopupNotify(false);
     
@@ -144,4 +152,25 @@ void AppDelegate::applicationWillEnterForeground()
 void AppDelegate::setProjectConfig(const ProjectConfig& config)
 {
     _projectConfig = config;
+}
+
+void AppDelegate::applicationScreenSizeChanged(int newWidth, int newHeight)
+{
+    log("%s: %d, %d", __FUNCTION__, newWidth, newHeight);
+    
+    auto director = Director::getInstance();
+    auto glview = director->getOpenGLView();
+    if (glview)
+    {
+        auto size = glview->getFrameSize();
+        if (size.equals(Size(newWidth, newHeight)))
+            return;
+        
+        glview->setFrameSize(newWidth, newHeight);
+        
+        ResolutionPolicy resolutionPolicy = glview->getResolutionPolicy();
+        if (resolutionPolicy == ResolutionPolicy::UNKNOWN)
+            resolutionPolicy = ResolutionPolicy::SHOW_ALL;
+        glview->setDesignResolutionSize(newWidth, newHeight, resolutionPolicy);
+    }
 }
