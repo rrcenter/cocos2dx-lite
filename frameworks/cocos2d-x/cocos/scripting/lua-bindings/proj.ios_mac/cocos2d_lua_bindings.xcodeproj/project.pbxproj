@@ -177,6 +177,8 @@
 		3E2BDB0619C5E5FE0055CDCD /* lua_cocos2dx_audioengine_auto.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3E2BDB0419C5E5FE0055CDCD /* lua_cocos2dx_audioengine_auto.hpp */; };
 		3E2BDB0A19C5E6100055CDCD /* lua_cocos2dx_audioengine_manual.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E2BDB0819C5E6100055CDCD /* lua_cocos2dx_audioengine_manual.cpp */; };
 		3E2BDB0B19C5E6100055CDCD /* lua_cocos2dx_audioengine_manual.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E2BDB0919C5E6100055CDCD /* lua_cocos2dx_audioengine_manual.h */; };
+		8488A5D12183640300A28C80 /* lpack.c in Sources */ = {isa = PBXBuildFile; fileRef = 8488A5CE2183640300A28C80 /* lpack.c */; };
+		8488A5D22183640300A28C80 /* lpack.c in Sources */ = {isa = PBXBuildFile; fileRef = 8488A5CE2183640300A28C80 /* lpack.c */; };
 		9F2289181DEAADC000E50645 /* lua_cocos2dx_cocosdenshion_auto.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F2289161DEAADC000E50645 /* lua_cocos2dx_cocosdenshion_auto.cpp */; };
 		9F2289191DEAADC000E50645 /* lua_cocos2dx_cocosdenshion_auto.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F2289161DEAADC000E50645 /* lua_cocos2dx_cocosdenshion_auto.cpp */; };
 		9F22891A1DEAADC000E50645 /* lua_cocos2dx_cocosdenshion_auto.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9F2289171DEAADC000E50645 /* lua_cocos2dx_cocosdenshion_auto.hpp */; };
@@ -341,6 +343,7 @@
 		3E2BDB0419C5E5FE0055CDCD /* lua_cocos2dx_audioengine_auto.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = lua_cocos2dx_audioengine_auto.hpp; sourceTree = "<group>"; };
 		3E2BDB0819C5E6100055CDCD /* lua_cocos2dx_audioengine_manual.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = lua_cocos2dx_audioengine_manual.cpp; sourceTree = "<group>"; };
 		3E2BDB0919C5E6100055CDCD /* lua_cocos2dx_audioengine_manual.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lua_cocos2dx_audioengine_manual.h; sourceTree = "<group>"; };
+		8488A5CE2183640300A28C80 /* lpack.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lpack.c; sourceTree = "<group>"; };
 		9F2289161DEAADC000E50645 /* lua_cocos2dx_cocosdenshion_auto.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = lua_cocos2dx_cocosdenshion_auto.cpp; sourceTree = "<group>"; };
 		9F2289171DEAADC000E50645 /* lua_cocos2dx_cocosdenshion_auto.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = lua_cocos2dx_cocosdenshion_auto.hpp; sourceTree = "<group>"; };
 		9F22891D1DEAADEF00E50645 /* lua_cocos2dx_cocosdenshion_manual.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = lua_cocos2dx_cocosdenshion_manual.cpp; sourceTree = "<group>"; };
@@ -537,6 +540,7 @@
 		1ABCA1E218CD8F230087CE3A /* external */ = {
 			isa = PBXGroup;
 			children = (
+				8488A5CA2183640300A28C80 /* lpack */,
 				9FA751F91D31EDAF00F05F08 /* cjson */,
 				1ABCA1E318CD8F2D0087CE3A /* luajit */,
 				1ABCA20E18CD8F7D0087CE3A /* luasocket */,
@@ -647,6 +651,15 @@
 				3E2BDB0919C5E6100055CDCD /* lua_cocos2dx_audioengine_manual.h */,
 			);
 			path = audioengine;
+			sourceTree = "<group>";
+		};
+		8488A5CA2183640300A28C80 /* lpack */ = {
+			isa = PBXGroup;
+			children = (
+				8488A5CE2183640300A28C80 /* lpack.c */,
+			);
+			name = lpack;
+			path = ../../../../external/lua/lpack;
 			sourceTree = "<group>";
 		};
 		9F22891C1DEAADEF00E50645 /* cocosdenshion */ = {
@@ -907,6 +920,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				150906F219D556CE002C4D97 /* lua_cocos2dx_audioengine_manual.cpp in Sources */,
+				8488A5D12183640300A28C80 /* lpack.c in Sources */,
 				15415A7719A718FB004F1E71 /* lua_cocos2dx_spine_auto.cpp in Sources */,
 				9F296E9F1DDD7E37006DF478 /* lua_cocos2dx_studio_auto.cpp in Sources */,
 				15AC69D91987710400D17520 /* tolua_event.c in Sources */,
@@ -974,6 +988,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				15415AC619A71A53004F1E71 /* select.c in Sources */,
+				8488A5D22183640300A28C80 /* lpack.c in Sources */,
 				15EFA646198B3311000C57D3 /* tolua_event.c in Sources */,
 				9F296EA01DDD7E37006DF478 /* lua_cocos2dx_studio_auto.cpp in Sources */,
 				3E2BDB0A19C5E6100055CDCD /* lua_cocos2dx_audioengine_manual.cpp in Sources */,

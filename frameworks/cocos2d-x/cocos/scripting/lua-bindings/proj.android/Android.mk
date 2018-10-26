@@ -67,6 +67,10 @@ LOCAL_CJSON_SRC_FILES := ../../../../external/lua/cjson/fpconv.c \
                          ../../../../external/lua/cjson/lua_cjson.c \
                          ../../../../external/lua/cjson/strbuf.c
 
+# lpack
+LOCAL_SRC_FILES += ../../../../external/lua/lpack/lpack.c
+LOCAL_SRC_FILES += ../../../../external/lua/lua_extensions.c
+
 LOCAL_SRC_FILES += $(LOCAL_CJSON_SRC_FILES)
 
 #Component
@@ -82,7 +86,6 @@ LOCAL_SRC_FILES += ../manual/cocosdenshion/lua_cocos2dx_cocosdenshion_manual.cpp
 
 #network
 LOCAL_SRC_FILES += ../manual/network/lua_cocos2dx_network_manual.cpp \
-                   ../manual/network/lua_extensions.c \
                    ../manual/network/Lua_web_socket.cpp \
                    ../manual/network/lua_xml_http_request.cpp \
                    ../../../../external/lua/luasocket/auxiliar.c \

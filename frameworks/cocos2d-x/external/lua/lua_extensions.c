@@ -11,13 +11,13 @@ extern "C" {
 //// zlib
 //#include "zlib/lua_zlib.h"
 
-//// lpack
-//#include "lpack/lpack.h"
+// lpack
+extern int luaopen_pack(lua_State *L);
 
-//// socket
-//#include "socket/luasocket.h"
-//#include "socket/mime.h"
-//#include "socket/socket_scripts.h"
+// socket
+#include "luasocket/luasocket.h"
+#include "luasocket/mime.h"
+#include "luasocket/luasocket_scripts.h"
 
 //// filesystem
 //#include "filesystem/lfs.h"
@@ -30,9 +30,9 @@ extern "C" {
 static luaL_Reg luax_exts[] = {
     {"cjson", luaopen_cjson_safe},
 //    {"zlib", luaopen_zlib},
-//    {"pack", luaopen_pack},
-//    {"socket.core", luaopen_socket_core},
-//    {"mime.core", luaopen_mime_core},
+    {"pack", luaopen_pack},
+    {"socket.core", luaopen_socket_core},
+    {"mime.core", luaopen_mime_core},
 //    {"lfs", luaopen_lfs},
 
 #if CC_SQLITE_ENABLED > 0
@@ -55,8 +55,8 @@ void luaopen_lua_extensions(lua_State *L)
     }
     lua_pop(L, 2);
 
-//    // load extensions script
-//    luaopen_socket_scripts(L);
+    // load extensions script
+    luaopen_luasocket_scripts(L);
 }
 
 #if __cplusplus
