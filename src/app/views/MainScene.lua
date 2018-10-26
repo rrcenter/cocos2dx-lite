@@ -14,6 +14,8 @@ local function t_lpack(  )
     print("字节数:",#_tmp)
     local nesT,valueT = string.unpack(_tmp,">P")
     print("解包>>","?:",nesT,"原数据",valueT)
+
+    print(hex(valueT))
 end
 
 local function t_cjson(  )
