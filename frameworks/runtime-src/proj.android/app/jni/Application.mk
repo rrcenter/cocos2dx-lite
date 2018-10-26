@@ -1,4 +1,4 @@
-APP_STL := c++_static
+APP_STL := c++_static # DO NOT MODIFIED THIS. c++_static from 3.17
 
 APP_CPPFLAGS := -frtti -DCC_ENABLE_CHIPMUNK_INTEGRATION=1 -std=c++11 -fsigned-char -Wno-extern-c-compat
 APP_LDFLAGS := -latomic
