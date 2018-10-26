@@ -179,6 +179,10 @@
 		3E2BDB0B19C5E6100055CDCD /* lua_cocos2dx_audioengine_manual.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E2BDB0919C5E6100055CDCD /* lua_cocos2dx_audioengine_manual.h */; };
 		8488A5D12183640300A28C80 /* lpack.c in Sources */ = {isa = PBXBuildFile; fileRef = 8488A5CE2183640300A28C80 /* lpack.c */; };
 		8488A5D22183640300A28C80 /* lpack.c in Sources */ = {isa = PBXBuildFile; fileRef = 8488A5CE2183640300A28C80 /* lpack.c */; };
+		8488A5D621836BEB00A28C80 /* lfs.c in Sources */ = {isa = PBXBuildFile; fileRef = 8488A5D421836BEB00A28C80 /* lfs.c */; };
+		8488A5D721836BEB00A28C80 /* lfs.c in Sources */ = {isa = PBXBuildFile; fileRef = 8488A5D421836BEB00A28C80 /* lfs.c */; };
+		8488A5D821836BEB00A28C80 /* lfs.h in Headers */ = {isa = PBXBuildFile; fileRef = 8488A5D521836BEB00A28C80 /* lfs.h */; };
+		8488A5D921836BEB00A28C80 /* lfs.h in Headers */ = {isa = PBXBuildFile; fileRef = 8488A5D521836BEB00A28C80 /* lfs.h */; };
 		9F2289181DEAADC000E50645 /* lua_cocos2dx_cocosdenshion_auto.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F2289161DEAADC000E50645 /* lua_cocos2dx_cocosdenshion_auto.cpp */; };
 		9F2289191DEAADC000E50645 /* lua_cocos2dx_cocosdenshion_auto.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F2289161DEAADC000E50645 /* lua_cocos2dx_cocosdenshion_auto.cpp */; };
 		9F22891A1DEAADC000E50645 /* lua_cocos2dx_cocosdenshion_auto.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9F2289171DEAADC000E50645 /* lua_cocos2dx_cocosdenshion_auto.hpp */; };
@@ -344,6 +348,8 @@
 		3E2BDB0819C5E6100055CDCD /* lua_cocos2dx_audioengine_manual.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = lua_cocos2dx_audioengine_manual.cpp; sourceTree = "<group>"; };
 		3E2BDB0919C5E6100055CDCD /* lua_cocos2dx_audioengine_manual.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lua_cocos2dx_audioengine_manual.h; sourceTree = "<group>"; };
 		8488A5CE2183640300A28C80 /* lpack.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lpack.c; sourceTree = "<group>"; };
+		8488A5D421836BEB00A28C80 /* lfs.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lfs.c; sourceTree = "<group>"; };
+		8488A5D521836BEB00A28C80 /* lfs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lfs.h; sourceTree = "<group>"; };
 		9F2289161DEAADC000E50645 /* lua_cocos2dx_cocosdenshion_auto.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = lua_cocos2dx_cocosdenshion_auto.cpp; sourceTree = "<group>"; };
 		9F2289171DEAADC000E50645 /* lua_cocos2dx_cocosdenshion_auto.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = lua_cocos2dx_cocosdenshion_auto.hpp; sourceTree = "<group>"; };
 		9F22891D1DEAADEF00E50645 /* lua_cocos2dx_cocosdenshion_manual.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = lua_cocos2dx_cocosdenshion_manual.cpp; sourceTree = "<group>"; };
@@ -540,6 +546,7 @@
 		1ABCA1E218CD8F230087CE3A /* external */ = {
 			isa = PBXGroup;
 			children = (
+				8488A5D321836BEB00A28C80 /* lfs */,
 				8488A5CA2183640300A28C80 /* lpack */,
 				9FA751F91D31EDAF00F05F08 /* cjson */,
 				1ABCA1E318CD8F2D0087CE3A /* luajit */,
@@ -662,6 +669,16 @@
 			path = ../../../../external/lua/lpack;
 			sourceTree = "<group>";
 		};
+		8488A5D321836BEB00A28C80 /* lfs */ = {
+			isa = PBXGroup;
+			children = (
+				8488A5D421836BEB00A28C80 /* lfs.c */,
+				8488A5D521836BEB00A28C80 /* lfs.h */,
+			);
+			name = lfs;
+			path = ../../../../external/lua/lfs;
+			sourceTree = "<group>";
+		};
 		9F22891C1DEAADEF00E50645 /* cocosdenshion */ = {
 			isa = PBXGroup;
 			children = (
@@ -738,6 +755,7 @@
 				15415AAF19A71A53004F1E71 /* except.h in Headers */,
 				9F296E781DDD7D96006DF478 /* lua_cocos2dx_experimental_video_manual.hpp in Headers */,
 				150906F319D556D1002C4D97 /* lua_cocos2dx_audioengine_manual.h in Headers */,
+				8488A5D821836BEB00A28C80 /* lfs.h in Headers */,
 				15415ACB19A71A53004F1E71 /* socket.h in Headers */,
 				15415ADF19A71A53004F1E71 /* usocket.h in Headers */,
 				15415AC319A71A53004F1E71 /* options.h in Headers */,
@@ -805,6 +823,7 @@
 				15EFA64C198B3320000C57D3 /* tolua++.h in Headers */,
 				9F296E791DDD7D96006DF478 /* lua_cocos2dx_experimental_video_manual.hpp in Headers */,
 				15415AB019A71A53004F1E71 /* except.h in Headers */,
+				8488A5D921836BEB00A28C80 /* lfs.h in Headers */,
 				3E2BDB0B19C5E6100055CDCD /* lua_cocos2dx_audioengine_manual.h in Headers */,
 				15415ACC19A71A53004F1E71 /* socket.h in Headers */,
 				15415AE019A71A53004F1E71 /* usocket.h in Headers */,
@@ -924,6 +943,7 @@
 				15415A7719A718FB004F1E71 /* lua_cocos2dx_spine_auto.cpp in Sources */,
 				9F296E9F1DDD7E37006DF478 /* lua_cocos2dx_studio_auto.cpp in Sources */,
 				15AC69D91987710400D17520 /* tolua_event.c in Sources */,
+				8488A5D621836BEB00A28C80 /* lfs.c in Sources */,
 				9F296E761DDD7D96006DF478 /* lua_cocos2dx_experimental_video_manual.cpp in Sources */,
 				9F22891F1DEAADEF00E50645 /* lua_cocos2dx_cocosdenshion_manual.cpp in Sources */,
 				15AC69DA1987710400D17520 /* tolua_is.c in Sources */,
@@ -992,6 +1012,7 @@
 				15EFA646198B3311000C57D3 /* tolua_event.c in Sources */,
 				9F296EA01DDD7E37006DF478 /* lua_cocos2dx_studio_auto.cpp in Sources */,
 				3E2BDB0A19C5E6100055CDCD /* lua_cocos2dx_audioengine_manual.cpp in Sources */,
+				8488A5D721836BEB00A28C80 /* lfs.c in Sources */,
 				9F296E771DDD7D96006DF478 /* lua_cocos2dx_experimental_video_manual.cpp in Sources */,
 				9F2289201DEAADEF00E50645 /* lua_cocos2dx_cocosdenshion_manual.cpp in Sources */,
 				15415AA619A71A53004F1E71 /* auxiliar.c in Sources */,

@@ -38,6 +38,9 @@ function MainScene:onCreate()
 
     t_lpack()
     t_cjson()
+
+    local lfs = require "lfs"
+    print (lfs._VERSION)
 end
 
 return MainScene

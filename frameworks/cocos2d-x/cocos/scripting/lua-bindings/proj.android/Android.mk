@@ -69,6 +69,10 @@ LOCAL_CJSON_SRC_FILES := ../../../../external/lua/cjson/fpconv.c \
 
 # lpack
 LOCAL_SRC_FILES += ../../../../external/lua/lpack/lpack.c
+
+# lfs
+LOCAL_SRC_FILES += ../../../../external/lua/lfs/lfs.c
+
 LOCAL_SRC_FILES += ../../../../external/lua/lua_extensions.c
 
 LOCAL_SRC_FILES += $(LOCAL_CJSON_SRC_FILES)
