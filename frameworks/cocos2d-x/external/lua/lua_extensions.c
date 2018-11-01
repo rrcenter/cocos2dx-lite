@@ -19,6 +19,9 @@ extern int luaopen_pack(lua_State *L);
 #include "luasocket/mime.h"
 #include "luasocket/luasocket_scripts.h"
 
+// lsocket 1.4.1
+extern int luaopen_lsocket(lua_State *L);
+    
 // filesystem
 #include "lfs/lfs.h"
 
@@ -34,6 +37,7 @@ static luaL_Reg luax_exts[] = {
     {"socket.core", luaopen_socket_core},
     {"mime.core", luaopen_mime_core},
     {"lfs", luaopen_lfs},
+    {"lsocket", luaopen_lsocket},
 
 #if CC_SQLITE_ENABLED > 0
     {"lsqlite3", luaopen_lsqlite3},

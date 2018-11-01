@@ -73,6 +73,11 @@ LOCAL_SRC_FILES += ../../../../external/lua/lpack/lpack.c
 # lfs
 LOCAL_SRC_FILES += ../../../../external/lua/lfs/lfs.c
 
+# lsocket
+LOCAL_SRC_FILES += ../../../../external/lua/lsocket/lsocket.c
+# LOCAL_SRC_FILES += ../../../../external/lua/lsocket/async_resolver.c \
+#                   ../../../../external/lua/lsocket/gai_async.c
+
 LOCAL_SRC_FILES += ../../../../external/lua/lua_extensions.c
 
 LOCAL_SRC_FILES += $(LOCAL_CJSON_SRC_FILES)
