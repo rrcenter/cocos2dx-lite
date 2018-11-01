@@ -78,6 +78,32 @@ LOCAL_SRC_FILES += ../../../../external/lua/lsocket/lsocket.c
 # LOCAL_SRC_FILES += ../../../../external/lua/lsocket/async_resolver.c \
 #                   ../../../../external/lua/lsocket/gai_async.c
 
+LOCAL_SRC_FILES += ../../../../external/lua/lpack/lpack.c
+
+
+LOCAL_SRC_FILES += ../../../../external/lua/crypto/CCCrypto.cpp
+
+LOCAL_SRC_FILES += ../../../../external/lua/lpeg/lpcap.c \
+                    ../../../../external/lua/lpeg/lpcode.c \
+                    ../../../../external/lua/lpeg/lpprint.c \
+                    ../../../../external/lua/lpeg/lptree.c \
+                    ../../../../external/lua/lpeg/lpvm.c
+
+LOCAL_SRC_FILES += ../../../../external/lua/pbc/src/alloc.c \
+                   ../../../../external/lua/pbc/src/array.c \
+                   ../../../../external/lua/pbc/src/bootstrap.c \
+                   ../../../../external/lua/pbc/src/context.c \
+                   ../../../../external/lua/pbc/src/decode.c \
+                   ../../../../external/lua/pbc/src/map.c \
+                   ../../../../external/lua/pbc/src/pattern.c \
+                   ../../../../external/lua/pbc/src/proto.c \
+                   ../../../../external/lua/pbc/src/register.c \
+                   ../../../../external/lua/pbc/src/rmessage.c \
+                   ../../../../external/lua/pbc/src/stringpool.c \
+                   ../../../../external/lua/pbc/src/varint.c \
+                   ../../../../external/lua/pbc/src/wmessage.c \
+                   ../../../../external/lua/pbc/src/pbc-lua.c
+
 LOCAL_SRC_FILES += ../../../../external/lua/lua_extensions.c
 
 LOCAL_SRC_FILES += $(LOCAL_CJSON_SRC_FILES)

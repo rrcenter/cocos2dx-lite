@@ -1,4 +1,4 @@
-require"pack"
+require "pack"
 
 bpack=string.pack
 bunpack=string.unpack

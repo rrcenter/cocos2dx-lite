@@ -66,6 +66,7 @@ local function main()
     require "cocos.init"
 
     require 'pack'
+    require 'pbc.pbc'
     --
     math.randomseed( tonumber(tostring(os.time()):reverse():sub(1,6)) )
 
@@ -73,6 +74,16 @@ local function main()
 
     local app = require('app.App'):instance()
     app:run('LoginController')
+
+    local xxtea = require 'xxtea'
+    local s = xxtea.encrypt('abc', 'xx')
+    print(xxtea.decrypt(s, 'xx') == 'abc')
+
+    local md5 = require 'md5'
+    print(md5.sum('helloworld'))
+
+    -- pbc test
+    require 'test.test'
 end
 
 local status, msg = xpcall(main, __G__TRACKBACK__)

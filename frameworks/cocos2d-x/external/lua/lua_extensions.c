@@ -1,6 +1,10 @@
 
 #include "lua_extensions.h"
 
+// extern int luaopen_xxtea(lua_State *L);
+// extern int luaopen_md5(lua_State *L);
+
+#include "crypto/CCCrypto.h"
 #if __cplusplus
 extern "C" {
 #endif
@@ -21,7 +25,7 @@ extern int luaopen_pack(lua_State *L);
 
 // lsocket 1.4.1
 extern int luaopen_lsocket(lua_State *L);
-    
+
 // filesystem
 #include "lfs/lfs.h"
 
@@ -29,6 +33,11 @@ extern int luaopen_lsocket(lua_State *L);
 // lsqlite3
 #include "lsqlite3/lsqlite3.h"
 #endif
+
+
+    extern int luaopen_lpeg(lua_State *L);
+    extern int luaopen_protobuf_c(lua_State *L);
+
 
 static luaL_Reg luax_exts[] = {
     {"cjson", luaopen_cjson_safe},
@@ -38,6 +47,10 @@ static luaL_Reg luax_exts[] = {
     {"mime.core", luaopen_mime_core},
     {"lfs", luaopen_lfs},
     {"lsocket", luaopen_lsocket},
+    { "xxtea", luaopen_xxtea },
+    { "md5", luaopen_md5 },
+    { "lpeg", luaopen_lpeg },
+    { "protobuf.c", luaopen_protobuf_c },
 
 #if CC_SQLITE_ENABLED > 0
     {"lsqlite3", luaopen_lsqlite3},
