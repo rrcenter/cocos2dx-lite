@@ -212,15 +212,27 @@ function class(classname, ...)
 
     cls.__index = cls
     if not cls.__supers or #cls.__supers == 1 then
-        setmetatable(cls, {__index = cls.super})
-    else
-        setmetatable(cls, {__index = function(_, key)
-            local supers = cls.__supers
-            for i = 1, #supers do
-                local super = supers[i]
-                if super[key] then return super[key] end
+        setmetatable(cls, {
+            __index = cls.super,
+
+            __call = function(t,...)
+                return t.new(...)
             end
-        end})
+        })
+    else
+        setmetatable(cls, {
+            __index = function(_, key)
+                local supers = cls.__supers
+                for i = 1, #supers do
+                    local super = supers[i]
+                    if super[key] then return super[key] end
+                end
+            end,
+
+            __call = function ( t, ... )
+                return t.new(...)
+            end
+        })
     end
 
     if not cls.ctor then
@@ -320,7 +332,7 @@ function math.newrandomseed()
     if ok then
         math.randomseed(socket.gettime() * 1000)
     else
-        math.randomseed(os.time())
+        math.randomseed(tostring(os.time()):reverse():sub(1, 6))
     end
     math.random()
     math.random()
@@ -518,6 +530,49 @@ function table.unique(t, bArray)
     return n
 end
 
+function table.clone( org )
+    return {unpack(org)}
+end
+
+function table.shallowcopy(orig)
+    local orig_type = type(orig)
+    local copy
+    if orig_type == 'table' then
+        copy = {}
+        for orig_key, orig_value in pairs(orig) do
+            copy[orig_key] = orig_value
+        end
+    else -- number, string, boolean, etc
+        copy = orig
+    end
+    return copy
+end
+
+function table.deepcopy(orig)
+    local orig_type = type(orig)
+    local copy
+    if orig_type == 'table' then
+        copy = {}
+        for orig_key, orig_value in next, orig, nil do
+            copy[deepcopy(orig_key)] = deepcopy(orig_value)
+        end
+        setmetatable(copy, deepcopy(getmetatable(orig)))
+    else -- number, string, boolean, etc
+        copy = orig
+    end
+    return copy
+end
+
+function table.shuffle(tbl)
+    local shuffled = table.clone(tbl)
+    size = #shuffled
+    for i = size, 1, -1 do
+        local rand = math.random(size)
+        shuffled[i], shuffled[rand] = shuffled[rand], shuffled[i]
+    end
+    return shuffled
+end
+
 string._htmlspecialchars_set = {}
 string._htmlspecialchars_set["&"] = "&amp;"
 string._htmlspecialchars_set["\""] = "&quot;"
@@ -629,4 +684,16 @@ function string.formatnumberthousands(num)
         if k == 0 then break end
     end
     return formatted
+end
+
+function string.tohex( str )
+     local len = string.len(str)
+     local hex = ""
+
+     for i = 1, len do
+         local ord = string.byte(str, i)
+         hex = hex .. string.format("%02x", ord)
+     end
+
+     return hex
 end
