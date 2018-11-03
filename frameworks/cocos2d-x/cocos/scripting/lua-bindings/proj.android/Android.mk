@@ -22,11 +22,20 @@ LOCAL_EXPORT_LDLIBS := -lGLESv2 \
                        -landroid
 
 # luajit
-LUA_STATIC_LIB := luajit_static
-LUA_IMPORT_PATH := lua/luajit/prebuilt/android
-LUA_INCLUDE_PATH := $(LOCAL_PATH)/../../../../external/lua/luajit/include
+#LUA_STATIC_LIB := luajit_static
+#LUA_IMPORT_PATH := lua/luajit/prebuilt/android
+#LUA_INCLUDE_PATH := $(LOCAL_PATH)/../../../../external/lua/luajit/include
+#
+#LOCAL_STATIC_LIBRARIES := $(LUA_STATIC_LIB)
+# luajit end
+
+# lua 5.1.x
+LUA_STATIC_LIB := lua_static
+LUA_IMPORT_PATH := lua/lua/
+LUA_INCLUDE_PATH := $(LOCAL_PATH)/../../../../external/lua/lua/
 
 LOCAL_STATIC_LIBRARIES := $(LUA_STATIC_LIB)
+# lua 5.1.x
 
 include $(BUILD_STATIC_LIBRARY)
 
