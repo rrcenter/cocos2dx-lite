@@ -39,6 +39,7 @@ The major change:
 
 ### Lua
 
+0.  [lua 5.1.x](https://www.lua.org/) as default, not [LuaJIT](http://luajit.org/)
 1.  [lua-cjson](https://github.com/mpx/lua-cjson)
 2.  [luafilesystem Version 1.7.0 [15/Sep/2017]](https://github.com/keplerproject/luafilesystem)
 3.  [lpeg](http://www.inf.puc-rio.br/~roberto/lpeg/)
