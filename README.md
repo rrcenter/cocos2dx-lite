@@ -35,6 +35,18 @@ The major change:
 - Restore `CocoStudio` module
 - Keep working with `CocosStudio` after 3.14.1 ([https://github.com/cocos2d/cocos2d-x/pull/17349#issuecomment-279629919](https://github.com/cocos2d/cocos2d-x/pull/17349#issuecomment-279629919))
 
+
+
+### Lua
+
+1.  [lua-cjson](https://github.com/mpx/lua-cjson)
+2.  [luafilesystem Version 1.7.0 [15/Sep/2017]](https://github.com/keplerproject/luafilesystem)
+3.  [lpeg](http://www.inf.puc-rio.br/~roberto/lpeg/)
+4.  [lpack](https://github.com/LuaDist/lpack)
+5.  [luasocket](https://github.com/diegonehab/luasocket)
+6.  [lsocket 1.4.1](http://tset.de/lsocket/index.html)
+7.  [pbc](https://github.com/cloudwu/pbc)
+
 ## How to start
 
 1. setup env
