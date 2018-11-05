@@ -167,6 +167,8 @@
 		3E2BDB0619C5E5FE0055CDCD /* lua_cocos2dx_audioengine_auto.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3E2BDB0419C5E5FE0055CDCD /* lua_cocos2dx_audioengine_auto.hpp */; };
 		3E2BDB0A19C5E6100055CDCD /* lua_cocos2dx_audioengine_manual.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E2BDB0819C5E6100055CDCD /* lua_cocos2dx_audioengine_manual.cpp */; };
 		3E2BDB0B19C5E6100055CDCD /* lua_cocos2dx_audioengine_manual.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E2BDB0919C5E6100055CDCD /* lua_cocos2dx_audioengine_manual.h */; };
+		84140459218E081D006D30BC /* bit.c in Sources */ = {isa = PBXBuildFile; fileRef = 84140455218E081D006D30BC /* bit.c */; };
+		8414045A218E081D006D30BC /* bit.c in Sources */ = {isa = PBXBuildFile; fileRef = 84140455218E081D006D30BC /* bit.c */; };
 		84215FE22185F07F003194FC /* lsocket.c in Sources */ = {isa = PBXBuildFile; fileRef = 84215FC82185F07F003194FC /* lsocket.c */; };
 		84215FE32185F07F003194FC /* lsocket.c in Sources */ = {isa = PBXBuildFile; fileRef = 84215FC82185F07F003194FC /* lsocket.c */; };
 		84215FE42185F07F003194FC /* gai_async.c in Sources */ = {isa = PBXBuildFile; fileRef = 84215FC92185F07F003194FC /* gai_async.c */; };
@@ -521,6 +523,7 @@
 		3E2BDB0419C5E5FE0055CDCD /* lua_cocos2dx_audioengine_auto.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = lua_cocos2dx_audioengine_auto.hpp; sourceTree = "<group>"; };
 		3E2BDB0819C5E6100055CDCD /* lua_cocos2dx_audioengine_manual.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = lua_cocos2dx_audioengine_manual.cpp; sourceTree = "<group>"; };
 		3E2BDB0919C5E6100055CDCD /* lua_cocos2dx_audioengine_manual.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lua_cocos2dx_audioengine_manual.h; sourceTree = "<group>"; };
+		84140455218E081D006D30BC /* bit.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = bit.c; sourceTree = "<group>"; };
 		84215FC82185F07F003194FC /* lsocket.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lsocket.c; sourceTree = "<group>"; };
 		84215FC92185F07F003194FC /* gai_async.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = gai_async.c; sourceTree = "<group>"; };
 		84215FDE2185F07F003194FC /* async_resolver.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = async_resolver.c; sourceTree = "<group>"; };
@@ -811,6 +814,7 @@
 		1ABCA1E218CD8F230087CE3A /* external */ = {
 			isa = PBXGroup;
 			children = (
+				84140440218E081D006D30BC /* LuaBitOp */,
 				843CA49C218DA28D00CAFC4F /* lua */,
 				845BF3FA218B47BA00D0FBE4 /* crypto */,
 				845BF3FD218B47BA00D0FBE4 /* lpeg */,
@@ -887,6 +891,15 @@
 				3E2BDB0919C5E6100055CDCD /* lua_cocos2dx_audioengine_manual.h */,
 			);
 			path = audioengine;
+			sourceTree = "<group>";
+		};
+		84140440218E081D006D30BC /* LuaBitOp */ = {
+			isa = PBXGroup;
+			children = (
+				84140455218E081D006D30BC /* bit.c */,
+			);
+			name = LuaBitOp;
+			path = ../../../../external/lua/LuaBitOp;
 			sourceTree = "<group>";
 		};
 		84215FC62185F07F003194FC /* lsocket */ = {
@@ -1498,6 +1511,7 @@
 				843CA4FE218DA28D00CAFC4F /* linit.c in Sources */,
 				843CA536218DA28D00CAFC4F /* ldebug.c in Sources */,
 				15C1C2CD1987495500A46ACC /* lua_cocos2dx_auto.cpp in Sources */,
+				84140459218E081D006D30BC /* bit.c in Sources */,
 				15415AB919A71A53004F1E71 /* luasocket.c in Sources */,
 				155C7E1219A71CA200F08B25 /* Lua_web_socket.cpp in Sources */,
 			);
@@ -1621,6 +1635,7 @@
 				843CA4FF218DA28D00CAFC4F /* linit.c in Sources */,
 				843CA537218DA28D00CAFC4F /* ldebug.c in Sources */,
 				15EFA618198B2E2B000C57D3 /* lua_cocos2dx_auto.cpp in Sources */,
+				8414045A218E081D006D30BC /* bit.c in Sources */,
 				15415AB219A71A53004F1E71 /* inet.c in Sources */,
 				155C7E1319A71CA400F08B25 /* Lua_web_socket.cpp in Sources */,
 			);

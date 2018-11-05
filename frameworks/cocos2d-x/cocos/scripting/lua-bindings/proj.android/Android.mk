@@ -113,6 +113,8 @@ LOCAL_SRC_FILES += ../../../../external/lua/pbc/src/alloc.c \
                    ../../../../external/lua/pbc/src/wmessage.c \
                    ../../../../external/lua/pbc/src/pbc-lua.c
 
+LOCAL_SRC_FILES += ../../../../external/lua/LuaBitOp/bit.c
+
 LOCAL_SRC_FILES += ../../../../external/lua/lua_extensions.c
 
 LOCAL_SRC_FILES += $(LOCAL_CJSON_SRC_FILES)

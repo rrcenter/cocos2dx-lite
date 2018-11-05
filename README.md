@@ -7,7 +7,7 @@ cocos2dx-lite
 *NOTE* : From [tag v5](https://github.com/c0i/cocos2dx-lite/tree/v5), this repo remove all *templates*, just provide a runable lua app and a tool for rename the app.
 
 It bases on [cocos2d-x](https://github.com/cocos2d/cocos2d-x) v3 branch, but remove 3D and other features.
-It works on iOS, Android, OS X and Windows.
+It works on iOS, Android, macOSand Windows.
 
 The major change:
 
@@ -47,6 +47,7 @@ The major change:
 5.  [luasocket](https://github.com/diegonehab/luasocket)
 6.  [lsocket 1.4.1](http://tset.de/lsocket/index.html)
 7.  [pbc](https://github.com/cloudwu/pbc)
+8.  [LuaBitOp 1.0.2](http://bitop.luajit.org/)
 
 ## How to start
 

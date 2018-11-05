@@ -83,7 +83,8 @@ local function main()
     print(md5.sum('helloworld'))
 
     -- pbc test
-    require 'test.test'
+    require 'test.pbctest'
+    require 'test.bittest'
 end
 
 local status, msg = xpcall(main, __G__TRACKBACK__)
