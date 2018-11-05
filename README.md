@@ -46,7 +46,7 @@ The major change:
 4.  [lpack](https://github.com/LuaDist/lpack)
 5.  [luasocket](https://github.com/diegonehab/luasocket)
 6.  [lsocket 1.4.1](http://tset.de/lsocket/index.html)
-7.  [pbc](https://github.com/cloudwu/pbc)
+7.  [pbc](https://github.com/cloudwu/pbc), maybe switch to [google/upb](https://github.com/google/upb), pure C99, also support Lua.
 8.  [LuaBitOp 1.0.2](http://bitop.luajit.org/)
 
 ## How to start
