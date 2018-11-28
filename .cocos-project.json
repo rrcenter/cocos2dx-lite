@@ -1,5 +1,7 @@
 {
-    "engine_version": "cocos2d-x-3.17", 
-    "has_native": true, 
-    "project_type": "lua"
+    "engine_version": "cocos2d-x-3.17",
+    "has_native": true,
+    "project_type": "lua",
+    "xxtea_key":"xxtea_key",
+    "xxtea_sign":"xxtea_sign"
 }
