@@ -86,8 +86,11 @@ static int register_all_packages()
 bool AppDelegate::applicationDidFinishLaunching()
 {
     auto crypt = new XXTeaCrypt("xxtea_key", "xxtea_sign");
-    FileUtils::setDelegate(new CryptFileUtils(crypt));
-
+    auto fs = new CryptFileUtils(crypt);
+    fs->setDefaultResourceRootPath(FileUtils::getInstance()->getDefaultResourceRootPath());
+    fs->setSearchPaths(FileUtils::getInstance()->getSearchPaths());
+    fs->setPopupNotify(false);
+    FileUtils::setDelegate(fs);
 
     // set default FPS
     Director::getInstance()->setAnimationInterval(1.0 / 60.0f);
@@ -107,8 +110,8 @@ bool AppDelegate::applicationDidFinishLaunching()
     //LuaStack* stack = engine->getLuaStack();
     //register_custom_function(stack->getLuaState());
 
-    FileUtils::getInstance()->addSearchPath("src");
-    FileUtils::getInstance()->addSearchPath("res");
+    fs->addSearchPath("src");
+    fs->addSearchPath("res");
     if (engine->executeScriptFile("main.lua"))
     {
         return false;
