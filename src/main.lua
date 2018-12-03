@@ -85,6 +85,9 @@ local function main()
     -- pbc test
     require 'test.pbctest'
     require 'test.bittest'
+
+    --
+    require 'test.cryptoNumbTest'
 end
 
 local status, msg = xpcall(main, __G__TRACKBACK__)
