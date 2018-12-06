@@ -293,6 +293,10 @@ int LuaEngine::handleNodeEvent(void* data)
             _stack->pushString("cleanup");
             break;
             
+        case kNodeOnDestroy:
+            _stack->pushString("destroy");
+            break;
+
         default:
             return 0;
     }

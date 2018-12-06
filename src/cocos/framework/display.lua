@@ -549,4 +549,23 @@ function display.removeUnusedSpriteFrames()
     textureCache:removeUnusedTextures()
 end
 
+function  display.newLabel( ... )
+    local label = nil
+    local params = {...}
+    local argc = #params
+    if argc == 0 then
+        label = cc.Label:create()
+    else
+        local text = params[1]
+        local font = params[2] or display.DEFAULT_TTF_FONT
+        local fontSize = params[3] or display.DEFAULT_TTF_FONT_SIZE
+        if cc.FileUtils:getInstance():isFileExist(font) then
+            label = cc.Label:createWithTTF(text, font, fontSize)
+        else
+            label = cc.Label:createWithSystemFont(text,font,fontSize)
+        end
+    end
+    return label
+end
+
 return display

@@ -74,7 +74,8 @@ enum {
     kNodeOnExit,
     kNodeOnEnterTransitionDidFinish,
     kNodeOnExitTransitionDidStart,
-    kNodeOnCleanup
+    kNodeOnCleanup,
+    kNodeOnDestroy
 };
 
 class EventListener;

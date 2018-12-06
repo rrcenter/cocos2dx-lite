@@ -154,6 +154,14 @@ Node::~Node()
     {
         ScriptEngineManager::getInstance()->getScriptEngine()->removeScriptHandler(_updateScriptHandler);
     }
+    
+    if ( _scriptType != kScriptTypeNone)
+    {
+        int action = kNodeOnDestroy;
+        BasicScriptData data(this,(void*)&action);
+        ScriptEvent scriptEvent(kNodeEvent,(void*)&data);
+        ScriptEngineManager::getInstance()->getScriptEngine()->sendEvent(&scriptEvent);
+    }
 #endif
 
     // User object has to be released before others, since userObject may have a weak reference of this node
