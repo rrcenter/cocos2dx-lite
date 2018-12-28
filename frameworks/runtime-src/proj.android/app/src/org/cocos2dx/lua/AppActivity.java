@@ -30,7 +30,15 @@ import android.os.Bundle;
 import org.cocos2dx.lib.Cocos2dxActivity;
 import org.cocos2dx.lib.Cocos2dxEngineDataManager;
 
-public class AppActivity extends Cocos2dxActivity{
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GoogleApiAvailability;
+
+import android.util.Log;
+
+public class AppActivity extends Cocos2dxActivity {
+    private static final int PLAY_SERVICES_RESOLUTION_REQUEST = 9000;
+    private static final String TAG = "AppActivity";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Cocos2dxEngineDataManager.disable();
@@ -47,6 +55,29 @@ public class AppActivity extends Cocos2dxActivity{
         }
 
         // DO OTHER INITIALIZATION BELOW
+    }
 
+    /**
+     * Check the device to make sure it has the Google Play Services APK. If
+     * it doesn't, display a dialog that allows users to download the APK from
+     * the Google Play Store or enable it in the device's system settings.
+     */
+    public boolean checkPlayServices(boolean showUI) {
+        GoogleApiAvailability apiAvailability = GoogleApiAvailability.getInstance();
+        int resultCode = apiAvailability.isGooglePlayServicesAvailable(this);
+        if (resultCode != ConnectionResult.SUCCESS) {
+            if (showUI) {
+                if (apiAvailability.isUserResolvableError(resultCode)) {
+                    apiAvailability.getErrorDialog(this, resultCode, PLAY_SERVICES_RESOLUTION_REQUEST)
+                            .show();
+                } else {
+                    Log.i(TAG, "This device is not supported.");
+                    finish();
+                }
+            }
+
+            return false;
+        }
+        return true;
     }
 }
