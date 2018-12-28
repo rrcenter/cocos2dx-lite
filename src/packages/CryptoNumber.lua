@@ -1,8 +1,8 @@
 
 -- https://blog.justbilt.com/2015/04/05/phone-game-AND-watchdog/
 
-local from_base64 = require('base64').from_base64
-local to_base64 = require('base64').to_base64
+local base64decode = require('base64').from_base64
+local base64encode = require('base64').to_base64
 
 local CryptoNumber = class("CryptoNumber")
 
@@ -29,11 +29,11 @@ end
 
 --- private
 function CryptoNumber:_decode()
-    return tonumber(from_base64(self._encryptData))
+    return tonumber(base64decode(self._encryptData))
 end
 
 function CryptoNumber:_encode(value)
-    return to_base64(value)
+    return base64encode(value)
 end
 
 return CryptoNumber
