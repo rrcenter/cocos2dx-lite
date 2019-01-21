@@ -44,6 +44,8 @@
 		845D1FA721AE8AC2004D0456 /* Crypt.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 845D1FA421AE8AC2004D0456 /* Crypt.cpp */; };
 		845D1FAB21AE8BF5004D0456 /* CryptFileUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 845D1FA921AE8BF5004D0456 /* CryptFileUtils.cpp */; };
 		845D1FAC21AE8BF5004D0456 /* CryptFileUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 845D1FA921AE8BF5004D0456 /* CryptFileUtils.cpp */; };
+		846F03F321CCEB7E000460C0 /* CCDeviceEx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 846F03F121CCEB7E000460C0 /* CCDeviceEx.cpp */; };
+		846F03F421CCEB7E000460C0 /* CCDeviceEx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 846F03F121CCEB7E000460C0 /* CCDeviceEx.cpp */; };
 		9FA3AE4E1BE9BCC900FC9645 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FA3AE4D1BE9BCC900FC9645 /* CFNetwork.framework */; };
 		9FF504841A5E87B100AFDA55 /* ConsoleWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FF504811A5E87B100AFDA55 /* ConsoleWindow.xib */; };
 		9FF504851A5E87B100AFDA55 /* ConsoleWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FF504831A5E87B100AFDA55 /* ConsoleWindowController.m */; };
@@ -193,6 +195,8 @@
 		845D1FA521AE8AC2004D0456 /* Crypt.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = Crypt.hpp; path = ../Classes/Crypt.hpp; sourceTree = "<group>"; };
 		845D1FA921AE8BF5004D0456 /* CryptFileUtils.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; name = CryptFileUtils.cpp; path = ../Classes/CryptFileUtils.cpp; sourceTree = "<group>"; };
 		845D1FAA21AE8BF5004D0456 /* CryptFileUtils.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = CryptFileUtils.hpp; path = ../Classes/CryptFileUtils.hpp; sourceTree = "<group>"; };
+		846F03F121CCEB7E000460C0 /* CCDeviceEx.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; name = CCDeviceEx.cpp; path = ../Classes/CCDeviceEx.cpp; sourceTree = "<group>"; };
+		846F03F221CCEB7E000460C0 /* CCDeviceEx.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = CCDeviceEx.hpp; path = ../Classes/CCDeviceEx.hpp; sourceTree = "<group>"; };
 		9FA3AE4D1BE9BCC900FC9645 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/CFNetwork.framework; sourceTree = DEVELOPER_DIR; };
 		9FF504781A5E86D600AFDA55 /* libsimulator.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = libsimulator.xcodeproj; path = "../../cocos2d-x/tools/simulator/libsimulator/proj.ios_mac/libsimulator.xcodeproj"; sourceTree = "<group>"; };
 		9FF504811A5E87B100AFDA55 /* ConsoleWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConsoleWindow.xib; sourceTree = "<group>"; };
@@ -404,6 +408,8 @@
 			children = (
 				F293BB7E15EB831F00256477 /* AppDelegate.cpp */,
 				F293BB7F15EB831F00256477 /* AppDelegate.h */,
+				846F03F121CCEB7E000460C0 /* CCDeviceEx.cpp */,
+				846F03F221CCEB7E000460C0 /* CCDeviceEx.hpp */,
 				845D1FA421AE8AC2004D0456 /* Crypt.cpp */,
 				845D1FA521AE8AC2004D0456 /* Crypt.hpp */,
 				845D1FA921AE8BF5004D0456 /* CryptFileUtils.cpp */,
@@ -605,6 +611,7 @@
 				845D1FAC21AE8BF5004D0456 /* CryptFileUtils.cpp in Sources */,
 				9FF504851A5E87B100AFDA55 /* ConsoleWindowController.m in Sources */,
 				845D1FA721AE8AC2004D0456 /* Crypt.cpp in Sources */,
+				846F03F421CCEB7E000460C0 /* CCDeviceEx.cpp in Sources */,
 				C07828F818B4D72E00BD2287 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -618,6 +625,7 @@
 				845D1FAB21AE8BF5004D0456 /* CryptFileUtils.cpp in Sources */,
 				5023812417EBBCAC00990C9B /* main.m in Sources */,
 				845D1FA621AE8AC2004D0456 /* Crypt.cpp in Sources */,
+				846F03F321CCEB7E000460C0 /* CCDeviceEx.cpp in Sources */,
 				5023811817EBBCAC00990C9B /* AppController.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -816,6 +824,7 @@
 				OTHER_LDFLAGS = (
 					"$(_COCOS_LIB_IOS_BEGIN)",
 					"$(_COCOS_LIB_IOS_END)",
+					"-Wl,-sectcreate,__RESTRICT,__restrict,/dev/null",
 				);
 				"OTHER_LDFLAGS[sdk=iphonesimulator*][arch=x86_64]" = (
 					"$(_COCOS_LIB_IOS_BEGIN)",
@@ -856,6 +865,7 @@
 				OTHER_LDFLAGS = (
 					"$(_COCOS_LIB_IOS_BEGIN)",
 					"$(_COCOS_LIB_IOS_END)",
+					"-Wl,-sectcreate,__RESTRICT,__restrict,/dev/null",
 				);
 				"OTHER_LDFLAGS[sdk=iphonesimulator*][arch=x86_64]" = (
 					"$(_COCOS_LIB_IOS_BEGIN)",

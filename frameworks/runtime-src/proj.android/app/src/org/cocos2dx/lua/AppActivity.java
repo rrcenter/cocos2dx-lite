@@ -55,6 +55,7 @@ public class AppActivity extends Cocos2dxActivity {
         }
 
         // DO OTHER INITIALIZATION BELOW
+        this.checkPlayServices(false);
     }
 
     /**
