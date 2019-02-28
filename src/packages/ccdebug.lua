@@ -30,7 +30,6 @@ local function showdebugui( )
 
     handler = scheduler:scheduleScriptFunc(function ( ... )
         scheduler:unscheduleScriptEntry(handler)
-        print('>>scheduleScriptFunc')
         handler = nil
 
         local scene = director:getRunningScene()
