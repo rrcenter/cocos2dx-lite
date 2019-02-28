@@ -1,0 +1,19 @@
+<Solution>
+  <PropertyGroup Name="debugView" Version="3.10.0.0" Type="CocosStudio" />
+  <SolutionFolder>
+    <Group ctype="ResourceGroup">
+      <RootFolder Name=".">
+        <Folder Name="views">
+          <Folder Name="public">
+            <Image Name="close.png" />
+            <Image Name="logo.png" />
+            <Image Name="qinren.png" />
+            <Image Name="qinren_bg.png" />
+            <Image Name="transparent.png" />
+          </Folder>
+          <Project Name="debugView.csd" Type="Node" />
+        </Folder>
+      </RootFolder>
+    </Group>
+  </SolutionFolder>
+</Solution>
