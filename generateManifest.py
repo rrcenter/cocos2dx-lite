@@ -19,9 +19,9 @@ assetsDir = {
     "ignorFile":[".DS_Store"],
 }
 
-versionConfigFile   = "res/config/version_info.json"  #版本信息的配置文件路径
-versionManifestPath = "res/version/version.manifest"    #由此脚本生成的version.manifest文件路径
-projectManifestPath = "res/version/project.manifest"    #由此脚本生成的project.manifest文件路径
+# versionConfigFile   = "res/config/version_info.json"  #版本信息的配置文件路径
+versionManifestPath = "res/version.manifest"    #由此脚本生成的version.manifest文件路径
+projectManifestPath = "res/project.manifest"    #由此脚本生成的project.manifest文件路径
 
 def scan(*dirs, **kwargs):
   files = []
@@ -47,8 +47,8 @@ def CalcMD5(filepath):
         return md5obj.hexdigest()
 
 def GetVersionInfo():
-    if not os.path.exists(versionConfigFile):
-        with open(versionConfigFile, 'w') as f:
+    if not os.path.exists(versionManifestPath):
+        with open(versionManifestPath, 'w') as f:
             data = {
                 'packageUrl':'http://package_url',
                 'remoteManifestUrl':'http://path/to/project.manifest',
@@ -58,7 +58,7 @@ def GetVersionInfo():
             }
             f.write(json.dumps(data, indent=4, sort_keys=True))
     '''get version config data'''
-    configFile = open(versionConfigFile,"r")
+    configFile = open(versionManifestPath,"r")
     json_data = json.load(configFile)
 
     configFile.close()
@@ -74,14 +74,14 @@ def GenerateVersionManifestFile():
 def GenerateProjectManifestFile():
     extensions = ['.ExportJson', '.plist', '.json', '.animation', '.fnt', '.md', '.xml', '.tmx', '.lua', '.png']
     extensions = None
-    fileList = scan('src', 'res', extensions=extensions, excludes=['.DS_Store', versionConfigFile, versionManifestPath, projectManifestPath])
+    fileList = scan('src', 'res', extensions=extensions, excludes=['.DS_Store', versionManifestPath, projectManifestPath])
     fileList = sorted(fileList)
 
     project_str = {}
     project_str.update(GetVersionInfo())
     dataDic = {}
     for f in fileList:
-        dataDic[f] = {"md5" : CalcMD5(f)}
+        dataDic[f] = {"md5" : CalcMD5(f), "size" : os.path.getsize(f)}
         print(f)
 
     print('\n'+str(len(fileList))+' files')
