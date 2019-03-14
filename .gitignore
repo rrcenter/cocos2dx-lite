@@ -151,3 +151,4 @@ tests/cpp-tests/Resources/audio
 player/proj.win32/player.VC.db
 *.opendb
 runtime
+project.xcworkspace
