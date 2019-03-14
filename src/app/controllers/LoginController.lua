@@ -4,7 +4,7 @@ local LoginController = class("LoginController", Controller)
 
 function LoginController:ctor()
     LoginController.super.ctor(self)
-    cc.load('event'):bind(self)
+    cc.bind(self, 'event')
 end
 
 function LoginController:viewDidLoad()

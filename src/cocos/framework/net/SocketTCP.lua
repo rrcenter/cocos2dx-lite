@@ -30,7 +30,7 @@ function SocketTCP.getTime()
 end
 
 function SocketTCP:ctor(__host, __port, __retryConnectWhenFailure)
-    cc.load('event'):bind(self)
+    cc.bind(self, 'event')
 
     self.host = __host
     self.port = __port

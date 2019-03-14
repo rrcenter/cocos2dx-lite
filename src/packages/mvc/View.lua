@@ -26,7 +26,7 @@ end
 View.loadUI = loadUI
 
 function View:ctor(name, ...)
-    cc.load('event'):bind(self)
+    cc.bind(self, 'event')
 
     self:enableNodeEvents()
     self.name = name

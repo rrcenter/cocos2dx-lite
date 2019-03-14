@@ -3,7 +3,7 @@ local Controller = require('mvc.Controller')
 local LobbyController = class("LobbyController", Controller)
 
 function LobbyController:ctor()
-    cc.load('event'):bind(self)
+    cc.bind(self, 'event')
 end
 
 function LobbyController:viewDidLoad()
