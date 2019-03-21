@@ -76,7 +76,7 @@ DerivedData/
 .Target-Release/
 
 # Ignore files built by blackberry
-Simulator/
+#Simulator/
 Device-Debug/
 Device-Release/
 
@@ -151,4 +151,7 @@ tests/cpp-tests/Resources/audio
 player/proj.win32/player.VC.db
 *.opendb
 runtime
+
 project.xcworkspace
+/simulator/
+/frameworks/cocos2d-x/cocos/scripting/lua-bindings/auto/api/
