@@ -18,3 +18,40 @@ cocos2dx-lite
 
 提供这么多功能是有代价的，就是仓库很大。
 
+
+## 工作流
+
+原始的场景文件放在 `raw` 文件夹，每个场景一个 `.ccs` ，降低同时编辑场景文件时造成冲突。
+一个 `mvc` 的文件目录结构:
+
+```
+raw
+├── LobbyView.ccs
+├── LobbyView.cfg
+├── LobbyView.udf
+├── cocosstudio
+│   └── views
+│       ├── LobbyView.csd
+│       ├── LobbyView.udf
+res
+└── views
+    ├── LobbyView.csb
+src
+├── app
+│   ├── App.lua
+│   ├── MyApp.lua
+│   ├── controllers
+│   │   ├── LobbyController.lua
+│   └── views
+│       ├── LobbyView.lua
+│       └── MainScene.lua
+
+```
+
+使用 `creatormvc.py` 来创建以上文件。
+快捷测试场景 `require('app.App'):instance():run('LobbyController')`
+
+
+
+注意：其中场景文件为可选，如果没有场景文件，`View.ui` 节点下就没有场景。
+
