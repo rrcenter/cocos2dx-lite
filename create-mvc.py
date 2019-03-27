@@ -108,7 +108,7 @@ files = [
       <ObjectData Name="Node" Tag="378" ctype="GameNodeObjectData">
         <Size X="0.0000" Y="0.0000" />
         <Children>
-          <AbstractNodeData Name="MainPanel" ActionTag="1240310140" Tag="379" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="-568.0000" RightMargin="-568.0000" TopMargin="-320.0000" BottomMargin="-320.0000" TouchEnable="True" ClipAble="False" BackColorAlpha="153" ComboBoxIndex="1" ColorAngle="90.0000" ctype="PanelObjectData">
+          <AbstractNodeData Name="MainPanel" ActionTag="1240310140" CallBackType="Click" CallBackName="onClose" Tag="379" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="-568.0000" RightMargin="-568.0000" TopMargin="-320.0000" BottomMargin="-320.0000" TouchEnable="True" ClipAble="False" BackColorAlpha="153" ComboBoxIndex="1" ColorAngle="90.0000" ctype="PanelObjectData">
             <Size X="1136.0000" Y="640.0000" />
             <Children>
               <AbstractNodeData Name="panel" ActionTag="811148742" Tag="380" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="468.0000" RightMargin="468.0000" TopMargin="220.0000" BottomMargin="220.0000" TouchEnable="True" ClipAble="False" BackColorAlpha="102" ComboBoxIndex="1" ColorAngle="90.0000" ctype="PanelObjectData">
@@ -161,11 +161,17 @@ files = [
 ['src/app/views/__NAME__View.lua',
 '''
 local __NAME__View = {}
+
+function __NAME__View:ctor(...)
+end
+
 function __NAME__View:initialize()
-  self.ui:setPosition(display.cx, display.cy)
 end
+
 function __NAME__View:layout()
+    self.ui:setPosition(display.cx, display.cy)
 end
+
 return __NAME__View
 '''
 ]
@@ -173,20 +179,32 @@ return __NAME__View
 ,
 ['src/app/controllers/__NAME__Controller.lua',
 '''
-local class = require('middleclass')
 local Controller = require('mvc.Controller')
-local HasSignals = require('HasSignals')
-local __NAME__Controller = class("__NAME__Controller", Controller):include(HasSignals)
-function __NAME__Controller:initialize()
-  Controller.initialize(self)
-  HasSignals.initialize(self)
+local __NAME__Controller = class("__NAME__Controller", Controller)
+
+function __NAME__Controller:ctor()
+    self.app = require('app.App'):instance()
 end
+
+function __NAME__Controller:initialize()
+    -- handl event
+    self:onEvent(self.app.session, 'levelup', function(resp)
+        dump(resp.data)
+    end)
+    -- self:removeAllEventConnectTo() -- autocall when Controller destroy
+end
+
+function __NAME__Controller:finalize()
+end
+
 function __NAME__Controller:viewDidLoad()
   self.view:layout()
 end
+
 function __NAME__Controller:onClose(  )
-  self.emitter:emit('back')
+  self:emit('exit')
 end
+
 return __NAME__Controller
 '''
 ]

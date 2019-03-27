@@ -1,9 +1,15 @@
 
 local Controller = require('mvc.Controller')
 local LobbyController = class("LobbyController", Controller)
+local tools = require('app.helpers.tools')
 
 function LobbyController:ctor()
-    cc.bind(self, 'event')
+    self.app = require('app.App'):instance()
+    self.app.conn:dumpAllEventListeners()
+end
+
+function LobbyController:initialize(  )
+    -- bing event here
 end
 
 function LobbyController:viewDidLoad()
@@ -11,20 +17,16 @@ function LobbyController:viewDidLoad()
 end
 
 function LobbyController:clickLogout(  )
-    --[[
-    local app = require('app.App'):instance()
-    app:switch('LoginController')
-    --]]
-
-    self:pop('LoginController')
+    self:pop('XXXController')
 end
 
 function LobbyController:pop(ctrlName, ...)
     local app = require("app.App"):instance()
 
     local ctrl = Controller.load(ctrlName, ...)
-    dump(ctrl)
     ctrl:on("exit", function ()
+        tools.showRemind(ctrlName .. ' exit')
+        ctrl:delete()
       end)
     self:add(ctrl)
 

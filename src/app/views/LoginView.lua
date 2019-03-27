@@ -11,10 +11,20 @@ function LoginView:layout()
 
     root:getnode('version'):pos(0, display.height)
 
-    display.newNode()
-    :onNodeEvent('destroy', function (  )
+
+    local destroyNode = display.newNode()
+    cc.bind(destroyNode, 'event')
+    destroyNode:onNodeEvent('destroy', function (  )
         print('node destroy event.')
+        destroyNode:dispose()
     end)
+
+    local app = require('app.App'):instance()
+    local _,handle = app.conn:on('login', function ( ... )
+        print('call destroyNode')
+        destroyNode:show()
+    end, destroyNode)
+
 
     -- local webp = display.newSprite('test.webp'):move(display.cx, display.cy):addTo(self.ui)
     -- shaders.roundNode(webp)

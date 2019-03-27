@@ -12,6 +12,10 @@ local EXPORTED_METHODS = {
     "dumpAllEventListeners",
     'on',
     'emit',
+
+
+    'addDisposeHandle',
+    'dispose',
 }
 
 function Event:init_()
@@ -31,7 +35,7 @@ function Event:unbind(target)
     self:init_()
 end
 
-function Event:on(eventName, listener, tag)
+function Event:addEventListener(eventName, listener, tag)
     assert(type(eventName) == "string" and eventName ~= "",
         "Event:addEventListener() - invalid eventName")
     eventName = string.upper(eventName)
@@ -52,7 +56,15 @@ function Event:on(eventName, listener, tag)
     return self.target_, handle
 end
 
-Event.addEventListener = Event.on
+function Event:on( eventName, listener, obj )
+    local target,handle = self:addEventListener(eventName, listener)
+    if obj then
+        obj:addDisposeHandle(target,handle)
+    end
+    return target,handle
+end
+
+-- Event.on = Event.addEventListener
 
 function Event:dispatchEvent(event)
     event.name = string.upper(tostring(event.name))
@@ -87,7 +99,13 @@ function Event:dispatchEvent(event)
     return self.target_
 end
 
-Event.emit = Event.dispatchEvent
+function Event:emit( name,data )
+    if type(name) == 'table' then
+        self:dispatchEvent(name)
+    else
+        self:dispatchEvent({name=name,data=data})
+    end
+end
 
 function Event:removeEventListener(handleToRemove)
     for eventName, listenersForEvent in pairs(self.listeners_) do
@@ -156,6 +174,20 @@ function Event:dumpAllEventListeners()
         end
     end
     return self.target_
+end
+
+function Event:addDisposeHandle( target,handle )
+    self._listeners_ = self._listeners_ or {}
+    table.insert(self._listeners_, {target,handle})
+end
+
+function Event:dispose()
+    self._listeners_ = self._listeners_ or {}
+    for _,v in pairs(self._listeners_) do
+        local obj, handle = v[1], v[2]
+        obj:removeEventListener(handle)
+    end
+    self._listeners_ = {}
 end
 
 return Event

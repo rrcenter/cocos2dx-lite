@@ -1,6 +1,8 @@
 
 local MainScene = class("MainScene", cc.load("mvc").ViewBase)
 
+
+
 local function t_lsocket (  )
     local ls = require 'lsocket'
     dump(ls, 'ls')
@@ -104,7 +106,8 @@ function MainScene:onCreate()
     local lfs = require "lfs"
     print (lfs._VERSION)
 
-    t_lsocket()
+    -- t_lsocket()
+
 end
 
 return MainScene

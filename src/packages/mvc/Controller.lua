@@ -40,6 +40,10 @@ function Controller.load(name, ...)
     local Klass = require('app.controllers.'..name)
     assert(type(Klass) ~= 'boolean', '"app/controllers/'..name..'" must return a class')
     local c = Klass(...)
+
+    cc.bind(c, 'event')
+    c:initialize()
+
     c.view = assert(c:loadView(), name)
     c.view:retain()
     if c.viewDidLoad then
@@ -50,13 +54,17 @@ end
 
 -- ctor -> init -> loadView ->
 
-
 function Controller:loadView()
     local viewName = self.__cname:gsub('Controller', 'View')
     print('Controller:loadView', viewName)
     local view = View:create(viewName, self)
     bindSignalForTree(self, view.ui)
     return view
+end
+
+function Controller:initialize(  )
+    -- This function is intend to be overwrite by subclass
+    -- DO NOT ADD CODE HERE
 end
 
 function Controller:finalize() -- called before controller removed from stage
@@ -90,6 +98,7 @@ function Controller:clearView()
 end
 
 function Controller:delete()
+    self:dispose()
     self:finalize()
 
     if self.children then

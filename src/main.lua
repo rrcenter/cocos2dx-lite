@@ -47,19 +47,19 @@ local function main()
     local app = require('app.App'):instance()
     app:run('LoginController')
 
-    local xxtea = require 'xxtea'
-    local s = xxtea.encrypt('abc', 'xx')
-    print(xxtea.decrypt(s, 'xx') == 'abc')
+    -- local xxtea = require 'xxtea'
+    -- local s = xxtea.encrypt('abc', 'xx')
+    -- print(xxtea.decrypt(s, 'xx') == 'abc')
 
-    local md5 = require 'md5'
-    print(md5.sum('helloworld'))
+    -- local md5 = require 'md5'
+    -- print(md5.sum('helloworld'))
 
-    -- pbc test
-    require 'test.pbctest'
-    require 'test.bittest'
+    -- -- pbc test
+    -- require 'test.pbctest'
+    -- require 'test.bittest'
 
-    --
-    require 'test.cryptoNumbTest'
+    -- --
+    -- require 'test.cryptoNumbTest'
 end
 
 local status, msg = xpcall(main, __G__TRACKBACK__)

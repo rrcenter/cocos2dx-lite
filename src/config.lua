@@ -24,3 +24,8 @@ CC_DESIGN_RESOLUTION = {
         end
     end
 }
+
+local config = {
+    ws = '127.0.0.1:8082'
+}
+return config
