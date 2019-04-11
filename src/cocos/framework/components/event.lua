@@ -56,6 +56,11 @@ function Event:addEventListener(eventName, listener, tag)
     return self.target_, handle
 end
 
+--[[
+ws:on('open', login, login.loginWithUid)
+or
+ws:on('open', function() end)
+]]
 function Event:on( eventName, listener, obj )
     local target,handle = self:addEventListener(eventName, listener)
     if obj then
