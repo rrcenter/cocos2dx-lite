@@ -38,6 +38,8 @@ extern int luaopen_lsocket(lua_State *L);
     extern int luaopen_lpeg(lua_State *L);
     extern int luaopen_protobuf_c(lua_State *L);
     extern int luaopen_bit(lua_State *L);
+    
+    extern int luaopen_sproto_core(lua_State *L);
 
 
 static luaL_Reg luax_exts[] = {
@@ -53,6 +55,7 @@ static luaL_Reg luax_exts[] = {
     { "lpeg", luaopen_lpeg },
     { "protobuf.c", luaopen_protobuf_c },
     { "bit", luaopen_bit},
+    { "sproto.core", luaopen_sproto_core },
 
 #if CC_SQLITE_ENABLED > 0
     {"lsqlite3", luaopen_lsqlite3},

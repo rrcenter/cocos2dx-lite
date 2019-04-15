@@ -60,6 +60,7 @@ local function main()
 
     -- --
     -- require 'test.cryptoNumbTest'
+    require 'test.t_sproto'
 end
 
 local status, msg = xpcall(main, __G__TRACKBACK__)
