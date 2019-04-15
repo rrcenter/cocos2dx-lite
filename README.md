@@ -48,6 +48,8 @@ The major change:
 
 4.  [lpack](https://github.com/LuaDist/lpack)
 
+4.  [sproto](https://github.com/cloudwu/sproto)
+
 5.  [luasocket](https://github.com/diegonehab/luasocket)
 
 6.  [lsocket 1.4.1](http://tset.de/lsocket/index.html)
