@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-# coding=utf-8
 # generator.py
 # simple C++ generator, originally targetted for Spidermonkey bindings
 #
@@ -7,14 +6,12 @@
 
 from clang import cindex
 import sys
-import pdb
 import ConfigParser
 import yaml
 import re
 import os
 import inspect
 import traceback
-import platform
 from Cheetah.Template import Template
 
 type_map = {
@@ -70,10 +67,241 @@ cindex.CursorKind.CXX_BOOL_LITERAL_EXPR,
 # [C++0x 2.14.7] C++ Pointer Literal.
 cindex.CursorKind.CXX_NULL_PTR_LITERAL_EXPR,
 
+cindex.CursorKind.GNU_NULL_EXPR,
+
 # An expression that refers to some value declaration, such as a function,
 # varible, or enumerator.
 cindex.CursorKind.DECL_REF_EXPR
 ]
+
+stl_type_map = {
+    'std_function_args': 1000,
+    'std::unordered_map': 2,
+    'std::unordered_multimap': 2,
+    'std::map': 2,
+    'std::multimap': 2,
+    'std::vector': 1,
+    'std::list': 1,
+    'std::forward_list': 1,
+    'std::priority_queue': 1,
+    'std::set': 1,
+    'std::multiset': 1,
+    'std::unordered_set': 1,
+    'std::unordered_multiset': 1,
+    'std::stack': 1,
+    'std::queue': 1,
+    'std::deque': 1,
+    'std::array': 1,
+
+    'unordered_map': 2,
+    'unordered_multimap': 2,
+    'map': 2,
+    'multimap': 2,
+    'vector': 1,
+    'list': 1,
+    'forward_list': 1,
+    'priority_queue': 1,
+    'set': 1,
+    'multiset': 1,
+    'unordered_set': 1,
+    'unordered_multiset': 1,
+    'stack': 1,
+    'queue': 1,
+    'deque': 1,
+    'array': 1
+}
+
+def find_sub_string_count(s, start, end, substr):
+    count = 0
+    pos = s.find(substr, start, end)
+    if pos != -1:
+        next_count = find_sub_string_count(s, pos + 1, end, substr)
+        count = next_count + 1
+    return count
+
+def split_container_name(name):
+    name = name.strip()
+    left = name.find('<')
+    right = -1
+
+    if left != -1:
+        right = name.rfind('>')
+
+    if left == -1 or right == -1:
+        return [name]
+
+    first = name[:left]
+    results = [first]
+
+    comma = name.find(',', left + 1, right)
+    if comma == -1:
+        results.append(name[left+1:right].strip())
+        return results
+
+
+    left += 1
+    while comma != -1:
+        lt_count = find_sub_string_count(name, left, comma, '<')
+        gt_count = find_sub_string_count(name, left, comma, '>')
+        if lt_count == gt_count:
+            results.append(name[left:comma].strip())
+            left = comma + 1
+        comma = name.find(',', comma + 1, right)
+
+    if left < right:
+        results.append(name[left:right].strip())
+    name_len = len(name)
+    if right < name_len - 1:
+        results.append(name[right+1:].strip())
+
+    return results
+
+
+def normalize_type_name_by_sections(sections):
+    container_name = sections[0]
+    suffix = ''
+
+    index = len(sections) - 1
+    while sections[index] == '*' or sections[index] == '&':
+        suffix += sections[index]
+        index -= 1
+
+    name_for_search = container_name.replace('const ', '').replace('&', '').replace('*', '').strip()
+    if name_for_search in stl_type_map:
+        normalized_name = container_name + '<' + ', '.join(sections[1:1+stl_type_map[name_for_search]]) + '>' + suffix
+    else:
+        normalized_name = container_name + '<' + ', '.join(sections[1:]) + '>'
+
+    return normalized_name
+
+
+def normalize_std_function_by_sections(sections):
+    normalized_name = ''
+    if sections[0] == 'std_function_args':
+        normalized_name = '(' + ', '.join(sections[1:]) + ')'
+    elif sections[0] == 'std::function' or sections[0] == 'function':
+        normalized_name = 'std::function<' + sections[1] + ' ' + sections[2] + '>'
+    else:
+        assert(False)
+    return normalized_name
+
+
+def normalize_type_str(s, depth=1):
+    if s.find('std::function') == 0 or s.find('function') == 0:
+        start = s.find('<')
+        assert(start > 0)
+        sections = [s[:start]] # std::function
+        start += 1
+        ret_pos = s.find('(', start)
+        sections.append(s[start:ret_pos].strip()) # return type
+        end = s.find(')', ret_pos + 1)
+        sections.append('std_function_args<' + s[ret_pos+1:end].strip() + '>')
+    else:
+        sections = split_container_name(s)
+    section_len = len(sections)
+    if section_len == 1:
+        return sections[0]
+
+    # for section in sections:
+    #     print('>' * depth + section)
+
+    if sections[0] == 'const std::basic_string' or sections[0] == 'const basic_string':
+        last_section = sections[len(sections) - 1]
+        if last_section == '&' or last_section == '*' or last_section.startswith('::'):
+            return 'const std::string' + last_section
+        else:
+            return 'const std::string'
+
+    elif sections[0] == 'std::basic_string' or sections[0] == 'basic_string':
+        last_section = sections[len(sections) - 1]
+        if last_section == '&' or last_section == '*' or last_section.startswith('::'):
+            return 'std::string' + last_section
+        else:
+            return 'std::string'
+
+    for i in range(1, section_len):
+        sections[i] = normalize_type_str(sections[i], depth+1)
+
+    if sections[0] == 'std::function' or sections[0] == 'function' or sections[0] == 'std_function_args':
+        normalized_name = normalize_std_function_by_sections(sections)
+    else:
+        normalized_name = normalize_type_name_by_sections(sections)
+    return normalized_name
+
+
+class BaseEnumeration(object):
+    """
+    Common base class for named enumerations held in sync with Index.h values.
+
+    Subclasses must define their own _kinds and _name_map members, as:
+    _kinds = []
+    _name_map = None
+    These values hold the per-subclass instances and value-to-name mappings,
+    respectively.
+
+    """
+
+    def __init__(self, value):
+        if value >= len(self.__class__._kinds):
+            self.__class__._kinds += [None] * (value - len(self.__class__._kinds) + 1)
+        if self.__class__._kinds[value] is not None:
+            raise ValueError('{0} value {1} already loaded'.format(
+                str(self.__class__), value))
+        self.value = value
+        self.__class__._kinds[value] = self
+        self.__class__._name_map = None
+
+
+    def from_param(self):
+        return self.value
+
+    @property
+    def name(self):
+        """Get the enumeration name of this cursor kind."""
+        if self._name_map is None:
+            self._name_map = {}
+            for key, value in self.__class__.__dict__.items():
+                if isinstance(value, self.__class__):
+                    self._name_map[value] = key
+        return self._name_map[self]
+
+    @classmethod
+    def from_id(cls, id):
+        if id >= len(cls._kinds) or cls._kinds[id] is None:
+            raise ValueError('Unknown template argument kind %d' % id)
+        return cls._kinds[id]
+
+    def __repr__(self):
+        return '%s.%s' % (self.__class__, self.name,)
+
+### Availability Kinds ###
+
+class AvailabilityKind(BaseEnumeration):
+    """
+    Describes the availability of an entity.
+    """
+
+    # The unique kind objects, indexed by id.
+    _kinds = []
+    _name_map = None
+
+    def __repr__(self):
+        return 'AvailabilityKind.%s' % (self.name,)
+
+AvailabilityKind.AVAILABLE = AvailabilityKind(0)
+AvailabilityKind.DEPRECATED = AvailabilityKind(1)
+AvailabilityKind.NOT_AVAILABLE = AvailabilityKind(2)
+AvailabilityKind.NOT_ACCESSIBLE = AvailabilityKind(3)
+
+def get_availability(cursor):
+    """
+    Retrieves the availability of the entity pointed at by the cursor.
+    """
+    if not hasattr(cursor, '_availability'):
+        cursor._availability = cindex.conf.lib.clang_getCursorAvailability(cursor)
+
+    return AvailabilityKind.from_id(cursor._availability)
+
 
 def native_name_from_type(ntype, underlying=False):
     kind = ntype.kind #get_canonical().kind
@@ -121,9 +349,11 @@ def get_namespaced_name(declaration_cursor):
     ns_list = build_namespace(declaration_cursor, [])
     ns_list.reverse()
     ns = "::".join(ns_list)
+    display_name = declaration_cursor.displayname.replace("::__ndk1", "")
     if len(ns) > 0:
-        return ns + "::" + declaration_cursor.displayname
-    return declaration_cursor.displayname
+        ns = ns.replace("::__ndk1", "")
+        return ns + "::" + display_name
+    return display_name
 
 def generate_namespace_list(cursor, namespaces=[]):
     '''
@@ -144,6 +374,7 @@ def get_namespace_name(declaration_cursor):
     ns = "::".join(ns_list)
 
     if len(ns) > 0:
+        ns = ns.replace("::__ndk1", "")
         return ns + "::"
 
     return declaration_cursor.displayname
@@ -158,8 +389,8 @@ class NativeType(object):
         self.not_supported = False
         self.param_types = []
         self.ret_type = None
-        self.namespaced_name = ""
-        self.namespace_name  = ""
+        self.namespaced_name = "" # with namespace and class name
+        self.namespace_name  = "" # only contains namespace
         self.name = ""
         self.whole_name = None
         self.is_const = False
@@ -198,23 +429,27 @@ class NativeType(object):
             nt = NativeType()
             decl = ntype.get_declaration()
 
-            if ntype.kind == cindex.TypeKind.RECORD:
-                if decl.kind == cindex.CursorKind.CLASS_DECL:
-                    nt.is_object = True
-                nt.name = decl.displayname
-                nt.namespaced_name = get_namespaced_name(decl)
-                nt.namespace_name  = get_namespace_name(decl)
+            nt.namespaced_name = get_namespaced_name(decl).replace('::__ndk1', '')
+
+            if decl.kind == cindex.CursorKind.CLASS_DECL \
+                and not nt.namespaced_name.startswith('std::function') \
+                and not nt.namespaced_name.startswith('std::string') \
+                and not nt.namespaced_name.startswith('std::basic_string'):
+                nt.is_object = True
+                displayname = decl.displayname.replace('::__ndk1', '')
+                nt.name = normalize_type_str(displayname)
+                nt.namespaced_name = normalize_type_str(nt.namespaced_name)
+                nt.namespace_name = get_namespace_name(decl)
                 nt.whole_name = nt.namespaced_name
             else:
                 if decl.kind == cindex.CursorKind.NO_DECL_FOUND:
                     nt.name = native_name_from_type(ntype)
                 else:
                     nt.name = decl.spelling
-                nt.namespaced_name = get_namespaced_name(decl)
-                nt.namespace_name  = get_namespace_name(decl)
+                nt.namespace_name = get_namespace_name(decl)
 
-                if nt.namespaced_name == "std::string":
-                    nt.name = nt.namespaced_name
+                if len(nt.namespaced_name) > 0:
+                    nt.namespaced_name = normalize_type_str(nt.namespaced_name)
 
                 if nt.namespaced_name.startswith("std::function"):
                     nt.name = "std::function"
@@ -233,7 +468,7 @@ class NativeType(object):
                     nt.name = "std::function"
 
                 if nt.name != INVALID_NATIVE_TYPE and nt.name != "std::string" and nt.name != "std::function":
-                    if ntype.kind == cindex.TypeKind.UNEXPOSED or ntype.kind == cindex.TypeKind.TYPEDEF:
+                    if ntype.kind == cindex.TypeKind.UNEXPOSED or ntype.kind == cindex.TypeKind.TYPEDEF or ntype.kind == cindex.TypeKind.ELABORATED:
                         ret = NativeType.from_type(ntype.get_canonical())
                         if ret.name != "":
                             if decl.kind == cindex.CursorKind.TYPEDEF_DECL:
@@ -243,8 +478,12 @@ class NativeType(object):
                 nt.is_enum = ntype.get_canonical().kind == cindex.TypeKind.ENUM
 
                 if nt.name == "std::function":
-                    nt.namespaced_name = get_namespaced_name(cdecl)
-                    r = re.compile('function<(.+) .*\((.*)\)>').search(cdecl.displayname)
+                    nt.is_object = False
+                    lambda_display_name = get_namespaced_name(cdecl)
+                    lambda_display_name = lambda_display_name.replace("::__ndk1", "")
+                    lambda_display_name = normalize_type_str(lambda_display_name)
+                    nt.namespaced_name = lambda_display_name
+                    r = re.compile('function<([^\s]+).*\((.*)\)>').search(nt.namespaced_name)
                     (ret_type, params) = r.groups()
                     params = filter(None, params.split(", "))
 
@@ -256,8 +495,8 @@ class NativeType(object):
         if nt.name == INVALID_NATIVE_TYPE:
             nt.not_supported = True
 
-        if re.search("(short|int|double|float|long|ssize_t)$", nt.name) != None:
-            nt.is_numeric = True;
+        if re.search("(short|int|double|float|long|size_t)$", nt.name) is not None:
+            nt.is_numeric = True
 
         return nt
 
@@ -501,7 +740,7 @@ class NativeFunction(object):
         self.not_supported = False
         self.is_override = False
         self.ret_type = NativeType.from_type(cursor.result_type)
-        self.comment = self.get_comment(cursor.getRawComment())
+        self.comment = self.get_comment(cursor.raw_comment)
 
         # parse the arguments
         # if self.func_name == "spriteWithFile":
@@ -608,12 +847,10 @@ class NativeFunction(object):
                                                             "apidoc_function.script"),
                                           searchList=[current_class, self])
             if gen.script_type == "spidermonkey":
-                # gen.doc_file.write(str(apidoc_function_script))
-                pass
+                gen.doc_file.write(str(apidoc_function_script))
             else:
-                pass
-                # if gen.script_type == "lua" and current_class != None :
-                #     current_class.doc_func_file.write(str(apidoc_function_script))
+                if gen.script_type == "lua" and current_class != None :
+                    current_class.doc_func_file.write(str(apidoc_function_script))
 
 
 class NativeOverloadedFunction(object):
@@ -628,7 +865,7 @@ class NativeOverloadedFunction(object):
         for m in func_array:
             self.min_args = min(self.min_args, m.min_args)
 
-        self.comment = self.get_comment(func_array[0].cursor.getRawComment())
+        self.comment = self.get_comment(func_array[0].cursor.raw_comment)
 
     def get_comment(self, comment):
         replaceStr = comment
@@ -705,14 +942,14 @@ class NativeOverloadedFunction(object):
                                                         "templates",
                                                         "apidoc_function_overload.script"),
                                       searchList=[current_class, self])
-                # current_class.doc_func_file.write(str(apidoc_function_overload_script))
+                current_class.doc_func_file.write(str(apidoc_function_overload_script))
             else:
                 if gen.script_type == "spidermonkey":
                     apidoc_function_overload_script = Template(file=os.path.join(gen.target,
                                                         "templates",
                                                         "apidoc_function_overload.script"),
                                       searchList=[current_class, self])
-                    # gen.doc_file.write(str(apidoc_function_overload_script))
+                    gen.doc_file.write(str(apidoc_function_overload_script))
 
 
 class NativeClass(object):
@@ -729,7 +966,7 @@ class NativeClass(object):
         self.static_methods = {}
         self.generator = generator
         self.is_abstract = self.class_name in generator.abstract_classes
-        self._current_visibility = cindex.AccessSpecifierKind.PRIVATE
+        self._current_visibility = cindex.AccessSpecifier.PRIVATE
         #for generate lua api doc
         self.override_methods = {}
         self.has_constructor  = False
@@ -810,18 +1047,18 @@ class NativeClass(object):
                                                          "templates",
                                                          "apidoc_classhead.script"),
                                        searchList=[{"current_class": self}])
-        # if self.generator.script_type == "lua":
-        #     docfuncfilepath = os.path.join(self.generator.outdir + "/api", self.class_name + ".lua")
-        #     self.doc_func_file = open(docfuncfilepath, "w+")
-        #     apidoc_fun_head_script  = Template(file=os.path.join(self.generator.target,
-        #                                                  "templates",
-        #                                                  "apidoc_function_head.script"),
-        #                                searchList=[{"current_class": self}])
-        #     self.doc_func_file.write(str(apidoc_fun_head_script))
+        if self.generator.script_type == "lua":
+            docfuncfilepath = os.path.join(self.generator.outdir + "/api", self.class_name + ".lua")
+            self.doc_func_file = open(docfuncfilepath, "w+")
+            apidoc_fun_head_script  = Template(file=os.path.join(self.generator.target,
+                                                         "templates",
+                                                         "apidoc_function_head.script"),
+                                       searchList=[{"current_class": self}])
+            self.doc_func_file.write(str(apidoc_fun_head_script))
 
         self.generator.head_file.write(str(prelude_h))
         self.generator.impl_file.write(str(prelude_c))
-        # self.generator.doc_file.write(str(apidoc_classhead_script))
+        self.generator.doc_file.write(str(apidoc_classhead_script))
         for m in self.methods_clean():
             m['impl'].generate_code(self)
         for m in self.static_methods_clean():
@@ -840,14 +1077,14 @@ class NativeClass(object):
                                                          "apidoc_classfoot.script"),
                                        searchList=[{"current_class": self}])
         self.generator.impl_file.write(str(register))
-        # self.generator.doc_file.write(str(apidoc_classfoot_script))
+        self.generator.doc_file.write(str(apidoc_classfoot_script))
         if self.generator.script_type == "lua":
             apidoc_fun_foot_script  = Template(file=os.path.join(self.generator.target,
                                                          "templates",
                                                          "apidoc_function_foot.script"),
                                        searchList=[{"current_class": self}])
-            # self.doc_func_file.write(str(apidoc_fun_foot_script))
-            # self.doc_func_file.close()
+            self.doc_func_file.write(str(apidoc_fun_foot_script))
+            self.doc_func_file.close()
     def _deep_iterate(self, cursor=None, depth=0):
         for node in cursor.get_children():
             # print("%s%s - %s" % ("> " * depth, node.displayname, node.kind))
@@ -904,13 +1141,13 @@ class NativeClass(object):
 
         elif cursor.kind == cindex.CursorKind.FIELD_DECL:
             self.fields.append(NativeField(cursor))
-            if self._current_visibility == cindex.AccessSpecifierKind.PUBLIC and NativeField.can_parse(cursor.type):
+            if self._current_visibility == cindex.AccessSpecifier.PUBLIC and NativeField.can_parse(cursor.type):
                 self.public_fields.append(NativeField(cursor))
         elif cursor.kind == cindex.CursorKind.CXX_ACCESS_SPEC_DECL:
-            self._current_visibility = cursor.get_access_specifier()
-        elif cursor.kind == cindex.CursorKind.CXX_METHOD and cursor.get_availability() != cindex.AvailabilityKind.DEPRECATED:
+            self._current_visibility = cursor.access_specifier
+        elif cursor.kind == cindex.CursorKind.CXX_METHOD and get_availability(cursor) != AvailabilityKind.DEPRECATED:
             # skip if variadic
-            if self._current_visibility == cindex.AccessSpecifierKind.PUBLIC and not cursor.type.is_function_variadic():
+            if self._current_visibility == cindex.AccessSpecifier.PUBLIC and not cursor.type.is_function_variadic():
                 m = NativeFunction(cursor)
                 registration_name = self.generator.should_rename_function(self.class_name, m.func_name) or m.func_name
                 # bail if the function is not supported (at least one arg not supported)
@@ -949,7 +1186,7 @@ class NativeClass(object):
                             self.methods[registration_name] = NativeOverloadedFunction([m, previous_m])
             return True
 
-        elif self._current_visibility == cindex.AccessSpecifierKind.PUBLIC and cursor.kind == cindex.CursorKind.CONSTRUCTOR and not self.is_abstract:
+        elif self._current_visibility == cindex.AccessSpecifier.PUBLIC and cursor.kind == cindex.CursorKind.CONSTRUCTOR and not self.is_abstract:
             # Skip copy constructor
             if cursor.displayname == self.class_name + "(const " + self.namespaced_class_name + " &)":
                 # print "Skip copy constructor: " + cursor.displayname
@@ -975,20 +1212,16 @@ class NativeClass(object):
 
 class Generator(object):
     def __init__(self, opts):
-        if platform.system() == 'Darwin':
-            current_dir = os.path.split(os.path.realpath(__file__))[0]
-            libclang_dylib_dir = os.path.join(current_dir, 'libclang')
-            cindex.Config.set_library_path(libclang_dylib_dir)
         self.index = cindex.Index.create()
         self.outdir = opts['outdir']
         self.search_path = opts['search_path']
         self.prefix = opts['prefix']
-        self.headers = opts['headers'].split()
+        self.headers = opts['headers'].split(' ')
         self.classes = opts['classes']
         self.classes_need_extend = opts['classes_need_extend']
-        self.classes_have_no_parents = opts['classes_have_no_parents'].split()
-        self.base_classes_to_skip = opts['base_classes_to_skip'].split()
-        self.abstract_classes = opts['abstract_classes'].split()
+        self.classes_have_no_parents = opts['classes_have_no_parents'].split(' ')
+        self.base_classes_to_skip = opts['base_classes_to_skip'].split(' ')
+        self.abstract_classes = opts['abstract_classes'].split(' ')
         self.clang_args = opts['clang_args']
         self.target = opts['target']
         self.remove_prefix = opts['remove_prefix']
@@ -997,7 +1230,6 @@ class Generator(object):
         self.impl_file = None
         self.head_file = None
         self.skip_classes = {}
-        self.only_classes = {}
         self.bind_fields = {}
         self.generated_classes = {}
         self.rename_functions = {}
@@ -1011,13 +1243,7 @@ class Generator(object):
         self.cpp_headers = opts['cpp_headers']
         self.win32_clang_flags = opts['win32_clang_flags']
 
-        self.macro = '1'
-        if 'macro' in opts:
-            self.macro = opts['macro']
-
         extend_clang_args = []
-
-        self._check_headers()
 
         for clang_arg in self.clang_args:
             if not os.path.exists(clang_arg.replace("-I","")):
@@ -1033,17 +1259,6 @@ class Generator(object):
         if sys.platform == 'win32' and self.win32_clang_flags != None:
             self.clang_args.extend(self.win32_clang_flags)
 
-        if 'only' in opts:
-            list_of_only = re.split(",\n?", opts['only'])
-            for only in list_of_only:
-                class_name, methods = only.split("::")
-                self.only_classes[class_name] = []
-                match = re.match("\[([^]]+)\]", methods)
-                if match:
-                    self.only_classes[class_name] = match.group(1).split()
-                else:
-                    raise Exception("invalid list of skip methods")
-
         if opts['skip']:
             list_of_skips = re.split(",\n?", opts['skip'])
             for skip in list_of_skips:
@@ -1051,7 +1266,7 @@ class Generator(object):
                 self.skip_classes[class_name] = []
                 match = re.match("\[([^]]+)\]", methods)
                 if match:
-                    self.skip_classes[class_name] = match.group(1).split()
+                    self.skip_classes[class_name] = match.group(1).split(" ")
                 else:
                     raise Exception("invalid list of skip methods")
         if opts['field']:
@@ -1061,7 +1276,7 @@ class Generator(object):
                 self.bind_fields[class_name] = []
                 match = re.match("\[([^]]+)\]", fields)
                 if match:
-                    self.bind_fields[class_name] = match.group(1).split()
+                    self.bind_fields[class_name] = match.group(1).split(" ")
                 else:
                     raise Exception("invalid list of bind fields")
         if opts['rename_functions']:
@@ -1071,7 +1286,7 @@ class Generator(object):
                 self.rename_functions[class_name] = {}
                 match = re.match("\[([^]]+)\]", methods)
                 if match:
-                    list_of_methods = match.group(1).split()
+                    list_of_methods = match.group(1).split(" ")
                     for pair in list_of_methods:
                         k, v = pair.split("=")
                         self.rename_functions[class_name][k] = v
@@ -1110,12 +1325,6 @@ class Generator(object):
                 if re.match(func, method_name):
                     return True
         else:
-            # just export this function
-            if class_name in self.only_classes and method_name not in self.only_classes[class_name] and method_name != None:
-                if verbose:
-                    print "The class=%s only export %s, skip the method=%s" % (class_name, ' '.join(self.only_classes[class_name]), method_name)
-                return True
-
             for key in self.skip_classes.iterkeys():
                 if key == "*" or re.match("^" + key + "$", class_name):
                     if verbose:
@@ -1213,14 +1422,14 @@ class Generator(object):
         if not os.path.exists(docfiledir):
             os.makedirs(docfiledir)
 
-        # if self.script_type == "lua":
-        #     docfilepath = os.path.join(docfiledir, self.out_file + "_api.lua")
-        # else:
-        #     docfilepath = os.path.join(docfiledir, self.out_file + "_api.js")
+        if self.script_type == "lua":
+            docfilepath = os.path.join(docfiledir, self.out_file + "_api.lua")
+        else:
+            docfilepath = os.path.join(docfiledir, self.out_file + "_api.js")
 
         self.impl_file = open(implfilepath, "w+")
         self.head_file = open(headfilepath, "w+")
-        # self.doc_file = open(docfilepath, "w+")
+        self.doc_file = open(docfilepath, "w+")
 
         layout_h = Template(file=os.path.join(self.target, "templates", "layout_head.h"),
                             searchList=[self])
@@ -1230,7 +1439,7 @@ class Generator(object):
                                 searchList=[self])
         self.head_file.write(str(layout_h))
         self.impl_file.write(str(layout_c))
-        # self.doc_file.write(str(apidoc_ns_script))
+        self.doc_file.write(str(apidoc_ns_script))
 
         self._parse_headers()
 
@@ -1243,11 +1452,11 @@ class Generator(object):
         if self.script_type == "lua":
             apidoc_ns_foot_script = Template(file=os.path.join(self.target, "templates", "apidoc_ns_foot.script"),
                                 searchList=[self])
-            # self.doc_file.write(str(apidoc_ns_foot_script))
+            self.doc_file.write(str(apidoc_ns_foot_script))
 
         self.impl_file.close()
         self.head_file.close()
-        # self.doc_file.close()
+        self.doc_file.close()
 
 
     def _pretty_print(self, diagnostics):
@@ -1264,18 +1473,10 @@ class Generator(object):
                 idx+1, severities[d.severity], d.location, d.spelling)
         print("====\n")
 
-    def _check_headers(self):
-        headers = self.headers
-        self.headers = []
-        for header in headers:
-            if os.path.exists(header):
-                self.headers.append(header)
-            else:
-                print('*** header: {0} does not exist'.format(header))
-        print('*** available headers:', self.headers)
-
     def _parse_headers(self):
         for header in self.headers:
+            if not os.path.exists(header):
+                print('>header %s not exists' % (header))
             tu = self.index.parse(header, self.clang_args)
             if len(tu.diagnostics) > 0:
                 self._pretty_print(tu.diagnostics)
@@ -1289,9 +1490,16 @@ class Generator(object):
             self._deep_iterate(tu.cursor)
 
     def _deep_iterate(self, cursor, depth=0):
+
+        def get_children_array_from_iter(iter):
+            children = []
+            for child in iter:
+                children.append(child)
+            return children
+
         # get the canonical type
         if cursor.kind == cindex.CursorKind.CLASS_DECL:
-            if cursor == cursor.type.get_declaration() and len(cursor.get_children_array()) > 0:
+            if cursor == cursor.type.get_declaration() and len(get_children_array_from_iter(cursor.get_children())) > 0:
                 is_targeted_class = True
                 if self.cpp_ns:
                     is_targeted_class = False
@@ -1430,7 +1638,7 @@ class Generator(object):
 
     def api_param_name_from_native(self,native_name):
         lower_name = native_name.lower()
-        if lower_name == "std::string":
+        if lower_name == "std::string" or lower_name == 'string' or lower_name == 'basic_string' or lower_name == 'std::basic_string':
             return "str"
 
         if lower_name.find("unsigned ") >= 0 :
@@ -1483,6 +1691,7 @@ class Generator(object):
         else:
             return namespace_class_name
 def main():
+
     from optparse import OptionParser
 
     parser = OptionParser("usage: %prog [options] {configfile}")
@@ -1562,7 +1771,7 @@ def main():
                 'replace_headers': config.get(s, 'replace_headers') if config.has_option(s, 'replace_headers') else None,
                 'classes': config.get(s, 'classes').split(' '),
                 'classes_need_extend': config.get(s, 'classes_need_extend').split(' ') if config.has_option(s, 'classes_need_extend') else [],
-                'clang_args': (config.get(s, 'extra_arguments', 0, dict(userconfig.items('DEFAULT'))) or "").split(),
+                'clang_args': (config.get(s, 'extra_arguments', 0, dict(userconfig.items('DEFAULT'))) or "").split(" "),
                 'target': os.path.join(workingdir, "targets", t),
                 'outdir': outdir,
                 'search_path': os.path.abspath(os.path.join(userconfig.get('DEFAULT', 'cocosdir'), 'cocos')),
@@ -1582,15 +1791,8 @@ def main():
                 'macro_judgement': config.get(s, 'macro_judgement') if config.has_option(s, 'macro_judgement') else None,
                 'hpp_headers': config.get(s, 'hpp_headers', 0, dict(userconfig.items('DEFAULT'))).split(' ') if config.has_option(s, 'hpp_headers') else None,
                 'cpp_headers': config.get(s, 'cpp_headers', 0, dict(userconfig.items('DEFAULT'))).split(' ') if config.has_option(s, 'cpp_headers') else None,
-                'win32_clang_flags': (config.get(s, 'win32_clang_flags', 0, dict(userconfig.items('DEFAULT'))) or "").split() if config.has_option(s, 'win32_clang_flags') else None
+                'win32_clang_flags': (config.get(s, 'win32_clang_flags', 0, dict(userconfig.items('DEFAULT'))) or "").split(" ") if config.has_option(s, 'win32_clang_flags') else None
                 }
-
-            if config.has_option(s, 'only'):
-                gen_opts['only'] = config.get(s, 'only')
-
-            if config.has_option(s, 'macro'):
-                gen_opts['macro'] = config.get(s, 'macro')
-
             generator = Generator(gen_opts)
             generator.generate_code()
 

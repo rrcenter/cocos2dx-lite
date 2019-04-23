@@ -1,7 +1,4 @@
 \#include "base/ccConfig.h"
-
-\#if ${macro} > 0
-
 #if $macro_judgement
 $macro_judgement
 #end if
@@ -22,5 +19,3 @@ extern "C" {
 \#endif
 
 int register_all_${prefix}(lua_State* tolua_S);
-
-\#endif // ${macro}

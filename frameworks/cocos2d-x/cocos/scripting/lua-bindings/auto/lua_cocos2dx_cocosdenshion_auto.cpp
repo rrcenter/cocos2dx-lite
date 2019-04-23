@@ -9,19 +9,19 @@ int lua_cocos2dx_cocosdenshion_SimpleAudioEngine_preloadBackgroundMusic(lua_Stat
     CocosDenshion::SimpleAudioEngine* cobj = nullptr;
     bool ok  = true;
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_Error tolua_err;
 #endif
 
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     if (!tolua_isusertype(tolua_S,1,"cc.SimpleAudioEngine",0,&tolua_err)) goto tolua_lerror;
 #endif
 
     cobj = (CocosDenshion::SimpleAudioEngine*)tolua_tousertype(tolua_S,1,0);
 
-#if TOLUA_DEBUG >= 1
-    if (!cobj)
+#if COCOS2D_DEBUG >= 1
+    if (!cobj) 
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_cocosdenshion_SimpleAudioEngine_preloadBackgroundMusic'", nullptr);
         return 0;
@@ -29,7 +29,7 @@ int lua_cocos2dx_cocosdenshion_SimpleAudioEngine_preloadBackgroundMusic(lua_Stat
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1)
+    if (argc == 1) 
     {
         const char* arg0;
 
@@ -46,7 +46,7 @@ int lua_cocos2dx_cocosdenshion_SimpleAudioEngine_preloadBackgroundMusic(lua_Stat
     luaL_error(tolua_S, "%s has wrong number of arguments: %d, was expecting %d \n", "cc.SimpleAudioEngine:preloadBackgroundMusic",argc, 1);
     return 0;
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_lerror:
     tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_cocosdenshion_SimpleAudioEngine_preloadBackgroundMusic'.",&tolua_err);
 #endif
@@ -59,19 +59,19 @@ int lua_cocos2dx_cocosdenshion_SimpleAudioEngine_stopBackgroundMusic(lua_State* 
     CocosDenshion::SimpleAudioEngine* cobj = nullptr;
     bool ok  = true;
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_Error tolua_err;
 #endif
 
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     if (!tolua_isusertype(tolua_S,1,"cc.SimpleAudioEngine",0,&tolua_err)) goto tolua_lerror;
 #endif
 
     cobj = (CocosDenshion::SimpleAudioEngine*)tolua_tousertype(tolua_S,1,0);
 
-#if TOLUA_DEBUG >= 1
-    if (!cobj)
+#if COCOS2D_DEBUG >= 1
+    if (!cobj) 
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_cocosdenshion_SimpleAudioEngine_stopBackgroundMusic'", nullptr);
         return 0;
@@ -79,7 +79,7 @@ int lua_cocos2dx_cocosdenshion_SimpleAudioEngine_stopBackgroundMusic(lua_State* 
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0)
+    if (argc == 0) 
     {
         if(!ok)
         {
@@ -90,7 +90,7 @@ int lua_cocos2dx_cocosdenshion_SimpleAudioEngine_stopBackgroundMusic(lua_State* 
         lua_settop(tolua_S, 1);
         return 1;
     }
-    if (argc == 1)
+    if (argc == 1) 
     {
         bool arg0;
 
@@ -107,7 +107,7 @@ int lua_cocos2dx_cocosdenshion_SimpleAudioEngine_stopBackgroundMusic(lua_State* 
     luaL_error(tolua_S, "%s has wrong number of arguments: %d, was expecting %d \n", "cc.SimpleAudioEngine:stopBackgroundMusic",argc, 0);
     return 0;
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_lerror:
     tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_cocosdenshion_SimpleAudioEngine_stopBackgroundMusic'.",&tolua_err);
 #endif
@@ -120,19 +120,19 @@ int lua_cocos2dx_cocosdenshion_SimpleAudioEngine_stopAllEffects(lua_State* tolua
     CocosDenshion::SimpleAudioEngine* cobj = nullptr;
     bool ok  = true;
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_Error tolua_err;
 #endif
 
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     if (!tolua_isusertype(tolua_S,1,"cc.SimpleAudioEngine",0,&tolua_err)) goto tolua_lerror;
 #endif
 
     cobj = (CocosDenshion::SimpleAudioEngine*)tolua_tousertype(tolua_S,1,0);
 
-#if TOLUA_DEBUG >= 1
-    if (!cobj)
+#if COCOS2D_DEBUG >= 1
+    if (!cobj) 
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_cocosdenshion_SimpleAudioEngine_stopAllEffects'", nullptr);
         return 0;
@@ -140,7 +140,7 @@ int lua_cocos2dx_cocosdenshion_SimpleAudioEngine_stopAllEffects(lua_State* tolua
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0)
+    if (argc == 0) 
     {
         if(!ok)
         {
@@ -154,7 +154,7 @@ int lua_cocos2dx_cocosdenshion_SimpleAudioEngine_stopAllEffects(lua_State* tolua
     luaL_error(tolua_S, "%s has wrong number of arguments: %d, was expecting %d \n", "cc.SimpleAudioEngine:stopAllEffects",argc, 0);
     return 0;
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_lerror:
     tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_cocosdenshion_SimpleAudioEngine_stopAllEffects'.",&tolua_err);
 #endif
@@ -167,19 +167,19 @@ int lua_cocos2dx_cocosdenshion_SimpleAudioEngine_getBackgroundMusicVolume(lua_St
     CocosDenshion::SimpleAudioEngine* cobj = nullptr;
     bool ok  = true;
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_Error tolua_err;
 #endif
 
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     if (!tolua_isusertype(tolua_S,1,"cc.SimpleAudioEngine",0,&tolua_err)) goto tolua_lerror;
 #endif
 
     cobj = (CocosDenshion::SimpleAudioEngine*)tolua_tousertype(tolua_S,1,0);
 
-#if TOLUA_DEBUG >= 1
-    if (!cobj)
+#if COCOS2D_DEBUG >= 1
+    if (!cobj) 
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_cocosdenshion_SimpleAudioEngine_getBackgroundMusicVolume'", nullptr);
         return 0;
@@ -187,7 +187,7 @@ int lua_cocos2dx_cocosdenshion_SimpleAudioEngine_getBackgroundMusicVolume(lua_St
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0)
+    if (argc == 0) 
     {
         if(!ok)
         {
@@ -201,7 +201,7 @@ int lua_cocos2dx_cocosdenshion_SimpleAudioEngine_getBackgroundMusicVolume(lua_St
     luaL_error(tolua_S, "%s has wrong number of arguments: %d, was expecting %d \n", "cc.SimpleAudioEngine:getBackgroundMusicVolume",argc, 0);
     return 0;
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_lerror:
     tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_cocosdenshion_SimpleAudioEngine_getBackgroundMusicVolume'.",&tolua_err);
 #endif
@@ -214,19 +214,19 @@ int lua_cocos2dx_cocosdenshion_SimpleAudioEngine_resumeBackgroundMusic(lua_State
     CocosDenshion::SimpleAudioEngine* cobj = nullptr;
     bool ok  = true;
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_Error tolua_err;
 #endif
 
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     if (!tolua_isusertype(tolua_S,1,"cc.SimpleAudioEngine",0,&tolua_err)) goto tolua_lerror;
 #endif
 
     cobj = (CocosDenshion::SimpleAudioEngine*)tolua_tousertype(tolua_S,1,0);
 
-#if TOLUA_DEBUG >= 1
-    if (!cobj)
+#if COCOS2D_DEBUG >= 1
+    if (!cobj) 
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_cocosdenshion_SimpleAudioEngine_resumeBackgroundMusic'", nullptr);
         return 0;
@@ -234,7 +234,7 @@ int lua_cocos2dx_cocosdenshion_SimpleAudioEngine_resumeBackgroundMusic(lua_State
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0)
+    if (argc == 0) 
     {
         if(!ok)
         {
@@ -248,7 +248,7 @@ int lua_cocos2dx_cocosdenshion_SimpleAudioEngine_resumeBackgroundMusic(lua_State
     luaL_error(tolua_S, "%s has wrong number of arguments: %d, was expecting %d \n", "cc.SimpleAudioEngine:resumeBackgroundMusic",argc, 0);
     return 0;
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_lerror:
     tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_cocosdenshion_SimpleAudioEngine_resumeBackgroundMusic'.",&tolua_err);
 #endif
@@ -261,19 +261,19 @@ int lua_cocos2dx_cocosdenshion_SimpleAudioEngine_setBackgroundMusicVolume(lua_St
     CocosDenshion::SimpleAudioEngine* cobj = nullptr;
     bool ok  = true;
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_Error tolua_err;
 #endif
 
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     if (!tolua_isusertype(tolua_S,1,"cc.SimpleAudioEngine",0,&tolua_err)) goto tolua_lerror;
 #endif
 
     cobj = (CocosDenshion::SimpleAudioEngine*)tolua_tousertype(tolua_S,1,0);
 
-#if TOLUA_DEBUG >= 1
-    if (!cobj)
+#if COCOS2D_DEBUG >= 1
+    if (!cobj) 
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_cocosdenshion_SimpleAudioEngine_setBackgroundMusicVolume'", nullptr);
         return 0;
@@ -281,7 +281,7 @@ int lua_cocos2dx_cocosdenshion_SimpleAudioEngine_setBackgroundMusicVolume(lua_St
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1)
+    if (argc == 1) 
     {
         double arg0;
 
@@ -298,7 +298,7 @@ int lua_cocos2dx_cocosdenshion_SimpleAudioEngine_setBackgroundMusicVolume(lua_St
     luaL_error(tolua_S, "%s has wrong number of arguments: %d, was expecting %d \n", "cc.SimpleAudioEngine:setBackgroundMusicVolume",argc, 1);
     return 0;
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_lerror:
     tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_cocosdenshion_SimpleAudioEngine_setBackgroundMusicVolume'.",&tolua_err);
 #endif
@@ -311,19 +311,19 @@ int lua_cocos2dx_cocosdenshion_SimpleAudioEngine_preloadEffect(lua_State* tolua_
     CocosDenshion::SimpleAudioEngine* cobj = nullptr;
     bool ok  = true;
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_Error tolua_err;
 #endif
 
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     if (!tolua_isusertype(tolua_S,1,"cc.SimpleAudioEngine",0,&tolua_err)) goto tolua_lerror;
 #endif
 
     cobj = (CocosDenshion::SimpleAudioEngine*)tolua_tousertype(tolua_S,1,0);
 
-#if TOLUA_DEBUG >= 1
-    if (!cobj)
+#if COCOS2D_DEBUG >= 1
+    if (!cobj) 
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_cocosdenshion_SimpleAudioEngine_preloadEffect'", nullptr);
         return 0;
@@ -331,7 +331,7 @@ int lua_cocos2dx_cocosdenshion_SimpleAudioEngine_preloadEffect(lua_State* tolua_
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1)
+    if (argc == 1) 
     {
         const char* arg0;
 
@@ -348,7 +348,7 @@ int lua_cocos2dx_cocosdenshion_SimpleAudioEngine_preloadEffect(lua_State* tolua_
     luaL_error(tolua_S, "%s has wrong number of arguments: %d, was expecting %d \n", "cc.SimpleAudioEngine:preloadEffect",argc, 1);
     return 0;
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_lerror:
     tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_cocosdenshion_SimpleAudioEngine_preloadEffect'.",&tolua_err);
 #endif
@@ -361,19 +361,19 @@ int lua_cocos2dx_cocosdenshion_SimpleAudioEngine_isBackgroundMusicPlaying(lua_St
     CocosDenshion::SimpleAudioEngine* cobj = nullptr;
     bool ok  = true;
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_Error tolua_err;
 #endif
 
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     if (!tolua_isusertype(tolua_S,1,"cc.SimpleAudioEngine",0,&tolua_err)) goto tolua_lerror;
 #endif
 
     cobj = (CocosDenshion::SimpleAudioEngine*)tolua_tousertype(tolua_S,1,0);
 
-#if TOLUA_DEBUG >= 1
-    if (!cobj)
+#if COCOS2D_DEBUG >= 1
+    if (!cobj) 
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_cocosdenshion_SimpleAudioEngine_isBackgroundMusicPlaying'", nullptr);
         return 0;
@@ -381,7 +381,7 @@ int lua_cocos2dx_cocosdenshion_SimpleAudioEngine_isBackgroundMusicPlaying(lua_St
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0)
+    if (argc == 0) 
     {
         if(!ok)
         {
@@ -395,7 +395,7 @@ int lua_cocos2dx_cocosdenshion_SimpleAudioEngine_isBackgroundMusicPlaying(lua_St
     luaL_error(tolua_S, "%s has wrong number of arguments: %d, was expecting %d \n", "cc.SimpleAudioEngine:isBackgroundMusicPlaying",argc, 0);
     return 0;
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_lerror:
     tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_cocosdenshion_SimpleAudioEngine_isBackgroundMusicPlaying'.",&tolua_err);
 #endif
@@ -408,19 +408,19 @@ int lua_cocos2dx_cocosdenshion_SimpleAudioEngine_getEffectsVolume(lua_State* tol
     CocosDenshion::SimpleAudioEngine* cobj = nullptr;
     bool ok  = true;
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_Error tolua_err;
 #endif
 
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     if (!tolua_isusertype(tolua_S,1,"cc.SimpleAudioEngine",0,&tolua_err)) goto tolua_lerror;
 #endif
 
     cobj = (CocosDenshion::SimpleAudioEngine*)tolua_tousertype(tolua_S,1,0);
 
-#if TOLUA_DEBUG >= 1
-    if (!cobj)
+#if COCOS2D_DEBUG >= 1
+    if (!cobj) 
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_cocosdenshion_SimpleAudioEngine_getEffectsVolume'", nullptr);
         return 0;
@@ -428,7 +428,7 @@ int lua_cocos2dx_cocosdenshion_SimpleAudioEngine_getEffectsVolume(lua_State* tol
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0)
+    if (argc == 0) 
     {
         if(!ok)
         {
@@ -442,7 +442,7 @@ int lua_cocos2dx_cocosdenshion_SimpleAudioEngine_getEffectsVolume(lua_State* tol
     luaL_error(tolua_S, "%s has wrong number of arguments: %d, was expecting %d \n", "cc.SimpleAudioEngine:getEffectsVolume",argc, 0);
     return 0;
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_lerror:
     tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_cocosdenshion_SimpleAudioEngine_getEffectsVolume'.",&tolua_err);
 #endif
@@ -455,19 +455,19 @@ int lua_cocos2dx_cocosdenshion_SimpleAudioEngine_willPlayBackgroundMusic(lua_Sta
     CocosDenshion::SimpleAudioEngine* cobj = nullptr;
     bool ok  = true;
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_Error tolua_err;
 #endif
 
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     if (!tolua_isusertype(tolua_S,1,"cc.SimpleAudioEngine",0,&tolua_err)) goto tolua_lerror;
 #endif
 
     cobj = (CocosDenshion::SimpleAudioEngine*)tolua_tousertype(tolua_S,1,0);
 
-#if TOLUA_DEBUG >= 1
-    if (!cobj)
+#if COCOS2D_DEBUG >= 1
+    if (!cobj) 
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_cocosdenshion_SimpleAudioEngine_willPlayBackgroundMusic'", nullptr);
         return 0;
@@ -475,7 +475,7 @@ int lua_cocos2dx_cocosdenshion_SimpleAudioEngine_willPlayBackgroundMusic(lua_Sta
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0)
+    if (argc == 0) 
     {
         if(!ok)
         {
@@ -489,7 +489,7 @@ int lua_cocos2dx_cocosdenshion_SimpleAudioEngine_willPlayBackgroundMusic(lua_Sta
     luaL_error(tolua_S, "%s has wrong number of arguments: %d, was expecting %d \n", "cc.SimpleAudioEngine:willPlayBackgroundMusic",argc, 0);
     return 0;
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_lerror:
     tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_cocosdenshion_SimpleAudioEngine_willPlayBackgroundMusic'.",&tolua_err);
 #endif
@@ -502,19 +502,19 @@ int lua_cocos2dx_cocosdenshion_SimpleAudioEngine_pauseEffect(lua_State* tolua_S)
     CocosDenshion::SimpleAudioEngine* cobj = nullptr;
     bool ok  = true;
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_Error tolua_err;
 #endif
 
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     if (!tolua_isusertype(tolua_S,1,"cc.SimpleAudioEngine",0,&tolua_err)) goto tolua_lerror;
 #endif
 
     cobj = (CocosDenshion::SimpleAudioEngine*)tolua_tousertype(tolua_S,1,0);
 
-#if TOLUA_DEBUG >= 1
-    if (!cobj)
+#if COCOS2D_DEBUG >= 1
+    if (!cobj) 
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_cocosdenshion_SimpleAudioEngine_pauseEffect'", nullptr);
         return 0;
@@ -522,7 +522,7 @@ int lua_cocos2dx_cocosdenshion_SimpleAudioEngine_pauseEffect(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1)
+    if (argc == 1) 
     {
         unsigned int arg0;
 
@@ -539,7 +539,7 @@ int lua_cocos2dx_cocosdenshion_SimpleAudioEngine_pauseEffect(lua_State* tolua_S)
     luaL_error(tolua_S, "%s has wrong number of arguments: %d, was expecting %d \n", "cc.SimpleAudioEngine:pauseEffect",argc, 1);
     return 0;
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_lerror:
     tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_cocosdenshion_SimpleAudioEngine_pauseEffect'.",&tolua_err);
 #endif
@@ -552,19 +552,19 @@ int lua_cocos2dx_cocosdenshion_SimpleAudioEngine_playEffect(lua_State* tolua_S)
     CocosDenshion::SimpleAudioEngine* cobj = nullptr;
     bool ok  = true;
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_Error tolua_err;
 #endif
 
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     if (!tolua_isusertype(tolua_S,1,"cc.SimpleAudioEngine",0,&tolua_err)) goto tolua_lerror;
 #endif
 
     cobj = (CocosDenshion::SimpleAudioEngine*)tolua_tousertype(tolua_S,1,0);
 
-#if TOLUA_DEBUG >= 1
-    if (!cobj)
+#if COCOS2D_DEBUG >= 1
+    if (!cobj) 
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_cocosdenshion_SimpleAudioEngine_playEffect'", nullptr);
         return 0;
@@ -572,7 +572,7 @@ int lua_cocos2dx_cocosdenshion_SimpleAudioEngine_playEffect(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1)
+    if (argc == 1) 
     {
         const char* arg0;
 
@@ -586,7 +586,7 @@ int lua_cocos2dx_cocosdenshion_SimpleAudioEngine_playEffect(lua_State* tolua_S)
         tolua_pushnumber(tolua_S,(lua_Number)ret);
         return 1;
     }
-    if (argc == 2)
+    if (argc == 2) 
     {
         const char* arg0;
         bool arg1;
@@ -603,7 +603,7 @@ int lua_cocos2dx_cocosdenshion_SimpleAudioEngine_playEffect(lua_State* tolua_S)
         tolua_pushnumber(tolua_S,(lua_Number)ret);
         return 1;
     }
-    if (argc == 3)
+    if (argc == 3) 
     {
         const char* arg0;
         bool arg1;
@@ -623,7 +623,7 @@ int lua_cocos2dx_cocosdenshion_SimpleAudioEngine_playEffect(lua_State* tolua_S)
         tolua_pushnumber(tolua_S,(lua_Number)ret);
         return 1;
     }
-    if (argc == 4)
+    if (argc == 4) 
     {
         const char* arg0;
         bool arg1;
@@ -646,7 +646,7 @@ int lua_cocos2dx_cocosdenshion_SimpleAudioEngine_playEffect(lua_State* tolua_S)
         tolua_pushnumber(tolua_S,(lua_Number)ret);
         return 1;
     }
-    if (argc == 5)
+    if (argc == 5) 
     {
         const char* arg0;
         bool arg1;
@@ -675,7 +675,7 @@ int lua_cocos2dx_cocosdenshion_SimpleAudioEngine_playEffect(lua_State* tolua_S)
     luaL_error(tolua_S, "%s has wrong number of arguments: %d, was expecting %d \n", "cc.SimpleAudioEngine:playEffect",argc, 1);
     return 0;
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_lerror:
     tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_cocosdenshion_SimpleAudioEngine_playEffect'.",&tolua_err);
 #endif
@@ -688,19 +688,19 @@ int lua_cocos2dx_cocosdenshion_SimpleAudioEngine_rewindBackgroundMusic(lua_State
     CocosDenshion::SimpleAudioEngine* cobj = nullptr;
     bool ok  = true;
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_Error tolua_err;
 #endif
 
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     if (!tolua_isusertype(tolua_S,1,"cc.SimpleAudioEngine",0,&tolua_err)) goto tolua_lerror;
 #endif
 
     cobj = (CocosDenshion::SimpleAudioEngine*)tolua_tousertype(tolua_S,1,0);
 
-#if TOLUA_DEBUG >= 1
-    if (!cobj)
+#if COCOS2D_DEBUG >= 1
+    if (!cobj) 
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_cocosdenshion_SimpleAudioEngine_rewindBackgroundMusic'", nullptr);
         return 0;
@@ -708,7 +708,7 @@ int lua_cocos2dx_cocosdenshion_SimpleAudioEngine_rewindBackgroundMusic(lua_State
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0)
+    if (argc == 0) 
     {
         if(!ok)
         {
@@ -722,7 +722,7 @@ int lua_cocos2dx_cocosdenshion_SimpleAudioEngine_rewindBackgroundMusic(lua_State
     luaL_error(tolua_S, "%s has wrong number of arguments: %d, was expecting %d \n", "cc.SimpleAudioEngine:rewindBackgroundMusic",argc, 0);
     return 0;
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_lerror:
     tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_cocosdenshion_SimpleAudioEngine_rewindBackgroundMusic'.",&tolua_err);
 #endif
@@ -735,19 +735,19 @@ int lua_cocos2dx_cocosdenshion_SimpleAudioEngine_playBackgroundMusic(lua_State* 
     CocosDenshion::SimpleAudioEngine* cobj = nullptr;
     bool ok  = true;
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_Error tolua_err;
 #endif
 
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     if (!tolua_isusertype(tolua_S,1,"cc.SimpleAudioEngine",0,&tolua_err)) goto tolua_lerror;
 #endif
 
     cobj = (CocosDenshion::SimpleAudioEngine*)tolua_tousertype(tolua_S,1,0);
 
-#if TOLUA_DEBUG >= 1
-    if (!cobj)
+#if COCOS2D_DEBUG >= 1
+    if (!cobj) 
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_cocosdenshion_SimpleAudioEngine_playBackgroundMusic'", nullptr);
         return 0;
@@ -755,7 +755,7 @@ int lua_cocos2dx_cocosdenshion_SimpleAudioEngine_playBackgroundMusic(lua_State* 
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1)
+    if (argc == 1) 
     {
         const char* arg0;
 
@@ -769,7 +769,7 @@ int lua_cocos2dx_cocosdenshion_SimpleAudioEngine_playBackgroundMusic(lua_State* 
         lua_settop(tolua_S, 1);
         return 1;
     }
-    if (argc == 2)
+    if (argc == 2) 
     {
         const char* arg0;
         bool arg1;
@@ -789,7 +789,7 @@ int lua_cocos2dx_cocosdenshion_SimpleAudioEngine_playBackgroundMusic(lua_State* 
     luaL_error(tolua_S, "%s has wrong number of arguments: %d, was expecting %d \n", "cc.SimpleAudioEngine:playBackgroundMusic",argc, 1);
     return 0;
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_lerror:
     tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_cocosdenshion_SimpleAudioEngine_playBackgroundMusic'.",&tolua_err);
 #endif
@@ -802,19 +802,19 @@ int lua_cocos2dx_cocosdenshion_SimpleAudioEngine_resumeAllEffects(lua_State* tol
     CocosDenshion::SimpleAudioEngine* cobj = nullptr;
     bool ok  = true;
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_Error tolua_err;
 #endif
 
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     if (!tolua_isusertype(tolua_S,1,"cc.SimpleAudioEngine",0,&tolua_err)) goto tolua_lerror;
 #endif
 
     cobj = (CocosDenshion::SimpleAudioEngine*)tolua_tousertype(tolua_S,1,0);
 
-#if TOLUA_DEBUG >= 1
-    if (!cobj)
+#if COCOS2D_DEBUG >= 1
+    if (!cobj) 
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_cocosdenshion_SimpleAudioEngine_resumeAllEffects'", nullptr);
         return 0;
@@ -822,7 +822,7 @@ int lua_cocos2dx_cocosdenshion_SimpleAudioEngine_resumeAllEffects(lua_State* tol
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0)
+    if (argc == 0) 
     {
         if(!ok)
         {
@@ -836,7 +836,7 @@ int lua_cocos2dx_cocosdenshion_SimpleAudioEngine_resumeAllEffects(lua_State* tol
     luaL_error(tolua_S, "%s has wrong number of arguments: %d, was expecting %d \n", "cc.SimpleAudioEngine:resumeAllEffects",argc, 0);
     return 0;
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_lerror:
     tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_cocosdenshion_SimpleAudioEngine_resumeAllEffects'.",&tolua_err);
 #endif
@@ -849,19 +849,19 @@ int lua_cocos2dx_cocosdenshion_SimpleAudioEngine_setEffectsVolume(lua_State* tol
     CocosDenshion::SimpleAudioEngine* cobj = nullptr;
     bool ok  = true;
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_Error tolua_err;
 #endif
 
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     if (!tolua_isusertype(tolua_S,1,"cc.SimpleAudioEngine",0,&tolua_err)) goto tolua_lerror;
 #endif
 
     cobj = (CocosDenshion::SimpleAudioEngine*)tolua_tousertype(tolua_S,1,0);
 
-#if TOLUA_DEBUG >= 1
-    if (!cobj)
+#if COCOS2D_DEBUG >= 1
+    if (!cobj) 
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_cocosdenshion_SimpleAudioEngine_setEffectsVolume'", nullptr);
         return 0;
@@ -869,7 +869,7 @@ int lua_cocos2dx_cocosdenshion_SimpleAudioEngine_setEffectsVolume(lua_State* tol
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1)
+    if (argc == 1) 
     {
         double arg0;
 
@@ -886,7 +886,7 @@ int lua_cocos2dx_cocosdenshion_SimpleAudioEngine_setEffectsVolume(lua_State* tol
     luaL_error(tolua_S, "%s has wrong number of arguments: %d, was expecting %d \n", "cc.SimpleAudioEngine:setEffectsVolume",argc, 1);
     return 0;
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_lerror:
     tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_cocosdenshion_SimpleAudioEngine_setEffectsVolume'.",&tolua_err);
 #endif
@@ -899,19 +899,19 @@ int lua_cocos2dx_cocosdenshion_SimpleAudioEngine_stopEffect(lua_State* tolua_S)
     CocosDenshion::SimpleAudioEngine* cobj = nullptr;
     bool ok  = true;
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_Error tolua_err;
 #endif
 
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     if (!tolua_isusertype(tolua_S,1,"cc.SimpleAudioEngine",0,&tolua_err)) goto tolua_lerror;
 #endif
 
     cobj = (CocosDenshion::SimpleAudioEngine*)tolua_tousertype(tolua_S,1,0);
 
-#if TOLUA_DEBUG >= 1
-    if (!cobj)
+#if COCOS2D_DEBUG >= 1
+    if (!cobj) 
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_cocosdenshion_SimpleAudioEngine_stopEffect'", nullptr);
         return 0;
@@ -919,7 +919,7 @@ int lua_cocos2dx_cocosdenshion_SimpleAudioEngine_stopEffect(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1)
+    if (argc == 1) 
     {
         unsigned int arg0;
 
@@ -936,7 +936,7 @@ int lua_cocos2dx_cocosdenshion_SimpleAudioEngine_stopEffect(lua_State* tolua_S)
     luaL_error(tolua_S, "%s has wrong number of arguments: %d, was expecting %d \n", "cc.SimpleAudioEngine:stopEffect",argc, 1);
     return 0;
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_lerror:
     tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_cocosdenshion_SimpleAudioEngine_stopEffect'.",&tolua_err);
 #endif
@@ -949,19 +949,19 @@ int lua_cocos2dx_cocosdenshion_SimpleAudioEngine_pauseBackgroundMusic(lua_State*
     CocosDenshion::SimpleAudioEngine* cobj = nullptr;
     bool ok  = true;
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_Error tolua_err;
 #endif
 
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     if (!tolua_isusertype(tolua_S,1,"cc.SimpleAudioEngine",0,&tolua_err)) goto tolua_lerror;
 #endif
 
     cobj = (CocosDenshion::SimpleAudioEngine*)tolua_tousertype(tolua_S,1,0);
 
-#if TOLUA_DEBUG >= 1
-    if (!cobj)
+#if COCOS2D_DEBUG >= 1
+    if (!cobj) 
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_cocosdenshion_SimpleAudioEngine_pauseBackgroundMusic'", nullptr);
         return 0;
@@ -969,7 +969,7 @@ int lua_cocos2dx_cocosdenshion_SimpleAudioEngine_pauseBackgroundMusic(lua_State*
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0)
+    if (argc == 0) 
     {
         if(!ok)
         {
@@ -983,7 +983,7 @@ int lua_cocos2dx_cocosdenshion_SimpleAudioEngine_pauseBackgroundMusic(lua_State*
     luaL_error(tolua_S, "%s has wrong number of arguments: %d, was expecting %d \n", "cc.SimpleAudioEngine:pauseBackgroundMusic",argc, 0);
     return 0;
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_lerror:
     tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_cocosdenshion_SimpleAudioEngine_pauseBackgroundMusic'.",&tolua_err);
 #endif
@@ -996,19 +996,19 @@ int lua_cocos2dx_cocosdenshion_SimpleAudioEngine_pauseAllEffects(lua_State* tolu
     CocosDenshion::SimpleAudioEngine* cobj = nullptr;
     bool ok  = true;
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_Error tolua_err;
 #endif
 
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     if (!tolua_isusertype(tolua_S,1,"cc.SimpleAudioEngine",0,&tolua_err)) goto tolua_lerror;
 #endif
 
     cobj = (CocosDenshion::SimpleAudioEngine*)tolua_tousertype(tolua_S,1,0);
 
-#if TOLUA_DEBUG >= 1
-    if (!cobj)
+#if COCOS2D_DEBUG >= 1
+    if (!cobj) 
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_cocosdenshion_SimpleAudioEngine_pauseAllEffects'", nullptr);
         return 0;
@@ -1016,7 +1016,7 @@ int lua_cocos2dx_cocosdenshion_SimpleAudioEngine_pauseAllEffects(lua_State* tolu
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0)
+    if (argc == 0) 
     {
         if(!ok)
         {
@@ -1030,7 +1030,7 @@ int lua_cocos2dx_cocosdenshion_SimpleAudioEngine_pauseAllEffects(lua_State* tolu
     luaL_error(tolua_S, "%s has wrong number of arguments: %d, was expecting %d \n", "cc.SimpleAudioEngine:pauseAllEffects",argc, 0);
     return 0;
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_lerror:
     tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_cocosdenshion_SimpleAudioEngine_pauseAllEffects'.",&tolua_err);
 #endif
@@ -1043,19 +1043,19 @@ int lua_cocos2dx_cocosdenshion_SimpleAudioEngine_unloadEffect(lua_State* tolua_S
     CocosDenshion::SimpleAudioEngine* cobj = nullptr;
     bool ok  = true;
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_Error tolua_err;
 #endif
 
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     if (!tolua_isusertype(tolua_S,1,"cc.SimpleAudioEngine",0,&tolua_err)) goto tolua_lerror;
 #endif
 
     cobj = (CocosDenshion::SimpleAudioEngine*)tolua_tousertype(tolua_S,1,0);
 
-#if TOLUA_DEBUG >= 1
-    if (!cobj)
+#if COCOS2D_DEBUG >= 1
+    if (!cobj) 
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_cocosdenshion_SimpleAudioEngine_unloadEffect'", nullptr);
         return 0;
@@ -1063,7 +1063,7 @@ int lua_cocos2dx_cocosdenshion_SimpleAudioEngine_unloadEffect(lua_State* tolua_S
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1)
+    if (argc == 1) 
     {
         const char* arg0;
 
@@ -1080,7 +1080,7 @@ int lua_cocos2dx_cocosdenshion_SimpleAudioEngine_unloadEffect(lua_State* tolua_S
     luaL_error(tolua_S, "%s has wrong number of arguments: %d, was expecting %d \n", "cc.SimpleAudioEngine:unloadEffect",argc, 1);
     return 0;
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_lerror:
     tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_cocosdenshion_SimpleAudioEngine_unloadEffect'.",&tolua_err);
 #endif
@@ -1093,19 +1093,19 @@ int lua_cocos2dx_cocosdenshion_SimpleAudioEngine_resumeEffect(lua_State* tolua_S
     CocosDenshion::SimpleAudioEngine* cobj = nullptr;
     bool ok  = true;
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_Error tolua_err;
 #endif
 
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     if (!tolua_isusertype(tolua_S,1,"cc.SimpleAudioEngine",0,&tolua_err)) goto tolua_lerror;
 #endif
 
     cobj = (CocosDenshion::SimpleAudioEngine*)tolua_tousertype(tolua_S,1,0);
 
-#if TOLUA_DEBUG >= 1
-    if (!cobj)
+#if COCOS2D_DEBUG >= 1
+    if (!cobj) 
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_cocosdenshion_SimpleAudioEngine_resumeEffect'", nullptr);
         return 0;
@@ -1113,7 +1113,7 @@ int lua_cocos2dx_cocosdenshion_SimpleAudioEngine_resumeEffect(lua_State* tolua_S
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1)
+    if (argc == 1) 
     {
         unsigned int arg0;
 
@@ -1130,7 +1130,7 @@ int lua_cocos2dx_cocosdenshion_SimpleAudioEngine_resumeEffect(lua_State* tolua_S
     luaL_error(tolua_S, "%s has wrong number of arguments: %d, was expecting %d \n", "cc.SimpleAudioEngine:resumeEffect",argc, 1);
     return 0;
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_lerror:
     tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_cocosdenshion_SimpleAudioEngine_resumeEffect'.",&tolua_err);
 #endif
@@ -1142,11 +1142,11 @@ int lua_cocos2dx_cocosdenshion_SimpleAudioEngine_end(lua_State* tolua_S)
     int argc = 0;
     bool ok  = true;
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_Error tolua_err;
 #endif
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     if (!tolua_isusertable(tolua_S,1,"cc.SimpleAudioEngine",0,&tolua_err)) goto tolua_lerror;
 #endif
 
@@ -1165,7 +1165,7 @@ int lua_cocos2dx_cocosdenshion_SimpleAudioEngine_end(lua_State* tolua_S)
     }
     luaL_error(tolua_S, "%s has wrong number of arguments: %d, was expecting %d\n ", "cc.SimpleAudioEngine:end",argc, 0);
     return 0;
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_lerror:
     tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_cocosdenshion_SimpleAudioEngine_end'.",&tolua_err);
 #endif
@@ -1176,11 +1176,11 @@ int lua_cocos2dx_cocosdenshion_SimpleAudioEngine_getInstance(lua_State* tolua_S)
     int argc = 0;
     bool ok  = true;
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_Error tolua_err;
 #endif
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     if (!tolua_isusertable(tolua_S,1,"cc.SimpleAudioEngine",0,&tolua_err)) goto tolua_lerror;
 #endif
 
@@ -1199,7 +1199,7 @@ int lua_cocos2dx_cocosdenshion_SimpleAudioEngine_getInstance(lua_State* tolua_S)
     }
     luaL_error(tolua_S, "%s has wrong number of arguments: %d, was expecting %d\n ", "cc.SimpleAudioEngine:getInstance",argc, 0);
     return 0;
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_lerror:
     tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_cocosdenshion_SimpleAudioEngine_getInstance'.",&tolua_err);
 #endif

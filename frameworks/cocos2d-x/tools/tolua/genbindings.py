@@ -75,27 +75,38 @@ def main():
         print 'Your platform is not supported!'
         sys.exit(1)
 
-    if platform == 'win32':
-        x86_llvm_path = os.path.abspath(os.path.join(ndk_root, 'toolchains/llvm-3.4/prebuilt', '%s' % cur_platform))
-        if not os.path.exists(x86_llvm_path):
-            x86_llvm_path = os.path.abspath(os.path.join(ndk_root, 'toolchains/llvm-3.3/prebuilt', '%s' % cur_platform))
-    else:
-        x86_llvm_path = os.path.abspath(os.path.join(ndk_root, 'toolchains/llvm-3.4/prebuilt', '%s-%s' % (cur_platform, 'x86')))
-        if not os.path.exists(x86_llvm_path):
-            x86_llvm_path = os.path.abspath(os.path.join(ndk_root, 'toolchains/llvm-3.3/prebuilt', '%s-%s' % (cur_platform, 'x86')))
-
-    x64_llvm_path = os.path.abspath(os.path.join(ndk_root, 'toolchains/llvm-3.4/prebuilt', '%s-%s' % (cur_platform, 'x86_64')))
+    x86_llvm_path = ""
+    x64_llvm_path = os.path.abspath(os.path.join(ndk_root, 'toolchains/llvm/prebuilt', '%s-%s' % (cur_platform, 'x86_64')))
     if not os.path.exists(x64_llvm_path):
-        x64_llvm_path = os.path.abspath(os.path.join(ndk_root, 'toolchains/llvm-3.3/prebuilt', '%s-%s' % (cur_platform, 'x86_64')))
+        x86_llvm_path = os.path.abspath(os.path.join(ndk_root, 'toolchains/llvm/prebuilt', '%s' % (cur_platform)))
+    if not os.path.exists(x86_llvm_path):
+        x86_llvm_path = os.path.abspath(os.path.join(ndk_root, 'toolchains/llvm/prebuilt', '%s-%s' % (cur_platform, 'x86')))
 
-    if os.path.isdir(x86_llvm_path):
-        llvm_path = x86_llvm_path
-    elif os.path.isdir(x64_llvm_path):
+    if os.path.isdir(x64_llvm_path):
         llvm_path = x64_llvm_path
+    elif os.path.isdir(x86_llvm_path):
+        llvm_path = x86_llvm_path
     else:
         print 'llvm toolchain not found!'
         print 'path: %s or path: %s are not valid! ' % (x86_llvm_path, x64_llvm_path)
         sys.exit(1)
+
+    x86_gcc_toolchain_path = ""
+    x64_gcc_toolchain_path = os.path.abspath(os.path.join(ndk_root, 'toolchains/arm-linux-androideabi-4.9/prebuilt', '%s-%s' % (cur_platform, 'x86_64')))
+    if not os.path.exists(x64_gcc_toolchain_path):
+        x86_gcc_toolchain_path = os.path.abspath(os.path.join(ndk_root, 'toolchains/arm-linux-androideabi-4.9/prebuilt', '%s' % (cur_platform)))
+    if not os.path.exists(x86_gcc_toolchain_path):
+        x86_gcc_toolchain_path = os.path.abspath(os.path.join(ndk_root, 'toolchains/arm-linux-androideabi-4.9/prebuilt', '%s-%s' % (cur_platform, 'x86')))
+
+    if os.path.isdir(x64_gcc_toolchain_path):
+        gcc_toolchain_path = x64_gcc_toolchain_path
+    elif os.path.isdir(x86_gcc_toolchain_path):
+        gcc_toolchain_path = x86_gcc_toolchain_path
+    else:
+        print 'gcc toolchain not found!'
+        print 'path: %s or path: %s are not valid! ' % (x64_gcc_toolchain_path, x86_gcc_toolchain_path)
+        sys.exit(1)
+
 
     project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
     cocos_root = os.path.abspath(os.path.join(project_root, ''))
@@ -105,18 +116,10 @@ def main():
     config = ConfigParser.ConfigParser()
     config.set('DEFAULT', 'androidndkdir', ndk_root)
     config.set('DEFAULT', 'clangllvmdir', llvm_path)
+    config.set('DEFAULT', 'gcc_toolchain_dir', gcc_toolchain_path)
     config.set('DEFAULT', 'cocosdir', cocos_root)
     config.set('DEFAULT', 'cxxgeneratordir', cxx_generator_root)
     config.set('DEFAULT', 'extra_flags', '')
-
-    if '3.4' in llvm_path:
-        config.set('DEFAULT', 'clang_version', '3.4')
-    else:
-        config.set('DEFAULT', 'clang_version', '3.3')
-
-    # To fix parse error on windows, we must difine __WCHAR_MAX__ and undefine __MINGW32__ .
-    if platform == 'win32':
-        config.set('DEFAULT', 'extra_flags', '-D__WCHAR_MAX__=0x7fffffff -U__MINGW32__')
 
     conf_ini_file = os.path.abspath(os.path.join(os.path.dirname(__file__), 'userconf.ini'))
 
@@ -140,13 +143,16 @@ def main():
 
         cmd_args = {
                     'cocos2dx.ini' : ('cocos2d-x', 'lua_cocos2dx_auto'), \
-                    # 'cocos2dx_base.ini' : ('cocos2d-x', 'lua_cocos2dx_auto'), \
                     'cocos2dx_spine.ini' : ('cocos2dx_spine', 'lua_cocos2dx_spine_auto'), \
                     'cocos2dx_audioengine.ini': ('cocos2dx_audioengine', 'lua_cocos2dx_audioengine_auto'), \
                     'cocos2dx_cocosdenshion.ini': ('cocos2dx_cocosdenshion', 'lua_cocos2dx_cocosdenshion_auto'), \
                     'cocos2dx_ui.ini' : ('cocos2dx_ui', 'lua_cocos2dx_ui_auto'), \
                     'cocos2dx_studio.ini' : ('cocos2dx_studio', 'lua_cocos2dx_studio_auto'), \
                     'cocos2dx_csloader.ini' : ('cocos2dx_csloader', 'lua_cocos2dx_csloader_auto'), \
+                    'cocos2dx_experimental_video.ini' : ('cocos2dx_experimental_video', 'lua_cocos2dx_experimental_video_auto'), \
+                    'cocos2dx_experimental.ini' : ('cocos2dx_experimental', 'lua_cocos2dx_experimental_auto'), \
+                    'cocos2dx_experimental_webview.ini' : ('cocos2dx_experimental_webview', 'lua_cocos2dx_experimental_webview_auto'), \
+                    'cocos2dx_extension.ini' : ('cocos2dx_extension', 'lua_cocos2dx_extension_auto'), \
                     }
         target = 'lua'
         generator_py = '%s/generator.py' % cxx_generator_root

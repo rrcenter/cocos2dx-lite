@@ -1,5 +1,5 @@
 #include "scripting/lua-bindings/auto/lua_cocos2dx_audioengine_auto.hpp"
-#if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_IOS || CC_TARGET_PLATFORM == CC_PLATFORM_MAC || CC_TARGET_PLATFORM == CC_PLATFORM_WIN32
+#if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_IOS || CC_TARGET_PLATFORM == CC_PLATFORM_MAC || CC_TARGET_PLATFORM == CC_PLATFORM_WIN32 || CC_TARGET_PLATFORM == CC_PLATFORM_TIZEN
 #include "audio/include/AudioEngine.h"
 #include "scripting/lua-bindings/manual/tolua_fix.h"
 #include "scripting/lua-bindings/manual/LuaBasicConversions.h"
@@ -10,14 +10,14 @@ int lua_cocos2dx_audioengine_AudioProfile_constructor(lua_State* tolua_S)
     cocos2d::experimental::AudioProfile* cobj = nullptr;
     bool ok  = true;
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_Error tolua_err;
 #endif
 
 
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0)
+    if (argc == 0) 
     {
         if(!ok)
         {
@@ -32,7 +32,7 @@ int lua_cocos2dx_audioengine_AudioProfile_constructor(lua_State* tolua_S)
     luaL_error(tolua_S, "%s has wrong number of arguments: %d, was expecting %d \n", "ccexp.AudioProfile:AudioProfile",argc, 0);
     return 0;
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_audioengine_AudioProfile_constructor'.",&tolua_err);
 #endif
 
@@ -64,11 +64,11 @@ int lua_cocos2dx_audioengine_AudioEngine_lazyInit(lua_State* tolua_S)
     int argc = 0;
     bool ok  = true;
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_Error tolua_err;
 #endif
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     if (!tolua_isusertable(tolua_S,1,"ccexp.AudioEngine",0,&tolua_err)) goto tolua_lerror;
 #endif
 
@@ -87,7 +87,7 @@ int lua_cocos2dx_audioengine_AudioEngine_lazyInit(lua_State* tolua_S)
     }
     luaL_error(tolua_S, "%s has wrong number of arguments: %d, was expecting %d\n ", "ccexp.AudioEngine:lazyInit",argc, 0);
     return 0;
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_lerror:
     tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_audioengine_AudioEngine_lazyInit'.",&tolua_err);
 #endif
@@ -98,11 +98,11 @@ int lua_cocos2dx_audioengine_AudioEngine_setCurrentTime(lua_State* tolua_S)
     int argc = 0;
     bool ok  = true;
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_Error tolua_err;
 #endif
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     if (!tolua_isusertable(tolua_S,1,"ccexp.AudioEngine",0,&tolua_err)) goto tolua_lerror;
 #endif
 
@@ -125,7 +125,7 @@ int lua_cocos2dx_audioengine_AudioEngine_setCurrentTime(lua_State* tolua_S)
     }
     luaL_error(tolua_S, "%s has wrong number of arguments: %d, was expecting %d\n ", "ccexp.AudioEngine:setCurrentTime",argc, 2);
     return 0;
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_lerror:
     tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_audioengine_AudioEngine_setCurrentTime'.",&tolua_err);
 #endif
@@ -136,11 +136,11 @@ int lua_cocos2dx_audioengine_AudioEngine_getVolume(lua_State* tolua_S)
     int argc = 0;
     bool ok  = true;
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_Error tolua_err;
 #endif
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     if (!tolua_isusertable(tolua_S,1,"ccexp.AudioEngine",0,&tolua_err)) goto tolua_lerror;
 #endif
 
@@ -161,7 +161,7 @@ int lua_cocos2dx_audioengine_AudioEngine_getVolume(lua_State* tolua_S)
     }
     luaL_error(tolua_S, "%s has wrong number of arguments: %d, was expecting %d\n ", "ccexp.AudioEngine:getVolume",argc, 1);
     return 0;
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_lerror:
     tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_audioengine_AudioEngine_getVolume'.",&tolua_err);
 #endif
@@ -172,11 +172,11 @@ int lua_cocos2dx_audioengine_AudioEngine_uncache(lua_State* tolua_S)
     int argc = 0;
     bool ok  = true;
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_Error tolua_err;
 #endif
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     if (!tolua_isusertable(tolua_S,1,"ccexp.AudioEngine",0,&tolua_err)) goto tolua_lerror;
 #endif
 
@@ -197,7 +197,7 @@ int lua_cocos2dx_audioengine_AudioEngine_uncache(lua_State* tolua_S)
     }
     luaL_error(tolua_S, "%s has wrong number of arguments: %d, was expecting %d\n ", "ccexp.AudioEngine:uncache",argc, 1);
     return 0;
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_lerror:
     tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_audioengine_AudioEngine_uncache'.",&tolua_err);
 #endif
@@ -208,11 +208,11 @@ int lua_cocos2dx_audioengine_AudioEngine_resumeAll(lua_State* tolua_S)
     int argc = 0;
     bool ok  = true;
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_Error tolua_err;
 #endif
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     if (!tolua_isusertable(tolua_S,1,"ccexp.AudioEngine",0,&tolua_err)) goto tolua_lerror;
 #endif
 
@@ -231,7 +231,7 @@ int lua_cocos2dx_audioengine_AudioEngine_resumeAll(lua_State* tolua_S)
     }
     luaL_error(tolua_S, "%s has wrong number of arguments: %d, was expecting %d\n ", "ccexp.AudioEngine:resumeAll",argc, 0);
     return 0;
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_lerror:
     tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_audioengine_AudioEngine_resumeAll'.",&tolua_err);
 #endif
@@ -242,11 +242,11 @@ int lua_cocos2dx_audioengine_AudioEngine_stopAll(lua_State* tolua_S)
     int argc = 0;
     bool ok  = true;
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_Error tolua_err;
 #endif
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     if (!tolua_isusertable(tolua_S,1,"ccexp.AudioEngine",0,&tolua_err)) goto tolua_lerror;
 #endif
 
@@ -265,7 +265,7 @@ int lua_cocos2dx_audioengine_AudioEngine_stopAll(lua_State* tolua_S)
     }
     luaL_error(tolua_S, "%s has wrong number of arguments: %d, was expecting %d\n ", "ccexp.AudioEngine:stopAll",argc, 0);
     return 0;
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_lerror:
     tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_audioengine_AudioEngine_stopAll'.",&tolua_err);
 #endif
@@ -276,11 +276,11 @@ int lua_cocos2dx_audioengine_AudioEngine_pause(lua_State* tolua_S)
     int argc = 0;
     bool ok  = true;
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_Error tolua_err;
 #endif
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     if (!tolua_isusertable(tolua_S,1,"ccexp.AudioEngine",0,&tolua_err)) goto tolua_lerror;
 #endif
 
@@ -301,43 +301,9 @@ int lua_cocos2dx_audioengine_AudioEngine_pause(lua_State* tolua_S)
     }
     luaL_error(tolua_S, "%s has wrong number of arguments: %d, was expecting %d\n ", "ccexp.AudioEngine:pause",argc, 1);
     return 0;
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_lerror:
     tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_audioengine_AudioEngine_pause'.",&tolua_err);
-#endif
-    return 0;
-}
-int lua_cocos2dx_audioengine_AudioEngine_end(lua_State* tolua_S)
-{
-    int argc = 0;
-    bool ok  = true;
-
-#if TOLUA_DEBUG >= 1
-    tolua_Error tolua_err;
-#endif
-
-#if TOLUA_DEBUG >= 1
-    if (!tolua_isusertable(tolua_S,1,"ccexp.AudioEngine",0,&tolua_err)) goto tolua_lerror;
-#endif
-
-    argc = lua_gettop(tolua_S) - 1;
-
-    if (argc == 0)
-    {
-        if(!ok)
-        {
-            tolua_error(tolua_S,"invalid arguments in function 'lua_cocos2dx_audioengine_AudioEngine_end'", nullptr);
-            return 0;
-        }
-        cocos2d::experimental::AudioEngine::end();
-        lua_settop(tolua_S, 1);
-        return 1;
-    }
-    luaL_error(tolua_S, "%s has wrong number of arguments: %d, was expecting %d\n ", "ccexp.AudioEngine:end",argc, 0);
-    return 0;
-#if TOLUA_DEBUG >= 1
-    tolua_lerror:
-    tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_audioengine_AudioEngine_end'.",&tolua_err);
 #endif
     return 0;
 }
@@ -346,11 +312,11 @@ int lua_cocos2dx_audioengine_AudioEngine_getMaxAudioInstance(lua_State* tolua_S)
     int argc = 0;
     bool ok  = true;
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_Error tolua_err;
 #endif
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     if (!tolua_isusertable(tolua_S,1,"ccexp.AudioEngine",0,&tolua_err)) goto tolua_lerror;
 #endif
 
@@ -369,7 +335,7 @@ int lua_cocos2dx_audioengine_AudioEngine_getMaxAudioInstance(lua_State* tolua_S)
     }
     luaL_error(tolua_S, "%s has wrong number of arguments: %d, was expecting %d\n ", "ccexp.AudioEngine:getMaxAudioInstance",argc, 0);
     return 0;
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_lerror:
     tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_audioengine_AudioEngine_getMaxAudioInstance'.",&tolua_err);
 #endif
@@ -380,11 +346,11 @@ int lua_cocos2dx_audioengine_AudioEngine_isEnabled(lua_State* tolua_S)
     int argc = 0;
     bool ok  = true;
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_Error tolua_err;
 #endif
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     if (!tolua_isusertable(tolua_S,1,"ccexp.AudioEngine",0,&tolua_err)) goto tolua_lerror;
 #endif
 
@@ -403,7 +369,7 @@ int lua_cocos2dx_audioengine_AudioEngine_isEnabled(lua_State* tolua_S)
     }
     luaL_error(tolua_S, "%s has wrong number of arguments: %d, was expecting %d\n ", "ccexp.AudioEngine:isEnabled",argc, 0);
     return 0;
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_lerror:
     tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_audioengine_AudioEngine_isEnabled'.",&tolua_err);
 #endif
@@ -414,11 +380,11 @@ int lua_cocos2dx_audioengine_AudioEngine_getCurrentTime(lua_State* tolua_S)
     int argc = 0;
     bool ok  = true;
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_Error tolua_err;
 #endif
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     if (!tolua_isusertable(tolua_S,1,"ccexp.AudioEngine",0,&tolua_err)) goto tolua_lerror;
 #endif
 
@@ -439,7 +405,7 @@ int lua_cocos2dx_audioengine_AudioEngine_getCurrentTime(lua_State* tolua_S)
     }
     luaL_error(tolua_S, "%s has wrong number of arguments: %d, was expecting %d\n ", "ccexp.AudioEngine:getCurrentTime",argc, 1);
     return 0;
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_lerror:
     tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_audioengine_AudioEngine_getCurrentTime'.",&tolua_err);
 #endif
@@ -450,11 +416,11 @@ int lua_cocos2dx_audioengine_AudioEngine_setMaxAudioInstance(lua_State* tolua_S)
     int argc = 0;
     bool ok  = true;
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_Error tolua_err;
 #endif
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     if (!tolua_isusertable(tolua_S,1,"ccexp.AudioEngine",0,&tolua_err)) goto tolua_lerror;
 #endif
 
@@ -475,7 +441,7 @@ int lua_cocos2dx_audioengine_AudioEngine_setMaxAudioInstance(lua_State* tolua_S)
     }
     luaL_error(tolua_S, "%s has wrong number of arguments: %d, was expecting %d\n ", "ccexp.AudioEngine:setMaxAudioInstance",argc, 1);
     return 0;
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_lerror:
     tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_audioengine_AudioEngine_setMaxAudioInstance'.",&tolua_err);
 #endif
@@ -486,11 +452,11 @@ int lua_cocos2dx_audioengine_AudioEngine_isLoop(lua_State* tolua_S)
     int argc = 0;
     bool ok  = true;
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_Error tolua_err;
 #endif
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     if (!tolua_isusertable(tolua_S,1,"ccexp.AudioEngine",0,&tolua_err)) goto tolua_lerror;
 #endif
 
@@ -511,7 +477,7 @@ int lua_cocos2dx_audioengine_AudioEngine_isLoop(lua_State* tolua_S)
     }
     luaL_error(tolua_S, "%s has wrong number of arguments: %d, was expecting %d\n ", "ccexp.AudioEngine:isLoop",argc, 1);
     return 0;
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_lerror:
     tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_audioengine_AudioEngine_isLoop'.",&tolua_err);
 #endif
@@ -522,11 +488,11 @@ int lua_cocos2dx_audioengine_AudioEngine_pauseAll(lua_State* tolua_S)
     int argc = 0;
     bool ok  = true;
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_Error tolua_err;
 #endif
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     if (!tolua_isusertable(tolua_S,1,"ccexp.AudioEngine",0,&tolua_err)) goto tolua_lerror;
 #endif
 
@@ -545,7 +511,7 @@ int lua_cocos2dx_audioengine_AudioEngine_pauseAll(lua_State* tolua_S)
     }
     luaL_error(tolua_S, "%s has wrong number of arguments: %d, was expecting %d\n ", "ccexp.AudioEngine:pauseAll",argc, 0);
     return 0;
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_lerror:
     tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_audioengine_AudioEngine_pauseAll'.",&tolua_err);
 #endif
@@ -556,11 +522,11 @@ int lua_cocos2dx_audioengine_AudioEngine_uncacheAll(lua_State* tolua_S)
     int argc = 0;
     bool ok  = true;
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_Error tolua_err;
 #endif
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     if (!tolua_isusertable(tolua_S,1,"ccexp.AudioEngine",0,&tolua_err)) goto tolua_lerror;
 #endif
 
@@ -579,7 +545,7 @@ int lua_cocos2dx_audioengine_AudioEngine_uncacheAll(lua_State* tolua_S)
     }
     luaL_error(tolua_S, "%s has wrong number of arguments: %d, was expecting %d\n ", "ccexp.AudioEngine:uncacheAll",argc, 0);
     return 0;
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_lerror:
     tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_audioengine_AudioEngine_uncacheAll'.",&tolua_err);
 #endif
@@ -590,11 +556,11 @@ int lua_cocos2dx_audioengine_AudioEngine_setVolume(lua_State* tolua_S)
     int argc = 0;
     bool ok  = true;
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_Error tolua_err;
 #endif
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     if (!tolua_isusertable(tolua_S,1,"ccexp.AudioEngine",0,&tolua_err)) goto tolua_lerror;
 #endif
 
@@ -617,7 +583,7 @@ int lua_cocos2dx_audioengine_AudioEngine_setVolume(lua_State* tolua_S)
     }
     luaL_error(tolua_S, "%s has wrong number of arguments: %d, was expecting %d\n ", "ccexp.AudioEngine:setVolume",argc, 2);
     return 0;
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_lerror:
     tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_audioengine_AudioEngine_setVolume'.",&tolua_err);
 #endif
@@ -627,17 +593,17 @@ int lua_cocos2dx_audioengine_AudioEngine_preload(lua_State* tolua_S)
 {
     int argc = 0;
     bool ok  = true;
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_Error tolua_err;
 #endif
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     if (!tolua_isusertable(tolua_S,1,"ccexp.AudioEngine",0,&tolua_err)) goto tolua_lerror;
 #endif
 
     argc = lua_gettop(tolua_S)-1;
 
-    do
+    do 
     {
         if (argc == 2)
         {
@@ -657,7 +623,7 @@ int lua_cocos2dx_audioengine_AudioEngine_preload(lua_State* tolua_S)
         }
     } while (0);
     ok  = true;
-    do
+    do 
     {
         if (argc == 1)
         {
@@ -672,7 +638,7 @@ int lua_cocos2dx_audioengine_AudioEngine_preload(lua_State* tolua_S)
     ok  = true;
     luaL_error(tolua_S, "%s has wrong number of arguments: %d, was expecting %d", "ccexp.AudioEngine:preload",argc, 1);
     return 0;
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_lerror:
     tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_audioengine_AudioEngine_preload'.",&tolua_err);
 #endif
@@ -683,11 +649,11 @@ int lua_cocos2dx_audioengine_AudioEngine_setEnabled(lua_State* tolua_S)
     int argc = 0;
     bool ok  = true;
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_Error tolua_err;
 #endif
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     if (!tolua_isusertable(tolua_S,1,"ccexp.AudioEngine",0,&tolua_err)) goto tolua_lerror;
 #endif
 
@@ -708,7 +674,7 @@ int lua_cocos2dx_audioengine_AudioEngine_setEnabled(lua_State* tolua_S)
     }
     luaL_error(tolua_S, "%s has wrong number of arguments: %d, was expecting %d\n ", "ccexp.AudioEngine:setEnabled",argc, 1);
     return 0;
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_lerror:
     tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_audioengine_AudioEngine_setEnabled'.",&tolua_err);
 #endif
@@ -719,11 +685,11 @@ int lua_cocos2dx_audioengine_AudioEngine_play2d(lua_State* tolua_S)
     int argc = 0;
     bool ok  = true;
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_Error tolua_err;
 #endif
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     if (!tolua_isusertable(tolua_S,1,"ccexp.AudioEngine",0,&tolua_err)) goto tolua_lerror;
 #endif
 
@@ -795,7 +761,7 @@ int lua_cocos2dx_audioengine_AudioEngine_play2d(lua_State* tolua_S)
     }
     luaL_error(tolua_S, "%s has wrong number of arguments: %d, was expecting %d\n ", "ccexp.AudioEngine:play2d",argc, 1);
     return 0;
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_lerror:
     tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_audioengine_AudioEngine_play2d'.",&tolua_err);
 #endif
@@ -806,11 +772,11 @@ int lua_cocos2dx_audioengine_AudioEngine_getState(lua_State* tolua_S)
     int argc = 0;
     bool ok  = true;
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_Error tolua_err;
 #endif
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     if (!tolua_isusertable(tolua_S,1,"ccexp.AudioEngine",0,&tolua_err)) goto tolua_lerror;
 #endif
 
@@ -831,7 +797,7 @@ int lua_cocos2dx_audioengine_AudioEngine_getState(lua_State* tolua_S)
     }
     luaL_error(tolua_S, "%s has wrong number of arguments: %d, was expecting %d\n ", "ccexp.AudioEngine:getState",argc, 1);
     return 0;
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_lerror:
     tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_audioengine_AudioEngine_getState'.",&tolua_err);
 #endif
@@ -842,11 +808,11 @@ int lua_cocos2dx_audioengine_AudioEngine_resume(lua_State* tolua_S)
     int argc = 0;
     bool ok  = true;
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_Error tolua_err;
 #endif
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     if (!tolua_isusertable(tolua_S,1,"ccexp.AudioEngine",0,&tolua_err)) goto tolua_lerror;
 #endif
 
@@ -867,7 +833,7 @@ int lua_cocos2dx_audioengine_AudioEngine_resume(lua_State* tolua_S)
     }
     luaL_error(tolua_S, "%s has wrong number of arguments: %d, was expecting %d\n ", "ccexp.AudioEngine:resume",argc, 1);
     return 0;
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_lerror:
     tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_audioengine_AudioEngine_resume'.",&tolua_err);
 #endif
@@ -878,11 +844,11 @@ int lua_cocos2dx_audioengine_AudioEngine_stop(lua_State* tolua_S)
     int argc = 0;
     bool ok  = true;
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_Error tolua_err;
 #endif
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     if (!tolua_isusertable(tolua_S,1,"ccexp.AudioEngine",0,&tolua_err)) goto tolua_lerror;
 #endif
 
@@ -903,9 +869,43 @@ int lua_cocos2dx_audioengine_AudioEngine_stop(lua_State* tolua_S)
     }
     luaL_error(tolua_S, "%s has wrong number of arguments: %d, was expecting %d\n ", "ccexp.AudioEngine:stop",argc, 1);
     return 0;
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_lerror:
     tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_audioengine_AudioEngine_stop'.",&tolua_err);
+#endif
+    return 0;
+}
+int lua_cocos2dx_audioengine_AudioEngine_end(lua_State* tolua_S)
+{
+    int argc = 0;
+    bool ok  = true;
+
+#if COCOS2D_DEBUG >= 1
+    tolua_Error tolua_err;
+#endif
+
+#if COCOS2D_DEBUG >= 1
+    if (!tolua_isusertable(tolua_S,1,"ccexp.AudioEngine",0,&tolua_err)) goto tolua_lerror;
+#endif
+
+    argc = lua_gettop(tolua_S) - 1;
+
+    if (argc == 0)
+    {
+        if(!ok)
+        {
+            tolua_error(tolua_S,"invalid arguments in function 'lua_cocos2dx_audioengine_AudioEngine_end'", nullptr);
+            return 0;
+        }
+        cocos2d::experimental::AudioEngine::end();
+        lua_settop(tolua_S, 1);
+        return 1;
+    }
+    luaL_error(tolua_S, "%s has wrong number of arguments: %d, was expecting %d\n ", "ccexp.AudioEngine:end",argc, 0);
+    return 0;
+#if COCOS2D_DEBUG >= 1
+    tolua_lerror:
+    tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_audioengine_AudioEngine_end'.",&tolua_err);
 #endif
     return 0;
 }
@@ -914,11 +914,11 @@ int lua_cocos2dx_audioengine_AudioEngine_getDuration(lua_State* tolua_S)
     int argc = 0;
     bool ok  = true;
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_Error tolua_err;
 #endif
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     if (!tolua_isusertable(tolua_S,1,"ccexp.AudioEngine",0,&tolua_err)) goto tolua_lerror;
 #endif
 
@@ -939,7 +939,7 @@ int lua_cocos2dx_audioengine_AudioEngine_getDuration(lua_State* tolua_S)
     }
     luaL_error(tolua_S, "%s has wrong number of arguments: %d, was expecting %d\n ", "ccexp.AudioEngine:getDuration",argc, 1);
     return 0;
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_lerror:
     tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_audioengine_AudioEngine_getDuration'.",&tolua_err);
 #endif
@@ -950,11 +950,11 @@ int lua_cocos2dx_audioengine_AudioEngine_setLoop(lua_State* tolua_S)
     int argc = 0;
     bool ok  = true;
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_Error tolua_err;
 #endif
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     if (!tolua_isusertable(tolua_S,1,"ccexp.AudioEngine",0,&tolua_err)) goto tolua_lerror;
 #endif
 
@@ -977,7 +977,7 @@ int lua_cocos2dx_audioengine_AudioEngine_setLoop(lua_State* tolua_S)
     }
     luaL_error(tolua_S, "%s has wrong number of arguments: %d, was expecting %d\n ", "ccexp.AudioEngine:setLoop",argc, 2);
     return 0;
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_lerror:
     tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_audioengine_AudioEngine_setLoop'.",&tolua_err);
 #endif
@@ -988,11 +988,11 @@ int lua_cocos2dx_audioengine_AudioEngine_getDefaultProfile(lua_State* tolua_S)
     int argc = 0;
     bool ok  = true;
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_Error tolua_err;
 #endif
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     if (!tolua_isusertable(tolua_S,1,"ccexp.AudioEngine",0,&tolua_err)) goto tolua_lerror;
 #endif
 
@@ -1011,7 +1011,7 @@ int lua_cocos2dx_audioengine_AudioEngine_getDefaultProfile(lua_State* tolua_S)
     }
     luaL_error(tolua_S, "%s has wrong number of arguments: %d, was expecting %d\n ", "ccexp.AudioEngine:getDefaultProfile",argc, 0);
     return 0;
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_lerror:
     tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_audioengine_AudioEngine_getDefaultProfile'.",&tolua_err);
 #endif
@@ -1021,17 +1021,17 @@ int lua_cocos2dx_audioengine_AudioEngine_getProfile(lua_State* tolua_S)
 {
     int argc = 0;
     bool ok  = true;
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_Error tolua_err;
 #endif
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     if (!tolua_isusertable(tolua_S,1,"ccexp.AudioEngine",0,&tolua_err)) goto tolua_lerror;
 #endif
 
     argc = lua_gettop(tolua_S)-1;
 
-    do
+    do 
     {
         if (argc == 1)
         {
@@ -1044,7 +1044,7 @@ int lua_cocos2dx_audioengine_AudioEngine_getProfile(lua_State* tolua_S)
         }
     } while (0);
     ok  = true;
-    do
+    do 
     {
         if (argc == 1)
         {
@@ -1059,7 +1059,7 @@ int lua_cocos2dx_audioengine_AudioEngine_getProfile(lua_State* tolua_S)
     ok  = true;
     luaL_error(tolua_S, "%s has wrong number of arguments: %d, was expecting %d", "ccexp.AudioEngine:getProfile",argc, 1);
     return 0;
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_lerror:
     tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_audioengine_AudioEngine_getProfile'.",&tolua_err);
 #endif
@@ -1070,11 +1070,11 @@ int lua_cocos2dx_audioengine_AudioEngine_getPlayingAudioCount(lua_State* tolua_S
     int argc = 0;
     bool ok  = true;
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_Error tolua_err;
 #endif
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     if (!tolua_isusertable(tolua_S,1,"ccexp.AudioEngine",0,&tolua_err)) goto tolua_lerror;
 #endif
 
@@ -1093,7 +1093,7 @@ int lua_cocos2dx_audioengine_AudioEngine_getPlayingAudioCount(lua_State* tolua_S
     }
     luaL_error(tolua_S, "%s has wrong number of arguments: %d, was expecting %d\n ", "ccexp.AudioEngine:getPlayingAudioCount",argc, 0);
     return 0;
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_lerror:
     tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_audioengine_AudioEngine_getPlayingAudioCount'.",&tolua_err);
 #endif
@@ -1118,7 +1118,6 @@ int lua_register_cocos2dx_audioengine_AudioEngine(lua_State* tolua_S)
         tolua_function(tolua_S,"resumeAll", lua_cocos2dx_audioengine_AudioEngine_resumeAll);
         tolua_function(tolua_S,"stopAll", lua_cocos2dx_audioengine_AudioEngine_stopAll);
         tolua_function(tolua_S,"pause", lua_cocos2dx_audioengine_AudioEngine_pause);
-        tolua_function(tolua_S,"end", lua_cocos2dx_audioengine_AudioEngine_end);
         tolua_function(tolua_S,"getMaxAudioInstance", lua_cocos2dx_audioengine_AudioEngine_getMaxAudioInstance);
         tolua_function(tolua_S,"isEnabled", lua_cocos2dx_audioengine_AudioEngine_isEnabled);
         tolua_function(tolua_S,"getCurrentTime", lua_cocos2dx_audioengine_AudioEngine_getCurrentTime);
@@ -1133,6 +1132,7 @@ int lua_register_cocos2dx_audioengine_AudioEngine(lua_State* tolua_S)
         tolua_function(tolua_S,"getState", lua_cocos2dx_audioengine_AudioEngine_getState);
         tolua_function(tolua_S,"resume", lua_cocos2dx_audioengine_AudioEngine_resume);
         tolua_function(tolua_S,"stop", lua_cocos2dx_audioengine_AudioEngine_stop);
+        tolua_function(tolua_S,"endToLua", lua_cocos2dx_audioengine_AudioEngine_end);
         tolua_function(tolua_S,"getDuration", lua_cocos2dx_audioengine_AudioEngine_getDuration);
         tolua_function(tolua_S,"setLoop", lua_cocos2dx_audioengine_AudioEngine_setLoop);
         tolua_function(tolua_S,"getDefaultProfile", lua_cocos2dx_audioengine_AudioEngine_getDefaultProfile);

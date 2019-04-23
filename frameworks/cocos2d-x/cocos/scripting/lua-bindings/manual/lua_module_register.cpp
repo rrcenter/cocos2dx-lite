@@ -34,7 +34,7 @@
     #include "scripting/lua-bindings/manual/cocostudio/lua_cocos2dx_coco_studio_manual.hpp"
 #endif
 
-// #include "scripting/lua-bindings/manual/extension/lua_cocos2dx_extension_manual.h"
+ #include "scripting/lua-bindings/manual/extension/lua_cocos2dx_extension_manual.h"
 
 #if CC_USE_UI > 0
 #include "scripting/lua-bindings/manual/ui/lua_cocos2dx_ui_manual.hpp"
@@ -68,7 +68,7 @@ int lua_module_register(lua_State* L)
 	register_ui_module(L);
 #endif
 
-    // register_extension_module(L);
+     register_extension_module(L);
 #if CC_USE_SPINE > 0
     register_spine_module(L);
 #endif

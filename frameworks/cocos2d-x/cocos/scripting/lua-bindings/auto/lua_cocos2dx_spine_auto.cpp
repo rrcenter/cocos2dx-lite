@@ -9,19 +9,19 @@ int lua_cocos2dx_spine_SkeletonRenderer_setTimeScale(lua_State* tolua_S)
     spine::SkeletonRenderer* cobj = nullptr;
     bool ok  = true;
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_Error tolua_err;
 #endif
 
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     if (!tolua_isusertype(tolua_S,1,"sp.SkeletonRenderer",0,&tolua_err)) goto tolua_lerror;
 #endif
 
     cobj = (spine::SkeletonRenderer*)tolua_tousertype(tolua_S,1,0);
 
-#if TOLUA_DEBUG >= 1
-    if (!cobj)
+#if COCOS2D_DEBUG >= 1
+    if (!cobj) 
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_spine_SkeletonRenderer_setTimeScale'", nullptr);
         return 0;
@@ -29,7 +29,7 @@ int lua_cocos2dx_spine_SkeletonRenderer_setTimeScale(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1)
+    if (argc == 1) 
     {
         double arg0;
 
@@ -46,7 +46,7 @@ int lua_cocos2dx_spine_SkeletonRenderer_setTimeScale(lua_State* tolua_S)
     luaL_error(tolua_S, "%s has wrong number of arguments: %d, was expecting %d \n", "sp.SkeletonRenderer:setTimeScale",argc, 1);
     return 0;
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_lerror:
     tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_spine_SkeletonRenderer_setTimeScale'.",&tolua_err);
 #endif
@@ -59,19 +59,19 @@ int lua_cocos2dx_spine_SkeletonRenderer_getDebugSlotsEnabled(lua_State* tolua_S)
     spine::SkeletonRenderer* cobj = nullptr;
     bool ok  = true;
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_Error tolua_err;
 #endif
 
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     if (!tolua_isusertype(tolua_S,1,"sp.SkeletonRenderer",0,&tolua_err)) goto tolua_lerror;
 #endif
 
     cobj = (spine::SkeletonRenderer*)tolua_tousertype(tolua_S,1,0);
 
-#if TOLUA_DEBUG >= 1
-    if (!cobj)
+#if COCOS2D_DEBUG >= 1
+    if (!cobj) 
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_spine_SkeletonRenderer_getDebugSlotsEnabled'", nullptr);
         return 0;
@@ -79,7 +79,7 @@ int lua_cocos2dx_spine_SkeletonRenderer_getDebugSlotsEnabled(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0)
+    if (argc == 0) 
     {
         if(!ok)
         {
@@ -93,7 +93,7 @@ int lua_cocos2dx_spine_SkeletonRenderer_getDebugSlotsEnabled(lua_State* tolua_S)
     luaL_error(tolua_S, "%s has wrong number of arguments: %d, was expecting %d \n", "sp.SkeletonRenderer:getDebugSlotsEnabled",argc, 0);
     return 0;
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_lerror:
     tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_spine_SkeletonRenderer_getDebugSlotsEnabled'.",&tolua_err);
 #endif
@@ -106,19 +106,19 @@ int lua_cocos2dx_spine_SkeletonRenderer_setBonesToSetupPose(lua_State* tolua_S)
     spine::SkeletonRenderer* cobj = nullptr;
     bool ok  = true;
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_Error tolua_err;
 #endif
 
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     if (!tolua_isusertype(tolua_S,1,"sp.SkeletonRenderer",0,&tolua_err)) goto tolua_lerror;
 #endif
 
     cobj = (spine::SkeletonRenderer*)tolua_tousertype(tolua_S,1,0);
 
-#if TOLUA_DEBUG >= 1
-    if (!cobj)
+#if COCOS2D_DEBUG >= 1
+    if (!cobj) 
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_spine_SkeletonRenderer_setBonesToSetupPose'", nullptr);
         return 0;
@@ -126,7 +126,7 @@ int lua_cocos2dx_spine_SkeletonRenderer_setBonesToSetupPose(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0)
+    if (argc == 0) 
     {
         if(!ok)
         {
@@ -140,7 +140,7 @@ int lua_cocos2dx_spine_SkeletonRenderer_setBonesToSetupPose(lua_State* tolua_S)
     luaL_error(tolua_S, "%s has wrong number of arguments: %d, was expecting %d \n", "sp.SkeletonRenderer:setBonesToSetupPose",argc, 0);
     return 0;
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_lerror:
     tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_spine_SkeletonRenderer_setBonesToSetupPose'.",&tolua_err);
 #endif
@@ -153,19 +153,19 @@ int lua_cocos2dx_spine_SkeletonRenderer_initWithData(lua_State* tolua_S)
     spine::SkeletonRenderer* cobj = nullptr;
     bool ok  = true;
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_Error tolua_err;
 #endif
 
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     if (!tolua_isusertype(tolua_S,1,"sp.SkeletonRenderer",0,&tolua_err)) goto tolua_lerror;
 #endif
 
     cobj = (spine::SkeletonRenderer*)tolua_tousertype(tolua_S,1,0);
 
-#if TOLUA_DEBUG >= 1
-    if (!cobj)
+#if COCOS2D_DEBUG >= 1
+    if (!cobj) 
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_spine_SkeletonRenderer_initWithData'", nullptr);
         return 0;
@@ -173,7 +173,7 @@ int lua_cocos2dx_spine_SkeletonRenderer_initWithData(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1)
+    if (argc == 1) 
     {
         spSkeletonData* arg0;
 
@@ -188,7 +188,7 @@ int lua_cocos2dx_spine_SkeletonRenderer_initWithData(lua_State* tolua_S)
         lua_settop(tolua_S, 1);
         return 1;
     }
-    if (argc == 2)
+    if (argc == 2) 
     {
         spSkeletonData* arg0;
         bool arg1;
@@ -209,7 +209,7 @@ int lua_cocos2dx_spine_SkeletonRenderer_initWithData(lua_State* tolua_S)
     luaL_error(tolua_S, "%s has wrong number of arguments: %d, was expecting %d \n", "sp.SkeletonRenderer:initWithData",argc, 1);
     return 0;
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_lerror:
     tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_spine_SkeletonRenderer_initWithData'.",&tolua_err);
 #endif
@@ -222,19 +222,19 @@ int lua_cocos2dx_spine_SkeletonRenderer_setDebugSlotsEnabled(lua_State* tolua_S)
     spine::SkeletonRenderer* cobj = nullptr;
     bool ok  = true;
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_Error tolua_err;
 #endif
 
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     if (!tolua_isusertype(tolua_S,1,"sp.SkeletonRenderer",0,&tolua_err)) goto tolua_lerror;
 #endif
 
     cobj = (spine::SkeletonRenderer*)tolua_tousertype(tolua_S,1,0);
 
-#if TOLUA_DEBUG >= 1
-    if (!cobj)
+#if COCOS2D_DEBUG >= 1
+    if (!cobj) 
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_spine_SkeletonRenderer_setDebugSlotsEnabled'", nullptr);
         return 0;
@@ -242,7 +242,7 @@ int lua_cocos2dx_spine_SkeletonRenderer_setDebugSlotsEnabled(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1)
+    if (argc == 1) 
     {
         bool arg0;
 
@@ -259,7 +259,7 @@ int lua_cocos2dx_spine_SkeletonRenderer_setDebugSlotsEnabled(lua_State* tolua_S)
     luaL_error(tolua_S, "%s has wrong number of arguments: %d, was expecting %d \n", "sp.SkeletonRenderer:setDebugSlotsEnabled",argc, 1);
     return 0;
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_lerror:
     tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_spine_SkeletonRenderer_setDebugSlotsEnabled'.",&tolua_err);
 #endif
@@ -271,15 +271,15 @@ int lua_cocos2dx_spine_SkeletonRenderer_initWithJsonFile(lua_State* tolua_S)
     int argc = 0;
     spine::SkeletonRenderer* cobj = nullptr;
     bool ok  = true;
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_Error tolua_err;
 #endif
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     if (!tolua_isusertype(tolua_S,1,"sp.SkeletonRenderer",0,&tolua_err)) goto tolua_lerror;
 #endif
     cobj = (spine::SkeletonRenderer*)tolua_tousertype(tolua_S,1,0);
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_spine_SkeletonRenderer_initWithJsonFile'", nullptr);
@@ -364,7 +364,7 @@ int lua_cocos2dx_spine_SkeletonRenderer_initWithJsonFile(lua_State* tolua_S)
     luaL_error(tolua_S, "%s has wrong number of arguments: %d, was expecting %d \n",  "sp.SkeletonRenderer:initWithJsonFile",argc, 2);
     return 0;
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_lerror:
     tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_spine_SkeletonRenderer_initWithJsonFile'.",&tolua_err);
 #endif
@@ -377,19 +377,19 @@ int lua_cocos2dx_spine_SkeletonRenderer_setSlotsToSetupPose(lua_State* tolua_S)
     spine::SkeletonRenderer* cobj = nullptr;
     bool ok  = true;
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_Error tolua_err;
 #endif
 
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     if (!tolua_isusertype(tolua_S,1,"sp.SkeletonRenderer",0,&tolua_err)) goto tolua_lerror;
 #endif
 
     cobj = (spine::SkeletonRenderer*)tolua_tousertype(tolua_S,1,0);
 
-#if TOLUA_DEBUG >= 1
-    if (!cobj)
+#if COCOS2D_DEBUG >= 1
+    if (!cobj) 
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_spine_SkeletonRenderer_setSlotsToSetupPose'", nullptr);
         return 0;
@@ -397,7 +397,7 @@ int lua_cocos2dx_spine_SkeletonRenderer_setSlotsToSetupPose(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0)
+    if (argc == 0) 
     {
         if(!ok)
         {
@@ -411,7 +411,7 @@ int lua_cocos2dx_spine_SkeletonRenderer_setSlotsToSetupPose(lua_State* tolua_S)
     luaL_error(tolua_S, "%s has wrong number of arguments: %d, was expecting %d \n", "sp.SkeletonRenderer:setSlotsToSetupPose",argc, 0);
     return 0;
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_lerror:
     tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_spine_SkeletonRenderer_setSlotsToSetupPose'.",&tolua_err);
 #endif
@@ -423,15 +423,15 @@ int lua_cocos2dx_spine_SkeletonRenderer_initWithBinaryFile(lua_State* tolua_S)
     int argc = 0;
     spine::SkeletonRenderer* cobj = nullptr;
     bool ok  = true;
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_Error tolua_err;
 #endif
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     if (!tolua_isusertype(tolua_S,1,"sp.SkeletonRenderer",0,&tolua_err)) goto tolua_lerror;
 #endif
     cobj = (spine::SkeletonRenderer*)tolua_tousertype(tolua_S,1,0);
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_spine_SkeletonRenderer_initWithBinaryFile'", nullptr);
@@ -516,7 +516,7 @@ int lua_cocos2dx_spine_SkeletonRenderer_initWithBinaryFile(lua_State* tolua_S)
     luaL_error(tolua_S, "%s has wrong number of arguments: %d, was expecting %d \n",  "sp.SkeletonRenderer:initWithBinaryFile",argc, 2);
     return 0;
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_lerror:
     tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_spine_SkeletonRenderer_initWithBinaryFile'.",&tolua_err);
 #endif
@@ -529,19 +529,19 @@ int lua_cocos2dx_spine_SkeletonRenderer_setToSetupPose(lua_State* tolua_S)
     spine::SkeletonRenderer* cobj = nullptr;
     bool ok  = true;
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_Error tolua_err;
 #endif
 
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     if (!tolua_isusertype(tolua_S,1,"sp.SkeletonRenderer",0,&tolua_err)) goto tolua_lerror;
 #endif
 
     cobj = (spine::SkeletonRenderer*)tolua_tousertype(tolua_S,1,0);
 
-#if TOLUA_DEBUG >= 1
-    if (!cobj)
+#if COCOS2D_DEBUG >= 1
+    if (!cobj) 
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_spine_SkeletonRenderer_setToSetupPose'", nullptr);
         return 0;
@@ -549,7 +549,7 @@ int lua_cocos2dx_spine_SkeletonRenderer_setToSetupPose(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0)
+    if (argc == 0) 
     {
         if(!ok)
         {
@@ -563,7 +563,7 @@ int lua_cocos2dx_spine_SkeletonRenderer_setToSetupPose(lua_State* tolua_S)
     luaL_error(tolua_S, "%s has wrong number of arguments: %d, was expecting %d \n", "sp.SkeletonRenderer:setToSetupPose",argc, 0);
     return 0;
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_lerror:
     tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_spine_SkeletonRenderer_setToSetupPose'.",&tolua_err);
 #endif
@@ -576,19 +576,19 @@ int lua_cocos2dx_spine_SkeletonRenderer_getBlendFunc(lua_State* tolua_S)
     spine::SkeletonRenderer* cobj = nullptr;
     bool ok  = true;
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_Error tolua_err;
 #endif
 
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     if (!tolua_isusertype(tolua_S,1,"sp.SkeletonRenderer",0,&tolua_err)) goto tolua_lerror;
 #endif
 
     cobj = (spine::SkeletonRenderer*)tolua_tousertype(tolua_S,1,0);
 
-#if TOLUA_DEBUG >= 1
-    if (!cobj)
+#if COCOS2D_DEBUG >= 1
+    if (!cobj) 
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_spine_SkeletonRenderer_getBlendFunc'", nullptr);
         return 0;
@@ -596,7 +596,7 @@ int lua_cocos2dx_spine_SkeletonRenderer_getBlendFunc(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0)
+    if (argc == 0) 
     {
         if(!ok)
         {
@@ -610,7 +610,7 @@ int lua_cocos2dx_spine_SkeletonRenderer_getBlendFunc(lua_State* tolua_S)
     luaL_error(tolua_S, "%s has wrong number of arguments: %d, was expecting %d \n", "sp.SkeletonRenderer:getBlendFunc",argc, 0);
     return 0;
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_lerror:
     tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_spine_SkeletonRenderer_getBlendFunc'.",&tolua_err);
 #endif
@@ -623,19 +623,19 @@ int lua_cocos2dx_spine_SkeletonRenderer_initialize(lua_State* tolua_S)
     spine::SkeletonRenderer* cobj = nullptr;
     bool ok  = true;
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_Error tolua_err;
 #endif
 
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     if (!tolua_isusertype(tolua_S,1,"sp.SkeletonRenderer",0,&tolua_err)) goto tolua_lerror;
 #endif
 
     cobj = (spine::SkeletonRenderer*)tolua_tousertype(tolua_S,1,0);
 
-#if TOLUA_DEBUG >= 1
-    if (!cobj)
+#if COCOS2D_DEBUG >= 1
+    if (!cobj) 
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_spine_SkeletonRenderer_initialize'", nullptr);
         return 0;
@@ -643,7 +643,7 @@ int lua_cocos2dx_spine_SkeletonRenderer_initialize(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0)
+    if (argc == 0) 
     {
         if(!ok)
         {
@@ -657,7 +657,7 @@ int lua_cocos2dx_spine_SkeletonRenderer_initialize(lua_State* tolua_S)
     luaL_error(tolua_S, "%s has wrong number of arguments: %d, was expecting %d \n", "sp.SkeletonRenderer:initialize",argc, 0);
     return 0;
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_lerror:
     tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_spine_SkeletonRenderer_initialize'.",&tolua_err);
 #endif
@@ -670,19 +670,19 @@ int lua_cocos2dx_spine_SkeletonRenderer_setDebugBonesEnabled(lua_State* tolua_S)
     spine::SkeletonRenderer* cobj = nullptr;
     bool ok  = true;
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_Error tolua_err;
 #endif
 
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     if (!tolua_isusertype(tolua_S,1,"sp.SkeletonRenderer",0,&tolua_err)) goto tolua_lerror;
 #endif
 
     cobj = (spine::SkeletonRenderer*)tolua_tousertype(tolua_S,1,0);
 
-#if TOLUA_DEBUG >= 1
-    if (!cobj)
+#if COCOS2D_DEBUG >= 1
+    if (!cobj) 
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_spine_SkeletonRenderer_setDebugBonesEnabled'", nullptr);
         return 0;
@@ -690,7 +690,7 @@ int lua_cocos2dx_spine_SkeletonRenderer_setDebugBonesEnabled(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1)
+    if (argc == 1) 
     {
         bool arg0;
 
@@ -707,7 +707,7 @@ int lua_cocos2dx_spine_SkeletonRenderer_setDebugBonesEnabled(lua_State* tolua_S)
     luaL_error(tolua_S, "%s has wrong number of arguments: %d, was expecting %d \n", "sp.SkeletonRenderer:setDebugBonesEnabled",argc, 1);
     return 0;
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_lerror:
     tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_spine_SkeletonRenderer_setDebugBonesEnabled'.",&tolua_err);
 #endif
@@ -720,19 +720,19 @@ int lua_cocos2dx_spine_SkeletonRenderer_getDebugBonesEnabled(lua_State* tolua_S)
     spine::SkeletonRenderer* cobj = nullptr;
     bool ok  = true;
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_Error tolua_err;
 #endif
 
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     if (!tolua_isusertype(tolua_S,1,"sp.SkeletonRenderer",0,&tolua_err)) goto tolua_lerror;
 #endif
 
     cobj = (spine::SkeletonRenderer*)tolua_tousertype(tolua_S,1,0);
 
-#if TOLUA_DEBUG >= 1
-    if (!cobj)
+#if COCOS2D_DEBUG >= 1
+    if (!cobj) 
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_spine_SkeletonRenderer_getDebugBonesEnabled'", nullptr);
         return 0;
@@ -740,7 +740,7 @@ int lua_cocos2dx_spine_SkeletonRenderer_getDebugBonesEnabled(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0)
+    if (argc == 0) 
     {
         if(!ok)
         {
@@ -754,7 +754,7 @@ int lua_cocos2dx_spine_SkeletonRenderer_getDebugBonesEnabled(lua_State* tolua_S)
     luaL_error(tolua_S, "%s has wrong number of arguments: %d, was expecting %d \n", "sp.SkeletonRenderer:getDebugBonesEnabled",argc, 0);
     return 0;
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_lerror:
     tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_spine_SkeletonRenderer_getDebugBonesEnabled'.",&tolua_err);
 #endif
@@ -767,19 +767,19 @@ int lua_cocos2dx_spine_SkeletonRenderer_getTimeScale(lua_State* tolua_S)
     spine::SkeletonRenderer* cobj = nullptr;
     bool ok  = true;
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_Error tolua_err;
 #endif
 
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     if (!tolua_isusertype(tolua_S,1,"sp.SkeletonRenderer",0,&tolua_err)) goto tolua_lerror;
 #endif
 
     cobj = (spine::SkeletonRenderer*)tolua_tousertype(tolua_S,1,0);
 
-#if TOLUA_DEBUG >= 1
-    if (!cobj)
+#if COCOS2D_DEBUG >= 1
+    if (!cobj) 
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_spine_SkeletonRenderer_getTimeScale'", nullptr);
         return 0;
@@ -787,7 +787,7 @@ int lua_cocos2dx_spine_SkeletonRenderer_getTimeScale(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0)
+    if (argc == 0) 
     {
         if(!ok)
         {
@@ -801,7 +801,7 @@ int lua_cocos2dx_spine_SkeletonRenderer_getTimeScale(lua_State* tolua_S)
     luaL_error(tolua_S, "%s has wrong number of arguments: %d, was expecting %d \n", "sp.SkeletonRenderer:getTimeScale",argc, 0);
     return 0;
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_lerror:
     tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_spine_SkeletonRenderer_getTimeScale'.",&tolua_err);
 #endif
@@ -814,19 +814,19 @@ int lua_cocos2dx_spine_SkeletonRenderer_setBlendFunc(lua_State* tolua_S)
     spine::SkeletonRenderer* cobj = nullptr;
     bool ok  = true;
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_Error tolua_err;
 #endif
 
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     if (!tolua_isusertype(tolua_S,1,"sp.SkeletonRenderer",0,&tolua_err)) goto tolua_lerror;
 #endif
 
     cobj = (spine::SkeletonRenderer*)tolua_tousertype(tolua_S,1,0);
 
-#if TOLUA_DEBUG >= 1
-    if (!cobj)
+#if COCOS2D_DEBUG >= 1
+    if (!cobj) 
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_spine_SkeletonRenderer_setBlendFunc'", nullptr);
         return 0;
@@ -834,7 +834,7 @@ int lua_cocos2dx_spine_SkeletonRenderer_setBlendFunc(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1)
+    if (argc == 1) 
     {
         cocos2d::BlendFunc arg0;
 
@@ -851,7 +851,7 @@ int lua_cocos2dx_spine_SkeletonRenderer_setBlendFunc(lua_State* tolua_S)
     luaL_error(tolua_S, "%s has wrong number of arguments: %d, was expecting %d \n", "sp.SkeletonRenderer:setBlendFunc",argc, 1);
     return 0;
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_lerror:
     tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_spine_SkeletonRenderer_setBlendFunc'.",&tolua_err);
 #endif
@@ -863,15 +863,15 @@ int lua_cocos2dx_spine_SkeletonRenderer_setSkin(lua_State* tolua_S)
     int argc = 0;
     spine::SkeletonRenderer* cobj = nullptr;
     bool ok  = true;
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_Error tolua_err;
 #endif
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     if (!tolua_isusertype(tolua_S,1,"sp.SkeletonRenderer",0,&tolua_err)) goto tolua_lerror;
 #endif
     cobj = (spine::SkeletonRenderer*)tolua_tousertype(tolua_S,1,0);
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_spine_SkeletonRenderer_setSkin'", nullptr);
@@ -906,7 +906,7 @@ int lua_cocos2dx_spine_SkeletonRenderer_setSkin(lua_State* tolua_S)
     luaL_error(tolua_S, "%s has wrong number of arguments: %d, was expecting %d \n",  "sp.SkeletonRenderer:setSkin",argc, 1);
     return 0;
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_lerror:
     tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_spine_SkeletonRenderer_setSkin'.",&tolua_err);
 #endif
@@ -919,19 +919,19 @@ int lua_cocos2dx_spine_SkeletonRenderer_getSkeleton(lua_State* tolua_S)
     spine::SkeletonRenderer* cobj = nullptr;
     bool ok  = true;
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_Error tolua_err;
 #endif
 
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     if (!tolua_isusertype(tolua_S,1,"sp.SkeletonRenderer",0,&tolua_err)) goto tolua_lerror;
 #endif
 
     cobj = (spine::SkeletonRenderer*)tolua_tousertype(tolua_S,1,0);
 
-#if TOLUA_DEBUG >= 1
-    if (!cobj)
+#if COCOS2D_DEBUG >= 1
+    if (!cobj) 
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_spine_SkeletonRenderer_getSkeleton'", nullptr);
         return 0;
@@ -939,7 +939,7 @@ int lua_cocos2dx_spine_SkeletonRenderer_getSkeleton(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0)
+    if (argc == 0) 
     {
         if(!ok)
         {
@@ -953,7 +953,7 @@ int lua_cocos2dx_spine_SkeletonRenderer_getSkeleton(lua_State* tolua_S)
     luaL_error(tolua_S, "%s has wrong number of arguments: %d, was expecting %d \n", "sp.SkeletonRenderer:getSkeleton",argc, 0);
     return 0;
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_lerror:
     tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_spine_SkeletonRenderer_getSkeleton'.",&tolua_err);
 #endif
@@ -964,17 +964,17 @@ int lua_cocos2dx_spine_SkeletonRenderer_createWithFile(lua_State* tolua_S)
 {
     int argc = 0;
     bool ok  = true;
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_Error tolua_err;
 #endif
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     if (!tolua_isusertable(tolua_S,1,"sp.SkeletonRenderer",0,&tolua_err)) goto tolua_lerror;
 #endif
 
     argc = lua_gettop(tolua_S)-1;
 
-    do
+    do 
     {
         if (argc == 2)
         {
@@ -990,7 +990,7 @@ int lua_cocos2dx_spine_SkeletonRenderer_createWithFile(lua_State* tolua_S)
         }
     } while (0);
     ok  = true;
-    do
+    do 
     {
         if (argc == 3)
         {
@@ -1009,7 +1009,7 @@ int lua_cocos2dx_spine_SkeletonRenderer_createWithFile(lua_State* tolua_S)
         }
     } while (0);
     ok  = true;
-    do
+    do 
     {
         if (argc == 2)
         {
@@ -1026,7 +1026,7 @@ int lua_cocos2dx_spine_SkeletonRenderer_createWithFile(lua_State* tolua_S)
         }
     } while (0);
     ok  = true;
-    do
+    do 
     {
         if (argc == 3)
         {
@@ -1048,7 +1048,7 @@ int lua_cocos2dx_spine_SkeletonRenderer_createWithFile(lua_State* tolua_S)
     ok  = true;
     luaL_error(tolua_S, "%s has wrong number of arguments: %d, was expecting %d", "sp.SkeletonRenderer:createWithFile",argc, 2);
     return 0;
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_lerror:
     tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_spine_SkeletonRenderer_createWithFile'.",&tolua_err);
 #endif
@@ -1059,11 +1059,11 @@ int lua_cocos2dx_spine_SkeletonRenderer_create(lua_State* tolua_S)
     int argc = 0;
     bool ok  = true;
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_Error tolua_err;
 #endif
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     if (!tolua_isusertable(tolua_S,1,"sp.SkeletonRenderer",0,&tolua_err)) goto tolua_lerror;
 #endif
 
@@ -1082,7 +1082,7 @@ int lua_cocos2dx_spine_SkeletonRenderer_create(lua_State* tolua_S)
     }
     luaL_error(tolua_S, "%s has wrong number of arguments: %d, was expecting %d\n ", "sp.SkeletonRenderer:create",argc, 0);
     return 0;
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_lerror:
     tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_spine_SkeletonRenderer_create'.",&tolua_err);
 #endif
@@ -1093,7 +1093,7 @@ int lua_cocos2dx_spine_SkeletonRenderer_constructor(lua_State* tolua_S)
     int argc = 0;
     spine::SkeletonRenderer* cobj = nullptr;
     bool ok  = true;
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_Error tolua_err;
 #endif
 
@@ -1234,7 +1234,7 @@ int lua_cocos2dx_spine_SkeletonRenderer_constructor(lua_State* tolua_S)
     luaL_error(tolua_S, "%s has wrong number of arguments: %d, was expecting %d \n",  "sp.SkeletonRenderer:SkeletonRenderer",argc, 2);
     return 0;
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_spine_SkeletonRenderer_constructor'.",&tolua_err);
 #endif
 
@@ -1286,19 +1286,19 @@ int lua_cocos2dx_spine_SkeletonAnimation_setTrackCompleteListener(lua_State* tol
     spine::SkeletonAnimation* cobj = nullptr;
     bool ok  = true;
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_Error tolua_err;
 #endif
 
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     if (!tolua_isusertype(tolua_S,1,"sp.SkeletonAnimation",0,&tolua_err)) goto tolua_lerror;
 #endif
 
     cobj = (spine::SkeletonAnimation*)tolua_tousertype(tolua_S,1,0);
 
-#if TOLUA_DEBUG >= 1
-    if (!cobj)
+#if COCOS2D_DEBUG >= 1
+    if (!cobj) 
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_spine_SkeletonAnimation_setTrackCompleteListener'", nullptr);
         return 0;
@@ -1306,7 +1306,7 @@ int lua_cocos2dx_spine_SkeletonAnimation_setTrackCompleteListener(lua_State* tol
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 2)
+    if (argc == 2) 
     {
         spTrackEntry* arg0;
         std::function<void (spTrackEntry *)> arg1;
@@ -1331,7 +1331,7 @@ int lua_cocos2dx_spine_SkeletonAnimation_setTrackCompleteListener(lua_State* tol
     luaL_error(tolua_S, "%s has wrong number of arguments: %d, was expecting %d \n", "sp.SkeletonAnimation:setTrackCompleteListener",argc, 2);
     return 0;
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_lerror:
     tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_spine_SkeletonAnimation_setTrackCompleteListener'.",&tolua_err);
 #endif
@@ -1344,19 +1344,19 @@ int lua_cocos2dx_spine_SkeletonAnimation_findAnimation(lua_State* tolua_S)
     spine::SkeletonAnimation* cobj = nullptr;
     bool ok  = true;
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_Error tolua_err;
 #endif
 
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     if (!tolua_isusertype(tolua_S,1,"sp.SkeletonAnimation",0,&tolua_err)) goto tolua_lerror;
 #endif
 
     cobj = (spine::SkeletonAnimation*)tolua_tousertype(tolua_S,1,0);
 
-#if TOLUA_DEBUG >= 1
-    if (!cobj)
+#if COCOS2D_DEBUG >= 1
+    if (!cobj) 
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_spine_SkeletonAnimation_findAnimation'", nullptr);
         return 0;
@@ -1364,7 +1364,7 @@ int lua_cocos2dx_spine_SkeletonAnimation_findAnimation(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1)
+    if (argc == 1) 
     {
         std::string arg0;
 
@@ -1381,7 +1381,7 @@ int lua_cocos2dx_spine_SkeletonAnimation_findAnimation(lua_State* tolua_S)
     luaL_error(tolua_S, "%s has wrong number of arguments: %d, was expecting %d \n", "sp.SkeletonAnimation:findAnimation",argc, 1);
     return 0;
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_lerror:
     tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_spine_SkeletonAnimation_findAnimation'.",&tolua_err);
 #endif
@@ -1394,19 +1394,19 @@ int lua_cocos2dx_spine_SkeletonAnimation_setTrackEventListener(lua_State* tolua_
     spine::SkeletonAnimation* cobj = nullptr;
     bool ok  = true;
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_Error tolua_err;
 #endif
 
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     if (!tolua_isusertype(tolua_S,1,"sp.SkeletonAnimation",0,&tolua_err)) goto tolua_lerror;
 #endif
 
     cobj = (spine::SkeletonAnimation*)tolua_tousertype(tolua_S,1,0);
 
-#if TOLUA_DEBUG >= 1
-    if (!cobj)
+#if COCOS2D_DEBUG >= 1
+    if (!cobj) 
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_spine_SkeletonAnimation_setTrackEventListener'", nullptr);
         return 0;
@@ -1414,7 +1414,7 @@ int lua_cocos2dx_spine_SkeletonAnimation_setTrackEventListener(lua_State* tolua_
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 2)
+    if (argc == 2) 
     {
         spTrackEntry* arg0;
         std::function<void (spTrackEntry *, spEvent *)> arg1;
@@ -1439,7 +1439,7 @@ int lua_cocos2dx_spine_SkeletonAnimation_setTrackEventListener(lua_State* tolua_
     luaL_error(tolua_S, "%s has wrong number of arguments: %d, was expecting %d \n", "sp.SkeletonAnimation:setTrackEventListener",argc, 2);
     return 0;
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_lerror:
     tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_spine_SkeletonAnimation_setTrackEventListener'.",&tolua_err);
 #endif
@@ -1452,19 +1452,19 @@ int lua_cocos2dx_spine_SkeletonAnimation_setMix(lua_State* tolua_S)
     spine::SkeletonAnimation* cobj = nullptr;
     bool ok  = true;
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_Error tolua_err;
 #endif
 
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     if (!tolua_isusertype(tolua_S,1,"sp.SkeletonAnimation",0,&tolua_err)) goto tolua_lerror;
 #endif
 
     cobj = (spine::SkeletonAnimation*)tolua_tousertype(tolua_S,1,0);
 
-#if TOLUA_DEBUG >= 1
-    if (!cobj)
+#if COCOS2D_DEBUG >= 1
+    if (!cobj) 
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_spine_SkeletonAnimation_setMix'", nullptr);
         return 0;
@@ -1472,7 +1472,7 @@ int lua_cocos2dx_spine_SkeletonAnimation_setMix(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 3)
+    if (argc == 3) 
     {
         std::string arg0;
         std::string arg1;
@@ -1495,7 +1495,7 @@ int lua_cocos2dx_spine_SkeletonAnimation_setMix(lua_State* tolua_S)
     luaL_error(tolua_S, "%s has wrong number of arguments: %d, was expecting %d \n", "sp.SkeletonAnimation:setMix",argc, 3);
     return 0;
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_lerror:
     tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_spine_SkeletonAnimation_setMix'.",&tolua_err);
 #endif
@@ -1508,19 +1508,19 @@ int lua_cocos2dx_spine_SkeletonAnimation_setTrackStartListener(lua_State* tolua_
     spine::SkeletonAnimation* cobj = nullptr;
     bool ok  = true;
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_Error tolua_err;
 #endif
 
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     if (!tolua_isusertype(tolua_S,1,"sp.SkeletonAnimation",0,&tolua_err)) goto tolua_lerror;
 #endif
 
     cobj = (spine::SkeletonAnimation*)tolua_tousertype(tolua_S,1,0);
 
-#if TOLUA_DEBUG >= 1
-    if (!cobj)
+#if COCOS2D_DEBUG >= 1
+    if (!cobj) 
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_spine_SkeletonAnimation_setTrackStartListener'", nullptr);
         return 0;
@@ -1528,7 +1528,7 @@ int lua_cocos2dx_spine_SkeletonAnimation_setTrackStartListener(lua_State* tolua_
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 2)
+    if (argc == 2) 
     {
         spTrackEntry* arg0;
         std::function<void (spTrackEntry *)> arg1;
@@ -1553,7 +1553,7 @@ int lua_cocos2dx_spine_SkeletonAnimation_setTrackStartListener(lua_State* tolua_
     luaL_error(tolua_S, "%s has wrong number of arguments: %d, was expecting %d \n", "sp.SkeletonAnimation:setTrackStartListener",argc, 2);
     return 0;
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_lerror:
     tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_spine_SkeletonAnimation_setTrackStartListener'.",&tolua_err);
 #endif
@@ -1566,19 +1566,19 @@ int lua_cocos2dx_spine_SkeletonAnimation_setDisposeListener(lua_State* tolua_S)
     spine::SkeletonAnimation* cobj = nullptr;
     bool ok  = true;
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_Error tolua_err;
 #endif
 
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     if (!tolua_isusertype(tolua_S,1,"sp.SkeletonAnimation",0,&tolua_err)) goto tolua_lerror;
 #endif
 
     cobj = (spine::SkeletonAnimation*)tolua_tousertype(tolua_S,1,0);
 
-#if TOLUA_DEBUG >= 1
-    if (!cobj)
+#if COCOS2D_DEBUG >= 1
+    if (!cobj) 
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_spine_SkeletonAnimation_setDisposeListener'", nullptr);
         return 0;
@@ -1586,7 +1586,7 @@ int lua_cocos2dx_spine_SkeletonAnimation_setDisposeListener(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1)
+    if (argc == 1) 
     {
         std::function<void (spTrackEntry *)> arg0;
 
@@ -1607,7 +1607,7 @@ int lua_cocos2dx_spine_SkeletonAnimation_setDisposeListener(lua_State* tolua_S)
     luaL_error(tolua_S, "%s has wrong number of arguments: %d, was expecting %d \n", "sp.SkeletonAnimation:setDisposeListener",argc, 1);
     return 0;
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_lerror:
     tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_spine_SkeletonAnimation_setDisposeListener'.",&tolua_err);
 #endif
@@ -1620,19 +1620,19 @@ int lua_cocos2dx_spine_SkeletonAnimation_setTrackInterruptListener(lua_State* to
     spine::SkeletonAnimation* cobj = nullptr;
     bool ok  = true;
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_Error tolua_err;
 #endif
 
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     if (!tolua_isusertype(tolua_S,1,"sp.SkeletonAnimation",0,&tolua_err)) goto tolua_lerror;
 #endif
 
     cobj = (spine::SkeletonAnimation*)tolua_tousertype(tolua_S,1,0);
 
-#if TOLUA_DEBUG >= 1
-    if (!cobj)
+#if COCOS2D_DEBUG >= 1
+    if (!cobj) 
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_spine_SkeletonAnimation_setTrackInterruptListener'", nullptr);
         return 0;
@@ -1640,7 +1640,7 @@ int lua_cocos2dx_spine_SkeletonAnimation_setTrackInterruptListener(lua_State* to
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 2)
+    if (argc == 2) 
     {
         spTrackEntry* arg0;
         std::function<void (spTrackEntry *)> arg1;
@@ -1665,7 +1665,7 @@ int lua_cocos2dx_spine_SkeletonAnimation_setTrackInterruptListener(lua_State* to
     luaL_error(tolua_S, "%s has wrong number of arguments: %d, was expecting %d \n", "sp.SkeletonAnimation:setTrackInterruptListener",argc, 2);
     return 0;
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_lerror:
     tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_spine_SkeletonAnimation_setTrackInterruptListener'.",&tolua_err);
 #endif
@@ -1678,19 +1678,19 @@ int lua_cocos2dx_spine_SkeletonAnimation_setEndListener(lua_State* tolua_S)
     spine::SkeletonAnimation* cobj = nullptr;
     bool ok  = true;
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_Error tolua_err;
 #endif
 
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     if (!tolua_isusertype(tolua_S,1,"sp.SkeletonAnimation",0,&tolua_err)) goto tolua_lerror;
 #endif
 
     cobj = (spine::SkeletonAnimation*)tolua_tousertype(tolua_S,1,0);
 
-#if TOLUA_DEBUG >= 1
-    if (!cobj)
+#if COCOS2D_DEBUG >= 1
+    if (!cobj) 
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_spine_SkeletonAnimation_setEndListener'", nullptr);
         return 0;
@@ -1698,7 +1698,7 @@ int lua_cocos2dx_spine_SkeletonAnimation_setEndListener(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1)
+    if (argc == 1) 
     {
         std::function<void (spTrackEntry *)> arg0;
 
@@ -1719,7 +1719,7 @@ int lua_cocos2dx_spine_SkeletonAnimation_setEndListener(lua_State* tolua_S)
     luaL_error(tolua_S, "%s has wrong number of arguments: %d, was expecting %d \n", "sp.SkeletonAnimation:setEndListener",argc, 1);
     return 0;
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_lerror:
     tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_spine_SkeletonAnimation_setEndListener'.",&tolua_err);
 #endif
@@ -1732,19 +1732,19 @@ int lua_cocos2dx_spine_SkeletonAnimation_setTrackDisposeListener(lua_State* tolu
     spine::SkeletonAnimation* cobj = nullptr;
     bool ok  = true;
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_Error tolua_err;
 #endif
 
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     if (!tolua_isusertype(tolua_S,1,"sp.SkeletonAnimation",0,&tolua_err)) goto tolua_lerror;
 #endif
 
     cobj = (spine::SkeletonAnimation*)tolua_tousertype(tolua_S,1,0);
 
-#if TOLUA_DEBUG >= 1
-    if (!cobj)
+#if COCOS2D_DEBUG >= 1
+    if (!cobj) 
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_spine_SkeletonAnimation_setTrackDisposeListener'", nullptr);
         return 0;
@@ -1752,7 +1752,7 @@ int lua_cocos2dx_spine_SkeletonAnimation_setTrackDisposeListener(lua_State* tolu
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 2)
+    if (argc == 2) 
     {
         spTrackEntry* arg0;
         std::function<void (spTrackEntry *)> arg1;
@@ -1777,7 +1777,7 @@ int lua_cocos2dx_spine_SkeletonAnimation_setTrackDisposeListener(lua_State* tolu
     luaL_error(tolua_S, "%s has wrong number of arguments: %d, was expecting %d \n", "sp.SkeletonAnimation:setTrackDisposeListener",argc, 2);
     return 0;
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_lerror:
     tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_spine_SkeletonAnimation_setTrackDisposeListener'.",&tolua_err);
 #endif
@@ -1790,19 +1790,19 @@ int lua_cocos2dx_spine_SkeletonAnimation_setEventListener(lua_State* tolua_S)
     spine::SkeletonAnimation* cobj = nullptr;
     bool ok  = true;
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_Error tolua_err;
 #endif
 
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     if (!tolua_isusertype(tolua_S,1,"sp.SkeletonAnimation",0,&tolua_err)) goto tolua_lerror;
 #endif
 
     cobj = (spine::SkeletonAnimation*)tolua_tousertype(tolua_S,1,0);
 
-#if TOLUA_DEBUG >= 1
-    if (!cobj)
+#if COCOS2D_DEBUG >= 1
+    if (!cobj) 
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_spine_SkeletonAnimation_setEventListener'", nullptr);
         return 0;
@@ -1810,7 +1810,7 @@ int lua_cocos2dx_spine_SkeletonAnimation_setEventListener(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1)
+    if (argc == 1) 
     {
         std::function<void (spTrackEntry *, spEvent *)> arg0;
 
@@ -1831,7 +1831,7 @@ int lua_cocos2dx_spine_SkeletonAnimation_setEventListener(lua_State* tolua_S)
     luaL_error(tolua_S, "%s has wrong number of arguments: %d, was expecting %d \n", "sp.SkeletonAnimation:setEventListener",argc, 1);
     return 0;
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_lerror:
     tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_spine_SkeletonAnimation_setEventListener'.",&tolua_err);
 #endif
@@ -1844,19 +1844,19 @@ int lua_cocos2dx_spine_SkeletonAnimation_setCompleteListener(lua_State* tolua_S)
     spine::SkeletonAnimation* cobj = nullptr;
     bool ok  = true;
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_Error tolua_err;
 #endif
 
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     if (!tolua_isusertype(tolua_S,1,"sp.SkeletonAnimation",0,&tolua_err)) goto tolua_lerror;
 #endif
 
     cobj = (spine::SkeletonAnimation*)tolua_tousertype(tolua_S,1,0);
 
-#if TOLUA_DEBUG >= 1
-    if (!cobj)
+#if COCOS2D_DEBUG >= 1
+    if (!cobj) 
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_spine_SkeletonAnimation_setCompleteListener'", nullptr);
         return 0;
@@ -1864,7 +1864,7 @@ int lua_cocos2dx_spine_SkeletonAnimation_setCompleteListener(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1)
+    if (argc == 1) 
     {
         std::function<void (spTrackEntry *)> arg0;
 
@@ -1885,7 +1885,7 @@ int lua_cocos2dx_spine_SkeletonAnimation_setCompleteListener(lua_State* tolua_S)
     luaL_error(tolua_S, "%s has wrong number of arguments: %d, was expecting %d \n", "sp.SkeletonAnimation:setCompleteListener",argc, 1);
     return 0;
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_lerror:
     tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_spine_SkeletonAnimation_setCompleteListener'.",&tolua_err);
 #endif
@@ -1898,19 +1898,19 @@ int lua_cocos2dx_spine_SkeletonAnimation_clearTrack(lua_State* tolua_S)
     spine::SkeletonAnimation* cobj = nullptr;
     bool ok  = true;
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_Error tolua_err;
 #endif
 
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     if (!tolua_isusertype(tolua_S,1,"sp.SkeletonAnimation",0,&tolua_err)) goto tolua_lerror;
 #endif
 
     cobj = (spine::SkeletonAnimation*)tolua_tousertype(tolua_S,1,0);
 
-#if TOLUA_DEBUG >= 1
-    if (!cobj)
+#if COCOS2D_DEBUG >= 1
+    if (!cobj) 
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_spine_SkeletonAnimation_clearTrack'", nullptr);
         return 0;
@@ -1918,7 +1918,7 @@ int lua_cocos2dx_spine_SkeletonAnimation_clearTrack(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0)
+    if (argc == 0) 
     {
         if(!ok)
         {
@@ -1929,7 +1929,7 @@ int lua_cocos2dx_spine_SkeletonAnimation_clearTrack(lua_State* tolua_S)
         lua_settop(tolua_S, 1);
         return 1;
     }
-    if (argc == 1)
+    if (argc == 1) 
     {
         int arg0;
 
@@ -1946,7 +1946,7 @@ int lua_cocos2dx_spine_SkeletonAnimation_clearTrack(lua_State* tolua_S)
     luaL_error(tolua_S, "%s has wrong number of arguments: %d, was expecting %d \n", "sp.SkeletonAnimation:clearTrack",argc, 0);
     return 0;
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_lerror:
     tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_spine_SkeletonAnimation_clearTrack'.",&tolua_err);
 #endif
@@ -1959,19 +1959,19 @@ int lua_cocos2dx_spine_SkeletonAnimation_setInterruptListener(lua_State* tolua_S
     spine::SkeletonAnimation* cobj = nullptr;
     bool ok  = true;
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_Error tolua_err;
 #endif
 
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     if (!tolua_isusertype(tolua_S,1,"sp.SkeletonAnimation",0,&tolua_err)) goto tolua_lerror;
 #endif
 
     cobj = (spine::SkeletonAnimation*)tolua_tousertype(tolua_S,1,0);
 
-#if TOLUA_DEBUG >= 1
-    if (!cobj)
+#if COCOS2D_DEBUG >= 1
+    if (!cobj) 
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_spine_SkeletonAnimation_setInterruptListener'", nullptr);
         return 0;
@@ -1979,7 +1979,7 @@ int lua_cocos2dx_spine_SkeletonAnimation_setInterruptListener(lua_State* tolua_S
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1)
+    if (argc == 1) 
     {
         std::function<void (spTrackEntry *)> arg0;
 
@@ -2000,7 +2000,7 @@ int lua_cocos2dx_spine_SkeletonAnimation_setInterruptListener(lua_State* tolua_S
     luaL_error(tolua_S, "%s has wrong number of arguments: %d, was expecting %d \n", "sp.SkeletonAnimation:setInterruptListener",argc, 1);
     return 0;
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_lerror:
     tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_spine_SkeletonAnimation_setInterruptListener'.",&tolua_err);
 #endif
@@ -2013,19 +2013,19 @@ int lua_cocos2dx_spine_SkeletonAnimation_clearTracks(lua_State* tolua_S)
     spine::SkeletonAnimation* cobj = nullptr;
     bool ok  = true;
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_Error tolua_err;
 #endif
 
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     if (!tolua_isusertype(tolua_S,1,"sp.SkeletonAnimation",0,&tolua_err)) goto tolua_lerror;
 #endif
 
     cobj = (spine::SkeletonAnimation*)tolua_tousertype(tolua_S,1,0);
 
-#if TOLUA_DEBUG >= 1
-    if (!cobj)
+#if COCOS2D_DEBUG >= 1
+    if (!cobj) 
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_spine_SkeletonAnimation_clearTracks'", nullptr);
         return 0;
@@ -2033,7 +2033,7 @@ int lua_cocos2dx_spine_SkeletonAnimation_clearTracks(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0)
+    if (argc == 0) 
     {
         if(!ok)
         {
@@ -2047,7 +2047,7 @@ int lua_cocos2dx_spine_SkeletonAnimation_clearTracks(lua_State* tolua_S)
     luaL_error(tolua_S, "%s has wrong number of arguments: %d, was expecting %d \n", "sp.SkeletonAnimation:clearTracks",argc, 0);
     return 0;
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_lerror:
     tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_spine_SkeletonAnimation_clearTracks'.",&tolua_err);
 #endif
@@ -2060,19 +2060,19 @@ int lua_cocos2dx_spine_SkeletonAnimation_setTrackEndListener(lua_State* tolua_S)
     spine::SkeletonAnimation* cobj = nullptr;
     bool ok  = true;
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_Error tolua_err;
 #endif
 
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     if (!tolua_isusertype(tolua_S,1,"sp.SkeletonAnimation",0,&tolua_err)) goto tolua_lerror;
 #endif
 
     cobj = (spine::SkeletonAnimation*)tolua_tousertype(tolua_S,1,0);
 
-#if TOLUA_DEBUG >= 1
-    if (!cobj)
+#if COCOS2D_DEBUG >= 1
+    if (!cobj) 
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_spine_SkeletonAnimation_setTrackEndListener'", nullptr);
         return 0;
@@ -2080,7 +2080,7 @@ int lua_cocos2dx_spine_SkeletonAnimation_setTrackEndListener(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 2)
+    if (argc == 2) 
     {
         spTrackEntry* arg0;
         std::function<void (spTrackEntry *)> arg1;
@@ -2105,7 +2105,7 @@ int lua_cocos2dx_spine_SkeletonAnimation_setTrackEndListener(lua_State* tolua_S)
     luaL_error(tolua_S, "%s has wrong number of arguments: %d, was expecting %d \n", "sp.SkeletonAnimation:setTrackEndListener",argc, 2);
     return 0;
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_lerror:
     tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_spine_SkeletonAnimation_setTrackEndListener'.",&tolua_err);
 #endif
@@ -2118,19 +2118,19 @@ int lua_cocos2dx_spine_SkeletonAnimation_setStartListener(lua_State* tolua_S)
     spine::SkeletonAnimation* cobj = nullptr;
     bool ok  = true;
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_Error tolua_err;
 #endif
 
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     if (!tolua_isusertype(tolua_S,1,"sp.SkeletonAnimation",0,&tolua_err)) goto tolua_lerror;
 #endif
 
     cobj = (spine::SkeletonAnimation*)tolua_tousertype(tolua_S,1,0);
 
-#if TOLUA_DEBUG >= 1
-    if (!cobj)
+#if COCOS2D_DEBUG >= 1
+    if (!cobj) 
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_spine_SkeletonAnimation_setStartListener'", nullptr);
         return 0;
@@ -2138,7 +2138,7 @@ int lua_cocos2dx_spine_SkeletonAnimation_setStartListener(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1)
+    if (argc == 1) 
     {
         std::function<void (spTrackEntry *)> arg0;
 
@@ -2159,7 +2159,7 @@ int lua_cocos2dx_spine_SkeletonAnimation_setStartListener(lua_State* tolua_S)
     luaL_error(tolua_S, "%s has wrong number of arguments: %d, was expecting %d \n", "sp.SkeletonAnimation:setStartListener",argc, 1);
     return 0;
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_lerror:
     tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_spine_SkeletonAnimation_setStartListener'.",&tolua_err);
 #endif
@@ -2170,17 +2170,17 @@ int lua_cocos2dx_spine_SkeletonAnimation_createWithBinaryFile(lua_State* tolua_S
 {
     int argc = 0;
     bool ok  = true;
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_Error tolua_err;
 #endif
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     if (!tolua_isusertable(tolua_S,1,"sp.SkeletonAnimation",0,&tolua_err)) goto tolua_lerror;
 #endif
 
     argc = lua_gettop(tolua_S)-1;
 
-    do
+    do 
     {
         if (argc == 2)
         {
@@ -2196,7 +2196,7 @@ int lua_cocos2dx_spine_SkeletonAnimation_createWithBinaryFile(lua_State* tolua_S
         }
     } while (0);
     ok  = true;
-    do
+    do 
     {
         if (argc == 3)
         {
@@ -2215,7 +2215,7 @@ int lua_cocos2dx_spine_SkeletonAnimation_createWithBinaryFile(lua_State* tolua_S
         }
     } while (0);
     ok  = true;
-    do
+    do 
     {
         if (argc == 2)
         {
@@ -2232,7 +2232,7 @@ int lua_cocos2dx_spine_SkeletonAnimation_createWithBinaryFile(lua_State* tolua_S
         }
     } while (0);
     ok  = true;
-    do
+    do 
     {
         if (argc == 3)
         {
@@ -2254,7 +2254,7 @@ int lua_cocos2dx_spine_SkeletonAnimation_createWithBinaryFile(lua_State* tolua_S
     ok  = true;
     luaL_error(tolua_S, "%s has wrong number of arguments: %d, was expecting %d", "sp.SkeletonAnimation:createWithBinaryFile",argc, 2);
     return 0;
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_lerror:
     tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_spine_SkeletonAnimation_createWithBinaryFile'.",&tolua_err);
 #endif
@@ -2265,11 +2265,11 @@ int lua_cocos2dx_spine_SkeletonAnimation_create(lua_State* tolua_S)
     int argc = 0;
     bool ok  = true;
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_Error tolua_err;
 #endif
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     if (!tolua_isusertable(tolua_S,1,"sp.SkeletonAnimation",0,&tolua_err)) goto tolua_lerror;
 #endif
 
@@ -2288,7 +2288,7 @@ int lua_cocos2dx_spine_SkeletonAnimation_create(lua_State* tolua_S)
     }
     luaL_error(tolua_S, "%s has wrong number of arguments: %d, was expecting %d\n ", "sp.SkeletonAnimation:create",argc, 0);
     return 0;
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_lerror:
     tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_spine_SkeletonAnimation_create'.",&tolua_err);
 #endif
@@ -2298,17 +2298,17 @@ int lua_cocos2dx_spine_SkeletonAnimation_createWithJsonFile(lua_State* tolua_S)
 {
     int argc = 0;
     bool ok  = true;
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_Error tolua_err;
 #endif
 
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     if (!tolua_isusertable(tolua_S,1,"sp.SkeletonAnimation",0,&tolua_err)) goto tolua_lerror;
 #endif
 
     argc = lua_gettop(tolua_S)-1;
 
-    do
+    do 
     {
         if (argc == 2)
         {
@@ -2324,7 +2324,7 @@ int lua_cocos2dx_spine_SkeletonAnimation_createWithJsonFile(lua_State* tolua_S)
         }
     } while (0);
     ok  = true;
-    do
+    do 
     {
         if (argc == 3)
         {
@@ -2343,7 +2343,7 @@ int lua_cocos2dx_spine_SkeletonAnimation_createWithJsonFile(lua_State* tolua_S)
         }
     } while (0);
     ok  = true;
-    do
+    do 
     {
         if (argc == 2)
         {
@@ -2360,7 +2360,7 @@ int lua_cocos2dx_spine_SkeletonAnimation_createWithJsonFile(lua_State* tolua_S)
         }
     } while (0);
     ok  = true;
-    do
+    do 
     {
         if (argc == 3)
         {
@@ -2382,7 +2382,7 @@ int lua_cocos2dx_spine_SkeletonAnimation_createWithJsonFile(lua_State* tolua_S)
     ok  = true;
     luaL_error(tolua_S, "%s has wrong number of arguments: %d, was expecting %d", "sp.SkeletonAnimation:createWithJsonFile",argc, 2);
     return 0;
-#if TOLUA_DEBUG >= 1
+#if COCOS2D_DEBUG >= 1
     tolua_lerror:
     tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_spine_SkeletonAnimation_createWithJsonFile'.",&tolua_err);
 #endif
