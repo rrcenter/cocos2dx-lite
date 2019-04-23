@@ -50,9 +50,9 @@ def GetVersionInfo():
     if not os.path.exists(versionManifestPath):
         with open(versionManifestPath, 'w') as f:
             data = {
-                'packageUrl':'http://package_url',
-                'remoteManifestUrl':'http://path/to/project.manifest',
-                'remoteVersionUrl':'http://path/to/version.manifest',
+                'packageUrl':'http://127.0.0.1:8000',
+                'remoteManifestUrl':'http://127.0.0.1:8000/res/project.manifest',
+                'remoteVersionUrl':'http://127.0.0.1:8000/res/version.manifest',
                 'engineVersion':'3.0',
                 'version':'1.0.0',
             }
@@ -62,11 +62,15 @@ def GetVersionInfo():
     json_data = json.load(configFile)
 
     configFile.close()
-    json_data["version"] = semver.bump_patch(json_data["version"])
     return json_data
 
+def CalVersionInfo():
+    data = GetVersionInfo()
+    data['version'] = semver.bump_patch(data['version'])
+    return data
+
 def GenerateVersionManifestFile():
-    versionInfo = GetVersionInfo()
+    versionInfo = CalVersionInfo()
     json_str = json.dumps(versionInfo, indent = 2)
     with open(versionManifestPath, 'w') as f:
         f.write(json_str)
@@ -74,11 +78,11 @@ def GenerateVersionManifestFile():
 def GenerateProjectManifestFile():
     extensions = ['.ExportJson', '.plist', '.json', '.animation', '.fnt', '.md', '.xml', '.tmx', '.lua', '.png']
     extensions = None
-    fileList = scan('src', 'res', extensions=extensions, excludes=['.DS_Store', versionManifestPath, projectManifestPath])
+    fileList = scan('src', 'res', extensions=extensions, excludes=['.DS_Store', os.path.basename(versionManifestPath), os.path.basename(projectManifestPath)])
     fileList = sorted(fileList)
 
     project_str = {}
-    project_str.update(GetVersionInfo())
+    project_str.update(CalVersionInfo())
     dataDic = {}
     for f in fileList:
         dataDic[f] = {"md5" : CalcMD5(f), "size" : os.path.getsize(f)}
@@ -98,8 +102,8 @@ def mkdir(path):
 
 if __name__ == "__main__":
     os.chdir(currdir)
-    mkdir(os.path.join(currdir, 'res/config'))
-    mkdir(os.path.join(currdir, 'res/version'))
+    # mkdir(os.path.join(currdir, 'res/config'))
+    # mkdir(os.path.join(currdir, 'res/version'))
     GenerateProjectManifestFile()
     GenerateVersionManifestFile()
 
