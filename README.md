@@ -92,6 +92,7 @@ The major change:
     $ open player/proj.ios_mac/player.xcodeproj/
     $ or
     $ cocos run -p mac # ios, android
+    $ cocos run -p android --build-type ndk-build
     ```
 
 ## Contributing to the Project

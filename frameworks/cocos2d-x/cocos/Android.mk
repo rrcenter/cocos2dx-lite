@@ -264,6 +264,7 @@ LOCAL_STATIC_LIBRARIES += cocos_ui_static
 LOCAL_STATIC_LIBRARIES += spine_static
 LOCAL_STATIC_LIBRARIES += cocos_network_static
 LOCAL_STATIC_LIBRARIES += audioengine_static
+LOCAL_STATIC_LIBRARIES += ccets
 
 include $(BUILD_STATIC_LIBRARY)
 #==============================================================
@@ -282,7 +283,7 @@ $(call import-module,editor-support/cocostudio)
 $(call import-module,editor-support/spine)
 $(call import-module,network)
 $(call import-module,ui)
-# $(call import-module,extensions)
+$(call import-module,extensions)
 # $(call import-module,Box2D/prebuilt/android)
 # $(call import-module,curl/prebuilt/android)
 $(call import-module,websockets/prebuilt/android)

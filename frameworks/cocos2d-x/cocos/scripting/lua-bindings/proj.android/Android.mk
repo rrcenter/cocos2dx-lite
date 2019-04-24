@@ -87,7 +87,9 @@ LOCAL_SRC_FILES += ../../../../external/lua/lsocket/lsocket.c
 # LOCAL_SRC_FILES += ../../../../external/lua/lsocket/async_resolver.c \
 #                   ../../../../external/lua/lsocket/gai_async.c
 
-LOCAL_SRC_FILES += ../../../../external/lua/lpack/lpack.c
+# sproto
+LOCAL_SRC_FILES += ../../../../external/lua/sproto/sproto.c \
+                   ../../../../external/lua/sproto/lsproto.c
 
 
 LOCAL_SRC_FILES += ../../../../external/lua/crypto/CCCrypto.cpp
@@ -171,16 +173,15 @@ LOCAL_SRC_FILES += ../manual/spine/lua_cocos2dx_spine_manual.cpp \
 
 #ui
 LOCAL_SRC_FILES +=  ../manual/ui/lua_cocos2dx_ui_manual.cpp \
-                    ../auto/lua_cocos2dx_ui_auto.cpp
+                    ../auto/lua_cocos2dx_ui_auto.cpp \
+                    ../manual/ui/lua_cocos2dx_experimental_webview_manual.cpp \
+                    ../manual/ui/lua_cocos2dx_experimental_video_manual.cpp \
+                    ../auto/lua_cocos2dx_experimental_video_auto.cpp \
+                    ../auto/lua_cocos2dx_experimental_webview_auto.cpp
 
-                    #../manual/ui/lua_cocos2dx_experimental_webview_manual.cpp \
-                    #../manual/ui/lua_cocos2dx_experimental_video_manual.cpp \
-                    #../auto/lua_cocos2dx_experimental_video_auto.cpp \
-                    #../auto/lua_cocos2dx_experimental_webview_auto.cpp
-
-# #extension
-# LOCAL_SRC_FILES += ../manual/extension/lua_cocos2dx_extension_manual.cpp \
-#                    ../auto/lua_cocos2dx_extension_auto.cpp \
+#extension
+LOCAL_SRC_FILES += ../manual/extension/lua_cocos2dx_extension_manual.cpp \
+                   ../auto/lua_cocos2dx_extension_auto.cpp
 
 # #physics3d
 # LOCAL_SRC_FILES += ../manual/physics3d/lua_cocos2dx_physics3d_manual.cpp \
