@@ -7,6 +7,8 @@ local function savename()
 end
 
 local function merge(dst, src)
+  if dst == nil or src == nil then return end
+
   for k,v in pairs(src) do
     if type(dst[k]) == 'table' and type(v) == 'table' then
       merge(dst[k], v)
