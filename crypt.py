@@ -15,6 +15,8 @@ import argparse
 
 import struct
 
+_XXTEA_FILL_CHAR = '\0'
+_XXTEA_FILL_CHAR = '^'
 _DELTA = 0x9E3779B9
 
 def _long2str(v, w):
@@ -29,7 +31,7 @@ def _long2str(v, w):
 def _str2long(s, w):
     n = len(s)
     m = (4 - (n & 3) & 3) + n
-    s = s.ljust(m, "\0")
+    s = s.ljust(m, _XXTEA_FILL_CHAR)
     v = list(struct.unpack('<%iL' % (m >> 2), s))
     if w: v.append(n)
     return v
@@ -37,7 +39,7 @@ def _str2long(s, w):
 def xxtea_encrypt(str, key):
     if str == '': return str
     v = _str2long(str, True)
-    k = _str2long(key.ljust(16, "\0"), False)
+    k = _str2long(key.ljust(16, _XXTEA_FILL_CHAR), False)
     n = len(v) - 1
     z = v[n]
     y = v[0]
@@ -59,7 +61,7 @@ def xxtea_encrypt(str, key):
 def xxtea_decrypt(str, key):
     if str == '': return str
     v = _str2long(str, False)
-    k = _str2long(key.ljust(16, "\0"), False)
+    k = _str2long(key.ljust(16, _XXTEA_FILL_CHAR), False)
     n = len(v) - 1
     z = v[n]
     y = v[0]
