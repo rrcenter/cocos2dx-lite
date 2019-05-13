@@ -48,30 +48,30 @@ The major change:
 
 4.  [lpack](https://github.com/LuaDist/lpack)
 
-4.  [sproto](https://github.com/cloudwu/sproto)
+5.  [sproto](https://github.com/cloudwu/sproto)
 
-5.  [luasocket](https://github.com/diegonehab/luasocket)
+6.  [luasocket](https://github.com/diegonehab/luasocket)
 
-6.  [lsocket 1.4.1](http://tset.de/lsocket/index.html)
+7.  [lsocket 1.4.1](http://tset.de/lsocket/index.html)
 
-7.  [pbc](https://github.com/cloudwu/pbc), maybe switch to [google/upb](https://github.com/google/upb), pure C99, also support Lua.
+8.  [pbc](https://github.com/cloudwu/pbc), maybe switch to [google/upb](https://github.com/google/upb), pure C99, also support Lua.
 
-8.  [LuaBitOp 1.0.2](http://bitop.luajit.org/)
+9.  [LuaBitOp 1.0.2](http://bitop.luajit.org/)
 
-9.  Node "destroy" event
+10.  Node "destroy" event
 
-    ```
-    display.newNode()
-    :onNodeEvent('destroy', function (  )
-        print('node destroy event.')
-    end)
+   ```
+   display.newNode()
+   :onNodeEvent('destroy', function (  )
+       print('node destroy event.')
+   end)
 
-    -- or
-    cc.Node:create()
-    :registerScriptHandler(function ( state )
-        print('> Node event', state)
-    end)
-    ```
+   -- or
+   cc.Node:create()
+   :registerScriptHandler(function ( state )
+       print('> Node event', state)
+   end)
+   ```
 
 
 ## How to start
@@ -94,6 +94,9 @@ The major change:
     $ cocos run -p mac # ios, android
     $ cocos run -p android --build-type ndk-build
     ```
+
+## Bugs
+1. [ANR with Android 7.x](https://github.com/c0i/cocos2dx-lite/blob/086650c9e9d5a5e43d8fd90cdfad749266827cfc/frameworks/cocos2d-x/cocos/platform/android/java/src/org/cocos2dx/lib/Cocos2dxGLSurfaceView.java#L413-L416)
 
 ## Contributing to the Project
 
