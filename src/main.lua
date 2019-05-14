@@ -1,4 +1,7 @@
 
+collectgarbage( "setpause", 130) -- 100
+collectgarbage( "setstepmul", 5000)
+
 package.path = '?.lua;src/?.lua;src/packages/?.lua'
 local fs = cc.FileUtils:getInstance()
 fs:setPopupNotify(false)
