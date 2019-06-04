@@ -6,7 +6,7 @@ XXTeaCrypt::XXTeaCrypt(const std::string& key, const std::string& sign)
 : _key(key)
 , _sign(sign)
 {
-    _key.resize(16); // xxtea will resize key to 16, it key is not size of 16.
+//    fix_key(_key); // xxtea will resize key to 16, it key is not size of 16.
 }
 
 bool XXTeaCrypt::isEncrypted(const cocos2d::Data& buffer) const
