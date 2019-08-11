@@ -6,6 +6,20 @@
 
 #include <stddef.h>
 
+#if __APPLE__
+    #if TARGET_OS_IPHONE
+        #define IS_MOBILE 1
+    #endif // ios
+#elif __ANDROID__
+    #define IS_MOBILE 1
+#endif
+
+#if IS_MOBILE
+#define CRASH_MOBLE assert(0);
+#else
+#define CRASH_MOBLE
+#endif
+
 #define ldump_c
 #define LUA_CORE
 
@@ -79,6 +93,7 @@ static void DumpFunction(const Proto* f, const TString* p, DumpState* D);
 
 static void DumpConstants(const Proto* f, DumpState* D)
 {
+    CRASH_MOBLE;
  int i,n=f->sizek;
  DumpInt(n,D);
  for (i=0; i<n; i++)
@@ -110,6 +125,7 @@ static void DumpConstants(const Proto* f, DumpState* D)
 
 static void DumpDebug(const Proto* f, DumpState* D)
 {
+    CRASH_MOBLE;
  int i,n;
  n= (D->strip) ? 0 : f->sizelineinfo;
  DumpVector(f->lineinfo,n,sizeof(int),D);
@@ -128,6 +144,7 @@ static void DumpDebug(const Proto* f, DumpState* D)
 
 static void DumpFunction(const Proto* f, const TString* p, DumpState* D)
 {
+    CRASH_MOBLE;
  DumpString((f->source==p || D->strip) ? NULL : f->source,D);
  DumpInt(f->linedefined,D);
  DumpInt(f->lastlinedefined,D);
@@ -142,6 +159,7 @@ static void DumpFunction(const Proto* f, const TString* p, DumpState* D)
 
 static void DumpHeader(DumpState* D)
 {
+    CRASH_MOBLE;
  char h[LUAC_HEADERSIZE];
  luaU_header(h);
  DumpBlock(h,LUAC_HEADERSIZE,D);
@@ -152,6 +170,8 @@ static void DumpHeader(DumpState* D)
 */
 int luaU_dump (lua_State* L, const Proto* f, lua_Writer w, void* data, int strip)
 {
+    CRASH_MOBLE;
+    
  DumpState D;
  D.L=L;
  D.writer=w;
