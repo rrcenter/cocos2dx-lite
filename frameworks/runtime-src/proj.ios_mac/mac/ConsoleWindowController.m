@@ -75,6 +75,7 @@
 
 - (IBAction)onClear:(id)sender
 {
+    [linesCount removeAllObjects];
     NSTextStorage *storage = [textView textStorage];
     [storage setAttributedString:[[[NSAttributedString alloc] initWithString:@""] autorelease]];
 }
