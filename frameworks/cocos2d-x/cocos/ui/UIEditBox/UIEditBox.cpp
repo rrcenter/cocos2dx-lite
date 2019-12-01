@@ -63,6 +63,11 @@ void EditBox::touchDownAction(Ref* /*sender*/, TouchEventType controlEvent)
     }
 }
 
+void EditBox::openKeyboard() const
+{
+    _editBoxImpl->openKeyboard();
+}
+
 EditBox* EditBox::create(const Size& size,
                          const std::string& normalSprite,
                         TextureResType texType /*= TextureResType::LOCAL*/)

@@ -552,6 +552,8 @@ namespace ui {
          */
         void touchDownAction(Ref *sender, TouchEventType controlEvent);
             
+        void openKeyboard() const;
+
     protected:
         virtual void adaptRenderers() override;
 
