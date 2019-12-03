@@ -57,6 +57,8 @@ extern "C" {
 #include "deprecated/CCDouble.h"
 #include "platform/CCFileUtils.h"
 
+#include "external/libfairygui/tolua/lua_cocos2dx_libfairygui_auto.hpp"
+
 namespace {
     int get_string_for_print(lua_State * L, std::string* out)
     {
@@ -146,6 +148,7 @@ bool LuaStack::init(void)
     luaopen_lua_extensions(_state);
     g_luaType.clear();
     register_all_cocos2dx(_state);
+    register_all_libfairygui(_state);
     tolua_opengl_open(_state);
     register_all_cocos2dx_manual(_state);
     register_all_cocos2dx_module_manual(_state);

@@ -1731,7 +1731,7 @@ def main():
             sections = []
             sections.append(opts.section)
         else:
-            raise Exception("Section not found in config file")
+            raise Exception("Section (%s) not found in config file" % (opts.section))
     else:
         print("processing all sections")
         sections = config.sections()

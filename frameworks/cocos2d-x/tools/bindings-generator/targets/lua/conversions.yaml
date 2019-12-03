@@ -25,6 +25,7 @@ conversions:
     "cocosbuilder::": "cc."
     "CocosDenshion::": "cc."
     "cocos2d::tweenfunc::": "cc."
+    "fairygui::": "fgui."
 
   to_native:
     # lua to native

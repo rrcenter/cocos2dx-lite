@@ -1286,6 +1286,9 @@ void Node::onEnter()
     {
         ++__attachedNodeCount;
     }
+    
+    _running = true;
+    
 #if CC_ENABLE_SCRIPT_BINDING
     if (_scriptType == kScriptTypeJavascript)
     {
@@ -1308,8 +1311,6 @@ void Node::onEnter()
         child->onEnter();
     
     this->resume();
-    
-    _running = true;
     
 #if CC_ENABLE_SCRIPT_BINDING
     if (_scriptType == kScriptTypeLua)

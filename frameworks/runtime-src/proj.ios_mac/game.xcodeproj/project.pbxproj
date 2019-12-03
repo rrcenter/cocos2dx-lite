@@ -330,6 +330,14 @@
 			path = mac;
 			sourceTree = "<group>";
 		};
+		848A50202395F259008B14ED /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				845D1FA421AE8AC2004D0456 /* Crypt.cpp */,
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
 		9FF504791A5E86D600AFDA55 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -360,6 +368,7 @@
 				5023817117EBBE3400990C9B /* mac */,
 				F293B3C915EB7BE500256477 /* Products */,
 				1A8A4ED51F6F9AD00044495E /* Resources */,
+				848A50202395F259008B14ED /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -410,7 +419,6 @@
 				F293BB7F15EB831F00256477 /* AppDelegate.h */,
 				846F03F121CCEB7E000460C0 /* CCDeviceEx.cpp */,
 				846F03F221CCEB7E000460C0 /* CCDeviceEx.hpp */,
-				845D1FA421AE8AC2004D0456 /* Crypt.cpp */,
 				845D1FA521AE8AC2004D0456 /* Crypt.hpp */,
 				845D1FA921AE8BF5004D0456 /* CryptFileUtils.cpp */,
 				845D1FAA21AE8BF5004D0456 /* CryptFileUtils.hpp */,
@@ -476,6 +484,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 				"zh-Hans",
@@ -686,7 +695,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				ARCHS = "$(ARCHS_STANDARD)";
 				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = ../../../simulator/mac;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -713,7 +722,7 @@
 					"$(_COCOS_LIB_MAC_END)",
 				);
 				SDKROOT = macosx;
-				USER_HEADER_SEARCH_PATHS = "$(inherited) $(SRCROOT)/../../cocos2d-x/external/glfw3/include/mac $(_COCOS_HEADER_MAC_BEGIN) $(_COCOS_HEADER_MAC_END)";
+				USER_HEADER_SEARCH_PATHS = "$(inherited) $(SRCROOT)/../../cocos2d-x/external/glfw3/include/mac $(_COCOS_HEADER_MAC_BEGIN) $(_COCOS_HEADER_MAC_END) $(SRCROOT)/../../cocos2d-x/external/libfairygui/Classes";
 			};
 			name = Debug;
 		};
@@ -721,7 +730,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				ARCHS = "$(ARCHS_STANDARD)";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = mac/Prefix.pch;
@@ -746,7 +755,7 @@
 					"$(_COCOS_LIB_MAC_END)",
 				);
 				SDKROOT = macosx;
-				USER_HEADER_SEARCH_PATHS = "$(inherited) $(SRCROOT)/../../cocos2d-x/external/glfw3/include/mac $(_COCOS_HEADER_MAC_BEGIN) $(_COCOS_HEADER_MAC_END)";
+				USER_HEADER_SEARCH_PATHS = "$(inherited) $(SRCROOT)/../../cocos2d-x/external/glfw3/include/mac $(_COCOS_HEADER_MAC_BEGIN) $(_COCOS_HEADER_MAC_END) $(SRCROOT)/../../cocos2d-x/external/libfairygui/Classes";
 			};
 			name = Release;
 		};

@@ -365,6 +365,10 @@
 		8488A5D721836BEB00A28C80 /* lfs.c in Sources */ = {isa = PBXBuildFile; fileRef = 8488A5D421836BEB00A28C80 /* lfs.c */; };
 		8488A5D821836BEB00A28C80 /* lfs.h in Headers */ = {isa = PBXBuildFile; fileRef = 8488A5D521836BEB00A28C80 /* lfs.h */; };
 		8488A5D921836BEB00A28C80 /* lfs.h in Headers */ = {isa = PBXBuildFile; fileRef = 8488A5D521836BEB00A28C80 /* lfs.h */; };
+		84D2ECB9239405590026A0FB /* lua_cocos2dx_libfairygui_auto.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 84D2ECB7239405590026A0FB /* lua_cocos2dx_libfairygui_auto.hpp */; };
+		84D2ECBA239405590026A0FB /* lua_cocos2dx_libfairygui_auto.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 84D2ECB7239405590026A0FB /* lua_cocos2dx_libfairygui_auto.hpp */; };
+		84D2ECBB239405590026A0FB /* lua_cocos2dx_libfairygui_auto.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 84D2ECB8239405590026A0FB /* lua_cocos2dx_libfairygui_auto.cpp */; };
+		84D2ECBC239405590026A0FB /* lua_cocos2dx_libfairygui_auto.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 84D2ECB8239405590026A0FB /* lua_cocos2dx_libfairygui_auto.cpp */; };
 		84F9EFEF2264CAD30035A36F /* lsproto.c in Sources */ = {isa = PBXBuildFile; fileRef = 84F9EFE92264CAD30035A36F /* lsproto.c */; };
 		84F9EFF02264CAD30035A36F /* lsproto.c in Sources */ = {isa = PBXBuildFile; fileRef = 84F9EFE92264CAD30035A36F /* lsproto.c */; };
 		84F9EFF12264CAD30035A36F /* sproto.c in Sources */ = {isa = PBXBuildFile; fileRef = 84F9EFEA2264CAD30035A36F /* sproto.c */; };
@@ -650,6 +654,8 @@
 		8488A5CE2183640300A28C80 /* lpack.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lpack.c; sourceTree = "<group>"; };
 		8488A5D421836BEB00A28C80 /* lfs.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lfs.c; sourceTree = "<group>"; };
 		8488A5D521836BEB00A28C80 /* lfs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lfs.h; sourceTree = "<group>"; };
+		84D2ECB7239405590026A0FB /* lua_cocos2dx_libfairygui_auto.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = lua_cocos2dx_libfairygui_auto.hpp; path = ../../../../external/libfairygui/tolua/lua_cocos2dx_libfairygui_auto.hpp; sourceTree = "<group>"; };
+		84D2ECB8239405590026A0FB /* lua_cocos2dx_libfairygui_auto.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = lua_cocos2dx_libfairygui_auto.cpp; path = ../../../../external/libfairygui/tolua/lua_cocos2dx_libfairygui_auto.cpp; sourceTree = "<group>"; };
 		84F9EFE92264CAD30035A36F /* lsproto.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lsproto.c; sourceTree = "<group>"; };
 		84F9EFEA2264CAD30035A36F /* sproto.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = sproto.c; sourceTree = "<group>"; };
 		84F9EFED2264CAD30035A36F /* msvcint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = msvcint.h; sourceTree = "<group>"; };
@@ -733,6 +739,7 @@
 		1551A334158F2AB200E66CFE = {
 			isa = PBXGroup;
 			children = (
+				84D2ECB6239405480026A0FB /* fairygui */,
 				1ABCA1E218CD8F230087CE3A /* external */,
 				1AACE74818BC45C200215002 /* auto */,
 				1AACE75B18BC45C200215002 /* manual */,
@@ -1116,6 +1123,15 @@
 			path = ../../../../external/lua/lfs;
 			sourceTree = "<group>";
 		};
+		84D2ECB6239405480026A0FB /* fairygui */ = {
+			isa = PBXGroup;
+			children = (
+				84D2ECB8239405590026A0FB /* lua_cocos2dx_libfairygui_auto.cpp */,
+				84D2ECB7239405590026A0FB /* lua_cocos2dx_libfairygui_auto.hpp */,
+			);
+			name = fairygui;
+			sourceTree = "<group>";
+		};
 		84F9EFE82264CAD30035A36F /* sproto */ = {
 			isa = PBXGroup;
 			children = (
@@ -1296,6 +1312,7 @@
 				F4FE0D5919ECD00100B8B12B /* luasocket_scripts.h in Headers */,
 				9F296E8D1DDD7DAA006DF478 /* CustomGUIReader.h in Headers */,
 				9FA7520A1D31EDAF00F05F08 /* strbuf.h in Headers */,
+				84D2ECB9239405590026A0FB /* lua_cocos2dx_libfairygui_auto.hpp in Headers */,
 				9F2289211DEAADEF00E50645 /* lua_cocos2dx_cocosdenshion_manual.h in Headers */,
 				84FC9815226F6F7C00CC99CE /* lua_cocos2dx_extension_auto.hpp in Headers */,
 				9F296EA11DDD7E37006DF478 /* lua_cocos2dx_studio_auto.hpp in Headers */,
@@ -1408,6 +1425,7 @@
 				F4FE0D5A19ECD00100B8B12B /* luasocket_scripts.h in Headers */,
 				9F296E8E1DDD7DAA006DF478 /* CustomGUIReader.h in Headers */,
 				9FA7520B1D31EDAF00F05F08 /* strbuf.h in Headers */,
+				84D2ECBA239405590026A0FB /* lua_cocos2dx_libfairygui_auto.hpp in Headers */,
 				9F2289221DEAADEF00E50645 /* lua_cocos2dx_cocosdenshion_manual.h in Headers */,
 				84FC9816226F6F7C00CC99CE /* lua_cocos2dx_extension_auto.hpp in Headers */,
 				9F296EA21DDD7E37006DF478 /* lua_cocos2dx_studio_auto.hpp in Headers */,
@@ -1466,6 +1484,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 			);
 			mainGroup = 1551A334158F2AB200E66CFE;
@@ -1559,6 +1578,7 @@
 				84215FE42185F07F003194FC /* gai_async.c in Sources */,
 				843CA504218DA28D00CAFC4F /* lstring.c in Sources */,
 				843CA52C218DA28D00CAFC4F /* lcode.c in Sources */,
+				84D2ECBB239405590026A0FB /* lua_cocos2dx_libfairygui_auto.cpp in Sources */,
 				15C1C2DB19874B3D00A46ACC /* xxtea.cpp in Sources */,
 				843CA4FA218DA28D00CAFC4F /* lua.c in Sources */,
 				9F296E7E1DDD7D96006DF478 /* lua_cocos2dx_ui_manual.cpp in Sources */,
@@ -1690,6 +1710,7 @@
 				84215FE52185F07F003194FC /* gai_async.c in Sources */,
 				843CA505218DA28D00CAFC4F /* lstring.c in Sources */,
 				843CA52D218DA28D00CAFC4F /* lcode.c in Sources */,
+				84D2ECBC239405590026A0FB /* lua_cocos2dx_libfairygui_auto.cpp in Sources */,
 				15415ADA19A71A53004F1E71 /* unix.c in Sources */,
 				843CA4FB218DA28D00CAFC4F /* lua.c in Sources */,
 				9F296E7F1DDD7D96006DF478 /* lua_cocos2dx_ui_manual.cpp in Sources */,
@@ -1777,7 +1798,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
-				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/../../../.. $(SRCROOT)/../../.. $(SRCROOT)/../../../base $(SRCROOT)/../../../3d $(SRCROOT)/../../../2d $(SRCROOT)/../../../deprecated $(SRCROOT)/../../../physics $(SRCROOT)/../../../2d/platform $(SRCROOT)/../../../audio/include $(SRCROOT)/../../../editor-support $(SRCROOT)/../../../editor-support/spine $(SRCROOT)/../../../editor-support/cocostudio $(SRCROOT)/../../../editor-support/cocosbuilder $(SRCROOT)/../../../ui $(SRCROOT)/../../../storage $(SRCROOT)/../../../../extensions $(SRCROOT)/../../../../external $(SRCROOT)/../../../../external/chipmunk/include/chipmunk $(SRCROOT)/../../../../external/lua $(SRCROOT)/../../../../external/lua/lua $(SRCROOT)/../../../../external/lua/tolua $(SRCROOT)/../../../editor-support/cocostudio/ActionTimeline $(SRCROOT)/../../../physics3d $(SRCROOT)/../../../navmesh";
+				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/../../../.. $(SRCROOT)/../../.. $(SRCROOT)/../../../base $(SRCROOT)/../../../3d $(SRCROOT)/../../../2d $(SRCROOT)/../../../deprecated $(SRCROOT)/../../../physics $(SRCROOT)/../../../2d/platform $(SRCROOT)/../../../audio/include $(SRCROOT)/../../../editor-support $(SRCROOT)/../../../editor-support/spine $(SRCROOT)/../../../editor-support/cocostudio $(SRCROOT)/../../../editor-support/cocosbuilder $(SRCROOT)/../../../ui $(SRCROOT)/../../../storage $(SRCROOT)/../../../../extensions $(SRCROOT)/../../../../external $(SRCROOT)/../../../../external/chipmunk/include/chipmunk $(SRCROOT)/../../../../external/lua $(SRCROOT)/../../../../external/lua/lua $(SRCROOT)/../../../../external/lua/tolua $(SRCROOT)/../../../editor-support/cocostudio/ActionTimeline $(SRCROOT)/../../../physics3d $(SRCROOT)/../../../navmesh $(SRCROOT)/../../../../external/libfairygui/Classes";
 			};
 			name = Debug;
 		};
@@ -1809,7 +1830,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
-				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/../../../.. $(SRCROOT)/../../.. $(SRCROOT)/../../../base $(SRCROOT)/../../../3d $(SRCROOT)/../../../2d $(SRCROOT)/../../../deprecated $(SRCROOT)/../../../physics $(SRCROOT)/../../../2d/platform $(SRCROOT)/../../../audio/include $(SRCROOT)/../../../editor-support $(SRCROOT)/../../../editor-support/spine $(SRCROOT)/../../../editor-support/cocostudio $(SRCROOT)/../../../editor-support/cocosbuilder $(SRCROOT)/../../../ui $(SRCROOT)/../../../storage $(SRCROOT)/../../../../extensions $(SRCROOT)/../../../../external $(SRCROOT)/../../../../external/chipmunk/include/chipmunk $(SRCROOT)/../../../../external/lua $(SRCROOT)/../../../../external/lua/lua $(SRCROOT)/../../../../external/lua/tolua $(SRCROOT)/../../../editor-support/cocostudio/ActionTimeline $(SRCROOT)/../../../physics3d $(SRCROOT)/../../../navmesh";
+				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/../../../.. $(SRCROOT)/../../.. $(SRCROOT)/../../../base $(SRCROOT)/../../../3d $(SRCROOT)/../../../2d $(SRCROOT)/../../../deprecated $(SRCROOT)/../../../physics $(SRCROOT)/../../../2d/platform $(SRCROOT)/../../../audio/include $(SRCROOT)/../../../editor-support $(SRCROOT)/../../../editor-support/spine $(SRCROOT)/../../../editor-support/cocostudio $(SRCROOT)/../../../editor-support/cocosbuilder $(SRCROOT)/../../../ui $(SRCROOT)/../../../storage $(SRCROOT)/../../../../extensions $(SRCROOT)/../../../../external $(SRCROOT)/../../../../external/chipmunk/include/chipmunk $(SRCROOT)/../../../../external/lua $(SRCROOT)/../../../../external/lua/lua $(SRCROOT)/../../../../external/lua/tolua $(SRCROOT)/../../../editor-support/cocostudio/ActionTimeline $(SRCROOT)/../../../physics3d $(SRCROOT)/../../../navmesh $(SRCROOT)/../../../../external/libfairygui/Classes";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -1835,7 +1856,7 @@
 				LIBRARY_SEARCH_PATHS = "$(SRCROOT)/../../../../external/lua/luajit/prebuilt/mac";
 				PRODUCT_NAME = "libluacocos2d Mac";
 				TARGETED_DEVICE_FAMILY = "1,2";
-				USER_HEADER_SEARCH_PATHS = "$(inherited) $(SRCROOT)/../../../platform/mac $(SRCROOT)/../../../../external/glfw3/include/mac $(SRCROOT)/../../../../external/curl/include/mac";
+				USER_HEADER_SEARCH_PATHS = "$(inherited) $(SRCROOT)/../../../platform/mac $(SRCROOT)/../../../../external/glfw3/include/mac $(SRCROOT)/../../../../external/curl/include/mac $(SRCROOT)/../../../../external/libfairygui/Classes";
 			};
 			name = Debug;
 		};
@@ -1861,7 +1882,7 @@
 				LIBRARY_SEARCH_PATHS = "$(SRCROOT)/../../../../external/lua/luajit/prebuilt/mac";
 				PRODUCT_NAME = "libluacocos2d Mac";
 				TARGETED_DEVICE_FAMILY = "1,2";
-				USER_HEADER_SEARCH_PATHS = "$(inherited) $(SRCROOT)/../../../platform/mac $(SRCROOT)/../../../../external/glfw3/include/mac $(SRCROOT)/../../../../external/curl/include/mac";
+				USER_HEADER_SEARCH_PATHS = "$(inherited) $(SRCROOT)/../../../platform/mac $(SRCROOT)/../../../../external/glfw3/include/mac $(SRCROOT)/../../../../external/curl/include/mac $(SRCROOT)/../../../../external/libfairygui/Classes";
 			};
 			name = Release;
 		};
