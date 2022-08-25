@@ -28,7 +28,7 @@ package org.cocos2dx.lua;
 
 import android.os.Bundle;
 import org.cocos2dx.lib.Cocos2dxActivity;
-import org.cocos2dx.lib.Cocos2dxEngineDataManager;
+//import org.cocos2dx.lib.Cocos2dxEngineDataManager;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
@@ -41,7 +41,7 @@ public class AppActivity extends Cocos2dxActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Cocos2dxEngineDataManager.disable();
+        //Cocos2dxEngineDataManager.disable();
 
         super.setEnableVirtualButton(false);
         super.onCreate(savedInstanceState);

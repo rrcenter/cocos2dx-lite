@@ -99,6 +99,11 @@ LOCAL_SRC_FILES += ../manual/network/lua_cocos2dx_network_manual.cpp \
                    ../../../../external/lua/luasocket/unix.c \
                    ../../../../external/lua/luasocket/usocket.c
 
+#cjson
+LOCAL_SRC_FILES +=  ../../../../external/lua/cjson/lua_cjson.c \
+                    ../../../../external/lua/cjson/fpconv.c \
+                    ../../../../external/lua/cjson/strbuf.c
+
 #cocosbuilder
 LOCAL_SRC_FILES += ../manual/cocosbuilder/lua_cocos2dx_cocosbuilder_manual.cpp \
                    ../manual/cocosbuilder/CCBProxy.cpp \
@@ -191,5 +196,5 @@ LOCAL_STATIC_LIBRARIES := cc_static
 
 include $(BUILD_STATIC_LIBRARY)
 
-$(call import-module,$(LUA_IMPORT_PATH))
+$(call import-module, lua/luajit/prebuilt/android)
 $(call import-module, cocos)

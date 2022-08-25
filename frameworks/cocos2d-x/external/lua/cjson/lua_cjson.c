@@ -1319,7 +1319,7 @@ static int json_decode(lua_State *l)
 }
 
 /* ===== INITIALISATION ===== */
-
+#if 0
 #if !defined(LUA_VERSION_NUM) || LUA_VERSION_NUM < 502
 /* Compatibility for Lua 5.1.
  *
@@ -1338,6 +1338,7 @@ static void luaL_setfuncs (lua_State *l, const luaL_Reg *reg, int nup)
     }
     lua_pop(l, nup);  /* remove upvalues */
 }
+#endif
 #endif
 
 /* Call target function in protected mode with all supplied args.

@@ -316,8 +316,8 @@ LOCAL_STATIC_LIBRARIES += spine
 include $(BUILD_STATIC_LIBRARY)
 #==============================================================
 $(call import-module,android/cpufeatures)
-$(call import-module,freetype2/prebuilt/android)
 $(call import-module,platform/android)
+$(call import-module,freetype2/prebuilt/android)
 $(call import-module,png/prebuilt/android)
 $(call import-module,zlib/prebuilt/android)
 $(call import-module,jpeg/prebuilt/android)

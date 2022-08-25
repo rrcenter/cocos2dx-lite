@@ -94,6 +94,7 @@ bool AppDelegate::applicationDidFinishLaunching()
 
     // set default FPS
     Director::getInstance()->setAnimationInterval(1.0 / 60.0f);
+    Director::getInstance()->setDisplayStats(true);
 
     // register lua module
     auto engine = LuaEngine::getInstance();
@@ -112,7 +113,9 @@ bool AppDelegate::applicationDidFinishLaunching()
 
     fs->addSearchPath("src");
     fs->addSearchPath("res");
-    if (engine->executeScriptFile("main.lua"))
+    auto path = fs->fullPathForFilename("main.lua");
+    CCLOG("path:%s", path.c_str());
+    if (engine->executeScriptFile(path.c_str()))
     {
         return false;
     }
