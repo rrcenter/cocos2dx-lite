@@ -44,6 +44,7 @@
     <ClInclude Include="..\Classes\lua_module_register.h">
       <Filter>Classes</Filter>
     </ClInclude>
+    <ClInclude Include="webview.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Classes\AppDelegate.cpp">

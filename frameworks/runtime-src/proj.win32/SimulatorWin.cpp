@@ -55,6 +55,9 @@
 #include "platform/win32/PlayerWin.h"
 #include "platform/win32/PlayerMenuServiceWin.h"
 
+
+#include "webview.h"
+
 // define 1 to open console ui and setup windows system menu, 0 to disable
 #define SIMULATOR_WITH_CONSOLE_AND_MENU 1
 
@@ -237,6 +240,26 @@ int SimulatorWin::getPositionY()
 
 int SimulatorWin::run()
 {
+#if 0
+    static struct webview webview;
+    memset(&webview, 0, sizeof(webview));
+    webview.title = "Minimal webview example";
+    webview.url = "file:///path/to/index.txt";
+    webview.width = 800;
+    webview.height = 600;
+    webview.resizable = 1;
+    int r = webview_init(&webview);
+    if (r != 0) {
+        return r;
+    }
+    //while (webview_loop(&webview, 1) == 0) {
+    //}
+    //webview_exit(&webview);
+
+    //webview("Minimal webview example",
+    //    "https://en.m.wikipedia.org/wiki/Main_Page", 800, 600, 1);
+#endif
+
     INITCOMMONCONTROLSEX InitCtrls;
     InitCtrls.dwSize = sizeof(InitCtrls);
     InitCtrls.dwICC = ICC_WIN95_CLASSES;
