@@ -83,6 +83,17 @@ static int register_all_packages()
     return 0; //flag for packages manager
 }
 
+static void dumpSearchPath()
+{
+    auto paths = cocos2d::FileUtils::sharedFileUtils()->getSearchPaths();
+    CCLOG("## FileUtils search path:");
+    for (auto path : paths)
+    {
+        CCLOG("- %s", path.c_str());
+    }
+    CCLOG("");
+}
+
 bool AppDelegate::applicationDidFinishLaunching()
 {
     auto crypt = new XXTeaCrypt("xxtea_key", "xxtea_sign");
@@ -113,6 +124,9 @@ bool AppDelegate::applicationDidFinishLaunching()
 
     fs->addSearchPath("src");
     fs->addSearchPath("res");
+
+    dumpSearchPath();
+
     auto path = fs->fullPathForFilename("main.lua");
     CCLOG("path:%s", path.c_str());
     if (engine->executeScriptFile(path.c_str()))

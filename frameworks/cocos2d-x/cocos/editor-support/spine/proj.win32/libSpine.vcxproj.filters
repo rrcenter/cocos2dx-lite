@@ -299,4 +299,7 @@
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\..\..\runtime-src\proj.win32\lua317.vcxproj" />
+  </ItemGroup>
 </Project>

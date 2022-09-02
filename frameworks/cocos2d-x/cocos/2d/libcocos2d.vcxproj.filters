@@ -3940,5 +3940,6 @@
     <None Include="..\3d\CCAnimationCurve.inl">
       <Filter>3d</Filter>
     </None>
+    <None Include="..\..\..\runtime-src\proj.win32\lua317.vcxproj" />
   </ItemGroup>
 </Project>

@@ -36,11 +36,14 @@ function LoginView:layout()
 end
 
 function LoginView:onEnter( ... )
-    local groot = fgui.GRoot:create(cc.Director:getInstance():getRunningScene())
-    groot:retain()
-    fgui.UIPackage:addPackage("UI/MainMenu")
-    local view = fgui.UIPackage:createObject("MainMenu", "Main")
-    groot:addChild(view)
+    display.newSprite('pokes.png')
+    :center()
+    :addTo(self)
+    -- local groot = fgui.GRoot:create(cc.Director:getInstance():getRunningScene())
+    -- groot:retain()
+    -- fgui.UIPackage:addPackage("UI/MainMenu")
+    -- local view = fgui.UIPackage:createObject("MainMenu", "Main")
+    -- groot:addChild(view)
 end
 
 function LoginView:onEnterTransitionFinish( ... )

@@ -56,7 +56,7 @@
 #include "platform/win32/PlayerMenuServiceWin.h"
 
 // define 1 to open console ui and setup windows system menu, 0 to disable
-#define SIMULATOR_WITH_CONSOLE_AND_MENU 0
+#define SIMULATOR_WITH_CONSOLE_AND_MENU 1
 
 USING_NS_CC;
 
@@ -635,8 +635,16 @@ void SimulatorWin::parseCocosProjectConfig(ProjectConfig &config)
         tmpConfig.parseCommandLine(args);
     }
 
+    std::string resRoot = tmpConfig.getProjectDir();
+    if (resRoot.empty())
+    {
+        resRoot = getApplicationPath() + "/../../../../";
+        tmpConfig.setProjectDir(resRoot);
+        config.setProjectDir(resRoot);
+    }
+
     // set project directory as search root path
-    FileUtils::getInstance()->setDefaultResourceRootPath(tmpConfig.getProjectDir().c_str());
+    FileUtils::getInstance()->setDefaultResourceRootPath(resRoot);
 
     // parse config.json
     auto parser = ConfigParser::getInstance();

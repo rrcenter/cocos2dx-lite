@@ -79,6 +79,9 @@
     <Filter Include="manual\navmesh">
       <UniqueIdentifier>{fa8be49e-8b79-4dc5-8f28-febde1347eda}</UniqueIdentifier>
     </Filter>
+    <Filter Include="cjson">
+      <UniqueIdentifier>{c8d7675e-893c-41d4-9f87-e48ffac4daec}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\auto\lua_cocos2dx_auto.cpp">
@@ -302,6 +305,15 @@
     </ClCompile>
     <ClCompile Include="..\manual\network\lua_downloader.cpp">
       <Filter>manual\network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\external\lua\cjson\fpconv.c">
+      <Filter>cjson</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\external\lua\cjson\lua_cjson.c">
+      <Filter>cjson</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\external\lua\cjson\strbuf.c">
+      <Filter>cjson</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -535,6 +547,15 @@
     </ClInclude>
     <ClInclude Include="..\manual\network\lua_downloader.h">
       <Filter>manual\network</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\external\lua\cjson\fpconv.h">
+      <Filter>cjson</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\external\lua\cjson\lua_cjson.h">
+      <Filter>cjson</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\external\lua\cjson\strbuf.h">
+      <Filter>cjson</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
