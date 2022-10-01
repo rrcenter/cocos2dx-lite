@@ -127,6 +127,8 @@ bool AppDelegate::applicationDidFinishLaunching()
 
     dumpSearchPath();
 
+    auto scene = Scene::create();
+    Director::getInstance()->runWithScene(scene);
     auto path = fs->fullPathForFilename("main.lua");
     CCLOG("path:%s", path.c_str());
     if (engine->executeScriptFile(path.c_str()))

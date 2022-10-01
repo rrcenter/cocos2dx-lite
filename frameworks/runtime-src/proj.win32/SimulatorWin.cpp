@@ -56,7 +56,11 @@
 #include "platform/win32/PlayerMenuServiceWin.h"
 
 
-#include "webview.h"
+//#include "webview.h"
+//#include "iup.h"
+
+
+
 
 // define 1 to open console ui and setup windows system menu, 0 to disable
 #define SIMULATOR_WITH_CONSOLE_AND_MENU 1
@@ -240,43 +244,23 @@ int SimulatorWin::getPositionY()
 
 int SimulatorWin::run()
 {
-#if 0
-    static struct webview webview;
-    memset(&webview, 0, sizeof(webview));
-    webview.title = "Minimal webview example";
-    webview.url = "file:///path/to/index.txt";
-    webview.width = 800;
-    webview.height = 600;
-    webview.resizable = 1;
-    int r = webview_init(&webview);
-    if (r != 0) {
-        return r;
-    }
-    //while (webview_loop(&webview, 1) == 0) {
-    //}
-    //webview_exit(&webview);
-
-    //webview("Minimal webview example",
-    //    "https://en.m.wikipedia.org/wiki/Main_Page", 800, 600, 1);
-#endif
-
-    INITCOMMONCONTROLSEX InitCtrls;
-    InitCtrls.dwSize = sizeof(InitCtrls);
-    InitCtrls.dwICC = ICC_WIN95_CLASSES;
-    InitCommonControlsEx(&InitCtrls);
+    //INITCOMMONCONTROLSEX InitCtrls;
+    //InitCtrls.dwSize = sizeof(InitCtrls);
+    //InitCtrls.dwICC = ICC_WIN95_CLASSES;
+    //InitCommonControlsEx(&InitCtrls);
 
     parseCocosProjectConfig(_project);
 
     // load project config from command line args
     vector<string> args;
-    for (int i = 0; i < __argc; ++i)
-    {
-        wstring ws(__wargv[i]);
-        string s;
-        s.assign(ws.begin(), ws.end());
-        args.push_back(s);
-    }
-    _project.parseCommandLine(args);
+    //for (int i = 0; i < __argc; ++i)
+    //{
+    //    wstring ws(__wargv[i]);
+    //    string s;
+    //    s.assign(ws.begin(), ws.end());
+    //    args.push_back(s);
+    //}
+    //_project.parseCommandLine(args);
 
     if (_project.getProjectDir().empty())
     {
@@ -292,27 +276,28 @@ int SimulatorWin::run()
     _app = new AppDelegate();
     RuntimeEngine::getInstance()->setProjectConfig(_project);
 
-#if (SIMULATOR_WITH_CONSOLE_AND_MENU > 0)
-    // create console window
-    if (_project.isShowConsole())
-    {
-        AllocConsole();
-        _hwndConsole = GetConsoleWindow();
-        if (_hwndConsole != NULL)
-        {
-            ShowWindow(_hwndConsole, SW_SHOW);
-            BringWindowToTop(_hwndConsole);
-            freopen("CONOUT$", "wt", stdout);
-            freopen("CONOUT$", "wt", stderr);
-
-            HMENU hmenu = GetSystemMenu(_hwndConsole, FALSE);
-            if (hmenu != NULL)
-            {
-                DeleteMenu(hmenu, SC_CLOSE, MF_BYCOMMAND);
-            }
-        }
-    }
-#endif
+//#if (SIMULATOR_WITH_CONSOLE_AND_MENU > 0)
+//    // create console window
+//    bool consoleUI = false;
+//    if (_project.isShowConsole() && consoleUI)
+//    {
+//        AllocConsole();
+//        _hwndConsole = GetConsoleWindow();
+//        if (_hwndConsole != NULL)
+//        {
+//            ShowWindow(_hwndConsole, SW_SHOW);
+//            BringWindowToTop(_hwndConsole);
+//            freopen("CONOUT$", "wt", stdout);
+//            freopen("CONOUT$", "wt", stderr);
+//
+//            HMENU hmenu = GetSystemMenu(_hwndConsole, FALSE);
+//            if (hmenu != NULL)
+//            {
+//                DeleteMenu(hmenu, SC_CLOSE, MF_BYCOMMAND);
+//            }
+//        }
+//    }
+//#endif
 
     // log file
     if (_project.isWriteDebugLogToFile())
@@ -382,9 +367,6 @@ int SimulatorWin::run()
     _hwnd = glview->getWin32Window();
     player::PlayerWin::createWithHwnd(_hwnd);
     DragAcceptFiles(_hwnd, TRUE);
-    //SendMessage(_hwnd, WM_SETICON, ICON_BIG, (LPARAM)icon);
-    //SendMessage(_hwnd, WM_SETICON, ICON_SMALL, (LPARAM)icon);
-    //FreeResource(icon);
 
     auto director = Director::getInstance();
     director->setOpenGLView(glview);
@@ -402,6 +384,25 @@ int SimulatorWin::run()
         RECT rect;
         GetWindowRect(_hwnd, &rect);
         MoveWindow(_hwnd, pos.x, pos.y, rect.right - rect.left, rect.bottom - rect.top, FALSE);
+    }
+    else
+    {
+        // move glview position to center
+        extern cocos2d::Size getWinSize();
+        auto winSize = getWinSize();
+        if (winSize.width > 0 && winSize.height > 0)
+        {
+            RECT rect;
+            GetWindowRect(_hwnd, &rect);
+            int glviewSizeWidth = rect.right - rect.left;
+            int glviewSizeHeight = rect.bottom - rect.top;
+            int glviewPosX = (winSize.width - glviewSizeWidth) / 2;
+            int glviewPosY = (winSize.height - glviewSizeHeight) / 2;
+
+            MoveWindow(_hwnd, glviewPosX, glviewPosY, glviewSizeWidth, glviewSizeHeight, FALSE);
+
+        }
+
     }
 
     // path for looking Lang file, Studio Default images
@@ -634,6 +635,7 @@ void SimulatorWin::writeDebugLog(const char *log)
 
 void SimulatorWin::parseCocosProjectConfig(ProjectConfig &config)
 {
+    return;
     // get project directory
     ProjectConfig tmpConfig;
     // load project config from command line args
