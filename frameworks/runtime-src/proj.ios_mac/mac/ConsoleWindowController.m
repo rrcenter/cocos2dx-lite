@@ -64,6 +64,12 @@
     [self changeScroll];
 }
 
+- (void) setBackgroundColor:(int)r g:(int)g b:(int)b
+{
+    NSColor *color = [NSColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:1.0];
+    textView.backgroundColor = color;
+}
+
 - (void) changeScroll
 {
     BOOL scroll = [checkScroll state] == NSOnState;

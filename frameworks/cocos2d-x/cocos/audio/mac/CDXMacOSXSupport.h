@@ -41,8 +41,8 @@
 #import <AppKit/NSSound.h>
 
 enum AudioSessionProperties {
-	kAudioSessionProperty_OtherAudioIsPlaying,
-	kAudioSessionProperty_AudioRoute	
+	kCCAudioSessionProperty_OtherAudioIsPlaying,
+	kCCAudioSessionProperty_AudioRoute
 };
 #ifdef __cplusplus
 extern "C" {

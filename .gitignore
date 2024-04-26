@@ -155,3 +155,4 @@ runtime
 project.xcworkspace
 /simulator/
 /frameworks/cocos2d-x/cocos/scripting/lua-bindings/auto/api/
+xcshareddata

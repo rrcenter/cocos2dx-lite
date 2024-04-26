@@ -35,7 +35,6 @@
 #include "glfw3native.h"
 
 //#include "runtime/Runtime.h"
-#include "runtime/ConfigParser.h"
 
 #include "cocos2d.h"
 #include "scripting/lua-bindings/manual/CCLuaEngine.h"
@@ -44,6 +43,7 @@
 #include "AppEvent.h"
 #include "AppLang.h"
 
+#define CONFIG_FILE "config.json"
 
 #if (GLFW_VERSION_MAJOR >= 3) && (GLFW_VERSION_MINOR >= 1)
 #define PLAYER_SUPPORT_DROP 1
@@ -171,25 +171,6 @@ static void glfwDropFunc(GLFWwindow *window, int count, const char **files)
 
     // set project directory as search root path
     FileUtils::getInstance()->setDefaultResourceRootPath(tmpConfig.getProjectDir());
-
-    // parse config.json
-    auto parser = ConfigParser::getInstance();
-    auto configPath = tmpConfig.getProjectDir().append(CONFIG_FILE);
-    parser->readConfig(configPath);
-
-    // set information
-    config->setConsolePort(parser->getConsolePort());
-    config->setFileUploadPort(parser->getUploadPort());
-    config->setFrameSize(parser->getInitViewSize());
-    if (parser->isLanscape())
-    {
-        config->changeFrameOrientationToLandscape();
-    }
-    else
-    {
-        config->changeFrameOrientationToPortait();
-    }
-    config->setScriptFile(parser->getEntryFile());
 }
 
 - (void) updateProjectFromCommandLineArgs:(ProjectConfig*)config
@@ -265,11 +246,10 @@ static void glfwDropFunc(GLFWwindow *window, int count, const char **files)
 
     // create opengl view
     cocos2d::Size frameSize = _project.getFrameSize();
-    ConfigParser::getInstance()->setInitViewSize(frameSize);
 
     const cocos2d::Rect frameRect = cocos2d::Rect(0, 0, frameSize.width, frameSize.height);
     std::stringstream title;
-    title << "Cocos Simulator - " << ConfigParser::getInstance()->getInitViewName();
+    title << "Cocos Simulator - " << "game";
     GLViewImpl *eglView = GLViewImpl::createWithRect(title.str(), frameRect, frameScale);
 
     auto director = Director::getInstance();
@@ -510,16 +490,16 @@ static void glfwDropFunc(GLFWwindow *window, int count, const char **files)
             if (FileUtils::getInstance()->isDirectoryExist(dirPath) &&
                 FileUtils::getInstance()->isFileExist(configFilePath))
             {
-                // parse config.json
-                ConfigParser::getInstance()->readConfig(configFilePath);
-
-                project.setProjectDir(dirPath);
-                project.setScriptFile(ConfigParser::getInstance()->getEntryFile());
-                project.setWritablePath(dirPath);
-
-//                RuntimeEngine::getInstance()->setProjectConfig(project);
-//                app->setProjectConfig(project);
-//                app->reopenProject();
+//                // parse config.json
+//                ConfigParser::getInstance()->readConfig(configFilePath);
+//
+//                project.setProjectDir(dirPath);
+//                project.setScriptFile(ConfigParser::getInstance()->getEntryFile());
+//                project.setWritablePath(dirPath);
+//
+////                RuntimeEngine::getInstance()->setProjectConfig(project);
+////                app->setProjectConfig(project);
+////                app->reopenProject();
             }
         }
     });
@@ -533,6 +513,7 @@ static void glfwDropFunc(GLFWwindow *window, int count, const char **files)
         _consoleController = [[ConsoleWindowController alloc] initWithWindowNibName:@"ConsoleWindow"];
     }
     [_consoleController.window orderFrontRegardless];
+    [_consoleController setBackgroundColor:252 g:244 b:224];
 
     //set console pipe
     _pipe = [NSPipe pipe] ;

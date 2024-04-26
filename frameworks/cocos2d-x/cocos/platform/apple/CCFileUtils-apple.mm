@@ -236,6 +236,7 @@ std::string FileUtilsApple::getWritablePath() const
         return _writablePath;
     }
 
+#if 0
     // https://developer.apple.com/library/ios/documentation/FileManagement/Conceptual/FileSystemProgrammingGuide/ManagingFIlesandDirectories/ManagingFIlesandDirectories.html
 
     NSString* bundleID = [[NSBundle mainBundle] bundleIdentifier];
@@ -265,6 +266,15 @@ std::string FileUtilsApple::getWritablePath() const
     std::string strRet = [dirPath fileSystemRepresentation];
     strRet.append("/");
     return strRet;
+#else
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    std::string path = [documentsDirectory UTF8String];
+    path.append("/");
+    NSString *appName = [[[[NSBundle mainBundle] bundlePath] lastPathComponent] stringByDeletingPathExtension];
+    path.append([appName UTF8String]).append("/");
+    return path;
+#endif
 }
 
 bool FileUtilsApple::isFileExistInternal(const std::string& filePath) const

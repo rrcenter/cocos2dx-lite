@@ -37,6 +37,7 @@
 @property (assign) IBOutlet NSTextView *textView;
 
 - (void) trace:(NSString*)msg;
+- (void) setBackgroundColor:(int)r g:(int)g b:(int)b;
 - (IBAction)onClear:(id)sender;
 - (IBAction)onScrollChange:(id)sender;
 - (IBAction)onTopChange:(id)sender;

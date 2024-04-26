@@ -433,7 +433,6 @@
 			);
 			dependencies = (
 				9FEE0E441A5FC95000FEA1B0 /* PBXTargetDependency */,
-				9FF505C11A5F0F0900AFDA55 /* PBXTargetDependency */,
 				152A34B9199CE758004B68DC /* PBXTargetDependency */,
 				C0A2F04118975FF80072A7AB /* PBXTargetDependency */,
 			);
@@ -476,6 +475,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 				"zh-Hans",
@@ -658,10 +658,6 @@
 			name = libsimulator_iOS;
 			targetProxy = 9FF504881A5E8B4C00AFDA55 /* PBXContainerItemProxy */;
 		};
-		9FF505C11A5F0F0900AFDA55 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = libsimulator;
-		};
 		C0A2F04118975FF80072A7AB /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "cocos2dx Mac";
@@ -703,7 +699,7 @@
 				);
 				INFOPLIST_FILE = mac/Info.plist;
 				LIBRARY_SEARCH_PATHS = "";
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				OTHER_LDFLAGS = (
 					"-image_base",
 					100000000,
@@ -714,6 +710,7 @@
 				);
 				SDKROOT = macosx;
 				USER_HEADER_SEARCH_PATHS = "$(inherited) $(SRCROOT)/../../cocos2d-x/external/glfw3/include/mac $(_COCOS_HEADER_MAC_BEGIN) $(_COCOS_HEADER_MAC_END)";
+				VALID_ARCHS = x86_64;
 			};
 			name = Debug;
 		};
@@ -723,6 +720,7 @@
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				COMBINE_HIDPI_IMAGES = YES;
+				"CONFIGURATION_BUILD_DIR[arch=*]" = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = mac/Prefix.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -736,7 +734,7 @@
 				);
 				INFOPLIST_FILE = mac/Info.plist;
 				LIBRARY_SEARCH_PATHS = "";
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				OTHER_LDFLAGS = (
 					"-image_base",
 					100000000,
@@ -747,6 +745,7 @@
 				);
 				SDKROOT = macosx;
 				USER_HEADER_SEARCH_PATHS = "$(inherited) $(SRCROOT)/../../cocos2d-x/external/glfw3/include/mac $(_COCOS_HEADER_MAC_BEGIN) $(_COCOS_HEADER_MAC_END)";
+				VALID_ARCHS = x86_64;
 			};
 			name = Release;
 		};

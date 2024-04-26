@@ -7,11 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9F2F21C71A635FFF006B8BF1 /* Runtime_ios-mac.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9F2F21C61A635FFF006B8BF1 /* Runtime_ios-mac.mm */; };
-		9F2F21C81A635FFF006B8BF1 /* Runtime_ios-mac.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9F2F21C61A635FFF006B8BF1 /* Runtime_ios-mac.mm */; };
-		9FB6389A1A635BA300AAEC43 /* ConfigParser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FB6384E1A635BA300AAEC43 /* ConfigParser.cpp */; };
-		9FB6389B1A635BA300AAEC43 /* ConfigParser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FB6384E1A635BA300AAEC43 /* ConfigParser.cpp */; };
-		9FB6389C1A635BA300AAEC43 /* ConfigParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 9FB6384F1A635BA300AAEC43 /* ConfigParser.h */; };
 		9FD6FC311A5D281D0028EDC6 /* cocos2dx_extra.h in Headers */ = {isa = PBXBuildFile; fileRef = 9FD6FC0E1A5D281D0028EDC6 /* cocos2dx_extra.h */; };
 		9FD6FC321A5D281D0028EDC6 /* CCHTTPRequest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FD6FC101A5D281D0028EDC6 /* CCHTTPRequest.cpp */; };
 		9FD6FC331A5D281D0028EDC6 /* CCHTTPRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 9FD6FC111A5D281D0028EDC6 /* CCHTTPRequest.h */; };
@@ -74,11 +69,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		9F2F21C61A635FFF006B8BF1 /* Runtime_ios-mac.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "Runtime_ios-mac.mm"; sourceTree = "<group>"; };
 		9F7214351A5C271F00DAED06 /* libsimulator Mac.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libsimulator Mac.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F7214851A5C28BA00DAED06 /* libsimulator iOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libsimulator iOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		9FB6384E1A635BA300AAEC43 /* ConfigParser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ConfigParser.cpp; sourceTree = "<group>"; };
-		9FB6384F1A635BA300AAEC43 /* ConfigParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfigParser.h; sourceTree = "<group>"; };
 		9FD6FC0E1A5D281D0028EDC6 /* cocos2dx_extra.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cocos2dx_extra.h; sourceTree = "<group>"; };
 		9FD6FC101A5D281D0028EDC6 /* CCHTTPRequest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCHTTPRequest.cpp; sourceTree = "<group>"; };
 		9FD6FC111A5D281D0028EDC6 /* CCHTTPRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCHTTPRequest.h; sourceTree = "<group>"; };
@@ -161,19 +153,9 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		9FB6384D1A635BA300AAEC43 /* runtime */ = {
-			isa = PBXGroup;
-			children = (
-				9FB6384E1A635BA300AAEC43 /* ConfigParser.cpp */,
-				9FB6384F1A635BA300AAEC43 /* ConfigParser.h */,
-			);
-			path = runtime;
-			sourceTree = "<group>";
-		};
 		9FD6FC0D1A5D281D0028EDC6 /* lib */ = {
 			isa = PBXGroup;
 			children = (
-				9FB6384D1A635BA300AAEC43 /* runtime */,
 				9FF504981A5EA75D00AFDA55 /* AppEvent.cpp */,
 				9FF504991A5EA75D00AFDA55 /* AppEvent.h */,
 				9FF5049A1A5EA75D00AFDA55 /* AppLang.cpp */,
@@ -226,7 +208,6 @@
 		9FD6FC141A5D281D0028EDC6 /* mac */ = {
 			isa = PBXGroup;
 			children = (
-				9F2F21C61A635FFF006B8BF1 /* Runtime_ios-mac.mm */,
 				9FD6FC501A5D2A380028EDC6 /* DeviceEx-mac.mm */,
 				9FD6FC511A5D2A380028EDC6 /* openudid */,
 				9FD6FC541A5D2A380028EDC6 /* PlayerEditBoxServiceMac.h */,
@@ -275,7 +256,6 @@
 				9FD6FC331A5D281D0028EDC6 /* CCHTTPRequest.h in Headers */,
 				9FD6FC631A5D2A380028EDC6 /* PlayerEditBoxServiceMac.h in Headers */,
 				9FD6FC341A5D281D0028EDC6 /* CCHTTPRequestDelegate.h in Headers */,
-				9FB6389C1A635BA300AAEC43 /* ConfigParser.h in Headers */,
 				9FF504B21A5EA75D00AFDA55 /* PlayerEditBoxServiceProtocol.h in Headers */,
 				9FD6FC691A5D2A380028EDC6 /* PlayerMenuServiceMac.h in Headers */,
 				9FF504C11A5EA75D00AFDA55 /* PlayerUtils.h in Headers */,
@@ -361,6 +341,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 			);
 			mainGroup = 9F72142C1A5C271F00DAED06;
@@ -379,7 +360,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9FB6389A1A635BA300AAEC43 /* ConfigParser.cpp in Sources */,
 				9FD6FC6C1A5D2A380028EDC6 /* PlayerMessageBoxServiceMac.mm in Sources */,
 				9FF504C01A5EA75D00AFDA55 /* PlayerUtils.cpp in Sources */,
 				9FF504BE1A5EA75D00AFDA55 /* PlayerTaskServiceProtocol.cpp in Sources */,
@@ -388,7 +368,6 @@
 				9FD6FC681A5D2A380028EDC6 /* PlayerMac.mm in Sources */,
 				9FD6FC6A1A5D2A380028EDC6 /* PlayerMenuServiceMac.mm in Sources */,
 				9FD6FC641A5D2A380028EDC6 /* PlayerEditBoxServiceMac.mm in Sources */,
-				9F2F21C71A635FFF006B8BF1 /* Runtime_ios-mac.mm in Sources */,
 				9FF504B51A5EA75D00AFDA55 /* PlayerMenuServiceProtocol.cpp in Sources */,
 				9FF504AD1A5EA75D00AFDA55 /* AppEvent.cpp in Sources */,
 				9FD6FC601A5D2A380028EDC6 /* DeviceEx-mac.mm in Sources */,
@@ -408,8 +387,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				9FD6FC4F1A5D28260028EDC6 /* SimulatorConfig.cpp in Sources */,
-				9F2F21C81A635FFF006B8BF1 /* Runtime_ios-mac.mm in Sources */,
-				9FB6389B1A635BA300AAEC43 /* ConfigParser.cpp in Sources */,
 				9FD6FC4E1A5D28260028EDC6 /* ProjectConfig.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -531,8 +508,9 @@
 					"$(SRCROOT)/../lib/protobuf-lite",
 				);
 				INFOPLIST_PREFIX_HEADER = "";
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				VALID_ARCHS = "i386 $(ARCHS_STANDARD_64_BIT)";
+				VALID_ARCHS = x86_64;
 			};
 			name = Debug;
 		};
@@ -562,8 +540,9 @@
 					"$(SRCROOT)/../lib/protobuf-lite",
 				);
 				INFOPLIST_PREFIX_HEADER = "";
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				VALID_ARCHS = "i386 $(ARCHS_STANDARD_64_BIT)";
+				VALID_ARCHS = x86_64;
 			};
 			name = Release;
 		};
