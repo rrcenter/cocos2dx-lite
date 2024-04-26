@@ -2,9 +2,9 @@ LOCAL_PATH := $(call my-dir)
 
 include $(CLEAR_VARS)
 
-LOCAL_MODULE := cocos2dlua_shared
+LOCAL_MODULE := unreal_shared
 
-LOCAL_MODULE_FILENAME := libcocos2dlua
+LOCAL_MODULE_FILENAME := libunreal
 
 LOCAL_SRC_FILES := \
 ../../../Classes/AppDelegate.cpp \
