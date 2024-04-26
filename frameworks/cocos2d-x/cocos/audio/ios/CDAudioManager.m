@@ -335,10 +335,11 @@ static BOOL configured = FALSE;
 #if defined(CC_TARGET_OS_TVOS)
     return false;
 #else
-    UInt32 isPlaying = 0;
-    UInt32 varSize = sizeof(isPlaying);
-    AudioSessionGetProperty (kCCAudioSessionProperty_OtherAudioIsPlaying, &varSize, &isPlaying);
-    return (isPlaying != 0);
+//    UInt32 isPlaying = 0;
+//    UInt32 varSize = sizeof(isPlaying);
+//    AudioSessionGetProperty (kCCAudioSessionProperty_OtherAudioIsPlaying, &varSize, &isPlaying);
+//    return (isPlaying != 0);
+    return [[AVAudioSession sharedInstance] isOtherAudioPlaying];
 #endif
 }
 
