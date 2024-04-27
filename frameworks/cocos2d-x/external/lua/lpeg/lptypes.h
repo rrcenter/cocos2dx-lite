@@ -1,7 +1,6 @@
 /*
-** $Id: lptypes.h,v 1.11 2015/03/04 16:38:00 roberto Exp $
 ** LPeg - PEG pattern matching for Lua
-** Copyright 2007-2014, Lua.org & PUC-Rio  (see 'lpeg.html' for license)
+** Copyright 2007-2023, Lua.org & PUC-Rio  (see 'lpeg.html' for license)
 ** written by Roberto Ierusalimschy
 */
 
@@ -9,17 +8,14 @@
 #define lptypes_h
 
 
-#if !defined(LPEG_DEBUG) && !defined(NDEBUG)
-#define NDEBUG
-#endif
-
 #include <assert.h>
 #include <limits.h>
+#include <string.h>
 
 #include "lua.h"
 
 
-#define VERSION         "0.12.2"
+#define VERSION         "1.1.0"
 
 
 #define PATTERN_T	"lpeg-pattern"
@@ -27,35 +23,37 @@
 
 
 /*
-** compatibility with Lua 5.2
+** compatibility with Lua 5.1
 */
-#if (LUA_VERSION_NUM >= 502)
+#if (LUA_VERSION_NUM == 501)
 
-#undef lua_equal
-#define lua_equal(L,idx1,idx2)  lua_compare(L,(idx1),(idx2),LUA_OPEQ)
+#define lp_equal	lua_equal
 
-#undef lua_getfenv
-#define lua_getfenv	lua_getuservalue
-#undef lua_setfenv
-#define lua_setfenv	lua_setuservalue
+#define lua_getuservalue	lua_getfenv
+#define lua_setuservalue	lua_setfenv
 
-#undef lua_objlen
-#define lua_objlen	lua_rawlen
+#define lua_rawlen		lua_objlen
 
-#undef luaL_register
-#define luaL_register(L,n,f) \
-	{ if ((n) == NULL) luaL_setfuncs(L,f,0); else luaL_newlib(L,f); }
+#define luaL_setfuncs(L,f,n)	luaL_register(L,NULL,f)
+#define luaL_newlib(L,f)	luaL_register(L,"lpeg",f)
 
+typedef size_t lua_Unsigned;
+
+#endif
+
+
+#if !defined(lp_equal)
+#define lp_equal(L,idx1,idx2)  lua_compare(L,(idx1),(idx2),LUA_OPEQ)
 #endif
 
 
 /* default maximum size for call/backtrack stack */
 #if !defined(MAXBACK)
-#define MAXBACK         100
+#define MAXBACK         400
 #endif
 
 
-/* maximum number of rules in a grammar */
+/* maximum number of rules in a grammar (limited by 'unsigned short') */
 #if !defined(MAXRULES)
 #define MAXRULES        1000
 #endif
@@ -85,6 +83,8 @@
 
 typedef unsigned char byte;
 
+typedef unsigned int uint;
+
 
 #define BITSPERCHAR		8
 
@@ -100,11 +100,11 @@ typedef struct Charset {
 
 #define loopset(v,b)    { int v; for (v = 0; v < CHARSETSIZE; v++) {b;} }
 
-/* access to charset */
-#define treebuffer(t)      ((byte *)((t) + 1))
+#define fillset(s,c)	memset(s,c,CHARSETSIZE)
+#define clearset(s)	fillset(s,0)
 
 /* number of slots needed for 'n' bytes */
-#define bytes2slots(n)  (((n) - 1) / sizeof(TTree) + 1)
+#define bytes2slots(n)  (((n) - 1u) / (uint)sizeof(TTree) + 1u)
 
 /* set 'b' bit in charset 'cs' */
 #define setchar(cs,b)   ((cs)[(b) >> 3] |= (1 << ((b) & 7)))
@@ -114,8 +114,8 @@ typedef struct Charset {
 ** in capture instructions, 'kind' of capture and its offset are
 ** packed in field 'aux', 4 bits for each
 */
-#define getkind(op)		((op)->i.aux & 0xF)
-#define getoff(op)		(((op)->i.aux >> 4) & 0xF)
+#define getkind(op)		((op)->i.aux1 & 0xF)
+#define getoff(op)		(((op)->i.aux1 >> 4) & 0xF)
 #define joinkindoff(k,o)	((k) | ((o) << 4))
 
 #define MAXOFF		0xF
@@ -130,19 +130,21 @@ typedef struct Charset {
 #define MAXPATTSIZE	(SHRT_MAX - 10)
 
 
-/* size (in elements) for an instruction plus extra l bytes */
-#define instsize(l)  (((l) + sizeof(Instruction) - 1)/sizeof(Instruction) + 1)
+/* size (in instructions) for l bytes (l > 0) */
+#define instsize(l) ((int)(((l) + (uint)sizeof(Instruction) - 1u) \
+			/ (uint)sizeof(Instruction)))
 
 
 /* size (in elements) for a ISet instruction */
-#define CHARSETINSTSIZE		instsize(CHARSETSIZE)
+#define CHARSETINSTSIZE		(1 + instsize(CHARSETSIZE))
 
 /* size (in elements) for a IFunc instruction */
 #define funcinstsize(p)		((p)->i.aux + 2)
 
 
 
-#define testchar(st,c)	(((int)(st)[((c) >> 3)] & (1 << ((c) & 7))))
+#define testchar(st,c)	((((uint)(st)[((c) >> 3)]) >> ((c) & 7)) & 1)
 
 
 #endif
+

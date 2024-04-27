@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0DB6E8312BDCE48F00C6A019 /* lpcset.c in Sources */ = {isa = PBXBuildFile; fileRef = 0DB6E82F2BDCE48F00C6A019 /* lpcset.c */; };
+		0DB6E8322BDCE48F00C6A019 /* lpcset.c in Sources */ = {isa = PBXBuildFile; fileRef = 0DB6E82F2BDCE48F00C6A019 /* lpcset.c */; };
+		0DB6E8332BDCE48F00C6A019 /* lpcset.h in Headers */ = {isa = PBXBuildFile; fileRef = 0DB6E8302BDCE48F00C6A019 /* lpcset.h */; };
+		0DB6E8342BDCE48F00C6A019 /* lpcset.h in Headers */ = {isa = PBXBuildFile; fileRef = 0DB6E8302BDCE48F00C6A019 /* lpcset.h */; };
 		150906F019D556C5002C4D97 /* lua_cocos2dx_audioengine_auto.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E2BDB0319C5E5FE0055CDCD /* lua_cocos2dx_audioengine_auto.cpp */; };
 		150906F119D556C8002C4D97 /* lua_cocos2dx_audioengine_auto.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3E2BDB0419C5E5FE0055CDCD /* lua_cocos2dx_audioengine_auto.hpp */; };
 		150906F219D556CE002C4D97 /* lua_cocos2dx_audioengine_manual.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E2BDB0819C5E6100055CDCD /* lua_cocos2dx_audioengine_manual.cpp */; };
@@ -468,6 +472,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0DB6E82F2BDCE48F00C6A019 /* lpcset.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lpcset.c; sourceTree = "<group>"; };
+		0DB6E8302BDCE48F00C6A019 /* lpcset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lpcset.h; sourceTree = "<group>"; };
 		1540AF55193EC30500717D8E /* xxtea.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = xxtea.cpp; sourceTree = "<group>"; };
 		1540AF56193EC30500717D8E /* xxtea.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = xxtea.h; sourceTree = "<group>"; };
 		15415A8719A71A53004F1E71 /* auxiliar.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = auxiliar.c; sourceTree = "<group>"; };
@@ -1041,17 +1047,19 @@
 		845BF3FD218B47BA00D0FBE4 /* lpeg */ = {
 			isa = PBXGroup;
 			children = (
-				845BF3FE218B47BA00D0FBE4 /* lpprint.c */,
-				845BF3FF218B47BA00D0FBE4 /* lpvm.c */,
-				845BF400218B47BA00D0FBE4 /* lptypes.h */,
 				845BF401218B47BA00D0FBE4 /* lpcap.c */,
-				845BF402218B47BA00D0FBE4 /* lptree.h */,
-				845BF403218B47BA00D0FBE4 /* lpcode.h */,
 				845BF404218B47BA00D0FBE4 /* lpcap.h */,
-				845BF405218B47BA00D0FBE4 /* lpvm.h */,
+				845BF408218B47BA00D0FBE4 /* lpcode.c */,
+				845BF403218B47BA00D0FBE4 /* lpcode.h */,
+				0DB6E82F2BDCE48F00C6A019 /* lpcset.c */,
+				0DB6E8302BDCE48F00C6A019 /* lpcset.h */,
+				845BF3FE218B47BA00D0FBE4 /* lpprint.c */,
 				845BF406218B47BA00D0FBE4 /* lpprint.h */,
 				845BF407218B47BA00D0FBE4 /* lptree.c */,
-				845BF408218B47BA00D0FBE4 /* lpcode.c */,
+				845BF402218B47BA00D0FBE4 /* lptree.h */,
+				845BF400218B47BA00D0FBE4 /* lptypes.h */,
+				845BF3FF218B47BA00D0FBE4 /* lpvm.c */,
+				845BF405218B47BA00D0FBE4 /* lpvm.h */,
 			);
 			name = lpeg;
 			path = ../../../../external/lua/lpeg;
@@ -1278,6 +1286,7 @@
 				845BF498218B47BB00D0FBE4 /* map.h in Headers */,
 				9FA752021D31EDAF00F05F08 /* fpconv.h in Headers */,
 				9F296E991DDD7DAA006DF478 /* lua_cocos2dx_csloader_manual.hpp in Headers */,
+				0DB6E8332BDCE48F00C6A019 /* lpcset.h in Headers */,
 				15C1C2D5198749BC00A46ACC /* LuaOpengl.h in Headers */,
 				845BF458218B47BB00D0FBE4 /* lptypes.h in Headers */,
 				845BF464218B47BB00D0FBE4 /* lpprint.h in Headers */,
@@ -1390,6 +1399,7 @@
 				845BF499218B47BB00D0FBE4 /* map.h in Headers */,
 				9FA752031D31EDAF00F05F08 /* fpconv.h in Headers */,
 				9F296E9A1DDD7DAA006DF478 /* lua_cocos2dx_csloader_manual.hpp in Headers */,
+				0DB6E8342BDCE48F00C6A019 /* lpcset.h in Headers */,
 				15415AD419A71A53004F1E71 /* timeout.h in Headers */,
 				845BF459218B47BB00D0FBE4 /* lptypes.h in Headers */,
 				845BF465218B47BB00D0FBE4 /* lpprint.h in Headers */,
@@ -1539,6 +1549,7 @@
 				845BF4AA218B47BB00D0FBE4 /* varint.c in Sources */,
 				15C1C2E219874BA100A46ACC /* LuaBasicConversions.cpp in Sources */,
 				84F9EFF12264CAD30035A36F /* sproto.c in Sources */,
+				0DB6E8312BDCE48F00C6A019 /* lpcset.c in Sources */,
 				F4FE0D5719ECD00100B8B12B /* luasocket_scripts.c in Sources */,
 				15415AC519A71A53004F1E71 /* select.c in Sources */,
 				15415AD919A71A53004F1E71 /* unix.c in Sources */,
@@ -1670,6 +1681,7 @@
 				845BF4AB218B47BB00D0FBE4 /* varint.c in Sources */,
 				15EFA637198B328B000C57D3 /* LuaBasicConversions.cpp in Sources */,
 				84F9EFF22264CAD30035A36F /* sproto.c in Sources */,
+				0DB6E8322BDCE48F00C6A019 /* lpcset.c in Sources */,
 				15EFA638198B328B000C57D3 /* CCLuaObjcBridge.mm in Sources */,
 				155C7E1719A71CAF00F08B25 /* lua_xml_http_request.cpp in Sources */,
 				15415ACE19A71A53004F1E71 /* tcp.c in Sources */,

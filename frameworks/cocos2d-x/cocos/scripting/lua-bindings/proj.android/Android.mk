@@ -96,6 +96,7 @@ LOCAL_SRC_FILES += ../../../../external/lua/crypto/CCCrypto.cpp
 
 LOCAL_SRC_FILES += ../../../../external/lua/lpeg/lpcap.c \
                     ../../../../external/lua/lpeg/lpcode.c \
+                    ../../../../external/lua/lpeg/lpcset.c \
                     ../../../../external/lua/lpeg/lpprint.c \
                     ../../../../external/lua/lpeg/lptree.c \
                     ../../../../external/lua/lpeg/lpvm.c
