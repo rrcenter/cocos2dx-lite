@@ -405,9 +405,9 @@ static BOOL configured = FALSE;
     if ((self = [super init])) {
         
         //Initialise the audio session 
-        AVAudioSession* session = [AVAudioSession sharedInstance];
-        session.delegate = self;
-    
+        //AVAudioSession* session = [AVAudioSession sharedInstance];
+        //session.delegate = self;
+        [[AVAudioSession sharedInstance] setActive:YES error:nil];
         _mode = mode;
         backgroundMusicCompletionSelector = nil;
         _isObservingAppEvents = FALSE;
@@ -479,28 +479,8 @@ static BOOL configured = FALSE;
 #if TARGET_IPHONE_SIMULATOR
     //Calling audio route stuff on the simulator causes problems
     return NO;
-#else    
-    CFStringRef newAudioRoute;
-    UInt32 propertySize = sizeof (CFStringRef);
-    
-    AudioSessionGetProperty (
-                             kAudioSessionProperty_AudioRoute,
-                             &propertySize,
-                             &newAudioRoute
-                             );
-    
-    if (newAudioRoute == NULL) {
-        //Don't expect this to happen but playing safe otherwise a null in the CFStringCompare will cause a crash
-        return YES;
-    } else {    
-        CFComparisonResult newDeviceIsMuted =    CFStringCompare (
-                                                                 newAudioRoute,
-                                                                 (CFStringRef) @"",
-                                                                 0
-                                                                 );
-        
-        return (newDeviceIsMuted == kCFCompareEqualTo);
-    }    
+#else
+    return NO;
 #endif
 }    
 
