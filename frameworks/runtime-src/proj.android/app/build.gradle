@@ -16,7 +16,7 @@ android {
         externalNativeBuild {
             if (PROP_BUILD_TYPE == 'ndk-build') {
                 ndkBuild {
-                    targets 'cocos2dlua'
+                    targets 'game'
                     arguments 'NDK_TOOLCHAIN_VERSION=clang'
                     arguments '-j' + Runtime.runtime.availableProcessors()
 

@@ -69,7 +69,7 @@ public:
     ProjectConfig();
 
     static const int DEFAULT_WIDTH = 640;
-    static const int DEFAULT_HEIGHT = 960;
+    static const int DEFAULT_HEIGHT = 1136;
 
     string getProjectDir() const;
     void setProjectDir(const string &projectDir);

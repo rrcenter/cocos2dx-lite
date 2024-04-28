@@ -40,7 +40,7 @@ AppPackages
 .vs/
 
 # Ignore files build by ndk and eclipse
-libs/
+#libs/
 bin/
 obj/
 gen/
@@ -159,3 +159,4 @@ frameworks/cocos2d-x/cocos/scripting/lua-bindings/proj.ios_mac/build
 frameworks/cocos2d-x/tools/simulator/libsimulator/proj.ios_mac/build
 game-desktop.app
 frameworks/cocos2d-x/cocos/platform/android/libcocos2dx/build/
+xcshareddata

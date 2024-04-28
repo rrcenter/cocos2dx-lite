@@ -21,9 +21,21 @@ LOCAL_EXPORT_LDLIBS := -lGLESv2 \
                        -llog \
                        -landroid
 
-LUA_STATIC_LIB := ext_luajit
-LUA_IMPORT_PATH := lua/luajit/prebuilt/android
-LUA_INCLUDE_PATH := $(LOCAL_PATH)/../../../../external/lua/luajit/include
+# luajit
+#LUA_STATIC_LIB := luajit_static
+#LUA_IMPORT_PATH := lua/luajit/prebuilt/android
+#LUA_INCLUDE_PATH := $(LOCAL_PATH)/../../../../external/lua/luajit/include
+#
+#LOCAL_STATIC_LIBRARIES := $(LUA_STATIC_LIB)
+# luajit end
+
+# lua 5.1.x
+LUA_STATIC_LIB := lua_static
+LUA_IMPORT_PATH := lua/lua/
+LUA_INCLUDE_PATH := $(LOCAL_PATH)/../../../../external/lua/lua/
+
+LOCAL_STATIC_LIBRARIES := $(LUA_STATIC_LIB)
+# lua 5.1.x
 
 LOCAL_STATIC_LIBRARIES := $(LUA_STATIC_LIB)
 
@@ -66,7 +78,7 @@ LOCAL_SRC_FILES := ../manual/CCLuaBridge.cpp \
           ../manual/audioengine/lua_cocos2dx_audioengine_manual.cpp
 
 #Component
-LOCAL_SRC_FILES += ../manual/CCComponentLua.cpp \
+LOCAL_SRC_FILES += ../manual/CCComponentLua.cpp
 
 #3d
 LOCAL_SRC_FILES += ../manual/3d/lua_cocos2dx_3d_manual.cpp \
@@ -196,5 +208,7 @@ LOCAL_STATIC_LIBRARIES := cc_static
 
 include $(BUILD_STATIC_LIBRARY)
 
-$(call import-module, lua/luajit/prebuilt/android)
+$(call import-add-path,$(LOCAL_PATH)/../../../..)
+$(call import-add-path,$(LOCAL_PATH)/../../../../external)
+$(call import-module,$(LUA_IMPORT_PATH))
 $(call import-module, cocos)

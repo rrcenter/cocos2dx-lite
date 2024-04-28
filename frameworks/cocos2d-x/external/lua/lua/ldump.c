@@ -5,6 +5,7 @@
 */
 
 #include <stddef.h>
+#include <assert.h>
 
 #if __APPLE__
     #if TARGET_OS_IPHONE

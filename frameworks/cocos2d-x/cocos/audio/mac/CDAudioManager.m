@@ -324,10 +324,11 @@ static BOOL configured = FALSE;
 }    
 
 -(BOOL) isOtherAudioPlaying {
-    UInt32 isPlaying = 0;
-    UInt32 varSize = sizeof(isPlaying);
-    AudioSessionGetProperty (kAudioSessionProperty_OtherAudioIsPlaying, &varSize, &isPlaying);
-    return (isPlaying != 0);
+    //    UInt32 isPlaying = 0;
+    //    UInt32 varSize = sizeof(isPlaying);
+    //    AudioSessionGetProperty (kCCAudioSessionProperty_OtherAudioIsPlaying, &varSize, &isPlaying);
+    //    return (isPlaying != 0);
+        return [[AVAudioSession sharedInstance] isOtherAudioPlaying];
 }
 
 -(void) setMode:(tAudioManagerMode) mode {
