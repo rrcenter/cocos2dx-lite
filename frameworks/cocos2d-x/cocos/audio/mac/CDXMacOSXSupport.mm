@@ -164,7 +164,7 @@ OSStatus AudioSessionGetProperty(UInt32 inID, UInt32 *ioDataSize, void *outData)
 /**
  A "do nothing" implementation - AVAudioSession is not really relevant to Mac OS X.
  */
-@implementation AVAudioSession
+@implementation CCAVAudioSession
 @synthesize delegate, category, preferredHardwareSampleRate, preferredIOBufferDuration;
 @synthesize inputIsAvailable, currentHardwareSampleRate, currentHardwareInputNumberOfChannels, currentHardwareOutputNumberOfChannels;
 

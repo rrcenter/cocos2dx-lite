@@ -182,7 +182,7 @@ enum {
 	AVAudioSessionSetActiveFlags_NotifyOthersOnDeactivation = 1
 };
 
-@interface AVAudioSession : NSObject {
+@interface CCAVAudioSession : NSObject {
 	
 	// properties
 	NSString* category;

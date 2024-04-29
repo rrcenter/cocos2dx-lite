@@ -247,7 +247,7 @@ static BOOL configured = FALSE;
 
 -(BOOL) audioSessionSetActive:(BOOL) active {
     NSError *activationError = nil;
-    if ([[AVAudioSession sharedInstance] setActive:active error:&activationError]) {
+    if ([[CCAVAudioSession sharedInstance] setActive:active error:&activationError]) {
         _audioSessionActive = active;
         CDLOGINFO(@"Denshion::CDAudioManager - Audio session set active %i succeeded", active); 
         return YES;
@@ -260,7 +260,7 @@ static BOOL configured = FALSE;
 
 -(BOOL) audioSessionSetCategory:(NSString*) category {
     NSError *categoryError = nil;
-    if ([[AVAudioSession sharedInstance] setCategory:category error:&categoryError]) {
+    if ([[CCAVAudioSession sharedInstance] setCategory:category error:&categoryError]) {
         CDLOGINFO(@"Denshion::CDAudioManager - Audio session set category %@ succeeded", category); 
         return YES;
     } else {
@@ -328,7 +328,7 @@ static BOOL configured = FALSE;
     //    UInt32 varSize = sizeof(isPlaying);
     //    AudioSessionGetProperty (kCCAudioSessionProperty_OtherAudioIsPlaying, &varSize, &isPlaying);
     //    return (isPlaying != 0);
-        return [[AVAudioSession sharedInstance] isOtherAudioPlaying];
+        return [[CCAVAudioSession sharedInstance] isOtherAudioPlaying];
 }
 
 -(void) setMode:(tAudioManagerMode) mode {
@@ -408,7 +408,7 @@ static BOOL configured = FALSE;
         //Initialise the audio session 
         //AVAudioSession* session = [AVAudioSession sharedInstance];
         //session.delegate = self;
-        [[AVAudioSession sharedInstance] setActive:YES error:nil];
+        [[CCAVAudioSession sharedInstance] setActive:YES error:nil];
         _mode = mode;
         backgroundMusicCompletionSelector = nil;
         _isObservingAppEvents = FALSE;
