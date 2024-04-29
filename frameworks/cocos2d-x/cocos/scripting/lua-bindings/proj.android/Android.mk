@@ -77,6 +77,61 @@ LOCAL_SRC_FILES := ../manual/CCLuaBridge.cpp \
           ../auto/lua_cocos2dx_audioengine_auto.cpp \
           ../manual/audioengine/lua_cocos2dx_audioengine_manual.cpp
 
+## 3rd lua libs >
+# cjson
+LOCAL_CJSON_SRC_FILES := ../../../../external/lua/cjson/fpconv.c \
+                         ../../../../external/lua/cjson/lua_cjson.c \
+                         ../../../../external/lua/cjson/strbuf.c
+
+# lpack
+LOCAL_SRC_FILES += ../../../../external/lua/lpack/lpack.c
+
+# lfs
+LOCAL_SRC_FILES += ../../../../external/lua/lfs/lfs.c
+
+# lsocket
+LOCAL_SRC_FILES += ../../../../external/lua/lsocket/lsocket.c
+
+# sproto
+LOCAL_SRC_FILES += ../../../../external/lua/sproto/sproto.c \
+                   ../../../../external/lua/sproto/lsproto.c
+
+# crypto
+LOCAL_SRC_FILES += ../../../../external/lua/crypto/CCCrypto.cpp
+
+# lpeg
+
+LOCAL_SRC_FILES += ../../../../external/lua/lpeg/lpcap.c \
+                    ../../../../external/lua/lpeg/lpcode.c \
+                    ../../../../external/lua/lpeg/lpcset.c \
+                    ../../../../external/lua/lpeg/lpprint.c \
+                    ../../../../external/lua/lpeg/lptree.c \
+                    ../../../../external/lua/lpeg/lpvm.c
+
+# pbc
+LOCAL_SRC_FILES += ../../../../external/lua/pbc/src/alloc.c \
+                   ../../../../external/lua/pbc/src/array.c \
+                   ../../../../external/lua/pbc/src/bootstrap.c \
+                   ../../../../external/lua/pbc/src/context.c \
+                   ../../../../external/lua/pbc/src/decode.c \
+                   ../../../../external/lua/pbc/src/map.c \
+                   ../../../../external/lua/pbc/src/pattern.c \
+                   ../../../../external/lua/pbc/src/proto.c \
+                   ../../../../external/lua/pbc/src/register.c \
+                   ../../../../external/lua/pbc/src/rmessage.c \
+                   ../../../../external/lua/pbc/src/stringpool.c \
+                   ../../../../external/lua/pbc/src/varint.c \
+                   ../../../../external/lua/pbc/src/wmessage.c \
+                   ../../../../external/lua/pbc/src/pbc-lua.c
+
+# bit
+LOCAL_SRC_FILES += ../../../../external/lua/LuaBitOp/bit.c
+
+LOCAL_SRC_FILES += $(LOCAL_CJSON_SRC_FILES)
+
+LOCAL_SRC_FILES += ../../../../external/lua/lua_extensions.c
+## 3rd lua libs <
+
 #Component
 LOCAL_SRC_FILES += ../manual/CCComponentLua.cpp
 
@@ -90,7 +145,6 @@ LOCAL_SRC_FILES += ../manual/cocosdenshion/lua_cocos2dx_cocosdenshion_manual.cpp
 
 #network
 LOCAL_SRC_FILES += ../manual/network/lua_cocos2dx_network_manual.cpp \
-                   ../manual/network/lua_extensions.c \
                    ../manual/network/lua_downloader.cpp \
                    ../manual/network/Lua_web_socket.cpp \
                    ../manual/network/lua_xml_http_request.cpp \
@@ -111,10 +165,10 @@ LOCAL_SRC_FILES += ../manual/network/lua_cocos2dx_network_manual.cpp \
                    ../../../../external/lua/luasocket/unix.c \
                    ../../../../external/lua/luasocket/usocket.c
 
-#cjson
-LOCAL_SRC_FILES +=  ../../../../external/lua/cjson/lua_cjson.c \
-                    ../../../../external/lua/cjson/fpconv.c \
-                    ../../../../external/lua/cjson/strbuf.c
+# #cjson
+# LOCAL_SRC_FILES +=  ../../../../external/lua/cjson/lua_cjson.c \
+#                     ../../../../external/lua/cjson/fpconv.c \
+#                     ../../../../external/lua/cjson/strbuf.c
 
 #cocosbuilder
 LOCAL_SRC_FILES += ../manual/cocosbuilder/lua_cocos2dx_cocosbuilder_manual.cpp \
