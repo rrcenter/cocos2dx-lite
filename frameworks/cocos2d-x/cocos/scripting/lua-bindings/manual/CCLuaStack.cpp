@@ -34,6 +34,7 @@ extern "C" {
 #include "lualib.h"
 #include "lauxlib.h"
 }
+#include "external/lua/lua_extensions.h"
 
 #include "scripting/lua-bindings/manual/Cocos2dxLuaLoader.h"
 
@@ -138,11 +139,12 @@ bool LuaStack::init()
     // Register our version of the global "print" function
     const luaL_Reg global_functions [] = {
         {"print", lua_print},
-        {"release_print",lua_release_print},
+        {"release_print", lua_release_print},
         {nullptr, nullptr}
     };
     luaL_register(_state, "_G", global_functions);
 
+    luaopen_lua_extensions(_state);
     g_luaType.clear();
     register_all_cocos2dx(_state);
     tolua_opengl_open(_state);
