@@ -38,6 +38,10 @@ end
 
 local function main()
     require "config"
+    if DEBUG then
+        -- require("LuaPanda").setLogLevel(0).start("127.0.0.1", 8818);
+    end
+
     require "cocos.init"
 
     -- require 'pack'
